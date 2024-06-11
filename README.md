@@ -1,1 +1,3 @@
 # Proyecto Final Laboratorio 4: Padel Point
+
+### Proyecto FullStack completo con el objetivo de brindarle a un negocio local de paletas de padel su propio ecommerce. Todo lo descrito y detallado a continuación refiere a la parte **Frontend** del proyecto. El repositorio de la parte Backend, asi como su respectiva documentación, se pueden encontrar [aquí](https://youtu.be/dQw4w9WgXcQ?si=W4J2Pl06iK2EgQlY).
