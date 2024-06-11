@@ -4,7 +4,9 @@ import './App.css'
 function App() {
 
   return (
-    <h1>PadelPoint</h1>
+    <main className='h-full w-full'>
+        <h1>PadelPoint</h1>
+    </main>
   )
 }
 
