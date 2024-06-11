@@ -1,11 +1,10 @@
 import { useState } from 'react'
-import './App.css'
 
 function App() {
 
   return (
     <main className='h-full w-full'>
-        <h1>PadelPoint</h1>
+        <h1 className='text-4xl '>PadelPoint</h1>
     </main>
   )
 }
