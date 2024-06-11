@@ -1,19 +1,23 @@
 import React from 'react'
 import { Link } from 'wouter'
+import { Storefront, UsersThree } from 'phosphor-react'
 
 const Navbar = () => {
   return (
-    <nav className='bg-transparent flex justify-between'>
-        <div>
-            <img src="" alt="PadelPoint logo" />
-        </div>
-        <div className='gap-5 text-white'>
-            <Link ></Link>
-            <Link></Link>
-            <Link></Link>
+    <nav className='bg-transparent flex flex-row p-4 w-full h-20'>
+        <div className='container mx-auto flex justify-between gap-40 items-center text-white'>
+            <div className='text-white text-xl'>
+                {/* <img src="" alt="PadelPoint logo" /> */}
+                <Link to='/'>LOGO</Link>
+            </div>
+
+            <div className='space-x-4 flex gap-8'>
+                <Link to='/products'>Productos <Storefront/></Link>
+                <Link to='/about'>About us <UsersThree/></Link>
+            </div>
         </div>
     </nav>
   )
 }
 
-export default Navbar
+export default Navbar;
