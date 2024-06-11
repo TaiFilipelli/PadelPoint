@@ -17,4 +17,10 @@
 ## Posibles futuras features:
 
 - [X] Enrutamiento y organización del proyecto
-- [ ] 
+- [ ] Creación de un lindo Inicio
+- [ ] Página Products correcta
+- [ ] Filtros y categorias de busqueda
+- [ ] Fetch a la API y responses con datos correctos
+- [ ] Despliegue de información
+- [ ] Skeletons
+- [ ] Responsive
