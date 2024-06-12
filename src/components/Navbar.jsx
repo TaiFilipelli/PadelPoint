@@ -12,8 +12,8 @@ const Navbar = () => {
             </div>
 
             <div className='space-x-4 flex gap-8'>
-                <Link to='/products' className='flex flex-row text-base'>Productos <Storefront size={25} className='ml-2'/></Link>
-                <Link to='/about' className='flex flex-row'>About us <UsersThree size={25} className='ml-2'/></Link>
+                <Link to='/products' className='flex flex-row text-xl'>Productos <Storefront size={35} className='ml-2'/></Link>
+                <Link to='/about' className='flex flex-row text-xl'>About us <UsersThree size={35} className='ml-2'/></Link>
             </div>
         </div>
     </nav>

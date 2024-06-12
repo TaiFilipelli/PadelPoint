@@ -2,7 +2,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-  
+
+@font-face {
+  font-family: 'Faustina Bold';
+  src: url('./assets/static/Faustina-Bold.ttf');
+}
+@font-face {
+  font-family: 'Faustina Medium';
+  src: url('./assets/static/Faustina-Medium.ttf');
+}
+@font-face {
+  font-family: 'Faustina Light';
+  src: url('./assets/static/Faustina-Light.ttf');
+}
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
