@@ -2,9 +2,9 @@ import React from 'react'
 
 const Productos = () => {
   return (
-    <div>
-      <h1>Productos</h1>
-    </div>
+    <section className='flex justify-center'>
+      <h1 className='text-3xl'>Productos</h1>
+    </section>
   )
 }
 
