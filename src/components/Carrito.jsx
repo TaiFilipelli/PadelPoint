@@ -10,9 +10,7 @@ import { ShoppingCart, SmileySad } from 'phosphor-react'
  * @returns {JSX.Element} Devuelve el componente del drawer del carrito.
  */
 const Carrito = ({isLogged, items}) => {
-
     const [isOpen, setIsOpen] = useState(false);
-
     return (
     <>
         <Button onClick={()=> setIsOpen(!isOpen)} className='bg-red-500' color='secondary'>
@@ -35,6 +33,7 @@ const Carrito = ({isLogged, items}) => {
                     <div className='flex justify-center flex-col items-center'>
                         <SmileySad size={90}/>
                         <p className='text-xl my-2 font-poppinsLight'>El carrito está vacío.</p>
+                        <p className='my-1 font-poppinsLight text-blue-700 cursor-pointer' onClick={()=>setIsOpen(false)}>Volver</p>
                     </div>
                 )}
                 </div>
