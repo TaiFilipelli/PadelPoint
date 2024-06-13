@@ -10,7 +10,7 @@ import { Storefront, UsersThree, User } from 'phosphor-react'
  */
 const Navbar = ({isLogged, setIsLogged}) => {
   /**
-   * Handler que maneja un botonc que cambia el estado a login/logout
+   * Handler que maneja un boton que cambia el estado a login/logout
    */
 
   const handleLoginButton=()=>{

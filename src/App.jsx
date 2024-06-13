@@ -5,6 +5,7 @@ import Error404 from './components/pages/404Page.jsx';
 import AboutUs from './components/pages/AboutUs.jsx';
 import Navbar from './components/Navbar.jsx';
 import Product from './components/pages/Product.jsx';
+import Carrito from './components/Carrito.jsx';
 import { useState } from 'react';
 /**
  * 
@@ -25,6 +26,7 @@ function App() {
 
         <Route path='/404' component={Error404}/>
       </Switch>
+      <Carrito isLogged={isLogged} setIsLogged={setIsLogged}/>
     </main>
   );
 }
