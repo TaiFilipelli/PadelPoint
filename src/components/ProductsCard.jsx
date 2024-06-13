@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'wouter'
 
 const ProductsCard = ({productName, /*urlImg,*/ price} /*OTRA MANERA ES TRAER TODO EL PRODUCTO CON productoSeleccionado*/) => {
     //const [isLoading, setIsLoading] = useState[true];
@@ -9,7 +10,7 @@ const ProductsCard = ({productName, /*urlImg,*/ price} /*OTRA MANERA ES TRAER TO
         {/*<img src={urlImg} alt="Product image"/>*/}
         <h1 className='text-xl font-poppinsBold'>{productName}</h1><br /><br /><br /><br />
         <p className='text-lg font-poppinsMedium'>{price}</p>
-        <a href='/productdetail' className='text-lg font-poppinsLight hover:text-red-500 transition'>Ver más</a>
+        <Link to='/productdetail' className='text-lg font-poppinsLight hover:text-red-500 transition'>Ver más</Link>
     </section>
   )
 }

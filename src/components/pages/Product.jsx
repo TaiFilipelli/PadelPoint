@@ -1,5 +1,4 @@
 import React from 'react'
-
 const Product = () => { 
   /*const {id} = useParams(); - Esto usa el useParams de Wouter para determinar qué producto vino desde la lista de productos y su id se toma desde alli
   const [product, setProduct] = useState([]); - toda la info del producto viene en un estado que toma el array con todos sus subdatos
