@@ -17,7 +17,7 @@ const Navbar = ({isLogged, setIsLogged}) => {
     setIsLogged(!isLogged);
   }
   return (
-    <nav className='bg-transparent flex flex-row p-4 w-full h-20'>
+    <nav className='bg-transparent flex flex-row p-4 w-full h-20 font-poppinsRegular'>
         <div className='container mx-auto flex justify-between gap-40 items-center text-white'>
             <div className='text-white text-xl'>
                 {/* <img src="" alt="PadelPoint logo" /> */}

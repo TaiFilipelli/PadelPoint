@@ -22,7 +22,7 @@ const Carrito = ({isLogged, items}) => {
             <Drawer.Content className='flex items-center justify-center text-white bg-black'>
                 { isLogged?
                 <div className='mx-auto space-y-3'>
-                    <h1 className='text-3xl font-faustinaBold mb-10'>Mi carrito de compras</h1>
+                    <h1 className='text-3xl font-poppinsBlack mb-10'>Mi carrito de compras</h1>
                     {items.length > 0 ? (
                         <ul>
                             {items.map((item, index) => (
@@ -34,12 +34,12 @@ const Carrito = ({isLogged, items}) => {
                 ) : (
                     <div className='flex justify-center flex-col items-center'>
                         <SmileySad size={90}/>
-                        <p className='text-xl my-2'>El carrito está vacío</p>
+                        <p className='text-xl my-2 font-poppinsLight'>El carrito está vacío.</p>
                     </div>
                 )}
                 </div>
                 :
-                <h1 className='text-2xl'>No ha iniciado sesión para usar esta función. Inicie sesión <a href="/" className='text-red-600'>aquí!</a></h1>
+                <h1 className='text-2xl font-poppinsMedium'>No ha iniciado sesión para usar esta función. Inicie sesión <a href="/" className='text-red-600 font-poppinsBlack'>aquí</a></h1>
                 }
             </Drawer.Content>
         </Drawer>

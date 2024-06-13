@@ -4,16 +4,24 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Faustina Bold';
-  src: url('./assets/static/Faustina-Bold.ttf');
+  font-family: 'Poppins Bold';
+  src: url('./assets/static/Poppins-Bold.ttf');
 }
 @font-face {
-  font-family: 'Faustina Medium';
-  src: url('./assets/static/Faustina-Medium.ttf');
+  font-family: 'Poppins Regular';
+  src: url('./assets/static/Poppins-Regular.ttf');
 }
 @font-face {
-  font-family: 'Faustina Light';
-  src: url('./assets/static/Faustina-Light.ttf');
+  font-family: 'Poppins Light';
+  src: url('./assets/Poppins-Light.ttf');
+}
+@font-face {
+  font-family: 'Poppins Medium';
+  src: url('./assets/static/Poppins-Medium.ttf');
+}
+@font-face {
+  font-family: 'Poppins Black';
+  src: url('./assets/static/Poppins-Black.ttf');
 }
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;

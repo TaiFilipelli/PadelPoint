@@ -9,9 +9,11 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        faustinaBold:['Faustina Bold','sans-serif'],
-        faustinaMedium:['Faustina Medium','sans-serif'],
-        faustinaLight:['Faustina Light','sans-serif']
+        poppinsBlack:['Poppins Black','sans-serif'],
+        poppinsBold:['Poppins Bold','sans-serif'],
+        poppinsMedium:['Poppins Medium','sans-serif'],
+        poppinsRegular:['Poppins Regular','sans-serif'],
+        poppinsLight:['Poppins Light','sans-serif']
       }
     }
   }
