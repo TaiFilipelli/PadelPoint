@@ -14,6 +14,7 @@ import { useState } from 'react';
 function App() {
 
   const [isLogged, setIsLogged] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
 
   return (
     <main className='h-full w-full bg-no-repeat'>
@@ -26,7 +27,9 @@ function App() {
 
         <Route path='/404' component={Error404}/>
       </Switch>
-      <Carrito isLogged={isLogged} setIsLogged={setIsLogged}/>
+      <div className='w-full flex'>
+        <Carrito isLogged={isLogged} setIsLogged={setIsLogged} items={cartItems}/>
+      </div>
     </main>
   );
 }
