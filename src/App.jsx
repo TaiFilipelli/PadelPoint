@@ -27,7 +27,7 @@ function App() {
 
         <Route path='/404' component={Error404}/>
       </Switch>
-      <div className='w-full flex'>
+      <div className='w-screen flex fixed left-[90%] bottom-16'>
         <Carrito isLogged={isLogged} setIsLogged={setIsLogged} items={cartItems}/>
       </div>
     </main>
