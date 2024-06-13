@@ -1,5 +1,6 @@
 import keepPreset, { theme } from "keep-react/preset";
 export default {
+  darkMode: 'class',
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -14,7 +15,11 @@ export default {
         poppinsMedium:['Poppins Medium','sans-serif'],
         poppinsRegular:['Poppins Regular','sans-serif'],
         poppinsLight:['Poppins Light','sans-serif']
-      }
+      },
+      colors: {
+        'custom-light-bg': '#f8f9fa',
+        'custom-dark-bg': '#242424',
+      },
     }
   }
 };
