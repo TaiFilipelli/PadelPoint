@@ -1,8 +1,17 @@
 import React from 'react'
 import { Link } from 'wouter'
 import { Storefront, UsersThree, User } from 'phosphor-react'
-
+/**
+ * 
+ * @param {Object} props - Las propiedades del componente.
+ * @param {boolean} props.isLogged - Estado que determina si el usuario está logeado o no.
+ * @param {function} props.setIsLogged  - Función que cambia el estado de logeado de un usuario.
+ * @returns {JSX.Element} El componente NavBar
+ */
 const Navbar = ({isLogged, setIsLogged}) => {
+  /**
+   * Handler que maneja un botonc que cambia el estado a login/logout
+   */
 
   const handleLoginButton=()=>{
     setIsLogged(!isLogged);

@@ -6,7 +6,10 @@ import AboutUs from './components/pages/AboutUs.jsx';
 import Navbar from './components/Navbar.jsx';
 import Product from './components/pages/Product.jsx';
 import { useState } from 'react';
-
+/**
+ * 
+ * @returns {JSX.Element} El componente principal de la app web. 
+ */
 function App() {
 
   const [isLogged, setIsLogged] = useState(false);
