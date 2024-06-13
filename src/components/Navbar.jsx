@@ -35,7 +35,7 @@ const Navbar = ({ isLogged, setIsLogged, isDarkMode, onToggleDarkMode }) => {
         <div className="flex items-center">
           <Link to="/">
             <img
-              src="/public/LogoPadelPoint.png"
+              src="/LogoPadelPoint.png"
               alt="Logo Padel Point"
               className="h-[11rem] invert-on-dark"
             />
