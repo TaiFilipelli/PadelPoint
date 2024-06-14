@@ -15,13 +15,16 @@ import { useState, useEffect } from 'react';
 function App() {
   const [isLogged, setIsLogged] = useState(false);
   const [cartItems, setCartItems] = useState([]);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(()=>{
+    return localStorage.getItem('darkMode') ==='true';
+  });
 
   const onToggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
+    setIsDarkMode(prevMode => !prevMode);
   };
 
   useEffect(() => {
+    localStorage.setItem('darkMode', isDarkMode);
     if (isDarkMode) {
       document.documentElement.classList.add('dark');
     } else {
