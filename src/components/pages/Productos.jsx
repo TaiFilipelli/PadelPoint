@@ -12,10 +12,10 @@ const Productos = () => {
       <h3 className='text-2xl font-poppinsMedium'>Encontrá tu mejor compañera para la cancha.</h3>
       <section className='text-white bg-transparent p-4 rounded-lg flex flex-wrap justify-start items-center ml-[20%] mr-[20%] mt-10'>
         <div>
-          <h3 className='text-xl mb-1 ml-5 font-poppinsBold mr-8 text-black'>Filtrar por:</h3>
+          <h3 className='text-xl mb-1 ml-5 font-poppinsBold mr-8 text-black dark:text-white'>Filtrar por:</h3>
         </div>
         <form className='flex items-center gap-5'>
-          <Dropdown action={<div className='p-2 hover:bg-black transition rounded-md text-black hover:text-white'><p className='text-lg mr-2 font-poppinsRegular'>Tipo de paleta</p></div>} actionClassName='border-none bg-transparent p-0' className='border-none'>
+          <Dropdown action={<div className='p-2 hover:bg-black transition rounded-md text-black hover:text-white dark:text-white'><p className='text-lg mr-2 font-poppinsRegular'>Tipo de paleta</p></div>} actionClassName='border-none bg-transparent p-0' className='border-none'>
           <Dropdown.List className='p-0'>
               <fieldset className="flex items-center gap-2 mb-2">
                 <Radio variant='circle' id="diamante" name="tipo"/>
@@ -31,7 +31,7 @@ const Productos = () => {
               </fieldset>
           </Dropdown.List>
           </Dropdown>
-          <Dropdown action={<div className='p-2 hover:bg-black transition rounded-md text-black hover:text-white'><p className='text-lg mr-2 ml-[10%] font-poppinsRegular'>Marca</p></div>} actionClassName='border-none bg-transparent p-0' className='border-none'>
+          <Dropdown action={<div className='p-2 hover:bg-black transition rounded-md text-black hover:text-white dark:text-white'><p className='text-lg mr-2 ml-[10%] font-poppinsRegular'>Marca</p></div>} actionClassName='border-none bg-transparent p-0' className='border-none'>
           <Dropdown.List className='p-0'>
               <fieldset className="flex items-center gap-2 mb-2">
                 <Radio variant='circle' id="marca1" name="marca" className='' />
