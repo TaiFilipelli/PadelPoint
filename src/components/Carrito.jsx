@@ -13,7 +13,7 @@ const Carrito = ({isLogged, items}) => {
     const [isOpen, setIsOpen] = useState(false);
     return (
     <>
-        <Button onClick={()=> setIsOpen(!isOpen)} className='bg-red-500' color='secondary'>
+        <Button onClick={()=> setIsOpen(!isOpen)} className='bg-black' color='secondary'>
             <ShoppingCart size={35}/>
         </Button>
         <Drawer isOpen={isOpen} onClose={()=>setIsOpen(false)} position='right'>
