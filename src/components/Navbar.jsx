@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'wouter';
 import { Storefront, UsersThree, User, Moon, Sun, List } from 'phosphor-react';
+import LoginOrUser from './LoginOrUser';
 
 /**
  * Componente Navbar que muestra un menú de navegación.

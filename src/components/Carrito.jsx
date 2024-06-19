@@ -38,7 +38,7 @@ const Carrito = ({isLogged, items}) => {
                 )}
                 </div>
                 :
-                <h1 className='text-2xl font-poppinsMedium'>No ha iniciado sesión para usar esta función. Inicie sesión <a href="/" className='text-red-600 font-poppinsBlack'>aquí</a></h1>
+                <h1 className='text-2xl font-poppinsMedium'>No ha iniciado sesión para usar esta función. Inicie sesión <a href="Register.jsx" className='text-red-600 font-poppinsBlack'>aquí</a></h1>
                 }
             </Drawer.Content>
         </Drawer>
