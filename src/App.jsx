@@ -6,6 +6,7 @@ import AboutUs from './components/pages/AboutUs.jsx';
 import Navbar from './components/Navbar.jsx';
 import Product from './components/pages/Product.jsx';
 import Carrito from './components/Carrito.jsx';
+import Footer from './components/Footer.jsx';
 import { useState, useEffect } from 'react';
 
 /**
@@ -45,6 +46,7 @@ function App() {
       <div className='w-screen flex fixed left-[90%] bottom-16 max-[835px]:left-[80%] max-[425px]:left-[75%] max-[335px]:left-[70%]'>
         <Carrito isLogged={isLogged} setIsLogged={setIsLogged} items={cartItems} />
       </div>
+      <Footer/>
     </main>
   );
 }
