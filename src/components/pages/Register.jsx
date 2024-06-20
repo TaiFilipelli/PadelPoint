@@ -1,10 +1,26 @@
-import React from 'react'
+import {useState} from 'react'
 import { Modal } from 'keep-react'
-const Register = () => {
+const Register = ({text}) => {
+    const [isOpen, setIsOpen] = useState(false)
+    const openModal = () => {
+      setIsOpen(true)
+    }
+    const closeModal = () => {
+      setIsOpen(false)
+    }
   return (
-    <Modal>
-        
-    </Modal>
+    <>
+        <button onClick={openModal} className='bg-transparent'>{text}</button>
+        {isOpen && (
+        <Modal isOpen={isOpen} onClose={closeModal}>
+          <Modal.Body>
+            
+            <button onClick={closeModal}>Close</button>
+          </Modal.Body>
+        </Modal>
+      )}
+    </>
+
   )
 }
 

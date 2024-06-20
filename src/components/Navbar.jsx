@@ -81,6 +81,7 @@ const Navbar = ({ isLogged, setIsLogged, isDarkMode, onToggleDarkMode }) => {
           <button onClick={onToggleDarkMode}>
             {isDarkMode ? <Moon size={30} className="ml-2" /> : <Sun size={30} className="ml-2" />}
           </button>
+          <LoginOrUser/>
         </div>
       )}
       {/* Estilos específicos de Tailwind CSS para invertir el Logo, únicamente está ahi por eso.*/}
