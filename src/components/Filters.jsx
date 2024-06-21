@@ -26,7 +26,7 @@ const Filters = () => {
         setSelectedMarca(e.target.id);
     };
   return (
-    <section className='text-white bg-transparent p-4 rounded-lg flex flex-wrap justify-start items-center ml-[20%] mr-[20%] mt-10'>
+    <section className='text-white bg-transparent p-4 rounded-lg flex flex-wrap justify-start items-center ml-[15%] mr-[15%] mt-10'>
         <div>
           <h3 className='text-xl mb-1 ml-5 font-poppinsBold mr-8 text-black dark:text-white'>Filtrar por:</h3>
         </div>
