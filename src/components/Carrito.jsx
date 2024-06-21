@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Drawer, Button } from 'keep-react'
-import { ShoppingCart, SmileySad } from 'phosphor-react'
+import { ShoppingCart, SmileySad, Warning } from 'phosphor-react'
 import Register from './pages/Register'
 /**
  * Componente que representa el drawer flotante del carrito de compras.
@@ -39,7 +39,10 @@ const Carrito = ({isLogged, items}) => {
                 )}
                 </div>
                 :
-                <h1 className='text-2xl font-poppinsMedium'>No ha iniciado sesión para usar esta función. Inicie sesión <Register text='aquí!' className='text-red-600 font-poppinsBlack'/></h1>
+                <div className='flex justify-center items-center text-center flex-col'>
+                <Warning size={180}/>
+                <h1 className='text-2xl font-poppinsMedium'>No ha iniciado sesión para usar esta función. Inicie sesión <Register text='aquí!' onClick={()=>setIsOpen(false)} className='text-red-600 font-poppinsBlack hover:underline'/></h1>
+                </div>
                 }
             </Drawer.Content>
         </Drawer>
