@@ -13,10 +13,10 @@ const Productos = () => {
       <h3 className='text-2xl font-poppinsMedium'>Encontrá tu mejor compañera para la cancha.</h3>
       <Filters/>
       <section className='flex flex-wrap'>
-        <ProductsCard productName='Paleta redonda' price='US$500'/>
-        <ProductsCard productName='Paleta diamante' price='US$350'/>
-        <ProductsCard productName='Paleta hibrida' price='US$425'/>
-        <ProductsCard productName='Paleta roja' price='US$10'/>
+        <ProductsCard productName='Paleta redonda' price='500'/>
+        <ProductsCard productName='Paleta diamante' price='350'/>
+        <ProductsCard productName='Paleta hibrida' price='425'/>
+        <ProductsCard productName='Paleta roja' price='10'/>
       </section>
     </section>
   )
