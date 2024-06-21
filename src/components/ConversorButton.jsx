@@ -23,7 +23,7 @@ export const ConversorButton = ({ valueToConvert }) => {
   return (
     <section className="relative w-12 h-12 rounded-full text-black">
       <button
-        className="bg-white shadow-sm h-full w-full text-2xl rounded-full bg-opacity-25"
+        className="bg-white shadow-sm h-full w-full text-2xl rounded-full bg-opacity-25 hover:opacity-90"
         onMouseEnter={handleHover}
         onMouseLeave={handleHover}
       >
