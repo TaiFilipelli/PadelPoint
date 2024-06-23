@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Dropdown, Radio, Label} from 'keep-react'
+import { Dropdown, Radio, Label, Slider, Button } from 'keep-react'
 const Filters = () => {
     const [selectedTipo, setSelectedTipo] = useState('');
     const [selectedMarca, setSelectedMarca] = useState('');
+    const [value, setValue] = useState([]);
 
     useEffect(()=>{
         const savedTipo = localStorage.getItem('selectedTipo');
@@ -96,6 +97,27 @@ const Filters = () => {
               <fieldset className="flex items-center gap-2 mb-2">
                 <Radio variant='circle' id="snawaert" name="marca" checked={selectedMarca === 'snawaert'} onChange={handleMarcaChange} />
                 <Label htmlFor="snawaert" className='font-poppinsRegular'>Snawaert</Label>
+              </fieldset>
+          </Dropdown.List>
+          </Dropdown>
+          <Dropdown action={<div className='p-2 hover:bg-black transition rounded-md text-black hover:text-white dark:text-white'><p className='text-lg mr-2 ml-[10%] font-poppinsRegular'>Precio</p></div>} actionClassName='border-none bg-transparent p-0' className='border-none'>
+          <Dropdown.List className='p-0 flex items-center justify-center'>
+              <fieldset className="flex items-center gap-2 mb-2">
+                <Slider
+                  min={100}
+                  max={500}
+                  defaultValue={[100,500]}
+                  tooltip='top'
+                  range={true}
+                  onChange={(value)=>setValue(value)}
+                  className=''>
+                   {Array.isArray(value) && (
+                    <Slider.Box className=''>
+                      <Button size='sm' color='secondary' className='pt-2 pl-3 pr-3'>{value[0]? value[0] : 100}</Button>
+                      <Button size='sm' color='secondary' className='pt-2 pl-3 pr-3'>{value[1]? value[1] : 500}</Button>
+                    </Slider.Box>
+                   )}
+                </Slider>
               </fieldset>
           </Dropdown.List>
           </Dropdown>
