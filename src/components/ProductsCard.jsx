@@ -3,7 +3,7 @@ import { Link } from 'wouter'
 import { ConversorButton } from './ConversorButton';
 import Skeleton from 'react-loading-skeleton';
 
-const ProductsCard = ({nombre, img, precio}) => {
+const ProductsCard = ({nombre, img, precio, idProducto}) => {
     // const [Loading, setLoading] = useState(true);
     
     // useEffect(()=>{
@@ -21,7 +21,7 @@ const ProductsCard = ({nombre, img, precio}) => {
             <p className='text-lg font-poppinsMedium mr-4'>US${precio}</p>
             <ConversorButton valueToConvert={precio}/>
           </div>
-          <Link to='/productdetail' className='text-lg font-poppinsLight hover:text-red-500 transition-all mt-5'>Ver más</Link>
+          <Link to={`/productdetail/${idProducto}`} className='text-lg font-poppinsLight hover:text-red-500 transition-all mt-5'>Ver más</Link>
         </section>
   )
 }

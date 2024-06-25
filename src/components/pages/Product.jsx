@@ -1,13 +1,34 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'wouter';
+import { getOnePaleta } from '../services/data';
 const Product = () => { 
-  /*const {id} = useParams(); - Esto usa el useParams de Wouter para determinar qué producto vino desde la lista de productos y su id se toma desde alli
-  const [product, setProduct] = useState([]); - toda la info del producto viene en un estado que toma el array con todos sus subdatos
-  const [loading, setLoading] = useState(true); - Esto es un estado casi global para los skeletons y las cargas*/
+  const { id } = useParams();
+  //Esto usa el useParams de Wouter para determinar qué producto vino desde la lista de productos y su id se toma desde alli
+  const [product, setProduct] = useState([]); 
+  const [loading, setLoading] = useState(true);
+  useEffect(()=>{
+    const dataPaleta = async() => {
+    try{
+        const parsedId = parseInt(id, 10);
+        const paleta = await getOnePaleta(parsedId);
+        setProduct(paleta);
+        setLoading(false);
+    } catch (error){
+      console.error("Error acá, rey: ",error);
+      setLoading(true);
+    };
+  }
+    dataPaleta();
+  },[id]);
   return (
     <section className='flex justify-center items-center flex-col'>
       <h1 className='font-poppinsBold text-3xl mb-8 mt-4'>Detalles del producto</h1>
       <section className='w-1/2 justify-center items-center h-1/3 flex-col'>
-
+      {loading ? (
+          <p>Cargando...</p>
+        ) : (
+          <h1 className='font-poppinsBold'>{product.name}</h1>
+        )}
       </section>
     </section>
   )

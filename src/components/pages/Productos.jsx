@@ -35,7 +35,7 @@ const Productos = () => {
       <section className='flex flex-wrap'>
         {/* Mapea las paletas para renderizar las Cards de productos */}
         {paletas.map(paleta => (
-          <ProductsCard key={paleta.id} nombre={paleta.name} precio={paleta.price}/>
+          <ProductsCard key={paleta.id} nombre={paleta.name} precio={paleta.price} idProducto={paleta.id}/>
         ))}
       </section>
     </section>
