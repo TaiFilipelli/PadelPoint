@@ -1,21 +1,11 @@
 import { useAuthStore } from "../store/auth";
 
-export const verifyResponse = async (response) => {
-    console.log('Response status:', response.status);
-    if (!response.ok) {
-        console.error('Error:', response.statusText);
-        throw new Error('Failed to fetch');
+export const verifyResponse = (response)=>{
+    if(!response.ok){
+        throw new Error(response.statusText);
     }
-    try {
-        const data = await response.json();
-        console.log('Parsed JSON:', data);
-        return data;
-    } catch (error) {
-        console.error('JSON parse error:', error);
-        throw new Error('Failed to parse JSON');
-    }
+    return response.json();
 };
-
 
 export const getAuthHeader = ()=>{
     const {token} =useAuthStore.getState();
