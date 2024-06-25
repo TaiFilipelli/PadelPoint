@@ -22,12 +22,12 @@ const Product = () => {
   },[id]);
   return (
     <section className='flex justify-center items-center flex-col'>
-      <h1 className='font-poppinsBold text-3xl mb-8 mt-4'>Detalles del producto</h1>
-      <section className='w-1/2 justify-center items-center h-1/3 flex-col'>
+      <section className=' text-center justify-center items-center h-1/3 flex-col w-[70%]'>
       {loading ? (
           <p>Cargando...</p>
         ) : (
-          <h1 className='font-poppinsBold'>{product.name}</h1>
+          <h1 className='font-poppinsBold text-4xl mt-10'>{product.name}</h1>
+          
         )}
       </section>
     </section>
