@@ -5,7 +5,16 @@ export const getPaletas = async()=>{
     const response = await fetch(`${baseUrl}/racket`);
     return verifyResponse(response);
 };
+
 export const getOnePaleta = async(id)=>{
     const response = await fetch(`${baseUrl}/racket/${id}`);
     return verifyResponse(response);
 };
+
+export const userLogin = async()=>{
+    const response = await fetch(`${baseUrl}/auth`,{
+        method:'POST',
+        
+    });
+    return verifyResponse(response);
+}

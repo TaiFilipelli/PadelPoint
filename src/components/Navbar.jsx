@@ -7,7 +7,6 @@ import LoginOrUser from './LoginOrUser';
  * Componente Navbar que muestra un menú de navegación.
  * @param {Object} props - Las propiedades del componente.
  * @param {boolean} props.isLogged - Estado que determina si el usuario está logeado o no.
- * @param {function} props.setIsLogged - Función que cambia el estado de logeado.
  * @param {boolean} props.isDarkMode - Estado que determina si la página está en modo oscuro.
  * @param {function} props.onToggleDarkMode - Evento que maneja cuando se cambia el modo oscuro.
  * @returns {JSX.Element} El componente Navbar.
@@ -15,13 +14,6 @@ import LoginOrUser from './LoginOrUser';
 const Navbar = ({ isLogged, setIsLogged, isDarkMode, onToggleDarkMode }) => {
   // Estado para controlar si el menú desplegable de la navbar está abierto o cerrado
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  /**
-   * Handler que maneja un botón que cambia el estado a logeado/deslogeado (o login/logout, es lo mismo xd).
-   */
-  const handleLoginButton = () => {
-    setIsLogged(!isLogged);
-  };
 
   /**
    * Handler que alterna el estado del menú desplegable en pantallas chicas de la navbar.
@@ -50,10 +42,7 @@ const Navbar = ({ isLogged, setIsLogged, isDarkMode, onToggleDarkMode }) => {
           <Link to="/about" className="flex flex-row text-xl">
             About us <UsersThree size={30} className="ml-3" />
           </Link>
-          <button onClick={handleLoginButton} className="flex flex-row text-xl">
-            {isLogged ? 'Usuario' : 'Invitado'}
-            <User size={25} className="ml-2" />
-          </button>
+          <LoginOrUser/>
           <button onClick={onToggleDarkMode}>
             {isDarkMode ? <Moon size={30} className="ml-2" /> : <Sun size={30} className="ml-2" />}
           </button>
