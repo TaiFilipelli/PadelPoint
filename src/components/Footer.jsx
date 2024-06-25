@@ -9,7 +9,6 @@ const Footer = () => {
       ];
   return (
     <section className='absolute bottom-0 font-poppinsRegular flex flex-row items-center text-center p-4 w-full opacity-50'>
-
         <div className='flex max-w-4xl mx-auto text-base hover:opacity-100'>
          {members.map((member, index) => (
           <p key={index}>
