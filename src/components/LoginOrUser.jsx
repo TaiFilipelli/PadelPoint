@@ -82,7 +82,7 @@ const LoginOrUser = () => {
               </fieldset>
             </form>
             <div className='flex w-full justify-between mt-10'>
-              <button type="submit" className='bg-black text-white font-poppinsMedium p-3 rounded-md cursor-pointer'>Ingresar</button>
+              <button type='submit' className='bg-black text-white font-poppinsMedium p-3 rounded-md cursor-pointer'>Ingresar</button>
               <Link to='/register' onClick={closeModal} className='hover:underline cursor-pointer'>No tiene una cuenta? Registrate hoy!</Link>
             </div>
           </Modal.Body>
