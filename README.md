@@ -12,15 +12,16 @@
 - Enrutamiento: Wouter (3.2.0)
 - Local Storage: Zustand (4.5.2)
 - Iconos: Phospor Icons (1.4.1)
+- Schemas: Zod (3.23.8)
 - Algunos componentes son de Keep React 
 
 ## Posibles futuras features:
 
 - [X] Enrutamiento y organización del proyecto
-- [ ] Creación de un lindo Inicio
-- [ ] Página Products correcta
-- [ ] Filtros y categorias de busqueda
+- [X] Creación de un lindo Inicio
+- [X] Página Products correcta
+- [X] Filtros y categorias de busqueda
 - [ ] Fetch a la API y responses con datos correctos
-- [ ] Despliegue de información
+- [X] Despliegue de información
 - [ ] Skeletons
-- [ ] Responsive
+- [X] Responsive
