@@ -7,6 +7,7 @@ import Navbar from './components/Navbar.jsx';
 import Product from './components/pages/Product.jsx';
 import Carrito from './components/Carrito.jsx';
 import Footer from './components/Footer.jsx';
+import Register from './components/pages/Register.jsx';
 import { useState, useEffect } from 'react';
 
 /**
@@ -41,6 +42,7 @@ function App() {
         <Route path='/products' component={Productos} />
         <Route path='/about' component={AboutUs} />
         <Route path='/productdetail/:id' component={Product} />
+        <Route path='/register' component={Register}/>
         
         <Route path='/404' component={Error404} />
       </Switch>

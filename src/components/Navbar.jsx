@@ -56,21 +56,17 @@ const Navbar = ({ isLogged, setIsLogged, isDarkMode, onToggleDarkMode }) => {
       </div>
       {/* Navbar desplegable para pantallas pequeñas */}
       {isMenuOpen && (
-        <div className="absolute right-0 top-12 lg:hidden bg-white dark:bg-gray-800 text-black dark:text-white flex flex-col items-center space-y-4 p-4 mt-2 shadow-lg">
+        <div className="absolute right-0 top-12 lg:hidden rounded-md bg-white dark:bg-gray-800 text-black dark:text-white flex flex-col items-center space-y-4 p-4 mt-2 shadow-lg">
           <Link to="/products" className="flex flex-row text-xl">
             Productos <Storefront size={30} className="ml-2" />
           </Link>
           <Link to="/about" className="flex flex-row text-xl">
             About us <UsersThree size={30} className="ml-3" />
           </Link>
-          <button onClick={handleLoginButton} className="flex flex-row text-xl">
-            {isLogged ? 'Usuario' : 'Invitado'}
-            <User size={25} className="ml-2" />
-          </button>
+          <LoginOrUser/>
           <button onClick={onToggleDarkMode}>
             {isDarkMode ? <Moon size={30} className="ml-2" /> : <Sun size={30} className="ml-2" />}
           </button>
-          <LoginOrUser/>
         </div>
       )}
       {/* Estilos específicos de Tailwind CSS para invertir el Logo, únicamente está ahi por eso.*/}
