@@ -1,5 +1,5 @@
 import { verifyResponse } from "../../utils/services";
-const baseUrl = await import.meta.env.VITE_API_URL;
+const baseUrl = import.meta.env.VITE_API_URL;
 
 export const getPaletas = async()=>{
     const response = await fetch(`${baseUrl}/racket`);
