@@ -4,6 +4,7 @@ const baseUrl = import.meta.env.VITE_API_URL;
 
 export const getPaletas = async()=>{
     const response = await fetch(`${baseUrl}/racket`);
+    console.log(baseUrl);
     return verifyResponse(response);
 };
 
