@@ -5,11 +5,14 @@ import { userLogin } from './services/data'
 import { Link } from 'wouter'
 import {useAuthStore} from '../store/auth'
 import { checkIfIsEmailOrUsername } from '../utils/services'
+import { loginSchema } from '../../schemas/Login'
+import { z } from "zod";
 
 const LoginOrUser = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [password, setPassword] = useState('');
     const [userOrEmail, setUserOrEmail] = useState('');
+    const [errors,setErrors] = useState({});
 
     const openModal = () => {
       setIsOpen(true)
@@ -23,9 +26,11 @@ const LoginOrUser = () => {
 
     const onSubmit = async(e) =>{
       e.preventDefault();
+      const login = userOrEmail.trim();
+      const passwordValue = password.trim();
 
-      const formData = new FormData(e.target);
-      const data = Object.fromEntries(formData);
+      const fieldType = checkIfIsEmailOrUsername(login);
+      const data = { [fieldType]: login, password };
 
     try {
       const validatedData = loginSchema.parse(data);
@@ -38,8 +43,11 @@ const LoginOrUser = () => {
       closeModal();
     } catch (error) {
       if (error instanceof z.ZodError) {
-
-        console.error('Errores de validación:', error.errors);
+        const errores = error.errors.reduce((acc,curr)=>{
+          acc[curr.path[0]] = curr.message;
+          return acc;
+        },{});
+        setErrors(errores);
       } else {
         console.error('Error al procesar los datos:', error);
       }
@@ -67,6 +75,7 @@ const LoginOrUser = () => {
                 value={userOrEmail}
                 onChange={(e)=> setUserOrEmail(e.target.value)}
                 />
+                {errors.login && <p className='text-red-500'>{errors.login}</p>}
               </fieldset>
               <fieldset className='flex flex-col text-left w-3/4'>
                 <Label htmlFor='password' className='font-poppinsRegular mt-4 text-lg'>Contraseña</Label>
@@ -79,6 +88,7 @@ const LoginOrUser = () => {
                 value={password}
                 onChange={(e)=> setPassword(e.target.value)}
                 />
+                {errors.password && <p className='text-red-500'>{errors.password}</p>}
               </fieldset>
             <div className='flex w-full justify-between mt-10'>
               <button type='submit' className='bg-black text-white font-poppinsMedium p-3 rounded-md cursor-pointer'>Ingresar</button>

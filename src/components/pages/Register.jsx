@@ -30,7 +30,7 @@ const Register = () => {
         <section className='flex flex-wrap absolute top-0 left-0 w-full h-full z-50 bg-custom-dark-bg'>
             <div className='register-bg w-1/2 bg-no-repeat max-[640px]:w-full max-[640px]:h-40'/>
             <section className='flex flex-col items-start justify-center p-6 w-full sm:w-1/2'>
-                <h1 className='font-poppinsBlack text-5xl mb-6'>¡Únete a la familia PadelPoint hoy!</h1>
+                <h1 className='font-poppinsBlack text-white text-5xl mb-6'>¡Únete a la familia PadelPoint hoy!</h1>
                 <form onSubmit={handleSubmit(onSubmit)} className='w-full'>
                     <fieldset className='p-2 mt-4'>
                         <Label htmlFor='name' className='block font-poppinsMedium text-white text-xl mb-1'>Nombre</Label>
@@ -94,8 +94,10 @@ const Register = () => {
                         Registrarme
                     </button>
                 </form>
-                <div className='flex flex-row mt-4'>
-                <Link to='/' className='hover:underline text-white mt-4 ml-2'><ArrowUUpLeft className='mr-4'/>Volver atrás</Link>
+                <div className='flex flex-row mt-4 items-center text-center justify-center'>
+                <ArrowUUpLeft size={25} color='white'/>
+                <Link to='/' className='hover:underline text-white ml-2'>
+                Volver atrás</Link>
                 </div>
             </section>
         </section>
