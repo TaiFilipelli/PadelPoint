@@ -20,7 +20,8 @@ export const userLogin = async(credenciales)=>{
         },
         body: JSON.stringify(credenciales)
     });
-    return verifyResponse(response);
+    const result = await response.json();
+    return result;
 }
 export const createOneUser=async(data)=>{
     const response = await fetch(`${baseUrl}/user`,{
