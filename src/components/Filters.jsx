@@ -31,7 +31,7 @@ const Filters = () => {
         <div>
           <h3 className='text-xl mb-1 ml-5 font-poppinsBold mr-8 text-black dark:text-white'>Filtrar por:</h3>
         </div>
-        <form className='flex items-center gap-5'>
+        <form className='flex items-center gap-5 z-10'>
           <Dropdown action={<div className='p-2 hover:bg-black transition rounded-md text-black hover:text-white dark:text-white'><p className='text-lg mr-2 font-poppinsRegular'>Tipo de paleta</p></div>} actionClassName='border-none bg-transparent p-0' className='border-none'>
           <Dropdown.List className='p-0'>
               <fieldset className="flex items-center gap-2 mb-2">
