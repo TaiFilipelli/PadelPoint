@@ -4,8 +4,9 @@ import { GithubLogo } from 'phosphor-react';
 const Footer = () => {
     const members = [
         { name: 'Filipelli Taiel', role: 'FrontEnd', github: 'https://github.com/TaiFilipelli' },
-        { name: 'Fernandez Lautaro', role: 'BackEnd', github: 'https://github.com/juan-perez' },
+        { name: 'Fernandez Lautaro', role: 'BackEnd', github: 'https://github.com/Lautaro24Fer' },
         { name: 'Merlo Ignacio', role: 'DataBase & PadelPoint Owner', github: 'https://github.com/maria-lopez' },
+        { name: 'Gramet Maximiliano', role: 'BackEnd', github: 'https://github.com/Lautaro24Fer' }
       ];
   return (
     <section className='absolute bottom-0 font-poppinsRegular flex flex-row items-center text-center p-4 w-full opacity-50'>
