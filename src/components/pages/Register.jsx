@@ -1,17 +1,26 @@
 import { Label } from 'keep-react';
-import { useState } from 'react';
 import { Link } from 'wouter';
-import { registerSchema } from '../../../schemas/Register'
+import { registerSchema } from '../../../schemas/Register';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
+import { createOneUser } from '../services/data';
 
 const Register = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm({
+    const { register, handleSubmit, formState: { errors }, setError } = useForm({
         resolver: zodResolver(registerSchema),
     });
-    const onSubmit = (data) => {
-        console.log(data);
-        // Aquí puedes manejar el envío del formulario, por ejemplo, hacer una petición a la API
+
+    const onSubmit = async (data) => {
+        try {
+            const result = await createOneUser(data);
+            console.log('Usuario creado! Revisar DB', result);
+        } catch (error) {
+            console.error('ERROR ACÁ PA:', error);
+            setError('apiError', {
+                type: 'manual',
+                message: error.message,
+            });
+        }
     }
 
     return (
@@ -21,12 +30,23 @@ const Register = () => {
                 <h1 className='font-poppinsBlack text-5xl mb-6'>¡Únete a la familia PadelPoint hoy!</h1>
                 <form onSubmit={handleSubmit(onSubmit)} className='w-full'>
                     <fieldset className='p-2 mt-4'>
-                        <Label htmlFor='userName' className='block font-poppinsMedium text-white text-xl mb-1'>Nombre y apellido</Label>
+                        <Label htmlFor='name' className='block font-poppinsMedium text-white text-xl mb-1'>Nombre</Label>
+                        <input 
+                            type="text" 
+                            id='name' 
+                            className='rounded-md w-1/2 bg-white text-black p-2 font-poppinsRegular' 
+                            placeholder='John' 
+                            {...register('name')}
+                        />
+                        {errors.name && <span className='text-red-500 font-poppinsBlack ml-6'>{errors.name.message}</span>}
+                    </fieldset>
+                    <fieldset className='p-2 mt-2'>
+                        <Label htmlFor='userName' className='block font-poppinsMedium text-white text-xl mb-1'>Nombre de usuario</Label>
                         <input 
                             type="text" 
                             id='userName' 
                             className='rounded-md w-1/2 bg-white text-black p-2 font-poppinsRegular' 
-                            placeholder='John Doe' 
+                            placeholder='john_doe' 
                             {...register('userName')}
                         />
                         {errors.userName && <span className='text-red-500 font-poppinsBlack ml-6'>{errors.userName.message}</span>}
@@ -62,8 +82,9 @@ const Register = () => {
                             placeholder='Confirmar contraseña...'
                             {...register('confirmPassword')}
                         />
-                        {errors.confirmPassword && <span className='text-red-500'>{errors.confirmPassword.message}</span>}
+                        {errors.confirmPassword && <span className='text-red-500 font-poppinsBlack ml-6'>{errors.confirmPassword.message}</span>}
                     </fieldset>
+                    {errors.apiError && <span className='text-red-500 font-poppinsBlack ml-6'>{errors.apiError.message}</span>}
                     <button 
                         type='submit' 
                         className='font-poppinsMedium p-3 bg-black text-white rounded-md mt-4 ml-2 w-1/3'>
