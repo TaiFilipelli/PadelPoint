@@ -22,19 +22,20 @@ const Product = () => {
   },[id]);
   return (
     <section className='flex justify-center items-center flex-col'>
-      <section className=' text-center justify-center items-center h-1/3 flex-col w-[70%]'>
       {loading ? (
-          <p>Cargando...</p>
+        <p>Cargando...</p>
         ) : (
-          <>
-              <h1 className='font-poppinsBold text-4xl mt-10'>{product.name}</h1>
-              <img src={product.image} alt="Imagen de raqueta"/>
-              <p className='font-poppinsRegular'>{product.price}</p>
-          </>
-          
+          <section className='flex justify-center items-center text-center h-1/3 flex-col w-[70%]'>
+              <h1 className='font-poppinsBold text-4xl mt-10 mb-5'>{product.model}</h1>
+              <img src={product.image} alt="Imagen de raqueta" className='h-full rounded-sm w-2/6'/>
+              <div className='text-left w-1/2 mt-5'>
+                <h1 className='font-poppinsMedium text-xl'>Marca: {product.brand}</h1>
+                <p className='font-poppinsRegular text-xl'>US${product.price}</p>
+                <button className='bg-black text-white p-4 font-poppinsMedium rounded-md mt-5'>Añadir al carrito</button>
+              </div>
+          </section>
         )}
       </section>
-    </section>
   )
 }
 

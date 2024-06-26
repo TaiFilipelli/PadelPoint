@@ -1,6 +1,9 @@
 import React from 'react'
+import toast, {Toaster} from 'react-hot-toast'
 
 const Inicio = () => {
+  const notify =()=> toast.success('Efectivamente, esto funciona.');
+
   return (
     <section className='flex justify-center flex-col items-center'>
       <h1 className='text-5xl mt-5 font-poppinsBold'>PadelPoint</h1>
@@ -8,6 +11,8 @@ const Inicio = () => {
       <h3 className='font-poppinsRegular text-lg w-2/4 mt-10 max-[350px]:text-base'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, 
       maxime dolores modi sed temporibus id? Officia impedit at atque, nam dolore laudantium perspiciatis amet nisi 
       distinctio est molestias iste quas!</h3>
+      <button className='mt-10 bg-black text-white' onClick={notify}>A VER SI FUNCA ESTO?</button>
+      <Toaster/>
     </section>
   )
 }

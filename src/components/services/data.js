@@ -14,7 +14,12 @@ export const getPaletas = async () => {
 
 export const getOnePaleta = async(id)=>{
     const response = await fetch(`${baseUrl}/racket/${id}`);
-    return verifyResponse(response);
+    const data = await verifyResponse(response);
+    if(data.status){
+        return data.requestResponse;
+    }else{
+        throw new Error(data.messageDetails || 'Error fetching single data');
+    }
 };
 
 export const userLogin = async(credenciales)=>{

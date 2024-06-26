@@ -1,10 +1,11 @@
-import { Label, toast } from 'keep-react';
+import { Label} from 'keep-react';
 import { Link } from 'wouter';
 import { registerSchema } from '../../../schemas/Register';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { createOneUser } from '../services/data';
 import { ArrowUUpLeft } from 'phosphor-react';
+import toast from 'react-hot-toast'
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors }, setError } = useForm({
