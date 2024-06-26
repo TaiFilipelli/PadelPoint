@@ -2,11 +2,15 @@ import {useAuthStore} from "../../store/auth";
 import { verifyResponse, getAuthHeader } from "../../utils/services";
 const baseUrl = import.meta.env.VITE_API_URL;
 
-export const getPaletas = async()=>{
+export const getPaletas = async () => {
     const response = await fetch(`${baseUrl}/racket`);
-    console.log(baseUrl);
-    return verifyResponse(response);
-};
+    const data = await verifyResponse(response);
+    if (data.status) {
+      return data.requestResponse;
+    } else {
+      throw new Error(data.messageDetails || 'Error fetching data');
+    }
+  };
 
 export const getOnePaleta = async(id)=>{
     const response = await fetch(`${baseUrl}/racket/${id}`);

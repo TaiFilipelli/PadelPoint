@@ -36,11 +36,13 @@ const Productos = () => {
       <h1 className='text-4xl mb-4 mt-4 font-poppinsBold'>Productos</h1>
       <h3 className='text-2xl font-poppinsMedium'>Encontrá tu mejor compañera para la cancha.</h3>
       <Filters/>
-      <section className='flex flex-wrap'>
+      <section className='products-section'>
+        <div className="products-container flex flex-wrap">
         {/* Mapea las paletas para renderizar las Cards de productos */}
         {paletas.map(paleta => (
           <ProductsCard key={paleta.id} nombre={paleta.name} precio={paleta.price} idProducto={paleta.id}/>
         ))}
+        </div>
       </section>
     </section>
   );

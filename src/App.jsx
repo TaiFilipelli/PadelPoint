@@ -48,7 +48,7 @@ function App() {
         
         <Route path='/404' component={Error404} />
       </Switch>
-      <div className='w-screen flex fixed left-[90%] bottom-16 max-[835px]:left-[80%] max-[425px]:left-[75%] max-[335px]:left-[70%]'>
+      <div className='w-screen flex fixed left-[90%] bottom-14 max-[835px]:left-[80%] max-[425px]:left-[75%] max-[335px]:left-[70%]'>
         <Carrito isLogged={isLogged} setIsLogged={setIsLogged} items={cartItems} />
       </div>
       <Footer/>
