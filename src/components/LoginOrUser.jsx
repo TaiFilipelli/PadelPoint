@@ -80,11 +80,11 @@ const LoginOrUser = () => {
                 onChange={(e)=> setPassword(e.target.value)}
                 />
               </fieldset>
-            </form>
             <div className='flex w-full justify-between mt-10'>
               <button type='submit' className='bg-black text-white font-poppinsMedium p-3 rounded-md cursor-pointer'>Ingresar</button>
               <Link to='/register' onClick={closeModal} className='hover:underline cursor-pointer'>No tiene una cuenta? Registrate hoy!</Link>
             </div>
+            </form>
           </Modal.Body>
         </Modal>
       )}

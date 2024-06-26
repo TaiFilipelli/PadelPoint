@@ -42,7 +42,9 @@ function App() {
         <Route path='/products' component={Productos} />
         <Route path='/about' component={AboutUs} />
         <Route path='/productdetail/:id' component={Product} />
-        <Route path='/register' component={Register}/>
+        <Route path='/register'>
+          <Register/>
+        </Route>
         
         <Route path='/404' component={Error404} />
       </Switch>
