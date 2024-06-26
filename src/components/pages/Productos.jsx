@@ -14,16 +14,20 @@ const Productos = () => {
    */
   const [paletas, setPaletas] = useState([]);
 
-  useEffect(() => {
-    /**
-     * Función asincrónica para obtener las paletas de la API
-     * @returns {Promise<void>}
-     */
-    const dataPaletas = async () => {
+  /**
+   * Función asincrónica para obtener las paletas de la API
+   * @returns {Promise<void>}
+   */
+  const dataPaletas = async () => {
+    try{
       const data = await getPaletas();
       setPaletas(data);
       console.log(data);
-    };
+    }catch(error){
+      console.error('ERROR ACÁ, EN DEPLOY:',error);
+    }
+  };
+  useEffect(() => {
     dataPaletas();
   }, []);
 

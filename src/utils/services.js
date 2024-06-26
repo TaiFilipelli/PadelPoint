@@ -1,10 +1,11 @@
 import {useAuthStore} from "../store/auth";
 
-export const verifyResponse = (response)=>{
+export const verifyResponse = async(response)=>{
     if(!response.ok){
         throw new Error(response.statusText);
     }
-    return response.json();
+    const result = await response.json();
+    return result;
 };
 
 export const getAuthHeader = ()=>{
