@@ -24,7 +24,7 @@ const Productos = () => {
       setPaletas(data);
       console.log(data);
     }catch(error){
-      console.error('ERROR ACÁ, EN DEPLOY:',error);
+      console.error('ERROR ACÁ, EN PRODUCTOS.JSX:',error);
     }
   };
   useEffect(() => {
