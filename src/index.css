@@ -76,3 +76,6 @@ body {
 .about-container::-webkit-scrollbar-thumb:hover{
   background: #555;
 }
+.register-bg{
+  background-image: url('/PadelStock2.png')
+}
