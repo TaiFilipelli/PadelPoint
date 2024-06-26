@@ -28,7 +28,7 @@ const Product = () => {
         ) : (
           <>
               <h1 className='font-poppinsBold text-4xl mt-10'>{product.name}</h1>
-              <img src={product.img} alt="Imagen de raqueta"/>
+              <img src={product.image} alt="Imagen de raqueta"/>
               <p className='font-poppinsRegular'>{product.price}</p>
           </>
           

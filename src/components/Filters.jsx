@@ -121,7 +121,7 @@ const Filters = () => {
               </fieldset>
           </Dropdown.List>
           </Dropdown>
-          <button type='submit' className='font-poppinsBold text-xl ml-20 hover:underline transition'>FILTRAR</button>
+          <button type='submit' className='font-poppinsBold text-xl ml-20 hover:underline transition text-black dark:text-white'>FILTRAR</button>
         </form>
       </section>
   )

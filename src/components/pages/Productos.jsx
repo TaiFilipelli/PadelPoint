@@ -40,7 +40,7 @@ const Productos = () => {
         <div className="products-container flex flex-wrap">
         {/* Mapea las paletas para renderizar las Cards de productos */}
         {paletas.map(paleta => (
-          <ProductsCard key={paleta.id} nombre={paleta.name} precio={paleta.price} idProducto={paleta.id}/>
+          <ProductsCard key={paleta.id} nombre={paleta.model} image={paleta.image} precio={paleta.price} idProducto={paleta.id}/>
         ))}
         </div>
       </section>
