@@ -23,7 +23,6 @@ export const getOnePaleta = async(id)=>{
 };
 
 export const userLogin = async(credenciales)=>{
-    console.log('Estas credenciales entraron al metodo:',credenciales);
     const response = await fetch(`${baseUrl}/auth`,{
         method:'POST',
         headers:{
@@ -32,6 +31,10 @@ export const userLogin = async(credenciales)=>{
         body: JSON.stringify(credenciales)
     });
     const result = await response.json();
+    if (response.ok) {
+        const timestamp = new Date().getTime();
+        localStorage.setItem('loginTime', timestamp);
+    }
     return result;
 }
 export const createOneUser=async(data)=>{
