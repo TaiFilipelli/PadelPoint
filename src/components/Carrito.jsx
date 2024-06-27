@@ -1,20 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Drawer, Button } from 'keep-react';
 import { ShoppingCart, SmileySad, Warning } from 'phosphor-react';
+import { getOnePaleta } from './services/data';
 
-/**
- * Componente que representa el drawer flotante del carrito de compras.
- * 
- * @param {Object} props - Las propiedades del componente 
- * @param {Array} props.items - Array que almacena todos los items que se encuentran en Local Storage añadidos a la cesta del usuario.
- * @returns {JSX.Element} Devuelve el componente del drawer del carrito.
- */
-const Carrito = ({ items }) => {
+const Carrito = ({ items, setItems }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLogged, setIsLogged] = useState(false);
 
   useEffect(() => {
-    // Agarramos del local storage el token y la hora en que se loggeó el usuario
     const token = localStorage.getItem('token');
     const loginTime = localStorage.getItem('loginTime');
     const currentTime = new Date().getTime();
@@ -22,7 +15,6 @@ const Carrito = ({ items }) => {
     if (token && loginTime) {
       const elapsedTime = currentTime - parseInt(loginTime, 10);
 
-      // Si ha pasado más de una hora (3600000 ms), eliminar el token
       if (elapsedTime > 3600000) {
         localStorage.removeItem('token');
         localStorage.removeItem('loginTime');
@@ -32,7 +24,6 @@ const Carrito = ({ items }) => {
       }
     }
 
-    // Función para manejar el evento de cambio en el local storage
     const handleStorageChange = (event) => {
       if (event.key === 'token') {
         const newToken = event.newValue;
@@ -44,14 +35,29 @@ const Carrito = ({ items }) => {
       }
     };
 
-    // Añadir el evento listener para cambios en el local storage
     window.addEventListener('storage', handleStorageChange);
 
-    // Eliminar el evento listener al desmontar el componente
     return () => {
       window.removeEventListener('storage', handleStorageChange);
     };
   }, []);
+
+  const addToCart = async (id) => {
+    if (!isLogged) {
+      alert('Debe iniciar sesión para añadir al carrito.');
+      return;
+    }
+
+    try {
+      const paleta = await getOnePaleta(id);
+      const newItem = { id: paleta.id, name: paleta.name, price: paleta.price };
+      const updatedItems = [...items, newItem];
+      setItems(updatedItems);
+      localStorage.setItem('cartItems', JSON.stringify(updatedItems));
+    } catch (error) {
+      console.error('Error añadiendo al carrito:', error);
+    }
+  };
 
   return (
     <>

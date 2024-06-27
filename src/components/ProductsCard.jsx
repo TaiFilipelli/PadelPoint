@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'wouter'
+import { ShoppingBagOpen } from 'phosphor-react';
 import { ConversorButton } from './ConversorButton';
 import Skeleton from 'react-loading-skeleton';
 
-const ProductsCard = ({nombre, image, brand, precio, idProducto}) => {
+const ProductsCard = ({nombre, image, brand, precio, idProducto, addToCart}) => {
     // const [Loading, setLoading] = useState(true);
     
     // useEffect(()=>{
@@ -22,7 +23,10 @@ const ProductsCard = ({nombre, image, brand, precio, idProducto}) => {
             <p className='text-lg font-poppinsMedium mr-4'>US${precio}</p>
             <ConversorButton valueToConvert={precio}/>
           </div>
-          <Link to={`/productdetail/${idProducto}`} className='text-lg font-poppinsLight hover:text-red-500 transition-all mt-4'>Ver más</Link>
+          <div className='w-full flex flex-row items-center justify-center mt-2'>
+            <button onClick={() => addToCart(idProducto)} className='bg-red-500 text-white p-2 mt-2 rounded font-poppinsRegular mr-7'>Añadir al carro</button>
+            <Link to={`/productdetail/${idProducto}`} className='text-lg font-poppinsLight hover:text-red-500 transition-all'>Ver más</Link>
+          </div>
         </section>
   )
 }

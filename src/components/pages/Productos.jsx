@@ -1,11 +1,16 @@
 import { useState, useEffect, useCallback } from "react";
 import Filters from "../Filters";
-import { getPaletas } from "../services/data";
+import { getPaletas, getOnePaleta } from "../services/data";
 import ProductsCard from '../ProductsCard';
+import Carrito from '../Carrito';
 
 const Productos = () => {
     const [paletas, setPaletas] = useState([]);
     const [filteredPaletas, setFilteredPaletas] = useState([]);
+    const [cartItems, setCartItems] = useState(() => {
+        const storedCartItems = localStorage.getItem('cartItems');
+        return storedCartItems ? JSON.parse(storedCartItems) : [];
+    });
 
     const dataPaletas = async () => {
         try {
@@ -32,15 +37,42 @@ const Productos = () => {
         setFilteredPaletas(filtered);
     }, [paletas]);
 
+    const addToCart = async (id) => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            alert('Debe iniciar sesión para añadir al carrito.');
+            return;
+        }
+
+        try {
+            const paleta = await getOnePaleta(id);
+            const newItem = { id: paleta.id, name: paleta.name, price: paleta.price };
+            const updatedItems = [...cartItems, newItem];
+            setCartItems(updatedItems);
+            localStorage.setItem('cartItems', JSON.stringify(updatedItems));
+        } catch (error) {
+            console.error('Error añadiendo al carrito:', error);
+        }
+    };
+
     return (
         <section className='flex justify-center flex-col text-center'>
             <h1 className='text-4xl mb-4 mt-4 font-poppinsBold'>Productos</h1>
             <h3 className='text-2xl font-poppinsMedium'>Encontrá tu mejor compañera para la cancha.</h3>
-            <Filters onFilter={handleFilterChange}/>
+            <Filters onFilter={handleFilterChange} />
+            <Carrito items={cartItems} setItems={setCartItems} />
             <section className='products-section'>
                 <div className="products-container flex flex-wrap">
                     {filteredPaletas.map(paleta => (
-                        <ProductsCard key={paleta.id} nombre={paleta.model} image={paleta.image} brand={paleta.brand} precio={paleta.price} idProducto={paleta.id}/>
+                        <ProductsCard 
+                            key={paleta.id} 
+                            nombre={paleta.model} 
+                            image={paleta.image} 
+                            brand={paleta.brand} 
+                            precio={paleta.price} 
+                            idProducto={paleta.id} 
+                            addToCart={addToCart} 
+                        />
                     ))}
                 </div>
             </section>
