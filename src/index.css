@@ -84,3 +84,9 @@ body {
   background-position: center;
   background-size: cover;
 }
+.inicio-bg{
+  background-image: url('/PadelStock2.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
