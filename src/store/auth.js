@@ -19,8 +19,3 @@ export const useAuthStore = create(persist(
     getStorage: () => localStorage
   }
 ));
-export const useAuthStoreLogged = create(set => ({
-  isLogged: !!localStorage.getItem('token'),
-  login: () => set({ isLogged: true }),
-  logout: () => set({ isLogged: false }),
-}));
