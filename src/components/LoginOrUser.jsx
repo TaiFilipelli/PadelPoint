@@ -21,9 +21,7 @@ const LoginOrUser = () => {
     const closeModal = () => {
       setIsOpen(false)
     }
-
-    const handleLogin= useAuthStore((state)=> state.login);
-
+      
     const onSubmit = async(e) =>{
       e.preventDefault();
       const login = userOrEmail.trim();
@@ -35,18 +33,20 @@ const LoginOrUser = () => {
       const validatedData = loginSchema.parse(data);
 
       const { username, email, password } = validatedData;
-      const credentials = { usernameOrEmail: username ?? email, password };
-      console.log('Estas son las credenciales:',credentials);
+      const credentials = { UsernameOrMailAddress: username ?? email, password };
 
       const result = await userLogin(credentials);
       console.log(result);
 
-      if(result.success){
-        handleLogin(validatedData);
+      if(result.token){
+        localStorage.setItem('token',result.token);
+        localStorage.setItem('username',result.user.userName);
         closeModal();
+        const { login } = useAuthStore();
+        login(validatedData);
       }
       else{
-        setErrors({server: result.message || "Error en el servidor"})
+        setErrors({server: result.messageDetails || "Error en el servidor"})
       }
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -97,6 +97,7 @@ const LoginOrUser = () => {
                 />
                 {errors.password && <p className='text-red-500'>{errors.password}</p>}
               </fieldset>
+              {errors.server && <p className='text-red-500'>{errors.server}</p>}
             <div className='flex w-full justify-between mt-10'>
               <button type='submit' className='bg-black text-white font-poppinsMedium p-3 rounded-md cursor-pointer'>Ingresar</button>
               <Link to='/register' onClick={closeModal} className='hover:underline cursor-pointer'>No tiene una cuenta? Registrate hoy!</Link>
