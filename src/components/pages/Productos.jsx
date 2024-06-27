@@ -46,7 +46,7 @@ const Productos = () => {
 
         try {
             const paleta = await getOnePaleta(id);
-            const newItem = { id: paleta.id, name: paleta.name, price: paleta.price };
+            const newItem = { id: paleta.id, name: paleta.model, price: paleta.price };
             const updatedItems = [...cartItems, newItem];
             setCartItems(updatedItems);
             localStorage.setItem('cartItems', JSON.stringify(updatedItems));
@@ -55,12 +55,18 @@ const Productos = () => {
         }
     };
 
+    const removeFromCart = (id) => {
+        const updatedItems = cartItems.filter(item => item.id !== id);
+        setCartItems(updatedItems);
+        localStorage.setItem('cartItems', JSON.stringify(updatedItems));
+    };
+
     return (
         <section className='flex justify-center flex-col text-center'>
             <h1 className='text-4xl mb-4 mt-4 font-poppinsBold'>Productos</h1>
             <h3 className='text-2xl font-poppinsMedium'>Encontrá tu mejor compañera para la cancha.</h3>
             <Filters onFilter={handleFilterChange} />
-            <Carrito items={cartItems} setItems={setCartItems} />
+            <Carrito items={cartItems} removeFromCart={removeFromCart} />
             <section className='products-section'>
                 <div className="products-container flex flex-wrap">
                     {filteredPaletas.map(paleta => (

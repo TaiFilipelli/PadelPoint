@@ -1,9 +1,16 @@
 import { useState, useEffect } from 'react';
 import { Drawer, Button } from 'keep-react';
 import { ShoppingCart, SmileySad, Warning } from 'phosphor-react';
-import { getOnePaleta } from './services/data';
 
-const Carrito = ({ items, setItems }) => {
+/**
+ * Componente que representa el drawer flotante del carrito de compras.
+ * 
+ * @param {Object} props - Las propiedades del componente 
+ * @param {Array} props.items - Array que almacena todos los items que se encuentran en Local Storage añadidos a la cesta del usuario.
+ * @param {Function} props.removeFromCart - Función para eliminar items del carrito.
+ * @returns {JSX.Element} Devuelve el componente del drawer del carrito.
+ */
+const Carrito = ({ items, removeFromCart }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLogged, setIsLogged] = useState(false);
 
@@ -42,23 +49,6 @@ const Carrito = ({ items, setItems }) => {
     };
   }, []);
 
-  const addToCart = async (id) => {
-    if (!isLogged) {
-      alert('Debe iniciar sesión para añadir al carrito.');
-      return;
-    }
-
-    try {
-      const paleta = await getOnePaleta(id);
-      const newItem = { id: paleta.id, name: paleta.name, price: paleta.price };
-      const updatedItems = [...items, newItem];
-      setItems(updatedItems);
-      localStorage.setItem('cartItems', JSON.stringify(updatedItems));
-    } catch (error) {
-      console.error('Error añadiendo al carrito:', error);
-    }
-  };
-
   return (
     <>
       <Button onClick={() => setIsOpen(!isOpen)} className='bg-black' color='secondary'>
@@ -72,8 +62,9 @@ const Carrito = ({ items, setItems }) => {
               {items.length > 0 ? (
                 <ul>
                   {items.map((item, index) => (
-                    <li key={index} className="my-2">
-                      {item.name} - ${item.price}
+                    <li key={index} className="my-2 flex justify-between items-center">
+                      <span>{item.name} - ${item.price}</span>
+                      <button onClick={() => removeFromCart(item.id)} className="text-red-500 ml-4">Eliminar</button>
                     </li>
                   ))}
                 </ul>
