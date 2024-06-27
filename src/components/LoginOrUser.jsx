@@ -27,7 +27,6 @@ const LoginOrUser = () => {
     const onSubmit = async(e) =>{
       e.preventDefault();
       const login = userOrEmail.trim();
-      const passwordValue = password.trim();
 
       const fieldType = checkIfIsEmailOrUsername(login);
       const data = { [fieldType]: login, password };
