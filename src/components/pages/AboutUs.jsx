@@ -8,6 +8,7 @@ const AboutUs = () => {
       <h3 className='text-xl font-poppinsRegular w-[70%] mx-auto'>¡Hola! Soy Ignacio Merlo, fundador de PadelPoint, y estoy encantado de darte la bienvenida a 
         nuestra tienda. Tengo 23 años, soy jugador y profesor de pádel, y tengo una verdadera pasión por este deporte. Inicié PadelPoint hace 
         tres meses con el objetivo de ofrecer un lugar de confianza donde los jugadores de pádel de toda Argentina puedan encontrar todo lo que necesitan</h3>
+      <img src="/PadelStock2.png" alt="Paletas del About Us" className='' />
       <h3 className='text-3xl font-poppinsBold mb-8 mt-10'>Nuestra Inspiración</h3>
       <h2 className='text-xl font-poppinsRegular w-[70%] mx-auto'>La idea de crear PadelPoint nació de mi propio amor por las paletas de pádel y la necesidad que vi 
         en nuestra comunidad de tener un proveedor confiable y especializado. Como jugador, sé lo importante que es contar con el equipo adecuado, y como 
