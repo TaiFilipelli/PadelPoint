@@ -23,6 +23,7 @@ export const getOnePaleta = async(id)=>{
 };
 
 export const userLogin = async(credenciales)=>{
+    console.log('Estas credenciales entraron al metodo:',credenciales);
     const response = await fetch(`${baseUrl}/auth`,{
         method:'POST',
         headers:{

@@ -29,17 +29,25 @@ const LoginOrUser = () => {
       const login = userOrEmail.trim();
 
       const fieldType = checkIfIsEmailOrUsername(login);
-      const data = { [fieldType]: login, password };
+      const data = { [fieldType === 'email' ? 'email' : 'username']: login, password };
 
     try {
       const validatedData = loginSchema.parse(data);
 
       const { username, email, password } = validatedData;
-      const credentials = { username: username ?? email, password };
+      const credentials = { usernameOrEmail: username ?? email, password };
+      console.log('Estas son las credenciales:',credentials);
 
-      await userLogin(credentials);
-      handleLogin(validatedData);
-      closeModal();
+      const result = await userLogin(credentials);
+      console.log(result);
+
+      if(result.success){
+        handleLogin(validatedData);
+        closeModal();
+      }
+      else{
+        setErrors({server: result.message || "Error en el servidor"})
+      }
     } catch (error) {
       if (error instanceof z.ZodError) {
         const errores = error.errors.reduce((acc,curr)=>{
