@@ -31,7 +31,6 @@ const Product = () => {
               <div className='text-left w-1/2 mt-5'>
                 <h1 className='font-poppinsMedium text-xl'>Marca: {product.brand}</h1>
                 <p className='font-poppinsRegular text-xl'>US${product.price}</p>
-                <button className='bg-black text-white p-4 font-poppinsMedium rounded-md mt-5'>Añadir al carrito</button>
               </div>
           </section>
         )}
