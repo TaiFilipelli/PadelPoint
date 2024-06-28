@@ -10,18 +10,16 @@
 - Framework: React (18.2.0)
 - Estilos: Tailwindcss (3.4.4)
 - Enrutamiento: Wouter (3.2.0)
-- Local Storage: Zustand (4.5.2)
 - Iconos: Phospor Icons (1.4.1)
 - Schemas: Zod (3.23.8)
 - Algunos componentes son de Keep React 
 
 ## Posibles futuras features:
 
-- [X] Enrutamiento y organización del proyecto
-- [X] Creación de un lindo Inicio
-- [X] Página Products correcta
-- [X] Filtros y categorias de busqueda
-- [ ] Fetch a la API y responses con datos correctos
-- [X] Despliegue de información
-- [ ] Skeletons
-- [X] Responsive
+- Deploy de la API para su correcto funcionamiento sin necesidad de tenerlo todo en Local
+- Más filtros, base de datos más cargada para permitir mayor despliegue de información
+- Mejor manejo del local Storage con Zustand (No usado en este proyecto debido a falta de métodos dependientes de una autorización)
+- Posibilidad de un usuario de cambiar su contraseña mediante un código enviado a su mail personal
+- Más interacción con el usuario
+- Skeletons 
+- Mejor Responsive
