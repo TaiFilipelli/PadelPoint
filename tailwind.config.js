@@ -20,6 +20,13 @@ export default {
         'custom-light-bg': '#f8f9fa',
         'custom-dark-bg': '#242424',
       },
+      width:{
+        '150vh':'150vh',
+      },
+      height:{
+        '180vh':'180vh',
+        '130vh':'130vh',
+      }
     }
   }
 };

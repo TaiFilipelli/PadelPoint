@@ -74,7 +74,7 @@ const Productos = () => {
             <Filters onFilter={handleFilterChange} />
             <Carrito items={cartItems} removeFromCart={removeFromCart} />
             <section className='products-section mt-4 '>
-                <div className="products-container flex flex-wrap">
+                <div className="products-container flex flex-wrap max-[600px]:pt-0">
                     {filteredPaletas.map(paleta => (
                         <ProductsCard 
                             key={paleta.id} 

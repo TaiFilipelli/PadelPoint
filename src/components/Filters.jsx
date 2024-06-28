@@ -32,7 +32,7 @@ const Filters = ({ onFilter }) => {
     };
 
     return (
-        <section className='text-white bg-transparent p-4 rounded-lg flex flex-wrap justify-start items-center ml-[15%] mr-[15%] mt-10'>
+        <section className='text-white bg-transparent p-4 rounded-lg flex flex-wrap justify-start items-center ml-[15%] mr-[15%] mt-10 max-[790px]:ml-2 max-[790px]:mr-2'>
             <div>
                 <h3 className='text-xl ml-5 font-poppinsBold mr-8 text-black dark:text-white'>Filtrar por:</h3>
             </div>

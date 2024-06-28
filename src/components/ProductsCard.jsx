@@ -12,10 +12,12 @@ const ProductsCard = ({nombre, image, brand, precio, idProducto, addToCart}) => 
     //     setLoading(false);
     //   },800);
     // });
+    const maxLength = 15;
+    const limitedNombre= nombre.length > maxLength ? nombre.substring(0,maxLength) + '...' : nombre;
 
   return (
-        <section className='flex items-center justify-center p-6 flex-col w-1/5 bg-[#575151] border-black border-2 text-white rounded-lg ml-16 mt-16 dark:bg-black max-[815px]:w-1/3 max-[600px]:w-1/2'>
-          <h1 className='text-xl font-poppinsBold'>{nombre}</h1><br />
+        <section className='flex items-center justify-center p-6 flex-col w-1/5 bg-[#575151] border-black border-2 text-white rounded-lg ml-16 mt-16 dark:bg-black max-[815px]:w-1/3 max-[600px]:w-full max-[600px]:h-full max-[600px]:mt-1'>
+          <h1 className='text-xl font-poppinsBold max-[600px]:text-lg'>{limitedNombre}</h1><br />
           <img src={image} alt="Imagen paleta"/>
           <p className='font-poppinsRegular mt-4'>Marca: {brand}</p>
           <div className='w-full flex items-center justify-center mt-2'>
