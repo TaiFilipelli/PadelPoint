@@ -62,7 +62,7 @@ const Productos = () => {
     };
 
     return (
-        <section className='flex justify-center flex-col text-center'>
+        <section className='flex justify-center flex-col text-center items-center h-4/5'>
             <h1 className='text-4xl mb-4 mt-4 font-poppinsBold'>Productos</h1>
             <h3 className='text-2xl font-poppinsMedium'>Encontrá tu mejor compañera para la cancha.</h3>
             <Filters onFilter={handleFilterChange} />

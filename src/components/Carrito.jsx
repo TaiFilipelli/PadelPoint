@@ -51,7 +51,7 @@ const Carrito = ({ items, removeFromCart }) => {
 
   return (
     <>
-      <Button onClick={() => setIsOpen(!isOpen)} className='bg-black' color='secondary'>
+      <Button onClick={() => setIsOpen(!isOpen)} className='bg-[#575151] dark:bg-black w-1/12' color='secondary'>
         <ShoppingCart size={35} />
       </Button>
       <Drawer isOpen={isOpen} onClose={() => setIsOpen(false)} position='right'>

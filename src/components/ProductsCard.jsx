@@ -24,7 +24,7 @@ const ProductsCard = ({nombre, image, brand, precio, idProducto, addToCart}) => 
             <ConversorButton valueToConvert={precio}/>
           </div>
           <div className='w-full flex flex-row items-center justify-center mt-2'>
-            <button onClick={() => addToCart(idProducto)} className='bg-red-500 text-white p-2 mt-2 rounded font-poppinsRegular mr-7'>Añadir al carro</button>
+            <button onClick={() => addToCart(idProducto)} className='bg-red-500 text-white p-2 mt-2 rounded font-poppinsRegular mr-7 hover:bg-red-300 transition'>Añadir al carro</button>
             <Link to={`/productdetail/${idProducto}`} className='text-lg font-poppinsLight hover:text-red-500 transition-all'>Ver más</Link>
           </div>
         </section>

@@ -9,7 +9,7 @@ const Footer = () => {
         { name: 'Gramet Maximiliano', role: 'BackEnd', github: 'https://github.com/Lautaro24Fer' }
       ];
   return (
-    <section className='absolute bottom-0 font-poppinsRegular flex flex-row items-center text-center p-4 w-full opacity-50 justify-between'>
+    <section className='absolute bottom-0 font-poppinsRegular flex flex-row items-center text-center p-4 w-full opacity-50 justify-between z-0'>
         <p className='mr-1'>Contactanos:</p><a href="https://www.instagram.com/_padelpoint?igsh=dmI0aTNxcjhtb3lz&utm_source=qr"><InstagramLogo size={45} className='mr-2'/></a>
         <WhatsappLogo size={45}/><p>3364 00-3555</p>
         <div className='flex max-w-4xl mx-auto text-base hover:opacity-100'>
