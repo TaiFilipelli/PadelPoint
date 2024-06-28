@@ -11,7 +11,8 @@ import { useState, useEffect } from 'react';
 import FuturePayment from './components/pages/FuturePayment.jsx';
 
 /**
- * 
+ * Componente principal de la aplicación web. Es la página por defecto. Todos los estados globales y componentes flotantes se manejan desde acá.
+ * Supongo la costumbre me hizo optar por manejar el enrutamiento acá. También se administra todo el modo claro y oscuro acá.
  * @returns {JSX.Element} El componente principal de la app web. 
  */
 function App() {

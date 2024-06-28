@@ -2,7 +2,21 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'wouter'
 import { ConversorButton } from './ConversorButton';
 import Skeleton from 'react-loading-skeleton';
+//Quedaron los Skeleton importados porque eran una adquisición importante...hasta que nos enteramos que era todo local.
 
+/**
+ * Componente para mostrar detalles de un producto en una tarjeta.
+ * 
+ * @component
+ * @param {Object} props - Propiedades del componente.
+ * @param {string} props.nombre - Nombre del producto.
+ * @param {string} props.image - URL de la imagen del producto.
+ * @param {string} props.brand - Marca del producto.
+ * @param {number} props.precio - Precio del producto.
+ * @param {string} props.idProducto - ID único del producto.
+ * @param {function} props.addToCart - Función para añadir el producto al carro.
+ * @returns {JSX.Element} Elemento de tarjeta de producto.
+ */
 const ProductsCard = ({nombre, image, brand, precio, idProducto, addToCart}) => {
     // const [Loading, setLoading] = useState(true);
     
@@ -12,6 +26,7 @@ const ProductsCard = ({nombre, image, brand, precio, idProducto, addToCart}) => 
     //     setLoading(false);
     //   },800);
     // });
+    //quedó acá la lógica para setear un timeout, un estado de carga y manejar con ello los skeletons
     const maxLength = 15;
     const limitedNombre= nombre.length > maxLength ? nombre.substring(0,maxLength) + '...' : nombre;
 

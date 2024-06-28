@@ -8,11 +8,20 @@ import { checkIfIsEmailOrUsername } from '../utils/services'
 import { loginSchema } from '../../schemas/Login'
 import { z } from "zod";
 
+/**
+ * Componente para manejar el inicio de sesión de usuarios.
+ * Muestra un botón de inicio de sesión que abre un modal para ingresar credenciales.
+ * Al enviar el formulario, valida los datos ingresados y realiza el inicio de sesión.
+ * 
+ * @component
+ * @returns {JSX.Element} Componente de inicio de sesión.
+ */
 const LoginOrUser = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [password, setPassword] = useState('');
     const [userOrEmail, setUserOrEmail] = useState('');
     const [errors,setErrors] = useState({});
+    const [username, setUsername] = useState(localStorage.getItem('username') || '');
 
     const openModal = () => {
       setIsOpen(true)
@@ -21,7 +30,12 @@ const LoginOrUser = () => {
     const closeModal = () => {
       setIsOpen(false)
     }
-      
+    /**
+     * Maneja la lógica de envío del formulario de inicio de sesión.
+     * Valida los datos ingresados y realiza el inicio de sesión si son válidos.
+     * 
+     * @param {Event} e - Evento de envío del formulario.
+     */
     const onSubmit = async(e) =>{
       e.preventDefault();
       const login = userOrEmail.trim();
@@ -41,6 +55,7 @@ const LoginOrUser = () => {
       if(result.token){
         localStorage.setItem('token',result.token);
         localStorage.setItem('username',result.user.userName);
+        setUsername(result.user.userName);
         closeModal();
         const { login } = useAuthStore();
         login(validatedData);
@@ -62,7 +77,7 @@ const LoginOrUser = () => {
   }
   return (
     <>
-        <button onClick={openModal} className='flex flex-row text-xl'>Iniciar sesión <SignIn size={25} className='ml-2'/></button>
+        { username ? (<button onClick={openModal} className='flex flex-row text-xl'>{username}<SignIn size={25} className='ml-2'/></button>):(<button onClick={openModal} className='flex flex-row text-xl'>Iniciar sesión<SignIn size={25} className='ml-2'/></button>)}
         {isOpen && (
         <Modal isOpen={isOpen} onClose={closeModal} className='text-black'>
           <Modal.Body className='w-3/6 p-8'>

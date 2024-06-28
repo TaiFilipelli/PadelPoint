@@ -1,6 +1,10 @@
 import React from 'react'
 import { Link } from 'wouter'
-
+/**
+ * Error404 -Página que representa una página de error 404.
+ *
+ * @returns {JSX.Element} Un div centrado con un mensaje de error, una imagen y un enlace para volver al inicio.
+ */
 const Error404 = () => {
   return (
     <div className='flex justify-center text-center flex-col items-center text-black dark:text-white'>

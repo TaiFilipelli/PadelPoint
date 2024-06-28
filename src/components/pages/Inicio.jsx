@@ -1,6 +1,11 @@
 import React from 'react'
 import { Link } from 'wouter'
 
+/**
+ * Inicio - Componente que representa la página de inicio de PadelPoint.
+ *
+ * @returns {JSX.Element} Una section con un mensaje de bienvenida, imagen de paletas, y opciones para registrarse y seguir en Instagram.
+ */
 const Inicio = () => {
 
   return (

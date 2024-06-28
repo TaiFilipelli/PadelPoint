@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Dropdown, Radio, Label, Slider, Button } from 'keep-react';
 
+/**
+ * Componente que sirve como filtro para productos. En principio eran 3 o 4, pero la ausencia de base de datos propia nos costó sacrificar varias
+ * 
+ * @param {Object} props - Las propiedades del componente 
+ * @param {Function} props.onFilter - Función para aplicar los filtros seleccionados.
+ * @returns {JSX.Element} Devuelve el componente de filtros que se usa en la página Productos.
+ */
 const Filters = ({ onFilter }) => {
-    const [selectedTipo, setSelectedTipo] = useState('');
     const [selectedMarca, setSelectedMarca] = useState('');
     const [value, setValue] = useState([100, 500]);
 

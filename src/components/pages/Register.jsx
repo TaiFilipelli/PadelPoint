@@ -6,7 +6,12 @@ import { useForm } from 'react-hook-form';
 import { createOneUser } from '../services/data';
 import { ArrowUUpLeft } from 'phosphor-react';
 import toast from 'react-hot-toast'
-
+/**
+ * Register - Componente para el registro de usuarios. Utiliza React Hook Form con validación mediante Zod,
+ * y crea un nuevo usuario utilizando un método asincrónico que ejecuta la solicitud a la api.
+ *
+ * @returns {JSX.Element} Elemento de sección que contiene el formulario de registro. Crea a un usuario y permite su loggeo.
+ */
 const Register = () => {
     const { register, handleSubmit, formState: { errors }, setError } = useForm({
         resolver: zodResolver(registerSchema),

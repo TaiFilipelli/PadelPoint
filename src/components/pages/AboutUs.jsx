@@ -1,5 +1,10 @@
 import React from 'react'
 
+/**
+ * AboutUs - Componente funcional que representa la sección "About Us" (Sobre Nosotros).
+ *
+ * @returns {JSX.Element} Un elemento de sección que presenta y resume brevemente la misión, inspiración y planes futuros de PadelPoint.
+ */
 const AboutUs = () => {
   return (
     <section className='about-section justify-center items-center text-center'>

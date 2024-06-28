@@ -4,9 +4,12 @@ import { getPaletas, getOnePaleta } from "../services/data";
 import ProductsCard from '../ProductsCard';
 import Carrito from '../Carrito';
 import { Toaster, toast } from "react-hot-toast";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-
+/**
+ * Productos - Componente que muestra, dentro de un bloquecito de la página, una lista de productos de paletas de pádel, permitiendo filtrar 
+ * por marca y precio, agregar productos al carrito y mostrar el carrito actualizado.
+ *
+ * @returns {JSX.Element} Un elemento de sección que contiene filtros de productos, lista de productos filtrada, y carrito.
+ */
 const Productos = () => {
     const [paletas, setPaletas] = useState([]);
     const [filteredPaletas, setFilteredPaletas] = useState([]);

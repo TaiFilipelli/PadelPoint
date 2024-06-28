@@ -1,6 +1,11 @@
 import React from 'react'
 import { InstagramLogo, WhatsappLogo } from 'phosphor-react';
-
+/**
+ * Componente del footer de la aplicación.
+ * Muestra información de contacto y lista de colaboradores del proyecto. Desaparece a x tamaño de página por cuestiones técnicas
+ * 
+ * @returns {JSX.Element} Componente del footer.
+ */
 const Footer = () => {
     const members = [
         { name: 'Filipelli Taiel', role: 'FrontEnd', github: 'https://github.com/TaiFilipelli' },

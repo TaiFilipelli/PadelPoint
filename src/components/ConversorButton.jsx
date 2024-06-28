@@ -4,9 +4,20 @@ export const ConversorButton = ({ valueToConvert }) => {
   /* OPTO POR PONER TODA LA CONFIGURACION ACÁ, SI CREES QUE ES MAS UTIL MUDAR TODA LA LOGICA A UNA CARPETA 'SERVICES' HACELO */
  /*  HOLA LAU, NO. LO DEJO ACÁ, ALTA PAJA PASARLO A UN SERVICES XD. ATTE: EL GOAT(ai)*/  
 
+ /**
+ * Componente botón con conversor de moneda.
+ * Muestra el valor convertido de una cantidad dada en pesos argentinos utilizando el valor actual del dólar blue.
+ *
+ * @param {Object} props - Propiedades del componente.
+ * @param {number} props.valueToConvert - Valor numérico a convertir a dólares argentinos.
+ * @returns {JSX.Element} Componente de botón con tooltip que muestra el valor convertido.
+ */
   const [dolarBlueValue, setDolarBlueValue] = useState(null);
   const [isHovered, setIsHovered] = useState(false);
 
+    /**
+   * Efecto para obtener el valor actual del dólar blue al montar el componente.
+   */
   useEffect(() => {
     fetch("https://dolarapi.com/v1/dolares/blue")
       .then((response) => response.json())
@@ -16,6 +27,9 @@ export const ConversorButton = ({ valueToConvert }) => {
       });
   }, []);
 
+    /**
+   * Maneja el evento de hover sobre el botón para mostrar u ocultar el tooltip.
+   */
   const handleHover = () => {
     setIsHovered(!isHovered);
   };

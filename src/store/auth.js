@@ -1,5 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+
+//Esto queda acá seteado para futuras mejoras y manejo de métodos que requieran usar la autenticación de usuario para ejecutarse
 const handler = (set)=>({
     isAuthenticated:false,
     user:null,
