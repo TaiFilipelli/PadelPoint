@@ -63,7 +63,7 @@ const Carrito = ({ items, removeFromCart }) => {
                 <ul>
                   {items.map((item, index) => (
                     <li key={index} className="my-2 flex justify-between items-center">
-                      <span>{item.name} - ${item.price}</span>
+                      <span className='font-poppinsRegular'>{item.name} - ${item.price}</span>
                       <button onClick={() => removeFromCart(item.id)} className="text-red-500 ml-4">Eliminar</button>
                     </li>
                   ))}
