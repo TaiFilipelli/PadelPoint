@@ -35,7 +35,7 @@ function App() {
   }, [isDarkMode]);
 
   return (
-    <main className='h-full w-full bg-no-repeat bg-custom-light-bg text-black dark:bg-custom-dark-bg dark:text-white'>
+    <main className='h-full w-full bg-no-repeat bg-custom-light-bg text-black dark:bg-custom-dark-bg dark:text-white max-[550px]:ml-10 max-[475px]:ml-16'>
       <Navbar isLogged={isLogged} setIsLogged={setIsLogged} onToggleDarkMode={onToggleDarkMode} isDarkMode={isDarkMode} />
       <Switch>
         <Route path='/' component={Inicio} />

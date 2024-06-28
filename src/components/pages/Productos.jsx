@@ -4,6 +4,8 @@ import { getPaletas, getOnePaleta } from "../services/data";
 import ProductsCard from '../ProductsCard';
 import Carrito from '../Carrito';
 import { Toaster, toast } from "react-hot-toast";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const Productos = () => {
     const [paletas, setPaletas] = useState([]);
@@ -66,12 +68,12 @@ const Productos = () => {
     };
 
     return (
-        <section className='flex justify-center flex-col text-center items-center h-4/5'>
+        <section className='flex justify-center flex-col text-center items-center h-4/5 max-[660px]:ml-16 max-[600px]:h-full'>
             <h1 className='text-4xl mb-4 mt-4 font-poppinsBold'>Productos</h1>
             <h3 className='text-2xl font-poppinsMedium'>Encontrá tu mejor compañera para la cancha.</h3>
             <Filters onFilter={handleFilterChange} />
             <Carrito items={cartItems} removeFromCart={removeFromCart} />
-            <section className='products-section'>
+            <section className='products-section mt-4 '>
                 <div className="products-container flex flex-wrap">
                     {filteredPaletas.map(paleta => (
                         <ProductsCard 

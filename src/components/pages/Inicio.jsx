@@ -10,8 +10,8 @@ const Inicio = () => {
       <img src="/PadelStock2.png" alt="Paletas del About Us" className=' h-96' />
       {/* POSIBLE FUTURO SCROLL DE IMAGENES ACÁ */}
       <div className='mt-10 flex flex-row justify-center gap-20 w-1/2 items-center'>
-        <Link to='/register' className='dark:bg-black text-black bg-[#575151] dark:text-white font-poppinsRegular text-xl p-3 rounded-md'>Unete a la familia.</Link>
-        <a href="https://www.instagram.com/_padelpoint?igsh=dmI0aTNxcjhtb3lz&utm_source=qr" target='_blank' className='dark:bg-black text-black bg-[#575151] dark:text-white font-poppinsRegular text-xl p-3 rounded-md'>Siguenos en Instagram</a>
+        <Link to='/register' className='dark:bg-black text-white bg-[#575151] font-poppinsRegular text-xl p-3 rounded-md'>Unete a la familia</Link>
+        <a href="https://www.instagram.com/_padelpoint?igsh=dmI0aTNxcjhtb3lz&utm_source=qr" target='_blank' className='dark:bg-black text-white bg-[#575151] font-poppinsRegular text-xl p-3 rounded-md'>Siguenos en Instagram</a>
       </div>
     </section>
   )
