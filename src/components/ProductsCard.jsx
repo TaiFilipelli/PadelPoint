@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'wouter'
-import { ShoppingBagOpen } from 'phosphor-react';
 import { ConversorButton } from './ConversorButton';
 import Skeleton from 'react-loading-skeleton';
 

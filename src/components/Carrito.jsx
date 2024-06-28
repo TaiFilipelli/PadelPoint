@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Drawer, Button } from 'keep-react';
 import { ShoppingCart, SmileySad, Warning } from 'phosphor-react';
+import { Link } from 'wouter';
 
 /**
  * Componente que representa el drawer flotante del carrito de compras.
@@ -13,6 +14,7 @@ import { ShoppingCart, SmileySad, Warning } from 'phosphor-react';
 const Carrito = ({ items, removeFromCart }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLogged, setIsLogged] = useState(false);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -49,9 +51,21 @@ const Carrito = ({ items, removeFromCart }) => {
     };
   }, []);
 
+  useEffect(() => {
+    const calculateTotalPrice = () => {
+        let total = 0;
+        items.forEach(item => {
+            total += item.price;
+        });
+        setTotalPrice(total);
+    };
+
+    calculateTotalPrice();
+}, [items]);
+
   return (
     <>
-      <Button onClick={() => setIsOpen(!isOpen)} className='bg-[#575151] dark:bg-black w-1/12' color='secondary'>
+      <Button onClick={() => setIsOpen(!isOpen)} className='bg-black' color='secondary'>
         <ShoppingCart size={35} />
       </Button>
       <Drawer isOpen={isOpen} onClose={() => setIsOpen(false)} position='right'>
@@ -60,14 +74,20 @@ const Carrito = ({ items, removeFromCart }) => {
             <div className='mx-auto space-y-3'>
               <h1 className='text-3xl font-poppinsBlack mb-10'>Mi carrito de compras</h1>
               {items.length > 0 ? (
-                <ul>
-                  {items.map((item, index) => (
-                    <li key={index} className="my-2 flex justify-between items-center">
-                      <span className='font-poppinsRegular'>{item.name} - ${item.price}</span>
-                      <button onClick={() => removeFromCart(item.id)} className="text-red-500 ml-4">Eliminar</button>
-                    </li>
-                  ))}
-                </ul>
+                <>
+                    <ul>
+                    {items.map((item, index) => (
+                        <li key={index} className="my-2 flex justify-between items-center bg-gray-900 rounded-md p-2">
+                        <span className='font-poppinsMedium'>{item.name} - ${item.price}</span>
+                        <button onClick={() => removeFromCart(item.id)} className="text-red-500 ml-4 hover:underline">Eliminar</button>
+                        </li>
+                    ))}
+                    </ul>
+                    <div className='flex flex-row items-center text-center justify-center gap-10'>
+                        <p className="text-xl font-poppinsMedium">Total: US${totalPrice.toFixed(2)}</p>
+                        <Link to='/paymentMenu' className='font-poppinsBold bg-red-600 hover:bg-red-300 transition p-2 rounded-md'>Comprar</Link>
+                    </div>
+                </>
               ) : (
                 <div className='flex justify-center flex-col items-center'>
                   <SmileySad size={90} />

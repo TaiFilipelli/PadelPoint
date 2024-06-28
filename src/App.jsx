@@ -8,6 +8,7 @@ import Product from './components/pages/Product.jsx';
 import Footer from './components/Footer.jsx';
 import Register from './components/pages/Register.jsx';
 import { useState, useEffect } from 'react';
+import FuturePayment from './components/pages/FuturePayment.jsx';
 
 /**
  * 
@@ -44,6 +45,7 @@ function App() {
         <Route path='/register'>
           <Register/>
         </Route>
+        <Route path='/paymentMenu' component={FuturePayment} />
         
         <Route path='/404' component={Error404} />
       </Switch>

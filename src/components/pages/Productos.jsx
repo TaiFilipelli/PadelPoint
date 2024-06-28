@@ -3,6 +3,7 @@ import Filters from "../Filters";
 import { getPaletas, getOnePaleta } from "../services/data";
 import ProductsCard from '../ProductsCard';
 import Carrito from '../Carrito';
+import { Toaster, toast } from "react-hot-toast";
 
 const Productos = () => {
     const [paletas, setPaletas] = useState([]);
@@ -11,6 +12,8 @@ const Productos = () => {
         const storedCartItems = localStorage.getItem('cartItems');
         return storedCartItems ? JSON.parse(storedCartItems) : [];
     });
+
+    const notify = () => toast.success('Producto añadido al carrito!')
 
     const dataPaletas = async () => {
         try {
@@ -50,6 +53,7 @@ const Productos = () => {
             const updatedItems = [...cartItems, newItem];
             setCartItems(updatedItems);
             localStorage.setItem('cartItems', JSON.stringify(updatedItems));
+            <Toaster/>
         } catch (error) {
             console.error('Error añadiendo al carrito:', error);
         }
