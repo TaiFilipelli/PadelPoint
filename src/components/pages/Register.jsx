@@ -1,5 +1,5 @@
 import { Label} from 'keep-react';
-import { Link, useNavigate } from 'wouter';
+import { Link} from 'wouter';
 import { registerSchema } from '../../../schemas/Register';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -12,14 +12,11 @@ const Register = () => {
         resolver: zodResolver(registerSchema),
     });
 
-    const navigate = useNavigate();
-
     const onSubmit = async (data) => {
         try {
             const result = await createOneUser(data);
             console.log('Usuario creado! Revisar DB', result);
-            navigate('/');
-            
+
         } catch (error) {
             console.error('ERROR ACÁ PA:', error);
             setError('apiError', {
