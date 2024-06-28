@@ -34,7 +34,7 @@ export const ConversorButton = ({ valueToConvert }) => {
           isHovered ? "opacity-100" : "opacity-0"
         } rounded-lg bg-white shadow text-center absolute -bottom-22 -right-52 h-max w-52 flex flex-col transition-all`}
       >
-        <header className="bg-blue-400 h-4 rounded-tl-lg rounded-tr-lg"></header>
+        <header className="bg-red-500 h-4 rounded-tl-lg rounded-tr-lg"></header>
         <section className="rounded-bl-lg rounded-br-lg flex flex-col p-2">
           <span className="font-bold text-lg">
             AR$
