@@ -19,6 +19,7 @@ const Register = () => {
             const result = await createOneUser(data);
             console.log('Usuario creado! Revisar DB', result);
             navigate('/');
+            
         } catch (error) {
             console.error('ERROR ACÁ PA:', error);
             setError('apiError', {
