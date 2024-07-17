@@ -7,7 +7,7 @@ export const metadata = {
 
 export default function DashboardLayout({children}) {
     return (
-    <html lang="es" className='dark'>
+    <html lang="es">
       <body className='h-screen w-screen bg-no-repeat bg-lightDashboard text-black dark:bg-darkDashboard dark:text-white pt-36'>
         <Providers>
           {children}
