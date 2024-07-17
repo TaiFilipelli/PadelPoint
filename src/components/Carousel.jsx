@@ -3,7 +3,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 const MyCarousel = () => {
   return (
-    <section>
+    <section className="p-5 w-auto">
      <Carousel 
         stopOnHover
         swipeable
