@@ -4,6 +4,7 @@ import MyCarousel from "../../components/Carousel";
 import ProductsCard from "../../components/ProductsCard";
 import { Truck, CreditCard, Racquet, InstagramLogo } from "@phosphor-icons/react";
 import { Divider } from "@nextui-org/react";
+import Link from "next/link";
 
 const pop = Poppins({ subsets: ["latin"], weight: '600' });
 
@@ -40,6 +41,10 @@ export default function Home() {
       <h1 className={`${pop.className} text-3xl mt-5`}>Contáctanos!</h1>
       <div className="flex flex-row w-1/2">
         <a href="https://www.instagram.com/_padelpoint/" target="_blank" className="font-bold hover:bg-red-200 transition-all rounded-lg p-3"><InstagramLogo size={40}/>Instagram</a>
+      </div>
+      <Divider/>
+      <div className="flex flex-row w-1/2">
+      <Link href='/dashboard' className="rounded-lg bg-red-400 p-2 w-1/5 font-bold mt-4">Dashboard de admin</Link>
       </div>
     </main>
   );
