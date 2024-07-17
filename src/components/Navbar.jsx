@@ -1,11 +1,11 @@
 'use client';
 import { Navbar, NavbarBrand, NavbarItem, NavbarContent, Dropdown, DropdownMenu, DropdownTrigger, DropdownItem, Link, Button } from "@nextui-org/react";
 import { Poppins } from "next/font/google";
-import { User, Sun, Moon } from "@phosphor-icons/react";
+import { User } from "@phosphor-icons/react";
 
 const pop = Poppins({ subsets: ["latin"], weight: '500' });
 
-const Nav = ({ onToggleDarkMode, isDarkMode }) => {
+const Nav = () => {
   return (
     <section className={`${pop.className} w-full flex flex-col`}>
         <div className="fixed w-full top-0 z-50">
@@ -23,11 +23,6 @@ const Nav = ({ onToggleDarkMode, isDarkMode }) => {
               <NavbarItem>
                 <Button as={Link} href='/login' color="default" variant="flat" className='mr-6 font-semibold text-lg bg-red-600 text-white hover:bg-red-400 transition-colors p-2 rounded-lg'>
                   <User size={30} />
-                </Button>
-              </NavbarItem>
-              <NavbarItem>
-                <Button onClick={onToggleDarkMode}>
-                  {isDarkMode ? <Moon size={30} /> : <Sun size={30} />}
                 </Button>
               </NavbarItem>
             </NavbarContent>
