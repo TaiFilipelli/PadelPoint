@@ -20,7 +20,7 @@ export default function Login() {
                         <Input type="text" label="Nombre o correo" className="w-3/4 shadow-lg" labelPlacement="outside"/>
                     </fieldset>
                     <fieldset className="mt-4 mb-8">
-                        <Input type={isVisible ? "text" : "password"} label="Contraseña" className="w-3/4 shadow-lg" labelPlacement="outside" endContent={
+                        <Input type={isVisible ? "text" : "password"} label="Contraseña" className="w-3/4 shadow-lg" labelPlacement="outside" required endContent={
                             <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
                                 {isVisible ? (
                                     <Eye className="text-2xl text-default-400 pointer-events-none" />
