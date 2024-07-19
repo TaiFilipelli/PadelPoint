@@ -14,6 +14,7 @@ export default function Home() {
       <h1 className={`${pop.className} text-5xl mb-7`}>PadelPoint</h1>
       <MyCarousel/>
       <h1 className={`${pop.className} text-3xl mt-5`}>Productos destacados:</h1>
+      {/* (próximamente, con la inclusión de querys compuestas) */}
       <div className="flex flex-row justify-center gap-10 w-1/2 mt-10 mb-14">
         <ProductsCard model='Adidas 20'/>
         <ProductsCard model='Nike 10'/>
