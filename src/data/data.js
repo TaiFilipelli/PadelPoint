@@ -30,3 +30,18 @@ export const createOneUser = async(credenciales)=>{
     const result = await verifyResponse(response);
     return result;
 }
+
+export const userLogin = async(credenciales)=>{
+    const response = await fetch(`${baseUrl}/auth`,{
+        method:'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify(credenciales)
+    });
+    const result = await verifyResponse(response);
+    if (response.ok) {
+        console.log("login exitoso!", result)
+    }
+    return result;
+}
