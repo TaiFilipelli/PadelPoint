@@ -28,10 +28,10 @@ export default function Page() {
                     {paletas.map(paleta => (
                         <ProductsCard 
                             key={paleta.id} 
-                            nombre={paleta.name} 
+                            name={paleta.name} 
                             image={paleta.image} 
                             brand={paleta.brand.name} 
-                            precio={paleta.price}
+                            price={paleta.price}
                             idProducto={paleta.id}
                         />
                         

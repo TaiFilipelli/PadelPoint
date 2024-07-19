@@ -4,14 +4,14 @@ const ProductsCard = ({name, image, brand, price, idProducto}) => {
     const maxlength = 15;
     // const limitedName = name.length > maxlength ? name.substring(0,maxlength) + '...' : name;
   return (
-    <section className='bg-gray-400 dark:bg-gray-700 h-60 w-1/6 rounded-lg text-center'>
+    <section className='bg-white dark:bg-gray-700 text-black h-1/2 w-1/4 rounded-lg text-center'>
       <h1 className='mt-2 text-lg font-bold'>{name}</h1>
-      <img src={image} alt="Imagen paleta"/>
+      <img src={image} alt="Imagen paleta" className=""/>
       <p className='font-semibold mt-4'>Marca: {brand}</p>
       <div className='w-full flex items-center justify-center mt-2'>
         <p className='text-lg font-poppinsMedium mr-4'>US${price}</p>
       </div>
-      <Link key={idProducto} href={`/products/${idProducto}`}>Ver nás detalles</Link>
+      <Link key={idProducto} href={`/products/${idProducto}`} className="hover:underline">Ver más detalles</Link>
     </section>
   )
 }
