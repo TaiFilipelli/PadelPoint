@@ -16,9 +16,9 @@ export default function Home() {
       <h1 className={`${pop.className} text-3xl mt-5`}>Productos destacados:</h1>
       {/* (próximamente, con la inclusión de querys compuestas) */}
       <div className="flex flex-row justify-center gap-10 w-1/2 mt-10 mb-14">
-        <ProductsCard model='Adidas 20'/>
-        <ProductsCard model='Nike 10'/>
-        <ProductsCard model='Bullpadel 2'/>
+        <ProductsCard name='PALETA ADIDAS' brand='Adidas' price='130'/>
+        <ProductsCard name='PALETA NIKE' brand='Nike' price='50'/>
+        <ProductsCard name='PALETA BULLPADEL' brand='Bullpadel' price='200'/>
       </div>
       <Divider/>
         <section className="mt-10 mb-10 flex justify-center items-center flex-row gap-10 w-3/5">
