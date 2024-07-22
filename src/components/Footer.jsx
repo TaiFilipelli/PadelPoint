@@ -14,7 +14,7 @@ const Footer = () => {
       </div>
       <div className='w-1/4 h-1/2 p-5'>
         <h1 className='text-gray-200 mb-2 mt-4 font-semibold text-lg'>Aquí iran otros items a discutir!</h1>
-        <a href='' target='_blank' className='underline'>Link a Steam porque si xd</a>
+        <a href='https://store.steampowered.com' target='_blank' className='underline'>Link a Steam porque si xd</a>
       </div>
     </section>
   )

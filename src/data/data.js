@@ -19,7 +19,6 @@ export const getOneProductById = async(id) => {
 }
 
 export const createOneUser = async(credenciales)=>{
-    console.log("Credenciales:",credenciales);
     const response = await fetch(`${baseUrl}/user`,{
         method:'POST',
         headers:{

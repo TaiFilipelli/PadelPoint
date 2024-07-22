@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { registerSchema } from "schemas/Register";
 import { createOneUser } from "src/data/data";
 import { Input, Button } from "@nextui-org/react";
+import { useRouter } from "next/navigation";
 
 const pop = Poppins({ subsets: ["latin"], weight: '400' });
 
@@ -12,12 +13,16 @@ export default function Page() {
     const { register, handleSubmit, formState: { errors }, setError } = useForm({
         resolver: zodResolver(registerSchema),
     });
+    
+    const router = useRouter();
 
     const onSubmit = async (data) => {
-        console.log("formulario enviado:",data)
+        const { confirmPassword, ...credentials } = data;
+        credentials.method="local";
         try {
-            const result = await createOneUser(data);
+            const result = await createOneUser(credentials);
             console.log('Usuario creado! Revisar DB', result);
+            router.push('/');
         } catch (error) {
             console.error('ERROR ACÁ PA:', error);
             setError('apiError', {
@@ -45,10 +50,10 @@ export default function Page() {
                         <Input 
                             type="text"
                             label="Nombre de usuario"
-                            {...register("userName")}
+                            {...register("username")}
                             className="w-full"
                         />
-                        {errors.userName && <p className="text-red-500">{errors.userName.message}</p>}
+                        {errors.username && <p className="text-red-500">{errors.username.message}</p>}
                     </div>
                     <div>
                         <Input 
@@ -78,7 +83,7 @@ export default function Page() {
                         {errors.confirmPassword && <p className="text-red-500">{errors.confirmPassword.message}</p>}
                     </div>
                     {errors.apiError && <p className="text-red-500">{errors.apiError.message}</p>}
-                    <Button type="submit" className="w-full bg-red-500 text-white">
+                    <Button type="submit" className="w-full bg-red-500 text-white" onClick={()=>console.log('Se clickea el botón para verificar renderizado adecuado.')}>
                         Registrarse
                     </Button>
                 </form>
