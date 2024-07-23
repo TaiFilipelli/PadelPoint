@@ -33,9 +33,8 @@ export default function Login() {
             const validatedData = loginSchema.parse(formData);
             const result = await userLogin(validatedData);
             console.log(result.message);
-            localStorage.setItem('token', result.token);
             localStorage.setItem('username', validatedData.username);
-            router.push('/'); // Redirigir a la página de inicio
+            router.push('/');
         } catch (error) {
             if (error instanceof z.ZodError) {
                 const fieldErrors = {};
@@ -48,7 +47,7 @@ export default function Login() {
     };
 
     return (
-        <main className="flex justify-center items-center text-center p-10">
+        <main className="flex justify-center items-center text-center p-16">
             <section className="flex flex-col text-center justify-center items-center p-8 rounded-lg bg-gray-300 w-1/2">
                 <h1 className={`${pop.className} text-4xl`}>Bienvenido de vuelta!</h1>
                 <form className="w-full text-left" onSubmit={handleSubmit}>
