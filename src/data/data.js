@@ -18,6 +18,13 @@ export const getOneProductById = async(id) => {
     return data;
 }
 
+export const getBrands = async()=>{
+    const response = await fetch(`${baseUrl}/brand`);
+    const data = await verifyResponse(response);
+    console.log('Fetched data:',data);
+    return data;
+}
+
 export const createOneUser = async(credenciales)=>{
     const response = await fetch(`${baseUrl}/user`,{
         method:'POST',
