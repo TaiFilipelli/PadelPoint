@@ -4,6 +4,7 @@ import { useParams } from 'next/navigation';
 import { getOneProductById } from "src/data/data";
 import { Poppins } from "next/font/google";
 import { Spinner } from "@nextui-org/react";
+import Link from "next/link";
 
 const pop = Poppins({subsets:['latin'], weight:'600'})
 export default function ProductDetailPage() {
@@ -34,7 +35,7 @@ export default function ProductDetailPage() {
   }
 
   return (
-    <section className={`flex flex-col justify-center text-center items-center p-20 ${pop.className}`}>
+    <section className={`flex flex-col justify-center text-center items-center p-20 ${pop.className} p-10`}>
       <h1 className='text-4xl'>{product.name}</h1>
       <div className="h-[40rem]">
         <img src={product.image} alt={product.name} className="h-full" />
@@ -43,6 +44,7 @@ export default function ProductDetailPage() {
         <p className="text-xl">Marca: {product.brand.name}</p>
         <p className="text-xl">Precio (USD): ${product.price}</p>
       </div>
+      <Link href='/products' className="mt-5 text-lg hover:underline hover:text-red-600 transition-colors">Volver a ver los productos</Link>
     </section>
   );
 }
