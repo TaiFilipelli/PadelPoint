@@ -10,14 +10,6 @@ const config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-      },
-      colors: {
-        darkDashboard:'#202124',
-        lightDashboard:'#D4D0D0',
-      }
     },
   },
   darkMode: "class",

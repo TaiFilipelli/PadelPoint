@@ -1,4 +1,5 @@
 import { Providers } from "../providers";
+import '../../../styles/globals.css'
 
 export const metadata = {
     title: 'Dashboard de Administrador',
@@ -8,7 +9,7 @@ export const metadata = {
 export default function DashboardLayout({children}) {
     return (
     <html lang="es">
-      <body className='h-screen w-screen bg-lightDashboard text-black dark:bg-darkDashboard dark:text-white'>
+      <body className='h-screen w-screen p-20 bg-gradient-to-br from-indigo-950 to-black text-white'>
         <Providers>
           {children}
         </Providers>
