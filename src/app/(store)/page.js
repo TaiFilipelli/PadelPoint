@@ -2,8 +2,8 @@
 import { Poppins } from "next/font/google";
 import MyCarousel from "../../components/Carousel";
 import ProductsCard from "../../components/ProductsCard";
-import { Truck, CreditCard, Racquet, InstagramLogo } from "@phosphor-icons/react";
-import { Divider } from "@nextui-org/react";
+import { Truck, CreditCard, Racquet, InstagramLogo, WhatsappLogo } from "@phosphor-icons/react";
+import { Divider, Button } from "@nextui-org/react";
 import Link from "next/link";
 
 const pop = Poppins({ subsets: ["latin"], weight: '600' });
@@ -40,8 +40,13 @@ export default function Home() {
         </section>
       <Divider/>
       <h1 className={`${pop.className} text-3xl mt-5`}>Contáctanos!</h1>
-      <div className="flex flex-row w-1/2">
-        <a href="https://www.instagram.com/_padelpoint/" target="_blank" className="font-bold hover:bg-red-200 transition-all rounded-lg p-3"><InstagramLogo size={40}/>Instagram</a>
+      <div className="flex flex-row w-1/2 justify-around items-center my-10">
+       <Button as={Link} href="https://www.instagram.com/_padelpoint/" className="flex items-center p-4 hover:bg-red-50 transition-all rounded-lg" startContent={<InstagramLogo size={40}/>}>
+         <p className="font-bold text-lg">Instagram</p>
+       </Button>
+       <Button as={Link} href="https://api.whatsapp.com/send/?phone=%2B543364003555&text&type=phone_number&app_absent=0" className="flex items-center p-3 hover:bg-red-50 transition-all rounded-lg" startContent={<WhatsappLogo size={40}/>}>
+        <p className="font-bold text-lg">Whatsapp</p>
+       </Button>
       </div>
       <Divider/>
       <div className="flex flex-row w-1/2">
