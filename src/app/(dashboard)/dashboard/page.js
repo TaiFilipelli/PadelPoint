@@ -1,17 +1,23 @@
+'use client';
 import { Montserrat, Roboto } from "next/font/google";
 import Link from "next/link";
+import { Pencil, Plus, Eraser } from "@phosphor-icons/react";
+import { Button } from "@nextui-org/react";
 
 const mont = Montserrat({subsets:['latin'],weight:'600'});
 const robtop = Roboto({subsets:['greek'],weight:'300'});
 
 export default function Dashboard() {
   return (
-    <main className="flex justify-center items-center flex-col">
-      <h1 className={`${mont.className} text-4xl`}>Bienvenido, admin!</h1>
-      <h3 className={`${robtop.className} text-xl`}>Esta fuente tendrán todos los textos no encabezados</h3>
-      <section className={`rounded-lg bg-black text-white w-2/3 p-10 text-center flex flex-col my-10 ${robtop.className}`}>
-        <h1 className={`${mont.className} text-3xl my-4`}>Menú de Administrador</h1>
-        <Link href='/dashboard/edit' className="hover:underline">Page "Editar paleta"</Link>  
+    <main className="flex items-center flex-col">
+      <section className={`rounded-lg bg-black text-white w-full p-10 text-center flex flex-col my-8 ${robtop.className} items-center`}>
+        <h1 className={`${mont.className} text-3xl my-2`}>Menú de Administrador</h1>
+        <h2 className={`${mont.className} text-xl mb-10`}>Elija la opción que desee. Tenga en cuenta que los botones deshabilitados son funciones no disponibles por el momento.</h2>
+        <div className="w-1/2 flex justify-between gap-5 mb-5">
+          <Button radius="large" as={Link} href='/dashboard/edit' variant='shadow' endContent={<Pencil size={25}/>} className='w-[11rem] h-[3rem] bg-gradient-to-br from-cyan-300 to-violet-300 text-lg'>Editar paletas</Button> 
+          <Button isDisabled radius="large" as={Link} href='/dashboard/edit' variant='shadow' endContent={<Plus size={25}/>} className='w-[11rem] h-[3rem] bg-gradient-to-br from-cyan-300 to-violet-300 text-lg'>Añadir paletas</Button>
+          <Button isDisabled radius="large" as={Link} href='/dashboard/edit' variant='shadow' endContent={<Eraser size={25}/>} className='w-[11rem] h-[3rem] bg-gradient-to-br from-cyan-300 to-violet-300 text-lg'>Borrar paletas</Button> 
+        </div>
         <Link href='/' className="hover:underline">Volver a la tienda</Link>
       </section>
     </main>

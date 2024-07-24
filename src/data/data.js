@@ -25,6 +25,21 @@ export const getBrands = async()=>{
     return data;
 }
 
+export const updateProductPrice = async (id, price) => {
+    const response = await fetch(`${baseUrl}/product/${id}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ price })
+    });
+    const result = await verifyResponse(response);
+    if (response.ok) {
+        console.log("Precio actualizado exitosamente!", result);
+    }
+    return result;
+};
+
 export const createOneUser = async(credenciales)=>{
     const response = await fetch(`${baseUrl}/user`,{
         method:'POST',
