@@ -32,7 +32,7 @@ export default function EditRacket() {
                 <Input type="number" label='ID de paleta' value={id} onChange={(e) => setId(Number(e.target.value))} className="mb-5" />
                 <Input type="number" label='Nuevo precio' value={price} onChange={(e) => setPrice(Number(e.target.value))} className="mb-5" />
             </div>
-            <Button onClick={handleUpdatePrice} className="mb-5">Actualizar Precio</Button>
+            <Button onClick={handleUpdatePrice} className="mb-5 w-[11rem] h-[3rem] bg-gradient-to-br from-cyan-300 to-violet-300 text-lg">Actualizar Precio</Button>
             {isDone ? <p className="text-green-700 font-semibold text-lg">Precio actualizado con éxito!</p> : <p className="text-red-600 font-semibold text-lg">Hubo un error. Consultar error de la api</p>}
             <Link href='/dashboard' className="hover:underline">Volver atrás</Link>
             <Link href='/' className="hover:underline">Volver a la tienda</Link>
