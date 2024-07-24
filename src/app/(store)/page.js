@@ -41,16 +41,16 @@ export default function Home() {
       <Divider/>
       <h1 className={`${pop.className} text-3xl mt-5`}>Contáctanos!</h1>
       <div className="flex flex-row w-1/2 justify-around items-center my-10">
-       <Button as={Link} href="https://www.instagram.com/_padelpoint/" className="flex items-center p-4 hover:bg-red-50 transition-all rounded-lg" startContent={<InstagramLogo size={40}/>}>
+       <Button as={Link} href="https://www.instagram.com/_padelpoint/" className="flex items-center p-5 rounded-lg bg-transparent hover:bg-gradient-to-tr from-[#FFDC80] to-[#E1306C] hover:text-white transition-all duration-300 ease-in-out" startContent={<InstagramLogo size={40}/>}>
          <p className="font-bold text-lg">Instagram</p>
        </Button>
-       <Button as={Link} href="https://api.whatsapp.com/send/?phone=%2B543364003555&text&type=phone_number&app_absent=0" className="flex items-center p-3 hover:bg-red-50 transition-all rounded-lg" startContent={<WhatsappLogo size={40}/>}>
+       <Button as={Link} href="https://api.whatsapp.com/send/?phone=%2B543364003555&text&type=phone_number&app_absent=0" className="flex items-center p-5 hover:bg-gradient-to-tr from-[#25D366] to-[#128C7E] hover:text-white transition-all duration-300 ease-in-out rounded-lg bg-transparent" startContent={<WhatsappLogo size={40}/>}>
         <p className="font-bold text-lg">Whatsapp</p>
        </Button>
       </div>
       <Divider/>
       <div className="flex flex-row w-1/2">
-      <Link href='/dashboard' className="rounded-lg bg-red-400 p-2 w-1/5 font-bold mt-4">Dashboard de admin</Link>
+      <Link href='/dashboard' className="rounded-lg bg-red-600 p-2 w-1/5 font-bold mt-4">Dashboard de admin</Link>
       </div>
     </main>
   );
