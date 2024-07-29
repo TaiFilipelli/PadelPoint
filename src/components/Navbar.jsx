@@ -28,7 +28,7 @@ const Nav = () => {
         <div className="fixed w-full top-0 z-50">
           <Navbar className="flex text-center h-24 bg-white dark:bg-black w-full">
             <NavbarBrand justify="start">
-              <img src="/LogoPadelPoint.png" alt="Logo de PadelPoint" className="h-[11rem] invert-0 dark:invert" />
+              <img src="/LogoPadelPoint.png" alt="Logo de PadelPoint" className="h-[9rem] invert-0 dark:invert" />
             </NavbarBrand>
             <NavbarContent className="flex gap-7" justify="end">
               <NavbarItem>
@@ -50,7 +50,7 @@ const Nav = () => {
             <NavbarContent className="gap-10">
               <Dropdown>
                 <DropdownTrigger>
-                  <Button className="ml-4 p-2 text-lg" disableAnimation disableRipple variant="light" radius="sm">Las mejores marcas!</Button>
+                  <Button className="ml-4 p-2 text-lg" variant="light" radius="sm">Las mejores marcas!</Button>
                 </DropdownTrigger>
                 <DropdownMenu className="p-0 w-full" itemClasses={{ base: "gap-4" }}>
                 {brands.map(brand => (
