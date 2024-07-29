@@ -95,7 +95,7 @@ export default function Page() {
                         Registrarse
                     </Button>
                 </form>
-                <ToastContainer position="bottom-right" autoClose={4000} theme="light" closeOnClick draggable transition={Slide}/>
+                <ToastContainer position="bottom-right" autoClose={4000} theme="light" closeOnClick draggable transition={Slide} stacked/>
             </section>
         </main>
     );
