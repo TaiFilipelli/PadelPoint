@@ -6,6 +6,9 @@ import { registerSchema } from "schemas/Register";
 import { createOneUser } from "src/data/data";
 import { Input, Button } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
+import { Bounce, Slide, ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import { useState } from "react";
 
 const pop = Poppins({ subsets: ["latin"], weight: '400' });
 
@@ -15,6 +18,9 @@ export default function Page() {
     });
     
     const router = useRouter();
+    const success = () => toast.success("Usuario creado exitosamente!")
+    const error = () => toast.error("Error al crear el usuario.")
+    const [isResult, setIsResult] = useState(false);
 
     const onSubmit = async (data) => {
         const { confirmPassword, ...credentials } = data;
@@ -22,9 +28,11 @@ export default function Page() {
         try {
             const result = await createOneUser(credentials);
             console.log('Usuario creado! Revisar DB', result);
+            setIsResult(true);
             router.push('/');
         } catch (error) {
             console.error('ERROR ACÁ PA:', error);
+            setIsResult(false);
             setError('apiError', {
                 type: 'manual',
                 message: error.message,
@@ -83,10 +91,11 @@ export default function Page() {
                         {errors.confirmPassword && <p className="text-red-500">{errors.confirmPassword.message}</p>}
                     </div>
                     {errors.apiError && <p className="text-red-500">{errors.apiError.message}</p>}
-                    <Button type="submit" className="w-full bg-red-500 text-white" onClick={()=>console.log('Se clickea el botón para verificar renderizado adecuado.')}>
+                    <Button type="submit" className="w-full bg-red-500 text-white" onClick={isResult ? success : error}>
                         Registrarse
                     </Button>
                 </form>
+                <ToastContainer position="bottom-right" autoClose={4000} theme="light" closeOnClick draggable transition={Slide}/>
             </section>
         </main>
     );
