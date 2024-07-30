@@ -23,7 +23,7 @@ export default function Page() {
     return (
         <section className="flex justify-center items-center text-center flex-col p-10">
             <h1 className={`${pop.className} text-5xl`}>Productos</h1>
-            <section className="flex flex-wrap w-full gap-20 mt-10">
+            <section className="w-4/5 mt-10 max-w-[4/5] max-[1260px]:w-full">
                 <div className="flex flex-wrap max-[600px]:pt-0">
                     {paletas.map(paleta => (
                         <ProductsCard 
@@ -34,7 +34,6 @@ export default function Page() {
                             price={paleta.price}
                             idProducto={paleta.id}
                         />
-                        
                     ))}
                 </div>
             </section>
