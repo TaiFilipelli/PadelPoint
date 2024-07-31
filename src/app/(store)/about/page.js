@@ -16,8 +16,8 @@ export default function About() {
         content: "text-lg px-2",
       };
     return (
-        <section className={`flex flex-col justify-center text-left items-center p-20 ${pop.className}`}>
-            <h1 className="font-bold text-4xl">Esto es PadelPoint</h1>
+        <section className={`flex flex-col justify-center text-left items-center p-16 ${pop.className}`}>
+            <h1 className="font-bold text-5xl">Esto es PadelPoint</h1>
             <h3 className="mt-5 text-xl mb-5">
                 ¡Hola! Soy Ignacio Merlo, fundador de PadelPoint, y estoy encantado de darte la bienvenida a 
                 nuestra tienda. Tengo 23 años, soy jugador y profesor de pádel, y tengo una verdadera pasión por este deporte. Inicié PadelPoint hace 
