@@ -26,7 +26,7 @@ const Nav = () => {
 
   return (
     <section className={`${pop.className} w-full flex flex-row`}>
-      <div className="fixed w-full top-0 z-50 h-[11rem]">
+      <div className="fixed w-full top-0 z-50">
         <Navbar onMenuOpenChange={setIsMenuOpen} className="h-[6rem]">
           <NavbarContent className="justify-between">
             <NavbarBrand justify="start">
@@ -54,7 +54,7 @@ const Nav = () => {
             </NavbarItem>
           </NavbarContent>
 
-          <NavbarMenu>
+          <NavbarMenu className="mt-10">
             <NavbarMenuItem>
               <Link href="/" className="w-full text-xl p-2 text-black dark:text-white">Inicio</Link>
             </NavbarMenuItem>
@@ -62,7 +62,7 @@ const Nav = () => {
               <Link href="/products" className="w-full text-xl p-2 text-black dark:text-white">Productos</Link>
             </NavbarMenuItem>
             <NavbarMenuItem>
-              <Link href="/login" className="w-full text-xl p-2 text-black dark:text-white">Login</Link>
+              <Link href="/login" className="w-full text-xl p-2 text-black dark:text-white">Iniciar sesión</Link>
             </NavbarMenuItem>
           </NavbarMenu>
         </Navbar>
