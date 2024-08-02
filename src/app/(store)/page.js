@@ -10,8 +10,8 @@ const pop = Poppins({ subsets: ["latin"], weight: '600' });
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center justify-between pt-8 pb-8">
-      <h1 className={`${pop.className} text-5xl mb-7`}>PadelPoint</h1>
+    <main className="flex flex-col items-center justify-between py-8">
+      <h1 className={`${pop.className} text-6xl`}>PadelPoint</h1>
       <MyCarousel/>
       <h1 className={`${pop.className} text-3xl mt-5`}>Productos destacados:</h1>
       {/* (próximamente, con la inclusión de querys compuestas) */}
