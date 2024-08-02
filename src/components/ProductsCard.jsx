@@ -1,8 +1,32 @@
 import Link from "next/link";
+import { Skeleton } from "@nextui-org/react";
 
-const ProductsCard = ({name, image, brand, price, idProducto}) => {
+const ProductsCard = ({name, image, brand, price, idProducto, isLoading}) => {
     const maxlength = 15;
     // const limitedName = name.length > maxlength ? name.substring(0,maxlength) + '...' : name;
+
+    if (isLoading) {
+      return (
+        <section className='bg-default-100 text-black w-1/4 flex flex-col justify-center items-center rounded-lg text-center border-2 border-gray-200 shadow-xl p-4'>
+          <Skeleton className='mt-2 w-3/4 rounded-md'>
+            <div className="bg-secondary-50 h-7"></div>
+          </Skeleton>
+          <Skeleton className="mt-6 w-5/6 rounded-md">
+            <div className="bg-secondary-50 h-60"></div>
+          </Skeleton>
+          <Skeleton className='mt-4 w-2/5 rounded-md'>
+            <div className="bg-secondary-50 h-7"></div>
+          </Skeleton>
+          <Skeleton className='mt-4 w-1/3 rounded-md'>
+            <div className="bg-secondary-50 h-7"></div>
+          </Skeleton>
+          <Skeleton className="mt-4 w-2/5 rounded-md">
+            <div className="bg-secondary-50 h-6"></div>
+          </Skeleton>
+        </section>
+      );
+    }
+
   return (
     <section className='bg-white dark:bg-gray-700 text-black w-1/4 flex flex-col justify-center items-center rounded-lg text-center border-2 border-gray-200 shadow-xl p-4'>
       <h1 className='mt-2 text-lg font-bold'>{name}</h1>
