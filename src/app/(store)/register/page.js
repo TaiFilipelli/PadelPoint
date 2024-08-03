@@ -18,21 +18,20 @@ export default function Page() {
     });
     
     const router = useRouter();
-    const success = () => toast.success("Usuario creado exitosamente!")
-    const error = () => toast.error("Error al crear el usuario.")
-    const [isResult, setIsResult] = useState(false);
 
     const onSubmit = async (data) => {
         const { confirmPassword, ...credentials } = data;
         credentials.method="local";
         try {
             const result = await createOneUser(credentials);
+            toast.success("Usuario creado exitosamente!")
             console.log('Usuario creado! Revisar DB', result);
-            setIsResult(true);
-            router.push('/');
+            setTimeout(() => {
+                router.push('/');
+            }, 2500);
         } catch (error) {
             console.error('ERROR ACÁ PA:', error);
-            setIsResult(false);
+            toast.error("Error al crear el usuario.")
             setError('apiError', {
                 type: 'manual',
                 message: error.message,
@@ -91,11 +90,11 @@ export default function Page() {
                         {errors.confirmPassword && <p className="text-red-500">{errors.confirmPassword.message}</p>}
                     </div>
                     {errors.apiError && <p className="text-red-500">{errors.apiError.message}</p>}
-                    <Button type="submit" className="w-full bg-red-500 text-white" onClick={isResult ? success : error}>
+                    <Button type="submit" className="w-full bg-red-500 text-white">
                         Registrarse
                     </Button>
                 </form>
-                <ToastContainer position="bottom-right" autoClose={4000} theme="light" closeOnClick draggable transition={Slide} stacked/>
+                <ToastContainer position="bottom-right" autoClose={2500} theme="light" closeOnClick draggable transition={Slide} stacked/>
             </section>
         </main>
     );
