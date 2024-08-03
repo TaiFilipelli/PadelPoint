@@ -11,9 +11,9 @@ const pop = Poppins({ subsets: ["latin"], weight: '600' });
 export default function Home() {
   return (
     <main className="flex flex-col items-center justify-between py-8">
-      <h1 className={`${pop.className} text-6xl`}>PadelPoint</h1>
+      <h1 className={`${pop.className} text-6xl`}>PadelPoint Oficial</h1>
       <MyCarousel/>
-      <h1 className={`${pop.className} text-3xl mt-5`}>Productos destacados:</h1>
+      <h2 className={`${pop.className} text-3xl mt-5`}>Productos destacados:</h2>
       {/* (próximamente, con la inclusión de querys compuestas) */}
       <div className="flex flex-row justify-center gap-10 w-1/2 mt-10 mb-14">
         <ProductsCard isLoading={true}/>
@@ -29,12 +29,12 @@ export default function Home() {
           </div>
           <div className="w-1/3 flex flex-col text-center items-center">
             <CreditCard size={50} type="light"/>
-            <h1 className={`${pop.className} text-2xl`}>Los mejores precios</h1>
+            <h3 className={`${pop.className} text-2xl`}>Los mejores precios</h3>
             <p className="text-lg font-light">Múltiples métodos de pago para tu comodidad y ofertas especiales!</p>
           </div>
           <div className="w-1/3 flex flex-col text-center items-center">
             <Racquet size={50} type="light"/>
-            <h1 className={`${pop.className} text-2xl`}>Las mejores marcas</h1>
+            <h3 className={`${pop.className} text-2xl`}>Las mejores marcas</h3>
             <p className='text-lg font-light'>Encontrá tu mejor compañera en nuestra selecta y variada colección!</p>
           </div>
         </section>

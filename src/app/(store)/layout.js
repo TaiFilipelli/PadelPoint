@@ -4,7 +4,7 @@ import Nav from '../../components/Navbar'
 import Footer from '../../components/Footer';
 
 export const metadata = {
-  title: 'PadelPoint Oficial Store',
+  title: 'PadelPoint SN Oficial | ',
   description: 'Tienda virtual oficial de PadelPoint San Nicolas de los Arroyos. Las mejores marcas, la mejor variedad, los mejores precios. Envíos a todo el país!'
 }
 
