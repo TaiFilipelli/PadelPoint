@@ -29,7 +29,7 @@ export default function Page() {
             <section className="w-4/5 mt-10 max-w-[4/5] max-[1260px]:w-full">
                 <div className="flex flex-wrap max-[600px]:pt-0">
                     {isLoading ? (
-                        Array.from({ length: 4 }).map((_, index) => (
+                        Array.from({ length: 8 }).map((_, index) => (
                             <ProductsCard key={index} isLoading={true} />
                         ))
                     ) : (
