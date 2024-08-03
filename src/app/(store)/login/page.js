@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { z } from "zod"; 
 import { loginSchema } from "schemas/Login";
-import { userLogin } from "src/data/data";
+import { userLogin} from "src/data/data";
 
 const pop = Poppins({ subsets: ['latin'], weight: '500' });
 
@@ -47,7 +47,7 @@ export default function Login() {
     };
 
     const handleGoogleLogin = () => {
-        window.location.href = 'http://localhost:3000/auth/login/google';
+        window.location.href = 'http://localhost:3000/auth/login/google/redirect';
       };
 
     return (
