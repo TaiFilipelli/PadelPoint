@@ -3,3 +3,4 @@ Disallow: /cgi-bin/
 Disallow: /src/app/(dashboard)
 Disallow: /src/app/login/result
 Disallow: /src/app/login
+Disallow: /public
