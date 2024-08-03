@@ -49,6 +49,7 @@ export default function Login() {
     const handleGoogleLogin = () => {
         window.location.href = 'http://localhost:3000/auth/login/google/redirect';
       };
+      
 
     return (
         <main className="flex justify-center items-center text-center p-20">
