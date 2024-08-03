@@ -2,7 +2,7 @@
 import { Poppins } from "next/font/google";
 import Link from "next/link";
 import { Input, Button } from "@nextui-org/react";
-import { Eye, EyeClosed, SignIn } from "@phosphor-icons/react";
+import { Eye, EyeClosed, SignIn, GoogleLogo } from "@phosphor-icons/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { z } from "zod"; 
@@ -46,8 +46,12 @@ export default function Login() {
         }
     };
 
+    const handleGoogleLogin = () => {
+        window.location.href = 'http://localhost:3000/auth/login/google';
+      };
+
     return (
-        <main className="flex justify-center items-center text-center p-16">
+        <main className="flex justify-center items-center text-center p-20">
             <section className="flex flex-col text-center justify-center items-center p-8 rounded-lg bg-gray-300 w-1/2">
                 <h1 className={`${pop.className} text-4xl`}>Bienvenido de vuelta!</h1>
                 <form className="w-full text-left" onSubmit={handleSubmit}>
@@ -92,14 +96,11 @@ export default function Login() {
                         {errors.password && <p className="text-red-500">{errors.password}</p>}
                     </fieldset>
                     <div className="flex flex-row justify-between items-center">
-                        <Button 
-                            radius="medium" 
-                            variant='flat' 
-                            className="bg-red-500 text-white font-semibold shadow-lg" 
-                            endContent={<SignIn />} 
-                            type='submit'
-                        >
-                            Iniciar sesión
+                        <Button radius="medium" variant='flat' className="bg-red-500 text-white font-semibold shadow-lg" endContent={<SignIn />} type='submit'>
+                        Iniciar sesión
+                        </Button>
+                        <Button radius="medium" variant='flat' className='bg-gray-50 text-black font-semibold shadow-lg' onClick={handleGoogleLogin} startContent={<GoogleLogo />}>
+                            Iniciar sesión con Google
                         </Button>
                         <Link href='/register' className="hover:underline hover:text-blue-600 transition-all">
                             No tienes cuenta? Registrate ahora!
