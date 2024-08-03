@@ -21,12 +21,6 @@ export default function Page() {
     useEffect(() => {
         dataPaletas();
 
-        const timer = setTimeout(() => {
-            setIsLoading(false);
-        }, 1000);
-
-        return () => clearTimeout(timer);
-
     }, []);
 
     return (
