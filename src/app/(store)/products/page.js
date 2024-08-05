@@ -3,14 +3,16 @@ import { Poppins } from "next/font/google";
 import ProductsCard from "../../../components/ProductsCard";
 import { useEffect, useState } from "react";
 import { getProducts } from "src/data/data";
+import { useRouter } from "next/navigation";
 
 const pop = Poppins({subsets:["latin"], weight:'600'})
 export default function Page() {
     const [paletas, setPaletas] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const dataPaletas = async () => {
+    const router = useRouter();
+    const dataPaletas = async (query) => {
         try {
-            const data = await getProducts();
+            const data = await getProducts(query);
             setPaletas(data);
             setIsLoading(false);
         } catch (error) {
@@ -19,7 +21,8 @@ export default function Page() {
     };
 
     useEffect(() => {
-        dataPaletas();
+        const query = router.asPath.split('?')[1] ? `?${router.asPath.split('?')[1]}` : '';
+        dataPaletas(query);
 
     }, []);
 

@@ -76,7 +76,7 @@ const Nav = () => {
               </DropdownTrigger>
               <DropdownMenu className="p-0 w-full" itemClasses={{ base: "gap-4" }}>
                 {brands.map(brand => (
-                  <DropdownItem key={brand.id}>{brand.name}</DropdownItem>
+                  <DropdownItem key={brand.id} as={Link} href={`/products?brand=${brand.name}`}>{brand.name}</DropdownItem>
                 ))}
               </DropdownMenu>
             </Dropdown>
