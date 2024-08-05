@@ -2,7 +2,15 @@ import { verifyResponse } from "utils/services";
 
 const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
-export const getProducts = async(query = '') => {
+export const buildQuery = (params) => {
+    const query = Object.keys(params)
+        .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
+        .join('&');
+    return query ? `?${query}` : '';
+}
+
+export const getProducts = async(params = {}) => {
+    const query = buildQuery(params);
     const response = await fetch(`${baseUrl}/product${query}`);
     console.log('Fetching from:', `${baseUrl}/product${query}`);
     const data = await verifyResponse(response);

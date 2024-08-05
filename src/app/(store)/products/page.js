@@ -2,17 +2,15 @@
 import { Poppins } from "next/font/google";
 import ProductsCard from "../../../components/ProductsCard";
 import { useEffect, useState } from "react";
-import { getProducts } from "src/data/data";
-import { useRouter } from "next/navigation";
+import { getProducts} from "src/data/data";
 
 const pop = Poppins({subsets:["latin"], weight:'600'})
 export default function Page() {
     const [paletas, setPaletas] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const router = useRouter();
-    const dataPaletas = async (query) => {
+    const dataPaletas = async (params) => {
         try {
-            const data = await getProducts(query);
+            const data = await getProducts(params);
             setPaletas(data);
             setIsLoading(false);
         } catch (error) {
@@ -21,9 +19,9 @@ export default function Page() {
     };
 
     useEffect(() => {
-        const query = router.asPath.split('?')[1] ? `?${router.asPath.split('?')[1]}` : '';
-        dataPaletas(query);
-
+        const brand = localStorage.getItem('selectedBrand');
+        const params = brand ? {brand}:{}
+        dataPaletas(params);
     }, []);
 
     return (

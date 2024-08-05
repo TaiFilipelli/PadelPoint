@@ -4,13 +4,19 @@ import { Poppins } from "next/font/google";
 import { User} from "@phosphor-icons/react";
 import { getBrands } from "src/data/data";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const pop = Poppins({ subsets: ["latin"], weight: '500' });
 
 const Nav = () => {
   const [brands, setBrands] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter();
 
+  const handleBrandSelect = (brand) => {
+    localStorage.setItem('selectedBrand', brand);
+    router.push('/products');
+  };
   useEffect(() => {
     const fetchBrands = async () => {
       try {
@@ -76,7 +82,7 @@ const Nav = () => {
               </DropdownTrigger>
               <DropdownMenu className="p-0 w-full" itemClasses={{ base: "gap-4" }}>
                 {brands.map(brand => (
-                  <DropdownItem key={brand.id} as={Link} href={`/products?brand=${brand.name}`}>{brand.name}</DropdownItem>
+                  <DropdownItem key={brand.id} onClick={() => handleBrandSelect(brand.name)}>{brand.name}</DropdownItem>
                 ))}
               </DropdownMenu>
             </Dropdown>
