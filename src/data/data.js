@@ -51,6 +51,18 @@ export const createOneUser = async(credenciales)=>{
     return result;
 }
 
+export const updateOneUser = async(username, id)=>{
+    const response = await fetch(`${baseUrl}/user/${id}`,{
+        method:'PATCH',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify(username)
+    });
+    const result = await verifyResponse(response);
+    return result;
+}
+
 export const userLogin = async(credenciales)=>{
     const response = await fetch(`${baseUrl}/auth/login/local`,{
         method:'POST',
