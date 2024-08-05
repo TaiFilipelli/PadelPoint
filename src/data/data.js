@@ -34,7 +34,7 @@ export const updateProductPrice = async (id, price) => {
     });
     const result = await verifyResponse(response);
     if (response.ok) {
-        console.log("Precio actualizado exitosamente!", result);
+        console.log("New price updated", result);
     }
     return result;
 };
@@ -61,7 +61,25 @@ export const userLogin = async(credenciales)=>{
     });
     const result = await verifyResponse(response);
     if (response.ok) {
-        console.log("login exitoso!", result)
+        console.log("login succesfully done", result)
+    }
+    return result;
+
+}
+
+export const getUserById = async(id) =>{
+    const response = await fetch(`${baseUrl}/user/${id}`);
+    const data = await verifyResponse(response);
+    return data;
+}
+
+export const searchUserAuthenticated = async() =>{
+    const response = await fetch(`${baseUrl}/user/cookie`,{
+        credentials: 'include'
+      });
+    const result = await verifyResponse(response);
+    if(response.ok){
+        console.log("User info from cookie searched");
     }
     return result;
 }

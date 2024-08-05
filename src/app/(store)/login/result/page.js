@@ -3,18 +3,32 @@
 import { useState, useEffect } from "react";
 import { Input, Button } from "@nextui-org/react";
 import Link from "next/link";
+import { searchUserAuthenticated, getUserById } from "src/data/data";
 
 export default function ResultLogin() {
 
     const [isNewUser, setIsNewUser] = useState(false);
+    const [username, setUsername] = useState('');
 
-    const handleChange=()=>{
-        setIsNewUser(!isNewUser);
+    const checkLoggedUser = async () => {
+        try{
+            console.log('Cookie en la pagina:',document.cookie);
+            const data = await searchUserAuthenticated();
+            setIsNewUser(data.isNewUser);
+            if(isNewUser === false){
+                setUsername(data.user.username);
+            }
+        }catch(error){
+            console.error('Error buscando el usuario loggeado:',error);
+        }
     }
+
+    useEffect(()=>{
+        checkLoggedUser();
+    },[]);
 
     return (
         <section className="flex items-center justify-center text-center p-20 flex-col">
-            <Button onClick={handleChange} className="bg-blue-600 text-white">{isNewUser? 'No se encuentra usuario, es usuario nuevo':'Se encuentró usuario'}</Button>
             { isNewUser ?
             <section className="bg-gray-200 flex flex-col w-1/2 p-8 mt-10 rounded-lg text-left">
                 <h1 className="font-bold text-3xl mb-2">Una última cosa...</h1>
@@ -26,7 +40,7 @@ export default function ResultLogin() {
             </section>
             :
             <section className="flex flex-col items-center text-center p-10">
-                <h1 className="text-green-700 font-bold text-4xl mb-4">Bienvenido, NOMBREDEUSUARIO!</h1>
+                <h1 className="text-green-700 font-bold text-4xl mb-4">Bienvenido, {username}</h1>
                 <h2 className="font-semibold text-xl mb-8">Puede retornar a la tienda y comprar libremente</h2>
                 <Link href='/' className="hover:underline">Volver al inicio</Link>
             </section>

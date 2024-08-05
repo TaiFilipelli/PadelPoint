@@ -6,9 +6,8 @@ import { registerSchema } from "schemas/Register";
 import { createOneUser } from "src/data/data";
 import { Input, Button } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
-import { Bounce, Slide, ToastContainer, toast } from "react-toastify";
+import { Slide, ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { useState } from "react";
 
 const pop = Poppins({ subsets: ["latin"], weight: '400' });
 
