@@ -4,6 +4,8 @@ import { Button, Input } from "@nextui-org/react";
 import Link from "next/link";
 import { useState } from "react";
 import { updateProductPrice } from "src/data/data";
+import { ToastContainer, toast, Slide } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const robtop = Roboto({ subsets: ['greek'], weight: '300' });
 const mont = Montserrat({ subsets: ['latin'], weight: '600' });
@@ -11,16 +13,15 @@ const mont = Montserrat({ subsets: ['latin'], weight: '600' });
 export default function EditRacket() {
     const [id, setId] = useState(null);
     const [price, setPrice] = useState(null);
-    const [isDone, setIsDone] = useState(null);
 
     const handleUpdatePrice = async () => {
         try {
             const result = await updateProductPrice(id, price);
             console.log('Resultado de la actualización:', result);
-            setIsDone(true);
+            toast.success('Paleta actualizada con éxito')
         } catch (error) {
+            toast.error('Error actualizando la paleta')
             console.error('Error al actualizar el precio:', error);
-            setIsDone(false);
         }
     };
 
@@ -33,7 +34,7 @@ export default function EditRacket() {
                 <Input type="number" label='Nuevo precio' value={price} onChange={(e) => setPrice(Number(e.target.value))} className="mb-5" />
             </div>
             <Button onClick={handleUpdatePrice} className="mb-5 w-[11rem] h-[3rem] bg-gradient-to-br from-cyan-300 to-violet-300 text-lg">Actualizar Precio</Button>
-            {isDone ? <p className="text-green-700 font-semibold text-lg">Precio actualizado con éxito!</p> : <p className="text-red-600 font-semibold text-lg">Hubo un error. Consultar error de la api</p>}
+            <ToastContainer position="bottom-right" autoClose={2500} transition={Slide} theme="light" closeOnClick draggable/>
             <Link href='/dashboard' className="hover:underline">Volver atrás</Link>
             <Link href='/' className="hover:underline">Volver a la tienda</Link>
         </section>

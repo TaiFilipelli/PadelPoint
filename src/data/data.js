@@ -62,7 +62,7 @@ export const updateOneUser = async(id, newUsername)=>{
     });
     const result = await verifyResponse(response);
     if(response.ok){
-        console.log('Nuevo username:',result)
+        console.log('New username:',result)
     }
     return result;
 }
