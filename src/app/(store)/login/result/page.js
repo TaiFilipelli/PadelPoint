@@ -36,7 +36,7 @@ export default function ResultLogin() {
 
         try {
             const data = await searchUserAuthenticated();
-            await updateOneUser(data.user.id,{ username: newUsername });
+            await updateOneUser(data.user.id, newUsername);
             toast.success('Usuario creado correctamente! Bienvenido!');
             setIsNewUser(false);
             setTimeout(()=>{

@@ -51,14 +51,14 @@ export const createOneUser = async(credenciales)=>{
     return result;
 }
 
-export const updateOneUser = async(id, newUsername)=>{
-    console.log('Nombre de usuario que entra al metodo:',newUsername)
+export const updateOneUser = async(id, username)=>{
+    console.log('El id ',id, 'tendrá el username ',username)
     const response = await fetch(`${baseUrl}/user/${id}`,{
         method:'PATCH',
         headers:{
-            'Content-Type':'application/json'
+            'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ username: newUsername })
+        body: JSON.stringify({ username })
     });
     const result = await verifyResponse(response);
     if(response.ok){
