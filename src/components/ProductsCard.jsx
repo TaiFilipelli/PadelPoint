@@ -27,7 +27,7 @@ const ProductsCard = ({name, image, brand, price, idProducto, isLoading}) => {
   const maxlength = 20;
   const limitedName = name.length > maxlength ? name.substring(0,maxlength) + '...' : name;
   return (
-    <section className='bg-white dark:bg-gray-700 text-black w-1/4 flex flex-col justify-center items-center rounded-lg text-center border-2 border-gray-200 shadow-xl p-4 my-4'>
+    <section className='bg-white dark:bg-gray-700 text-black w-[22%] flex flex-col justify-center items-center rounded-lg text-center border-2 border-gray-200 shadow-xl p-4 my-4 mx-4'>
       <h1 className='mt-2 text-lg font-bold'>{limitedName}</h1>
       <img src={image} alt="Imagen paleta" className="h-[20rem]"/>
       <p className='font-semibold mt-2'>Marca: {brand}</p>

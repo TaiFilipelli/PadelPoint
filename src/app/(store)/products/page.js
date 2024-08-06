@@ -16,6 +16,7 @@ export default function Page() {
             setIsLoading(false);
         } catch (error) {
             console.error('ERROR ACÁ:', error);
+            setIsLoading(true);
         }
     };
     const deleteFilters = () =>{
@@ -34,7 +35,7 @@ export default function Page() {
             <h1 className={`${pop.className} text-5xl`}>Productos</h1>
             <Button onClick={deleteFilters} className="bg-red-500 text-white p-4 my-5 w-32 h-11">Borrar filtros</Button>
             <section className="w-4/5 mt-10 max-w-[4/5] max-[1260px]:w-full">
-                <div className="flex flex-wrap max-[600px]:pt-0">
+                <div className="flex flex-wrap justify-center max-[600px]:pt-0 ">
                     {isLoading ? (
                         Array.from({ length: 8 }).map((_, index) => (
                             <ProductsCard key={index} isLoading={true} />

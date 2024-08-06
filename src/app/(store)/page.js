@@ -5,20 +5,54 @@ import ProductsCard from "../../components/ProductsCard";
 import { Truck, CreditCard, Racquet, InstagramLogo, WhatsappLogo } from "@phosphor-icons/react";
 import { Divider, Button } from "@nextui-org/react";
 import Link from "next/link";
+import { useState, useEffect } from "react";
+import { getProducts } from "src/data/data";
 
 const pop = Poppins({ subsets: ["latin"], weight: '600' });
 
 export default function Home() {
+  const [mainProducts, setMainProducts] = useState([])
+  const [isLoading, setIsLoading] = useState(true);
+
+  const dataMainProducts = async(params) => {
+    try{
+      const data = await getProducts(params);
+      setMainProducts(data);
+      setIsLoading(false);
+    }catch(error){
+      console.error('Error fetching main products');
+      setIsLoading(true);
+    }
+  }
+
+  useEffect(()=>{
+    const params = { limit: 4 };
+    dataMainProducts(params);
+  },[]);
+
   return (
     <main className="flex flex-col items-center justify-between py-8">
       <h1 className={`${pop.className} text-6xl`}>PadelPoint Oficial</h1>
       <MyCarousel/>
       <h2 className={`${pop.className} text-3xl mt-5`}>Productos destacados:</h2>
       <div className="flex flex-row justify-center gap-10 w-2/3 mt-10 mb-14">
-        <ProductsCard isLoading={true}/>
-        <ProductsCard isLoading={true}/>
-        <ProductsCard isLoading={true}/>
-        <ProductsCard isLoading={true}/>
+      {isLoading ? (
+                        Array.from({ length: 4 }).map((_, index) => (
+                            <ProductsCard key={index} isLoading={true} />
+                        ))
+                    ) : (
+                        mainProducts.map(product => (
+                            <ProductsCard 
+                                key={product.id} 
+                                name={product.name} 
+                                image={product.image} 
+                                brand={product.brand.name} 
+                                price={product.price}
+                                idProducto={product.id}
+                                isLoading={isLoading}
+                            />
+                        ))
+                    )}
       </div>
       <Divider/>
         <section className="mt-10 mb-10 flex justify-center items-center flex-row gap-10 w-3/5">
