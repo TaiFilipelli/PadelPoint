@@ -5,6 +5,8 @@ import { getOneProductById } from "src/data/data";
 import { Poppins } from "next/font/google";
 import { Spinner, Button, Divider } from "@nextui-org/react";
 import Link from "next/link";
+import ProductsCard from "src/components/ProductsCard";
+import { getProducts } from "src/data/data";
 
 const pop = Poppins({subsets:['latin'], weight:'600'})
 const popmini = Poppins({subsets:['latin'], weight:'400'})
@@ -12,6 +14,19 @@ export default function ProductDetailPage() {
   const params = useParams();
   const { id } = params;
   const [product, setProduct] = useState(null);
+  const [recProducts, setRecProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const dataRecProducts = async(params) => {
+    try{
+      const data = await getProducts(params);
+      setRecProducts(data);
+      setIsLoading(false);
+    }catch(error){
+      console.error('Error fetching main products');
+      setIsLoading(true);
+    }
+  }
 
   useEffect(() => {
     if (id) {
@@ -25,12 +40,14 @@ export default function ProductDetailPage() {
       };
       fetchProduct();
     }
+    const params = { limit: 4 };
+    dataRecProducts(params);
   }, [id]);
 
   if (!product) {
     return(
       <div className="flex justify-center items-center h-[20rem] w-full">
-        <Spinner size="lg"/>
+        <Spinner label="Cargando..." color="warning"/>
       </div>
   );
   }
@@ -75,7 +92,25 @@ export default function ProductDetailPage() {
       <Divider/>
       <div className="flex flex-col items-center text-center my-6">
         <h1 className={`${pop.className} text-3xl`}>Otros usuarios también vieron esto</h1>
-        {/* Futuras recomendaciones fetcheando una cantidad aleatoria de productos mediante query compuesta */}
+        <div className="flex flex-row justify-center gap-2 w-3/4 mt-10 mb-14">
+        {isLoading ? (
+                        Array.from({ length: 4 }).map((_, index) => (
+                            <ProductsCard key={index} isLoading={true} />
+                        ))
+                    ) : (
+                        recProducts.map(product => (
+                            <ProductsCard 
+                                key={product.id} 
+                                name={product.name} 
+                                image={product.image} 
+                                brand={product.brand.name} 
+                                price={product.price}
+                                idProducto={product.id}
+                                isLoading={isLoading}
+                            />
+                        ))
+                    )}
+        </div>      
       </div>
     </section>
   );

@@ -35,7 +35,7 @@ export default function Home() {
       <h1 className={`${pop.className} text-6xl`}>PadelPoint Oficial</h1>
       <MyCarousel/>
       <h2 className={`${pop.className} text-3xl mt-5`}>Productos destacados:</h2>
-      <div className="flex flex-row justify-center gap-10 w-3/4 mt-10 mb-14">
+      <div className="flex flex-row justify-center gap-2 w-3/4 mt-10 mb-14">
       {isLoading ? (
                         Array.from({ length: 4 }).map((_, index) => (
                             <ProductsCard key={index} isLoading={true} />
