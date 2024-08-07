@@ -7,7 +7,6 @@ const pop = Poppins({subsets:['latin'], weight:'500'})
 
 export default function About() {
     
-    
     const itemClasses = {
         base: "p-2 w-full",
         title: "font-bold text-xl",
