@@ -22,7 +22,19 @@ export default function Page() {
 
     useEffect(() => {
         const brand = localStorage.getItem('selectedBrand');
-        const params = brand ? {brand}:{}
+        const name = localStorage.getItem('name');
+        const minPrice = localStorage.getItem('minPrice');
+        const maxPrice = localStorage.getItem('maxPrice');
+        const params = {};
+
+        if (brand !== null) params.brand = brand;
+        if (name !== null && name!=='') params.name = name;
+        //Lo que se extraña TypeScript, mamita... mirá esto:
+        if (minPrice !== null) {
+            const minPriceNumber = Number(minPrice);
+            params.minPrice = minPriceNumber === 0 ? 1 : minPriceNumber;
+        }
+        if (maxPrice !== null) params.maxPrice = maxPrice;
         dataPaletas(params);
     }, []);
 

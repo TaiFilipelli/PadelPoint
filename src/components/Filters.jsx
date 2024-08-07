@@ -12,6 +12,8 @@ export const Filters = () => {
     const deleteFilters = () =>{
         localStorage.removeItem('selectedBrand');
         localStorage.removeItem('name');
+        localStorage.removeItem('minPrice');
+        localStorage.removeItem('maxPrice');
         window.location.reload();
     }
     const applyFilters = () =>{
