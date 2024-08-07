@@ -2,6 +2,6 @@
 import MyCarousel from "./Carousel";
 import React from "react";
 
-export default function ClientComponent() {
+export default function ImageCaruosel() {
   return <MyCarousel />;
 }

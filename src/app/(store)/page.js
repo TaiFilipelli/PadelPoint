@@ -1,12 +1,16 @@
 import { Poppins } from "next/font/google";
+// Se importa la fuente
 import { Divider, Button } from "@nextui-org/react";
+// Componentes de nextui
 import Link from "next/link";
+// Link para navegar entre páginas
 import { getProducts } from "src/data/data";
-import dynamic from 'next/dynamic';
+// Método para fetchear productos
 import { Truck, CreditCard, Racquet, InstagramLogo, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
-
-const ClientComponent = dynamic(() => import('src/components/ClientComponents'), { ssr: true });
-const ProductsCard = dynamic(() => import('src/components/ProductsCard'), { ssr: true });
+// Iconos de React especificos para SSR
+import ImageCarousel from "src/components/ClientComponents";
+import ProductsCard from "src/components/ProductsCard";
+// Componentes CSR 
 
 const pop = Poppins({ subsets: ["latin"], weight: '600' });
 
@@ -23,7 +27,7 @@ export default async function Home() {
   return (
     <main className="flex flex-col items-center justify-between py-8">
       <h1 className={`${pop.className} text-6xl`}>PadelPoint Oficial</h1>
-      <ClientComponent/>
+      <ImageCarousel/>
       <h2 className={`${pop.className} text-3xl mt-5`}>Productos destacados:</h2>
       <div className="flex flex-row justify-center gap-2 w-3/4 mt-10 mb-14">
         {mainProducts.length === 0 ? (

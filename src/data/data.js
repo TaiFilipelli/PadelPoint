@@ -12,7 +12,6 @@ export const buildQuery = (params) => {
 export async function getProducts(params = {}){
     const query = buildQuery(params);
     const response = await fetch(`${baseUrl}/product${query}`);
-    console.log('Fetching from:', `${baseUrl}/product${query}`);
     const data = await verifyResponse(response);
     console.log('Fetched data:', data);
     return data;
@@ -20,7 +19,6 @@ export async function getProducts(params = {}){
 
 export const getOneProductById = async(id) => {
     const response = await fetch(`${baseUrl}/product/${id}`);
-    console.log('Fetching from:', `${baseUrl}/product/${id}`);
     const data = await verifyResponse(response);
     console.log('Fetched data:', data);
     return data;
@@ -60,7 +58,6 @@ export const createOneUser = async(credenciales)=>{
 }
 
 export const updateOneUser = async(id, username)=>{
-    console.log('El id ',id, 'tendrá el username ',username)
     const response = await fetch(`${baseUrl}/user/${id}`,{
         method:'PATCH',
         headers:{
