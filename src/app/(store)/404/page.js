@@ -1,5 +1,3 @@
-'use client';
-//ELIMINAR USE CLIENT AL FINALIZAR LAS PRUEBAS DEL COMPONENTE 'FILTROS'
 import { Poppins } from "next/font/google";
 import Link from "next/link";
 
