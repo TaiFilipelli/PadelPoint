@@ -1,6 +1,7 @@
 'use client'
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import React from "react";
 const MyCarousel = () => {
   return (
     <section className="p-5 w-full">

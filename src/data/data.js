@@ -9,7 +9,7 @@ export const buildQuery = (params) => {
     return query ? `?${query}` : '';
 }
 
-export const getProducts = async(params = {}) => {
+export async function getProducts(params = {}){
     const query = buildQuery(params);
     const response = await fetch(`${baseUrl}/product${query}`);
     console.log('Fetching from:', `${baseUrl}/product${query}`);
