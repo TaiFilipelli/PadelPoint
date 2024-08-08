@@ -26,7 +26,7 @@ export default async function Home() {
 
   return (
     <main className="flex flex-col items-center justify-between py-8">
-      <h1 className={`${pop.className} text-6xl`}>PadelPoint Oficial</h1>
+      <h1 className={`${pop.className} text-7xl p-6`}>PadelPoint Oficial</h1>
       <ImageCarousel/>
       <h2 className={`${pop.className} text-3xl mt-5`}>Productos destacados:</h2>
       <div className="flex flex-row justify-center gap-2 w-3/4 mt-10 mb-14">
