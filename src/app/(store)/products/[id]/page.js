@@ -8,8 +8,7 @@ import Link from "next/link";
 import ProductsCard from "src/components/ProductsCard";
 import { getProducts } from "src/data/data";
 
-const pop = Poppins({subsets:['latin'], weight:'600'})
-const popmini = Poppins({subsets:['latin'], weight:'400'})
+const pop = Poppins({subsets:['latin'], weight:['600','400']})
 export default function ProductDetailPage() {
   const params = useParams();
   const { id } = params;
@@ -53,7 +52,7 @@ export default function ProductDetailPage() {
   }
 
   return (
-    <section className={`flex flex-col justify-center p-16 ${pop.className}`}>
+    <section className={`flex flex-col justify-center p-16 ${pop.className} font-semibold`}>
       <section className="flex flex-wrap my-6">
         <div className="flex flex-wrap p-2">
           <div className="block w-24 mr-2">
@@ -73,12 +72,12 @@ export default function ProductDetailPage() {
           <p className="text-xl">Marca: {product.brand.name}</p>
           <p className="text-xl">Más info proximamente...</p>
           <Button className="rounded-lg py-4 mt-4 w-1/2 px-4 text-xl bg-transparent border-2 hover:bg-gradient-to-b from-pink-600 to-yellow-400 ease-in-out transition-all hover:border-black" variant="light">Comprar</Button>
-          <Link href='/products' className={`mt-5 text-lg hover:underline hover:text-red-600 transition-colors ${popmini.className}`}>Volver a ver los productos</Link>
+          <Link href='/products' className={`mt-5 text-lg hover:underline hover:text-red-600 transition-colors ${pop.className} font-normal`}>Volver a ver los productos</Link>
         </div>
       </section>
       <Divider/>
-      <div className={`${popmini.className} bg-default-200 rounded-lg flex text-left flex-col p-4 my-6`}>
-        <h1 className={`text-4xl mb-6 mt-2 ${pop.className}`}>Descripción del producto</h1>
+      <div className={`${pop.className} font-normal bg-default-200 rounded-lg flex text-left flex-col p-4 my-6`}>
+        <h1 className={`text-4xl mb-6 mt-2 ${pop.className} font-semibold`}>Descripción del producto</h1>
         <p className="text-lg">Acá iria una descripción del producto en cuestión. El caso ideal seria que la propia entidad Paleta tenga un campo varchar donde se proporcione una minúscula
           descripción de cada paleta o, en su defecto, que haya algun campo "Attributes" donde yo pueda fetchear dichos atributos y armar una descripción decente y genérica para todas las
           paletas del e-commerce, pero que varíen dichos atributos clave.
