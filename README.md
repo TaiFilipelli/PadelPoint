@@ -29,7 +29,6 @@ En el lado del Front, decidí utilizar el framework **Next**. La elección se ba
 
 - [ ] Migración de autenticación local a Passport para mayor seguridad en los inicios de sesión, como se mencionó anteriormente.
 - [ ] Cambio de contraseña para usuarios locales mediante el envío de un código a su dirección de correo asociado.
-- [ ] Posibilidad de iniciar sesión con Facebook.
 - [ ] Definiciones finales de alguna que otra entidad de la DB
 - [ ] Posibilidad de múltiples imágenes por producto almacenadas en la base de datos.
 - [ ] Carrito funcional (aún toca sentarse y ver si hacer un Drawer flotante o una página aparte).
