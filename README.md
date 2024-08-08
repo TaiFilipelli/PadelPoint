@@ -23,4 +23,19 @@ En el lado del Front, decidí utilizar el framework **Next**. La elección se ba
 - [x] Inicio de sesión local exitoso, próximo a migrarse a Passport para mayor blindaje en la autenticación.
 - [x] Inicio de sesión mediante Google y 0Auth exitoso, almacenado en una cookie y correctamente manejado para el ingreso de un nombre de usuario en caso sea el primer inicio de sesión.
 - [x] Páginas secundarias útiles como 404, Sobre Nosotros y página de resultado del login funcionales y preparadas.
-- [x] Dashboard funcional con, en principio, la posibilidad de actualizar el precio de las paletas al ingresar ID.
+- [x] Dashboard funcional con, en principio, la posibilidad de actualizar el precio de las paletas al ingresar ID del producto a trabajar.
+
+## Futuras features
+
+- [ ] Migración de autenticación local a Passport para mayor seguridad en los inicios de sesión, como se mencionó anteriormente.
+- [ ] Cambio de contraseña para usuarios locales mediante el envío de un código a su dirección de correo asociado.
+- [ ] Posibilidad de iniciar sesión con Facebook.
+- [ ] Definiciones finales de alguna que otra entidad de la DB
+- [ ] Posibilidad de múltiples imágenes por producto almacenadas en la base de datos.
+- [ ] Carrito funcional (aún toca sentarse y ver si hacer un Drawer flotante o una página aparte).
+- [ ] Imposibilidad de comprar los productos añadidos al carrito en caso el usuario no esté loggeado.
+- [ ] Formulario de pago embebido de Stripe funcional, seguro y completo.
+- [ ] Correcto almacenamiento de órdenes de pago en base de datos.
+- [ ] **POSIBLE** implementación de una API que notifique a nuestro cliente cuando un usuario compró algo desde la tienda.
+- [ ] Roles de usuarios, con sus respectivos alcances y limitaciones bien definidos.
+- [ ] Mejoras de cyberseguridad, optimización de recursos, limpieza de código, solución de errores en producción, etc.
