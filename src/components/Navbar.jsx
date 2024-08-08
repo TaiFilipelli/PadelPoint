@@ -11,22 +11,23 @@ const pop = Poppins({ subsets: ["latin"], weight: '500' });
 const Nav = () => {
   const [brands, setBrands] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // const [isLogged, setIsLogged] = useState(false); Estado que nos permitirá conocer si hay un usuario loggeado o no.
   const router = useRouter();
 
   const handleBrandSelect = (brand) => {
     localStorage.setItem('selectedBrand', brand);
     router.push('/products');
   };
-  useEffect(() => {
-    const fetchBrands = async () => {
-      try {
-        const data = await getBrands();
-        setBrands(data);
-      } catch (error) {
-        console.error('Error fetching brands:', error);
-      }
-    };
+  const fetchBrands = async () => {
+    try {
+      const data = await getBrands();
+      setBrands(data);
+    } catch (error) {
+      console.error('Error fetching brands:', error);
+    }
+  };
 
+  useEffect(() => {
     fetchBrands();
   }, []);
 
@@ -49,6 +50,9 @@ const Nav = () => {
               <Link href="/products" className="text-xl p-2 text-black dark:text-white">Productos</Link>
             </NavbarItem>
             <NavbarItem>
+              {/* La idea principal es que este item de la navbar cambie depende si el usuario está loggeado o no. En caso esté loggeado,
+                  se renderizará un Dropdown/Modal que tenga una opción para cerrar sesión mediante un método que vendrá desde la API para 
+                  'matar' la cookie. En caso no esté loggeado, este botón quedará como está. */}
               <Button
                 as={Link}
                 href='/login'
