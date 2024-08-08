@@ -91,7 +91,7 @@ export default function ProductDetailPage() {
       <Divider/>
       <div className="flex flex-col items-center text-center my-6">
         <h1 className={`${pop.className} text-3xl`}>Otros usuarios también vieron esto</h1>
-        <div className="flex flex-row justify-center gap-2 w-3/4 mt-10 mb-14">
+        <div className="flex flex-row justify-center gap-2 w-3/4 mt-10 mb-14 font-normal">
         {isLoading ? (
                         Array.from({ length: 4 }).map((_, index) => (
                             <ProductsCard key={index} isLoading={true} />
