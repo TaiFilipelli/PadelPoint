@@ -7,9 +7,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { z } from "zod"; 
 import { loginSchema } from "schemas/Login";
-import { userLogin, userLogout} from "src/data/data";
-import { toast, ToastContainer, Slide } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import { userLogin} from "src/data/data";
 
 const pop = Poppins({ subsets: ['latin'], weight: '500' });
 
@@ -29,16 +27,6 @@ export default function Login() {
         setFormData((prevData) => ({ ...prevData, [name]: value }));
     };
 
-    const handleLogout = async() =>{
-        const result = await userLogout();
-        console.log('result:',result);
-        toast.success('Deslogeo exitoso!');
-        localStorage.setItem('isLogged',false);
-        setTimeout(() => {
-            router.push('/');
-        }, 3000);
-    }
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -46,7 +34,7 @@ export default function Login() {
             const result = await userLogin(validatedData);
             console.log(result.message);
             localStorage.setItem('username', validatedData.username);
-            localStorage.setItem('isLogged',true)
+            sessionStorage.setItem('isLogged',true)
             router.push('/');
         } catch (error) {
             if (error instanceof z.ZodError) {
@@ -122,8 +110,6 @@ export default function Login() {
                     </div>
                 </form>
             </section>
-            <Button className="bg-red-600 m-10 text-white" onClick={handleLogout}>Logout</Button>
-            <ToastContainer position="bottom-right" autoClose={3000} theme="light" transition={Slide}/>
         </main>
     );
 }

@@ -28,12 +28,12 @@ const Nav = () => {
 
   const handleLogout = async() =>{
     const result = await userLogout();
-    localStorage.removeItem('isLogged');
+    sessionStorage.removeItem('isLogged');
     window.location.reload();
 }
 
   useEffect(() => {
-    const log = localStorage.getItem('isLogged')
+    const log = sessionStorage.getItem('isLogged')
     if(log=='true') setIsLogged(true);
     fetchBrands();
   }, []);
@@ -57,9 +57,6 @@ const Nav = () => {
               <Link href="/products" className="text-xl p-2 text-black dark:text-white">Productos</Link>
             </NavbarItem>
             <NavbarItem>
-              {/* La idea principal es que este item de la navbar cambie depende si el usuario está loggeado o no. En caso esté loggeado,
-                  se renderizará un Dropdown/Modal que tenga una opción para cerrar sesión mediante un método que vendrá desde la API para 
-                  'matar' la cookie. En caso no esté loggeado, este botón quedará como está. */}
                   {isLogged ? 
                     <Button className="bg-red-600 m-10 text-white" onClick={handleLogout}>Logout</Button>
                   :

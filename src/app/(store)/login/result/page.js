@@ -22,7 +22,7 @@ export default function ResultLogin() {
             if(isNewUser === false){
                 setUsername(data.user.username);
             }
-            localStorage.setItem('isLogged',true)
+            sessionStorage.setItem('isLogged',true)
             console.log(data);
         }catch(error){
             console.error('Error buscando el usuario loggeado:',error);
@@ -39,7 +39,7 @@ export default function ResultLogin() {
             await updateOneUser(data.user.id, newUsername);
             toast.success('Usuario creado correctamente! Bienvenido!');
             setIsNewUser(false);
-            localStorage.setItem('isLogged',true)
+            sessionStorage.setItem('isLogged',true)
             setTimeout(()=>{
                 router.push('/');
             },2500);
