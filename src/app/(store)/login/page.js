@@ -7,7 +7,9 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { z } from "zod"; 
 import { loginSchema } from "schemas/Login";
-import { userLogin} from "src/data/data";
+import { userLogin, userLogout} from "src/data/data";
+import { toast, ToastContainer, Slide } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const pop = Poppins({ subsets: ['latin'], weight: '500' });
 
@@ -26,6 +28,15 @@ export default function Login() {
         const { name, value } = e.target;
         setFormData((prevData) => ({ ...prevData, [name]: value }));
     };
+
+    const handleLogout = async() =>{
+        const result = await userLogout();
+        console.log('result:',result);
+        toast.success('Deslogeo exitoso!');
+        setTimeout(() => {
+            router.push('/');
+        }, 3000);
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -109,6 +120,8 @@ export default function Login() {
                     </div>
                 </form>
             </section>
+            <Button className="bg-red-600 m-10 text-white" onClick={handleLogout}>Logout</Button>
+            <ToastContainer position="bottom-right" autoClose={3000} theme="light" transition={Slide}/>
         </main>
     );
 }

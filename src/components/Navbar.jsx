@@ -1,8 +1,7 @@
 'use client';
 import { Navbar, NavbarBrand, NavbarItem, NavbarContent, NavbarMenu, NavbarMenuToggle, NavbarMenuItem, Link, Button, Dropdown, DropdownItem, DropdownTrigger, DropdownMenu } from "@nextui-org/react";
 import { Poppins } from "next/font/google";
-import { User} from "@phosphor-icons/react";
-import { getBrands } from "src/data/data";
+import { getBrands, getCookie, userLogout } from "src/data/data";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
@@ -11,7 +10,7 @@ const pop = Poppins({ subsets: ["latin"], weight: '500' });
 const Nav = () => {
   const [brands, setBrands] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  // const [isLogged, setIsLogged] = useState(false); Estado que nos permitirá conocer si hay un usuario loggeado o no.
+  const [isLogged, setIsLogged] = useState(false); //Estado que nos permitirá conocer si hay un usuario loggeado o no.
   const router = useRouter();
 
   const handleBrandSelect = (brand) => {
@@ -27,7 +26,16 @@ const Nav = () => {
     }
   };
 
+  const handleLogout = async() =>{
+    const result = await userLogout();
+    console.log('result:',result);
+    window.location.reload();
+}
+
   useEffect(() => {
+    const userCookie = getCookie('user');
+    if(userCookie) setIsLogged(true);
+    console.log(userCookie)
     fetchBrands();
   }, []);
 
@@ -53,14 +61,18 @@ const Nav = () => {
               {/* La idea principal es que este item de la navbar cambie depende si el usuario está loggeado o no. En caso esté loggeado,
                   se renderizará un Dropdown/Modal que tenga una opción para cerrar sesión mediante un método que vendrá desde la API para 
                   'matar' la cookie. En caso no esté loggeado, este botón quedará como está. */}
-              <Button
-                as={Link}
-                href='/login'
-                color="default"
-                variant="flat"
-                className='mr-6 font-semibold text-lg bg-red-600 text-white hover:bg-red-400 transition-colors p-2 rounded-lg'>
-                <User size={30} />
-              </Button>
+                  {isLogged ? 
+                    <Button className="bg-red-600 m-10 text-white" onClick={handleLogout}>Logout</Button>
+                  :
+                    <Button
+                      as={Link}
+                      href='/login'
+                      color="default"
+                      variant="flat"
+                      className='mr-6 text-md bg-red-600 text-white hover:bg-red-400 transition-colors p-4 rounded-lg'>
+                      Iniciar sesión
+                    </Button>
+                }
             </NavbarItem>
           </NavbarContent>
 

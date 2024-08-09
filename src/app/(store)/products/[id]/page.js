@@ -56,7 +56,7 @@ export default function ProductDetailPage() {
       <section className="flex flex-wrap my-6">
         <div className="flex flex-wrap p-2">
           <div className="block w-24 mr-2">
-            {/* Aquí mi idea es tener un método donde por cada imagen que tenga una paleta se despliegue aquí, pero ya es un re mambo una imagen te imaginas varias xd */}
+            {/* Aquí mi idea es tener un método donde por cada imagen que tenga una paleta se despliegue aquí, futura implementación a conversar con Lau */}
             <img src={product.image} alt={product.name} className="border-1 rounded-xl mb-1"/>
             <img src={product.image} alt={product.name} className="border-1 rounded-xl mb-1"/>
             <img src={product.image} alt={product.name} className="border-1 rounded-xl mb-1"/>
