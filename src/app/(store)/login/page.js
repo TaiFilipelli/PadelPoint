@@ -33,6 +33,7 @@ export default function Login() {
         const result = await userLogout();
         console.log('result:',result);
         toast.success('Deslogeo exitoso!');
+        localStorage.setItem('isLogged',false);
         setTimeout(() => {
             router.push('/');
         }, 3000);
@@ -45,6 +46,7 @@ export default function Login() {
             const result = await userLogin(validatedData);
             console.log(result.message);
             localStorage.setItem('username', validatedData.username);
+            localStorage.setItem('isLogged',true)
             router.push('/');
         } catch (error) {
             if (error instanceof z.ZodError) {

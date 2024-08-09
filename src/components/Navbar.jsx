@@ -1,7 +1,7 @@
 'use client';
 import { Navbar, NavbarBrand, NavbarItem, NavbarContent, NavbarMenu, NavbarMenuToggle, NavbarMenuItem, Link, Button, Dropdown, DropdownItem, DropdownTrigger, DropdownMenu } from "@nextui-org/react";
 import { Poppins } from "next/font/google";
-import { getBrands, getCookie, userLogout } from "src/data/data";
+import { getBrands, userLogout } from "src/data/data";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
@@ -28,14 +28,13 @@ const Nav = () => {
 
   const handleLogout = async() =>{
     const result = await userLogout();
-    console.log('result:',result);
+    localStorage.removeItem('isLogged');
     window.location.reload();
 }
 
   useEffect(() => {
-    const userCookie = getCookie('user');
-    if(userCookie) setIsLogged(true);
-    console.log(userCookie)
+    const log = localStorage.getItem('isLogged')
+    if(log=='true') setIsLogged(true);
     fetchBrands();
   }, []);
 
