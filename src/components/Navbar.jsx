@@ -1,7 +1,7 @@
 'use client';
 import { Navbar, NavbarBrand, NavbarItem, NavbarContent, NavbarMenu, NavbarMenuToggle, NavbarMenuItem, Link, Button, Dropdown, DropdownItem, DropdownTrigger, DropdownMenu } from "@nextui-org/react";
 import { Poppins } from "next/font/google";
-import { getBrands, userLogout } from "src/data/data";
+import { getBrands, userLogout, checkUserState } from "src/data/data";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
@@ -9,7 +9,7 @@ const pop = Poppins({ subsets: ["latin"], weight: '500' });
 
 const Nav = () => {
   const [brands, setBrands] = useState([]);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false); //Estado reservado para pantallas chicas, controla el menú desplegable.
   const [isLogged, setIsLogged] = useState(false); //Estado que nos permitirá conocer si hay un usuario loggeado o no.
   const router = useRouter();
 
@@ -30,11 +30,21 @@ const Nav = () => {
     const result = await userLogout();
     sessionStorage.removeItem('isLogged');
     window.location.reload();
+} 
+  const getStatus = async() =>{
+    try{
+      const status = await checkUserState();
+      console.log(status);
+      setIsLogged(status.isLogged);
+      console.log('estado isLogged:',isLogged)
+
+    }catch(err){
+      console.error('Error checking user status:',err)
+    }
 }
 
   useEffect(() => {
-    const log = sessionStorage.getItem('isLogged')
-    if(log=='true') setIsLogged(true);
+    getStatus();
     fetchBrands();
   }, []);
 

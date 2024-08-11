@@ -34,7 +34,6 @@ export default function Login() {
             const result = await userLogin(validatedData);
             console.log(result.message);
             localStorage.setItem('username', validatedData.username);
-            sessionStorage.setItem('isLogged',true)
             router.push('/');
         } catch (error) {
             if (error instanceof z.ZodError) {

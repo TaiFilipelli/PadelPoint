@@ -86,6 +86,18 @@ export const userLogin = async(credenciales)=>{
     }
     return result;
 }
+
+export const checkUserState = async() =>{
+    const response = await fetch(`${baseUrl}/auth/status`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        credentials: 'include', 
+    });
+    const data = await verifyResponse(response);
+    return data;
+}
 export const userLogout = async() => {
     const response = await fetch(`${baseUrl}/auth/logout`,{
         method:'POST',
