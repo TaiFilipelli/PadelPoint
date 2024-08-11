@@ -16,7 +16,7 @@ En el lado del Front, decidí utilizar el framework **Next**. La elección se ba
 
 ## Features aplicadas hasta el momento:
 
-- [x] Diseño base, funcional y efectivo.
+- [x] Diseño base, funcional y simple.
 - [x] Manejo exitoso de endpoints de la API y buena verificación y comunicación con el cliente respecto a los procesos.
 - [x] Fetch de productos exitoso con filtros funcionales, asi como página de detalles de producto diseñada y aplicada con éxito.
 - [x] Registro de usuarios exitoso,  ingresando exitosamente a la base de datos y con doble verificación de schemas desde el cliente Y la API
@@ -24,6 +24,7 @@ En el lado del Front, decidí utilizar el framework **Next**. La elección se ba
 - [x] Inicio de sesión mediante Google y 0Auth exitoso, almacenado en una cookie y correctamente manejado para el ingreso de un nombre de usuario en caso sea el primer inicio de sesión.
 - [x] Páginas secundarias útiles como 404, Sobre Nosotros y página de resultado del login funcionales y preparadas.
 - [x] Dashboard funcional con, en principio, la posibilidad de actualizar el precio de las paletas al ingresar ID del producto a trabajar.
+- [x] Manejo de estados para renderizar condicionalmente según el usuario este loggeado o no e implementaciones de interactividad usuario-página.
 
 ## Futuras features
 
