@@ -28,15 +28,13 @@ const Nav = () => {
 
   const handleLogout = async() =>{
     const result = await userLogout();
-    sessionStorage.removeItem('isLogged');
     window.location.reload();
 } 
   const getStatus = async() =>{
     try{
       const status = await checkUserState();
-      console.log(status);
       setIsLogged(status.isLogged);
-      console.log('estado isLogged:',isLogged)
+      if(status.isLogged === false && status.refreshTokenExists === true) setIsLogged(true);
 
     }catch(err){
       console.error('Error checking user status:',err)
@@ -68,14 +66,14 @@ const Nav = () => {
             </NavbarItem>
             <NavbarItem>
                   {isLogged ? 
-                    <Button className="bg-red-600 m-10 text-white" onClick={handleLogout}>Logout</Button>
+                    <Button className="bg-red-600 m-4 w-full text-lg text-white" onClick={handleLogout}>Logout</Button>
                   :
                     <Button
                       as={Link}
                       href='/login'
                       color="default"
                       variant="flat"
-                      className='mr-6 text-md bg-red-600 text-white hover:bg-red-400 transition-colors p-4 rounded-lg'>
+                      className='m-4 text-lg w-full bg-red-600 text-white hover:bg-red-400 transition-colors p-4 rounded-lg'>
                       Iniciar sesión
                     </Button>
                 }

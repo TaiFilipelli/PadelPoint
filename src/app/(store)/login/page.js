@@ -8,6 +8,8 @@ import { useRouter } from "next/navigation";
 import { z } from "zod"; 
 import { loginSchema } from "schemas/Login";
 import { userLogin} from "src/data/data";
+import { toast, ToastContainer, Slide } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const pop = Poppins({ subsets: ['latin'], weight: '500' });
 
@@ -43,6 +45,7 @@ export default function Login() {
                 });
                 setErrors(fieldErrors);
             }
+            toast.error('Error al iniciar sesión. Inténtelo más tarde');
         }
     };
 
@@ -108,6 +111,7 @@ export default function Login() {
                         </Link>
                     </div>
                 </form>
+                <ToastContainer position="bottom-right" autoClose={3000} transition={Slide} theme="light" closeOnClick draggable/>
             </section>
         </main>
     );
