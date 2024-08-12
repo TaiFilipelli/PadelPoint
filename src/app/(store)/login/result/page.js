@@ -22,6 +22,7 @@ export default function ResultLogin() {
             if(isNewUser === false){
                 setUsername(data.user.username);
             }
+            localStorage.setItem('username', data.user.username);
             console.log(data);
         }catch(error){
             console.error('Error buscando el usuario loggeado:',error);

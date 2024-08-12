@@ -1,9 +1,17 @@
 'use client';
-import { Navbar, NavbarBrand, NavbarItem, NavbarContent, NavbarMenu, NavbarMenuToggle, NavbarMenuItem, Link, Button, Dropdown, DropdownItem, DropdownTrigger, DropdownMenu } from "@nextui-org/react";
+import { Navbar, 
+  NavbarBrand, 
+  NavbarItem, 
+  NavbarContent, 
+  NavbarMenu, 
+  NavbarMenuToggle, 
+  NavbarMenuItem, 
+  Link, Button, Dropdown, DropdownItem, DropdownTrigger, DropdownMenu } from "@nextui-org/react";
 import { Poppins } from "next/font/google";
 import { getBrands, userLogout, checkUserState } from "src/data/data";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { ShoppingCart, SignOut } from "@phosphor-icons/react";
 
 const pop = Poppins({ subsets: ["latin"], weight: '500' });
 
@@ -11,6 +19,7 @@ const Nav = () => {
   const [brands, setBrands] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false); //Estado reservado para pantallas chicas, controla el menú desplegable.
   const [isLogged, setIsLogged] = useState(false); //Estado que nos permitirá conocer si hay un usuario loggeado o no.
+  const [username, setUsername] = useState('');
   const router = useRouter();
 
   const handleBrandSelect = (brand) => {
@@ -42,6 +51,7 @@ const Nav = () => {
 }
 
   useEffect(() => {
+    setUsername(localStorage.getItem('username'));
     getStatus();
     fetchBrands();
   }, []);
@@ -66,7 +76,19 @@ const Nav = () => {
             </NavbarItem>
             <NavbarItem>
                   {isLogged ? 
-                    <Button className="bg-red-600 m-4 w-full text-lg text-white" onClick={handleLogout}>Logout</Button>
+                   <Dropdown>
+                   <DropdownTrigger className="bg-red-600 p-4 w-full text-white">
+                      <Button className="ml-4 p-2 text-lg" variant="flat" radius="lg">{username}</Button>
+                   </DropdownTrigger>
+                   <DropdownMenu className="p-0 w-full gap-4">
+                    <DropdownItem startContent={<ShoppingCart size={30}/>} href="/cart" className="w-full text-black">
+                      <h1 className="text-lg font-bold">Carrito</h1>
+                    </DropdownItem>
+                    <DropdownItem className="w-full text-black" onClick={handleLogout} startContent={<SignOut size={30}/>}>
+                      <h1 className="font-bold text-lg">Logout</h1>
+                    </DropdownItem>
+                   </DropdownMenu>
+                 </Dropdown>
                   :
                     <Button
                       as={Link}
