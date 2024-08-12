@@ -100,10 +100,10 @@ export default function Login() {
                         {errors.password && <p className="text-red-500">{errors.password}</p>}
                     </fieldset>
                     <div className="flex flex-row justify-between items-center">
-                        <Button radius="medium" variant='flat' className="bg-red-500 text-white font-semibold shadow-lg" endContent={<SignIn />} type='submit'>
+                        <Button radius="medium" variant='flat' className="bg-red-500 text-white font-semibold shadow-lg" endContent={<SignIn size={25}/>} type='submit'>
                         Iniciar sesión
                         </Button>
-                        <Button radius="medium" variant='flat' className='bg-gray-50 text-black font-semibold shadow-lg' onClick={handleGoogleLogin} startContent={<GoogleLogo />}>
+                        <Button radius="medium" variant='flat' className='bg-gray-50 text-black font-semibold shadow-lg' onClick={handleGoogleLogin} endContent={<GoogleLogo size={25}/>}>
                             Iniciar sesión con Google
                         </Button>
                         <Link href='/register' className="hover:underline hover:text-blue-600 transition-all">

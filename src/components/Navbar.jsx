@@ -11,7 +11,7 @@ import { Poppins } from "next/font/google";
 import { getBrands, userLogout, checkUserState } from "src/data/data";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { ShoppingCart, SignOut } from "@phosphor-icons/react";
+import { ShoppingCart, SignOut, SignIn } from "@phosphor-icons/react";
 
 const pop = Poppins({ subsets: ["latin"], weight: '500' });
 
@@ -95,6 +95,7 @@ const Nav = () => {
                       href='/login'
                       color="default"
                       variant="flat"
+                      endContent={<SignIn size={25}/>}
                       className='m-4 text-lg w-full bg-red-600 text-white hover:bg-red-400 transition-colors p-4 rounded-lg'>
                       Iniciar sesión
                     </Button>
