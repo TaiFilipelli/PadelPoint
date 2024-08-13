@@ -8,8 +8,7 @@ import { getProducts } from "src/data/data";
 // Método para fetchear productos
 import { Truck, CreditCard, Racquet, InstagramLogo, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
 // Iconos de React especificos para SSR
-import ImageCarousel from "src/components/ClientComponents";
-import ProductsCard from "src/components/ProductsCard";
+import ImageCarouselAndFeaturedProducts from "src/components/ClientComponents";
 // Componentes CSR 
 
 const pop = Poppins({ subsets: ["latin"], weight:['600','400'] });
@@ -26,44 +25,24 @@ export default async function Home() {
 
   return (
     <main className="flex flex-col items-center justify-between py-8">
-      <h1 className={`${pop.className} text-7xl p-6`}>PadelPoint Oficial</h1>
-      <ImageCarousel/>
-      <h2 className={`${pop.className} text-3xl mt-5`}>Productos destacados:</h2>
-      <div className="flex flex-row justify-center gap-2 w-3/4 mt-10 mb-14">
-        {mainProducts.length === 0 ? (
-          Array.from({ length: 4 }).map((_, index) => (
-            <ProductsCard key={index} isLoading={true} />
-          ))
-        ) : (
-          mainProducts.map(product => (
-            <ProductsCard 
-              key={product.id} 
-              name={product.name} 
-              image={product.image} 
-              brand={product.brand.name} 
-              price={product.price}
-              idProducto={product.id}
-              isLoading={false}
-            />
-          ))
-        )}
-      </div>
+      <h1 className={`${pop.className} font-semibold text-7xl p-6`}>PadelPoint Oficial</h1>
+      <ImageCarouselAndFeaturedProducts mainProducts={mainProducts}/>
       <Divider />
       <section className="mt-10 mb-10 flex justify-center items-center flex-row gap-10 w-3/5">
         <div className="w-1/3 flex flex-col text-center items-center">
-          <Truck size={50} type="light" />
-          <h1 className={`${pop.className} text-2xl`}>Envíos a todo el país</h1>
-          <p className="text-lg font-light">Comprá cómodo desde tu casa. Nos encargamos del resto!</p>
+          <Truck size={60} type="light" />
+          <h1 className={`${pop.className} font-semibold text-2xl`}>Envíos a todo el país</h1>
+          <p className="text-xl font-normal">Comprá cómodo desde tu casa. Nos encargamos del resto!</p>
         </div>
         <div className="w-1/3 flex flex-col text-center items-center">
-          <CreditCard size={50} type="light" />
-          <h3 className={`${pop.className} text-2xl`}>Los mejores precios</h3>
-          <p className="text-lg font-light">Múltiples métodos de pago para tu comodidad y ofertas especiales!</p>
+          <CreditCard size={60} type="light" />
+          <h3 className={`${pop.className} font-semibold text-2xl`}>Los mejores precios</h3>
+          <p className="text-xl font-normal">Múltiples métodos de pago para tu comodidad y ofertas especiales!</p>
         </div>
         <div className="w-1/3 flex flex-col text-center items-center">
-          <Racquet size={50} type="light" />
-          <h3 className={`${pop.className} text-2xl`}>Las mejores marcas</h3>
-          <p className='text-lg font-light'>Encontrá tu mejor compañera en nuestra selecta y variada colección!</p>
+          <Racquet size={60} type="light" />
+          <h3 className={`${pop.className} font-semibold text-2xl`}>Las mejores marcas</h3>
+          <p className='text-xl font-normal'>Encontrá tu mejor compañera en nuestra selecta y variada colección!</p>
         </div>
       </section>
       <Divider/>
@@ -78,8 +57,8 @@ export default async function Home() {
       </div>
       <div className="flex flex-col text-right justify-end p-1 ml-80">
         <h1 className={`${pop.className} font-bold text-2xl my-4`}>Tu paleta de ensueño, a dos clicks de distancia</h1>
-        <p className="font-normal text-xl">Encontrar tu futura compañera de cancha nunca fue tan fácil! Ingresa con tu cuenta (o unite a la familia si
-          es tu primera vez por acá)</p>
+        <p className="font-normal text-xl">Encontrar tu equipamiento ideal nunca fue tan fácil! Ingresá con tu cuenta (o unite a la familia si
+          es tu primera vez por acá) y descubrí nuestra amplia gama de productos para acompañarte tanto dentro de la cancha como fuera de ella.</p>
       </div>
       </section>
       <Divider />

@@ -1,7 +1,9 @@
 import Link from "next/link";
-import { Skeleton } from "@nextui-org/react";
+import { Skeleton, Button } from "@nextui-org/react";
+import { useCartStore } from "src/data/useCartStore";
 
 const ProductsCard = ({name, image, brand, price, idProducto, isLoading}) => {
+  const addToCart = useCartStore((state) => state.addToCart);
 
     if (isLoading) {
       return (
@@ -34,7 +36,10 @@ const ProductsCard = ({name, image, brand, price, idProducto, isLoading}) => {
       <div className='w-full flex items-center justify-center mt-2'>
         <p className='text-lg font-poppinsMedium mr-4'>US${price}</p>
       </div>
-      <Link key={idProducto} href={`/products/${idProducto}`} className="hover:underline">Ver más detalles</Link>
+      <div className="flex justify-between items-center gap-4 my-4">
+      <Button onClick={()=> addToCart(idProducto)} className="bg-red-500 text-white font-medium text-md">Añadir al carrito</Button>
+      <Link key={idProducto} href={`/products/${idProducto}`} className="hover:underline">Ver más</Link>
+      </div>
     </section>
   )
 }
