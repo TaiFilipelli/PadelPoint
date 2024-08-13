@@ -31,7 +31,7 @@ export default function Carrito() {
             {products.length === 0 ? (
                 <section className="flex flex-col my-10 items-center justify-center w-full">
                     <h2 className={`${pop.className} font-semibold text-3xl m-2`}>Tu carrito está vacío</h2>
-                    <SmileySad size={70}/>
+                    <SmileySad size={80}/>
                 </section>
       ) : (
         products.map(product => (
