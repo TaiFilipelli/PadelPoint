@@ -129,6 +129,7 @@ const Nav = () => {
                 ))}
               </DropdownMenu>
             </Dropdown>
+            <Button as={Link} href="/register" className={`${pop.className} font-medium text-lg bg-transparent hover:bg-[#B3B7BF]`}>Únete a la familia PadelPoint</Button>
           </NavbarContent>
         </Navbar>
       </div>
