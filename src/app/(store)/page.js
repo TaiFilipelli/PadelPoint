@@ -62,7 +62,7 @@ export default async function Home() {
       </div>
       </section>
       <Divider />
-      <h1 className={`${pop.className} text-3xl mt-5`}>Contáctanos!</h1>
+      <h1 className={`${pop.className} text-3xl mt-5 font-bold`}>Contáctanos!</h1>
       <div className="flex flex-row w-1/2 justify-around items-center my-10">
         <Button as={Link} href="https://www.instagram.com/_padelpoint/" className="flex items-center p-5 rounded-lg bg-transparent hover:bg-gradient-to-tr from-[#FFDC80] to-[#E1306C] hover:text-white transition-all duration-300 ease-in-out" startContent={<InstagramLogo size={40} />}>
           <p className="font-bold text-lg">Instagram</p>
