@@ -1,6 +1,6 @@
 import { Poppins } from "next/font/google";
 // Se importa la fuente
-import { Divider, Button } from "@nextui-org/react";
+import { Divider, Button, Image } from "@nextui-org/react";
 // Componentes de nextui
 import Link from "next/link";
 // Link para navegar entre páginas
@@ -50,15 +50,18 @@ export default async function Home() {
       <section className="w-2/3 p-4">
       <div className="flex flex-col text-left items-start p-1 w-2/3">
         <h1 className={`${pop.className} font-bold text-2xl my-4`}>Nuestro objetivo: todo el país</h1>
-        <p className="font-normal text-xl">Únete a una familia en constante crecimiento, unida por una fuerte pasión por este increíble deporte.
+        <p className="font-normal text-xl mb-4">Únete a una familia en constante crecimiento, unida por una fuerte pasión por este increíble deporte.
           Empezamos siendo un humilde emprendimiento de venta de artículos de padel y aspiramos a llegar a los hogares de todos y cada uno de los 
           amantes de este deporte para equiparlos con lo mejor del mercado, lo que merecen.
         </p>
+        <Image src="/STOCKMAIN1.jpg" width={600}/>
       </div>
-      <div className="flex flex-col text-right justify-end p-1 ml-80">
+      <div className="flex flex-col text-right justify-end items-end p-1 ml-80">
         <h1 className={`${pop.className} font-bold text-2xl my-4`}>Tu paleta de ensueño, a dos clicks de distancia</h1>
         <p className="font-normal text-xl">Encontrar tu equipamiento ideal nunca fue tan fácil! Ingresá con tu cuenta (o unite a la familia si
-          es tu primera vez por acá) y descubrí nuestra amplia gama de productos para acompañarte tanto dentro de la cancha como fuera de ella.</p>
+          es tu primera vez por acá) y descubrí nuestra amplia gama de productos para acompañarte tanto dentro de la cancha como fuera de ella.
+        </p>
+        <Image src="/STOCKMAIN2.jpg" width={600}/>
       </div>
       </section>
       <Divider />
