@@ -25,6 +25,7 @@ En el lado del Front, decidí utilizar el framework **Next**. La elección se ba
 - [x] Páginas secundarias útiles como 404, Sobre Nosotros y página de resultado del login funcionales y preparadas.
 - [x] Dashboard funcional con, en principio, la posibilidad de actualizar el precio de las paletas al ingresar ID del producto a trabajar.
 - [x] Manejo de estados para renderizar condicionalmente según el usuario este loggeado o no e implementaciones de interactividad usuario-página.
+- [x] Carrito funcional: una página aparte que usa zustand para almacenar los id's deseados en local storage y despliega cartitas con los productos deseados.
 
 ## Futuras features
 
@@ -32,7 +33,6 @@ En el lado del Front, decidí utilizar el framework **Next**. La elección se ba
 - [ ] Cambio de contraseña para usuarios locales mediante el envío de un código a su dirección de correo asociado.
 - [ ] Definiciones finales de alguna que otra entidad de la DB
 - [ ] Posibilidad de múltiples imágenes por producto almacenadas en la base de datos.
-- [ ] Carrito funcional (aún toca sentarse y ver si hacer un Drawer flotante o una página aparte).
 - [ ] Imposibilidad de comprar los productos añadidos al carrito en caso el usuario no esté loggeado.
 - [ ] Formulario de pago embebido de Stripe funcional, seguro y completo.
 - [ ] Correcto almacenamiento de órdenes de pago en base de datos.
