@@ -13,7 +13,6 @@ export const useCartStore = create((set) => ({
   removeFromCart: (idProducto) => set((state) => {
     const updatedCart = state.cart.filter(id => id !== idProducto);
     localStorage.setItem('cart', JSON.stringify(updatedCart));
-    window.location.reload();
     return { cart: updatedCart };
   }),
 

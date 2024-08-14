@@ -7,6 +7,7 @@ import { Spinner, Button, Divider } from "@nextui-org/react";
 import Link from "next/link";
 import ProductsCard from "src/components/ProductsCard";
 import { getProducts } from "src/data/data";
+import { useCartStore } from "src/data/useCartStore";
 
 const pop = Poppins({subsets:['latin'], weight:['600','400']})
 export default function ProductDetailPage() {
@@ -15,6 +16,8 @@ export default function ProductDetailPage() {
   const [product, setProduct] = useState(null);
   const [recProducts, setRecProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  const addToCart = useCartStore((s)=> s.addToCart);
 
   const dataRecProducts = async(params) => {
     try{
@@ -68,10 +71,11 @@ export default function ProductDetailPage() {
         </div>
         <div className="text-left flex flex-col p-2">
           <h1 className='text-4xl mb-10'>{product.name}</h1>
-          <p className="text-3xl mb-10">${product.price}</p>
+          <p className="text-3xl mb-10">US${product.price}</p>
           <p className="text-xl">Marca: {product.brand.name}</p>
           <p className="text-xl">Más info proximamente...</p>
-          <Button className="rounded-lg py-4 mt-4 w-1/2 px-4 text-xl bg-transparent border-2 hover:bg-gradient-to-b from-pink-600 to-yellow-400 ease-in-out transition-all hover:border-black" variant="light">Comprar</Button>
+          <Button className="rounded-lg py-4 mt-4 w-2/3 px-4 text-xl bg-transparent border-2 hover:bg-gradient-to-tr from-red-300 to-red-600 ease-in-out transition-all 
+          hover:border-black hover:text-white" variant="light" onClick={()=>addToCart(product.id)}>Comprar</Button>
           <Link href='/products' className={`mt-5 text-lg hover:underline hover:text-red-600 transition-colors ${pop.className} font-normal`}>Volver a ver los productos</Link>
         </div>
       </section>
@@ -91,7 +95,7 @@ export default function ProductDetailPage() {
       <Divider/>
       <div className="flex flex-col items-center text-center my-6">
         <h1 className={`${pop.className} text-3xl`}>Otros usuarios también vieron esto</h1>
-        <div className="flex flex-row justify-center gap-2 w-3/4 mt-10 mb-14 font-normal">
+        <div className="flex flex-row justify-center gap-1 w-3/4 mt-10 mb-10 font-normal">
         {isLoading ? (
                         Array.from({ length: 4 }).map((_, index) => (
                             <ProductsCard key={index} isLoading={true} />
