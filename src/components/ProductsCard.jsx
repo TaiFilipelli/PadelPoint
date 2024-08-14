@@ -1,9 +1,26 @@
 import Link from "next/link";
 import { Skeleton, Button } from "@nextui-org/react";
 import { useCartStore } from "src/data/useCartStore";
+import { useState, useEffect } from "react";
+import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 
 const ProductsCard = ({name, image, brand, price, idProducto, isLoading}) => {
+  const cart = useCartStore((state)=> state.cart);
   const addToCart = useCartStore((state) => state.addToCart);
+  const [isInCart, setIsInCart] = useState(false);
+
+  useEffect(() => {
+    if (cart.includes(idProducto)) {
+      setIsInCart(true);
+    }
+  }, [cart, idProducto]);
+
+  const handleAddToCart = () => {
+    if (!isInCart) {
+      addToCart(idProducto);
+      setIsInCart(true);
+    }
+  };
 
     if (isLoading) {
       return (
@@ -37,7 +54,11 @@ const ProductsCard = ({name, image, brand, price, idProducto, isLoading}) => {
         <p className='text-lg font-poppinsMedium mr-4'>US${price}</p>
       </div>
       <div className="flex justify-between items-center gap-4 my-4">
-      <Button onClick={()=> addToCart(idProducto)} className="bg-red-500 text-white font-medium text-md">Añadir al carrito</Button>
+      {isInCart ? (
+          <Button as={Link} href="/cart" className="bg-green-500 text-white font-medium text-md" endContent={<ArrowUpRight/>}>Ver Carrito</Button>
+        ) : (
+          <Button onClick={handleAddToCart} className="bg-red-500 text-white font-medium text-md">Añadir al carrito</Button>
+        )}
       <Link key={idProducto} href={`/products/${idProducto}`} className="hover:underline">Ver más</Link>
       </div>
     </section>

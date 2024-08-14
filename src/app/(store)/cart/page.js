@@ -3,7 +3,7 @@ import { Poppins } from "next/font/google";
 import { useCartStore } from "src/data/useCartStore";
 import { useState, useEffect } from "react";
 import { getOneProductById } from "src/data/data";
-import { SmileySad } from "@phosphor-icons/react";
+import { SmileySad, Trash } from "@phosphor-icons/react";
 import { Divider, Button } from "@nextui-org/react";
 
 const pop = Poppins({subsets:['latin'],weight:['700','400']})
@@ -48,7 +48,7 @@ export default function Carrito() {
                     <button 
                       onClick={() => removeFromCart(product.id)} 
                       className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-400 transition-all font-medium">
-                      Eliminar
+                      <Trash size={25}/>
                     </button>
                   </section>
               ))
