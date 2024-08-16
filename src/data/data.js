@@ -2,6 +2,7 @@ import { verifyResponse } from "utils/services";
 
 const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
+// MÉTODOS PARA EL E-COMMERCE: constructor de querys, conseguir todos los productos, buscarlos por id para detalles y tipos y marcas para filtros.
 export const buildQuery = (params) => {
     const query = Object.keys(params)
         .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
@@ -36,21 +37,8 @@ export const getTypes = async() =>{
     return data;
 }
 
-export const updateProductPrice = async (id, price) => {
-    const response = await fetch(`${baseUrl}/product/${id}`, {
-        method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ price })
-    });
-    const result = await verifyResponse(response);
-    if (response.ok) {
-        console.log("New price updated", result);
-    }
-    return result;
-};
-
+// MÉTODOS PARA EL LOGIN: Registro, actualización de usuario para el username en caso el usuario loggea con Google por primera vez, 
+// inicio de sesión, desloggeo y búsqueda de token en local para verificar estado del usuario y confirmar su autenticación y, futuramente, su autorización.
 export const createOneUser = async(credenciales)=>{
     const response = await fetch(`${baseUrl}/user`,{
         method:'POST',
@@ -128,10 +116,26 @@ export const getUserById = async(id) =>{
 export const searchUserAuthenticated = async() =>{
     const response = await fetch(`${baseUrl}/user/cookie`,{
         credentials: 'include'
-      });
+    });
     const result = await verifyResponse(response);
     if(response.ok){
         console.log("User info from cookie searched");
     }
     return result;
 }
+
+// MÉTODOS PARA EL DASHBOARD: Actualización de precios
+export const updateProductPrice = async (id, price) => {
+    const response = await fetch(`${baseUrl}/product/${id}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ price })
+    });
+    const result = await verifyResponse(response);
+    if (response.ok) {
+        console.log("New price updated", result);
+    }
+    return result;
+};
