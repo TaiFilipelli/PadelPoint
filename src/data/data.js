@@ -30,6 +30,12 @@ export const getBrands = async()=>{
     return data;
 }
 
+export const getTypes = async() =>{
+    const response = await fetch(`${baseUrl}/type`);
+    const data = await verifyResponse(response);
+    return data;
+}
+
 export const updateProductPrice = async (id, price) => {
     const response = await fetch(`${baseUrl}/product/${id}`, {
         method: 'PATCH',
