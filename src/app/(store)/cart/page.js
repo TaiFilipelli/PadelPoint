@@ -8,7 +8,7 @@ import { Divider, Button } from "@nextui-org/react";
 
 const pop = Poppins({subsets:['latin'],weight:['700','400']});
 
-export default function Carrito() {
+export default function Cart() {
     const cart = useCartStore((state) => state.cart);
     const removeFromCart = useCartStore((state) => state.removeFromCart);
     const updateCartItem = useCartStore((state) => state.updateCartItem);

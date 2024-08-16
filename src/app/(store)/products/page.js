@@ -6,7 +6,7 @@ import { getProducts} from "src/data/data";
 import Filters from "src/components/Filters";
 
 const pop = Poppins({subsets:["latin"], weight:'600'})
-export default function Page() {
+export default function ProductsList() {
     const [paletas, setPaletas] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const dataPaletas = async (params) => {

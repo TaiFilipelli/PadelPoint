@@ -11,7 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const pop = Poppins({ subsets: ["latin"], weight: '400' });
 
-export default function Page() {
+export default function RegisterPage() {
     const { register, handleSubmit, formState: { errors }, setError } = useForm({
         resolver: zodResolver(registerSchema),
     });
