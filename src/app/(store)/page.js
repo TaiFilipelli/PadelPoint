@@ -24,7 +24,7 @@ export default async function Home() {
   }
 
   return (
-    <main className="flex flex-col items-center justify-between py-8">
+    <main className="flex flex-col items-center justify-between py-8 bg-[#264492]">
       <h1 className={`${pop.className} font-semibold text-7xl p-6`}>PadelPoint Oficial</h1>
       <ImageCarouselAndFeaturedProducts mainProducts={mainProducts}/>
       <Divider />
@@ -68,11 +68,11 @@ export default async function Home() {
       <Divider />
       <h1 className={`${pop.className} text-3xl mt-5 font-bold`}>Contáctanos!</h1>
       <div className="flex flex-row w-1/2 justify-around items-center my-10">
-        <Button as={Link} href="https://www.instagram.com/_padelpoint/" className="flex items-center p-5 rounded-lg bg-transparent hover:bg-gradient-to-tr from-[#FFDC80] to-[#E1306C] hover:text-white transition-all duration-300 ease-in-out" startContent={<InstagramLogo size={40} />}>
-          <p className="font-bold text-lg">Instagram</p>
+        <Button as={Link} href="https://www.instagram.com/_padelpoint/" className="flex items-center p-5 rounded-lg bg-transparent hover:bg-gradient-to-tr from-[#FFDC80] to-[#E1306C] hover:text-white transition-all duration-300 ease-in-out" startContent={<InstagramLogo size={40} color="white"/>}>
+          <p className="font-bold text-lg text-white">Instagram</p>
         </Button>
-        <Button as={Link} href="https://api.whatsapp.com/send/?phone=%2B543364003555&text&type=phone_number&app_absent=0" className="flex items-center p-5 hover:bg-gradient-to-tr from-[#25D366] to-[#128C7E] hover:text-white transition-all duration-300 ease-in-out rounded-lg bg-transparent" startContent={<WhatsappLogo size={40} />}>
-          <p className="font-bold text-lg">Whatsapp</p>
+        <Button as={Link} href="https://api.whatsapp.com/send/?phone=%2B543364003555&text&type=phone_number&app_absent=0" className="flex items-center p-5 hover:bg-gradient-to-tr from-[#25D366] to-[#128C7E] transition-all duration-300 ease-in-out rounded-lg bg-transparent" startContent={<WhatsappLogo size={40} color="white" />}>
+          <p className="font-bold text-lg text-white">Whatsapp</p>
         </Button>
       </div>
       <Divider/>

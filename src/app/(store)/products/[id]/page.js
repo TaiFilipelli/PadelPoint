@@ -71,7 +71,7 @@ export default function ProductDetailPage() {
           <h1 className='text-4xl mb-10'>{product.name}</h1>
           <p className="text-3xl mb-10">US${product.price}</p>
           <p className="text-xl">Marca: {product.brand.name}</p>
-          {/* <p className="text-xl">Tipo: {product.type.name}</p> */}
+          <p className="text-xl">Tipo: {product.type.name}</p>
           <Button className="rounded-lg py-4 mt-4 w-2/3 px-4 text-xl bg-transparent border-2 hover:bg-gradient-to-tr from-red-300 to-red-600 ease-in-out transition-all 
           hover:border-black hover:text-white" variant="light" onClick={()=>addToCart(product.id)}>Comprar</Button>
           <Link href='/products' className={`mt-5 text-lg hover:underline hover:text-red-600 transition-colors ${pop.className} font-normal`}>Volver a ver los productos</Link>
