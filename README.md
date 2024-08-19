@@ -26,13 +26,12 @@ En el lado del Front, decidí utilizar el framework **Next**. La elección se ba
 - [x] Dashboard funcional con, en principio, la posibilidad de actualizar el precio de las paletas al ingresar ID del producto a trabajar.
 - [x] Manejo de estados para renderizar condicionalmente según el usuario este loggeado o no e implementaciones de interactividad usuario-página.
 - [x] Carrito funcional: una página aparte que usa zustand para almacenar los id's deseados en local storage y despliega cartitas con los productos deseados.
+- [x] Base de datos definida, finalizada y normalizada con éxito.
+- [x] Múltiples imágenes por producto
 
 ## Futuras features
 
-- [ ] Migración de autenticación local a Passport para mayor seguridad en los inicios de sesión, como se mencionó anteriormente.
 - [ ] Cambio de contraseña para usuarios locales mediante el envío de un código a su dirección de correo asociado.
-- [ ] Definiciones finales de alguna que otra entidad de la DB
-- [ ] Posibilidad de múltiples imágenes por producto almacenadas en la base de datos.
 - [ ] Imposibilidad de comprar los productos añadidos al carrito en caso el usuario no esté loggeado.
 - [ ] Formulario de pago embebido de Stripe funcional, seguro y completo.
 - [ ] Correcto almacenamiento de órdenes de pago en base de datos.
