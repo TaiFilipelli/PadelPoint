@@ -76,9 +76,9 @@ export default async function Home() {
         </Button>
       </div>
       <Divider/>
-      <div className="flex flex-row w-1/2 text-center">
+      {/* <div className="flex flex-row w-1/2 text-center">
         <Link href='/dashboard' className="rounded-lg bg-red-600 p-2 w-1/5 font-bold mt-4">Dashboard de admin</Link>
-      </div>
+      </div> */}
     </main>
   );
 }

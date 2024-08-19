@@ -117,7 +117,7 @@ const Nav = () => {
         </Navbar>
       </div>
       <div className="fixed w-full top-24 z-20">
-        <Navbar className="flex text-center h-14 bg-gray-400 dark:bg-gray-800 w-full justify-center">
+        <Navbar className="flex text-center h-16 bg-gray-400 dark:bg-gray-800 w-full justify-center">
           <NavbarContent className="gap-10">
             <Dropdown>
               <DropdownTrigger>
@@ -125,7 +125,7 @@ const Nav = () => {
               </DropdownTrigger>
               <DropdownMenu className="p-0 w-full" itemClasses={{ base: "gap-4" }}>
                 {brands.map(brand => (
-                  <DropdownItem key={brand.id} onClick={() => handleBrandSelect(brand.name)}>{brand.name}</DropdownItem>
+                  <DropdownItem key={brand.id} onClick={() => handleBrandSelect(brand.name)} className="text-black">{brand.name}</DropdownItem>
                 ))}
               </DropdownMenu>
             </Dropdown>
