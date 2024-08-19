@@ -46,7 +46,7 @@ export const Filters = () => {
     }, []);
 
   return (
-    <section className={`w-full h-20 mb-10 border-1 border-black shadow-sm shadow-slate-700 rounded-lg flex flex-row gap-10 items-center justify-center p-2 ${pop.className}`}>
+    <section className={`w-full h-20 mb-10 bg-white text-black border-1 border-black shadow-sm shadow-slate-700 rounded-lg flex flex-row gap-10 items-center justify-center p-2 ${pop.className}`}>
       <h3 className='text-bold text-2xl ml-2'>Filtrar por:</h3>
       <Dropdown>
             <DropdownTrigger>
@@ -54,7 +54,7 @@ export const Filters = () => {
             </DropdownTrigger>
             <DropdownMenu className="p-0 w-full" itemClasses={{ base: "gap-4" }}>
                 {types.map(type => (
-                  <DropdownItem key={type.id} onClick={() => handleTypeSelect(type.name)}>{type.name}</DropdownItem>
+                  <DropdownItem key={type.id} onClick={() => handleTypeSelect(type.name)} className='text-black'>{type.name}</DropdownItem>
                 ))}
             </DropdownMenu>
         </Dropdown>

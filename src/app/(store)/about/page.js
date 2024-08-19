@@ -9,13 +9,13 @@ export default function About() {
     
     const itemClasses = {
         base: "p-2 w-full",
-        title: "font-bold text-xl",
-        trigger: "px-2 py-0 data-[hover=true]:bg-default-100 rounded-lg h-14 flex items-center",
+        title: "font-bold text-xl text-white",
+        trigger: "px-2 py-0 rounded-lg h-14 flex items-center",
         indicator: "text-medium",
         content: "text-lg px-2",
       };
     return (
-        <section className={`flex flex-col justify-center text-left items-center p-16 ${pop.className}`}>
+        <section className={`flex flex-col justify-center text-left items-center p-16 ${pop.className} bg-[#264492]`}>
             <h1 className="font-bold text-5xl">Esto es PadelPoint</h1>
             <h3 className="mt-5 text-xl mb-5">
                 ¡Hola! Soy Ignacio Merlo, fundador de PadelPoint, y estoy encantado de darte la bienvenida a 

@@ -57,13 +57,13 @@ export default function ResultLogin() {
     },[]);
 
     return (
-        <section className="flex items-center justify-center text-center p-20 flex-col">
+        <section className="flex items-center justify-center text-center p-20 flex-col bg-[#264492]">
            {isLoading ? (
                 <CircularProgress size="lg"/>
             ) : (
                 isNewUser ? (
                     <>
-                        <section className="bg-gray-200 flex flex-col w-1/2 p-8 mt-10 rounded-lg text-left">
+                        <section className="flex flex-col w-1/2 p-8 mt-10 rounded-lg text-left text-black bg-white">
                             <h1 className="font-bold text-3xl mb-2">Una última cosa...</h1>
                             <h2 className="font-semibold text-xl mb-2">Bievenido a la familia PadelPoint! Como es su primera vez aquí, nos gustaría que ingrese un nombre de usuario por única vez
                                 para reconocerlo futuras veces!
@@ -75,7 +75,7 @@ export default function ResultLogin() {
                     </>
                 ) : (
                     <section className="flex flex-col items-center text-center p-10">
-                        <h1 className="text-green-700 font-bold text-4xl mb-4">Bienvenido, {username}</h1>
+                        <h1 className="text-green-500 font-bold text-4xl mb-4">Bienvenido, {username}</h1>
                         <h2 className="font-semibold text-xl mb-8">Puede retornar a la tienda y comprar libremente</h2>
                         <Link href='/' className="hover:underline">Volver al inicio</Link>
                     </section>

@@ -39,8 +39,8 @@ export default function RegisterPage() {
     };
 
     return (
-        <main className="flex flex-col items-center justify-center text-center p-16">
-            <section className="w-full max-w-md p-8 bg-gray-300 rounded-lg shadow-lg">
+        <main className="flex flex-col items-center justify-center text-center p-16 bg-[#264492]">
+            <section className="w-full max-w-md p-8 bg-gray-300 rounded-lg shadow-lg text-black">
                 <h1 className={`${pop.className} text-3xl mb-6`}>Únete a la familia PadelPoint hoy</h1>
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                     <div>

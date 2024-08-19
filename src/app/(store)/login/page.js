@@ -55,8 +55,8 @@ export default function Login() {
       
 
     return (
-        <main className="flex justify-center items-center text-center p-20">
-            <section className="flex flex-col text-center justify-center items-center p-8 rounded-lg bg-gray-300 w-1/2">
+        <main className="flex justify-center items-center text-center p-20 bg-[#264492]">
+            <section className="flex flex-col text-center justify-center items-center p-8 rounded-lg bg-white text-black w-1/2">
                 <h1 className={`${pop.className} text-4xl`}>Bienvenido de vuelta!</h1>
                 <form className="w-full text-left" onSubmit={handleSubmit}>
                     <fieldset className="mt-6 mb-2">

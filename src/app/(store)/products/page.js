@@ -39,7 +39,7 @@ export default function ProductsList() {
     }, []);
 
     return (
-        <section className="flex justify-center items-center text-center flex-col p-10">
+        <section className="flex justify-center items-center text-center flex-col p-10 bg-[#264492]">
             <h1 className={`${pop.className} text-6xl mb-10`}>Productos</h1>
             <Filters/>
             <section className="w-4/5 max-w-[4/5] max-[1260px]:w-full">

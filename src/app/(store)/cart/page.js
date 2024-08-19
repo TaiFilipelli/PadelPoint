@@ -43,10 +43,10 @@ export default function Cart() {
     };
 
     return (
-        <section className="p-16 flex flex-col items-center text-center">
+        <section className="p-16 flex flex-col items-center text-center bg-[#264492]">
             <h1 className={`${pop.className} text-5xl font-bold mb-4`}>Carrito</h1>
             {products.length < 1 ? (
-                <section className="flex flex-col my-10 items-center justify-center rounded-3xl p-11 border-1 border-black bg-default-100">
+                <section className="flex flex-col my-10 items-center justify-center rounded-3xl p-11 border-1 border-black bg-default-100 text-black">
                     <h2 className={`${pop.className} font-semibold text-3xl m-2`}>Tu carrito está vacío</h2>
                     <SmileySad size={80}/>
                 </section>
