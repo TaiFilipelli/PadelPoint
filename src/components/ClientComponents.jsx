@@ -4,13 +4,13 @@ import MyCarousel from "./Carousel";
 import ProductsCard from "./ProductsCard";
 import React from "react";
 
-const pop = Poppins({ subsets: ["latin"], weight:['600','400'] });
+const pop = Poppins({ subsets: ["latin"], weight:['700','600','400'] });
 
 export default function ImageCaruoselAndFeaturedProducts({mainProducts}) {
   return(
     <>
        <MyCarousel />
-       <h2 className={`${pop.className} font-semibold text-4xl mt-5`}>Productos destacados:</h2>
+       <h2 className={`${pop.className} font-bold text-4xl mt-5`}>Productos destacados:</h2>
       <div className="flex flex-row justify-center gap-2 w-3/4 mt-10 mb-14">
         {mainProducts.length === 0 ? (
           Array.from({ length: 4 }).map((_, index) => (

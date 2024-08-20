@@ -11,7 +11,7 @@ import { Truck, CreditCard, Racquet, InstagramLogo, WhatsappLogo } from "@phosph
 import ImageCarouselAndFeaturedProducts from "src/components/ClientComponents";
 // Componentes CSR 
 
-const pop = Poppins({ subsets: ["latin"], weight:['600','400'] });
+const pop = Poppins({ subsets: ["latin"], weight:['700','600','400'] });
 
 export default async function Home() {
   let mainProducts = [];
@@ -49,10 +49,10 @@ export default async function Home() {
       <h1 className={`${pop.className} font-bold text-4xl my-6`}>Bienvenido a la tienda de padel más grande de San Nicolás</h1>
       <section className="w-2/3 p-4">
       <div className="flex flex-col text-left items-start p-1 w-2/3 mb-4">
-        <h1 className={`${pop.className} font-bold text-2xl mb-4`}>Nuestro objetivo: todo el país</h1>
-        <p className="font-normal text-xl mb-4">Únete a una familia en constante crecimiento, unida por una fuerte pasión por este increíble deporte.
+        <h1 className={`${pop.className} font-semibold text-2xl mb-4`}>Nuestro objetivo: todo el país</h1>
+        <p className="font-normal text-xl mb-4">Unite a una familia en constante crecimiento, unida por una fuerte pasión por este increíble deporte.
           Empezamos siendo un humilde emprendimiento de venta de artículos de padel y aspiramos a llegar a los hogares de todos y cada uno de los 
-          amantes de este deporte para equiparlos con lo mejor del mercado, lo que merecen.
+          amantes del padel para equiparlos con lo mejor del mercado, con lo que merecen.
         </p>
         <Image src="/STOCKMAIN1.jpg" width={600} isBlurred/>
       </div>
