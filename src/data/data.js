@@ -124,6 +124,15 @@ export const searchUserAuthenticated = async() =>{
     return result;
 }
 
+export const refreshUserToken = async() => {
+    const response = await fetch(`${baseUrl}/auth/refresh`,{
+        method:'POST',
+        headers:{'Content-Type': 'application/json'},
+        credentials:'include'
+    })
+    const result = await verifyResponse(response);
+    return result;
+}
 // MÉTODOS PARA EL DASHBOARD: Actualización de precios
 export const updateProductPrice = async (id, price) => {
     const response = await fetch(`${baseUrl}/product/${id}`, {
