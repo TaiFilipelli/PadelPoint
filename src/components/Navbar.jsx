@@ -11,7 +11,7 @@ import { Poppins } from "next/font/google";
 import { getBrands, userLogout, checkUserState } from "src/data/data";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { ShoppingCart, SignOut, SignIn } from "@phosphor-icons/react";
+import { ShoppingCart, SignOut, SignIn, UserCircle } from "@phosphor-icons/react";
 
 const pop = Poppins({ subsets: ["latin"], weight: '500' });
 
@@ -80,6 +80,9 @@ const Nav = () => {
                       <Button className="ml-4 p-2 text-lg" variant="flat" radius="lg">{username}</Button>
                    </DropdownTrigger>
                    <DropdownMenu className="p-0 w-full gap-4">
+                   <DropdownItem startContent={<UserCircle size={30}/>} href="/profile" className="w-full text-black">
+                      <h1 className="text-lg font-bold">Mi perfil</h1>
+                    </DropdownItem>
                     <DropdownItem startContent={<ShoppingCart size={30}/>} href="/cart" className="w-full text-black">
                       <h1 className="text-lg font-bold">Carrito</h1>
                     </DropdownItem>
