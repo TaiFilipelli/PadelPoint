@@ -7,6 +7,7 @@ import { SmileySad, Trash, LockKey, Plus, Minus, ClockUser, UserSwitch } from "@
 import { Divider, Button, Modal, ModalBody, ModalContent, ModalFooter, Link } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import { toast, ToastContainer, Slide } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const pop = Poppins({subsets:['latin'],weight:['700','400']});
 
