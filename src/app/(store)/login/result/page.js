@@ -63,7 +63,7 @@ export default function ResultLogin() {
             ) : (
                 isNewUser ? (
                     <>
-                        <section className="flex flex-col w-1/2 p-8 mt-10 rounded-lg text-left text-black bg-white">
+                        <section className="flex flex-col w-1/2 p-20 mt-10 rounded-lg text-left text-black bg-white">
                             <h1 className="font-bold text-3xl mb-2">Una última cosa...</h1>
                             <h2 className="font-semibold text-xl mb-2">Bievenido a la familia PadelPoint! Como es su primera vez aquí, nos gustaría que ingrese un nombre de usuario por única vez
                                 para reconocerlo futuras veces!

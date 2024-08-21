@@ -20,7 +20,6 @@ export default function RegisterPage() {
 
     const onSubmit = async (data) => {
         const { confirmPassword, ...credentials } = data;
-        credentials.method="local";
         try {
             const result = await createOneUser(credentials);
             toast.success("Usuario creado exitosamente!")

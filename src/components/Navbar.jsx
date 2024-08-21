@@ -42,9 +42,8 @@ const Nav = () => {
   const getStatus = async() =>{
     try{
       const status = await checkUserState();
-      setIsLogged(status.isLogged);
-      if(status.isLogged === false && status.refreshTokenExists === true) setIsLogged(true);
-
+      setIsLogged(status.isLogged || (status.isLogged === false && status.refreshTokenExists === true));
+      
     }catch(err){
       console.error('Error checking user status:',err)
     }
