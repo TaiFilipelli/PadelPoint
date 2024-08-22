@@ -27,8 +27,8 @@ En el lado del Front, decidí utilizar el framework **Next**. La elección se ba
 - [x] Manejo de estados para renderizar condicionalmente según el usuario este loggeado o no e implementaciones de interactividad usuario-página.
 - [x] Carrito funcional: una página aparte que usa zustand para almacenar los id's deseados en local storage y despliega cartitas con los productos deseados.
 - [x] Base de datos definida, finalizada y normalizada con éxito.
-- [x] Múltiples imágenes por producto
-- [x] Control completo del botón de "Finalizar compra" para poder 
+- [x] Múltiples imágenes por producto.
+- [x] Control completo del botón de "Finalizar compra" para poder regular si expiró la sesión de usuario, si existen respectivas cookies y si puede proceder con normalidad y autenticado
 - [x] Roles de usuarios, con sus respectivos alcances y limitaciones bien definidos.
 
 ## Futuras features
