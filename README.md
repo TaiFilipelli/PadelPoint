@@ -12,7 +12,8 @@ En el lado del Front, decidí utilizar el framework **Next**. La elección se ba
 * zod para la creación de unos schemas, cuyo uso sirve para verificar que los ingresos del usuario tanto en un inicio de sesión como en un registro sean los correctos (aunque se realice una verificación en la API, también nos pareció necesaria una primera desde el cliente).
 * toastify para notificaciones visuales en algunos momentos donde es necesario interactuar con el usuario para notificarle del éxito o error de un proceso.
 * react-responsive-carousel para el carrusel de imágenes principal.
-* hook-forms para el manejo de formularios e ingreso de datos.
+* ([hook forms](https://github.com/react-hook-form/react-hook-form)) para el manejo de formularios e ingreso de datos.
+* react-spinners,([por David Hu](https://www.davidhu.io)) para componentes "Spinner", mayormente usados para renderizarse en estados de carga de productos o detalles de algún producto o usuario.
 
 ## Features aplicadas hasta el momento:
 
@@ -23,18 +24,18 @@ En el lado del Front, decidí utilizar el framework **Next**. La elección se ba
 - [x] Inicio de sesión local exitoso, próximo a migrarse a Passport para mayor blindaje en la autenticación.
 - [x] Inicio de sesión mediante Google y 0Auth exitoso, almacenado en una cookie y correctamente manejado para el ingreso de un nombre de usuario en caso sea el primer inicio de sesión.
 - [x] Páginas secundarias útiles como 404, Sobre Nosotros y página de resultado del login funcionales y preparadas.
-- [x] Dashboard funcional con, en principio, la posibilidad de actualizar el precio de las paletas al ingresar ID del producto a trabajar.
 - [x] Manejo de estados para renderizar condicionalmente según el usuario este loggeado o no e implementaciones de interactividad usuario-página.
 - [x] Carrito funcional: una página aparte que usa zustand para almacenar los id's deseados en local storage y despliega cartitas con los productos deseados.
 - [x] Base de datos definida, finalizada y normalizada con éxito.
 - [x] Múltiples imágenes por producto
+- [x] Control completo del botón de "Finalizar compra" para poder 
+- [x] Roles de usuarios, con sus respectivos alcances y limitaciones bien definidos.
 
 ## Futuras features
 
+- [ ] Dashboard funcional con la posibilidad de crear, modificar y eliminar entidades de la base de datos a antojo y blindado de rutas mediante control de roles + controles extras.
 - [ ] Cambio de contraseña para usuarios locales mediante el envío de un código a su dirección de correo asociado.
-- [ ] Imposibilidad de comprar los productos añadidos al carrito en caso el usuario no esté loggeado.
 - [ ] Formulario de pago embebido de Stripe funcional, seguro y completo.
 - [ ] Correcto almacenamiento de órdenes de pago en base de datos.
 - [ ] **POSIBLE** implementación de una API que notifique a nuestro cliente cuando un usuario compró algo desde la tienda.
-- [ ] Roles de usuarios, con sus respectivos alcances y limitaciones bien definidos.
 - [ ] Mejoras de cyberseguridad, optimización de recursos, limpieza de código, solución de errores en producción, etc.
