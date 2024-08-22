@@ -36,7 +36,10 @@ export default function Login() {
             const result = await userLogin(validatedData);
             console.log(result.message);
             localStorage.setItem('username', validatedData.username);
-            router.push('/');
+            toast.success('Inicio de sesión correcto. Bienvenido!')
+            setTimeout(()=>{
+                router.push('/');
+            },2500);
         } catch (error) {
             if (error instanceof z.ZodError) {
                 const fieldErrors = {};
