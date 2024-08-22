@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 import { useParams } from 'next/navigation';
 import { getOneProductById } from "src/data/data";
 import { Poppins } from "next/font/google";
-import { Spinner, Button, Divider } from "@nextui-org/react";
+import { Button, Divider } from "@nextui-org/react";
 import Link from "next/link";
 import ProductsCard from "src/components/ProductsCard";
 import { getProducts } from "src/data/data";
 import { useCartStore } from "src/data/useCartStore";
+import { PuffLoader } from "react-spinners";
 
 const pop = Poppins({subsets:['latin'], weight:['600','400']})
 export default function ProductDetailPage() {
@@ -49,7 +50,7 @@ export default function ProductDetailPage() {
   if (!product) {
     return(
       <div className="flex justify-center items-center h-[20rem] w-full">
-        <Spinner label="Cargando..." color="warning"/>
+        <PuffLoader color="#2563EB"/>
       </div>
   );
   }

@@ -1,7 +1,8 @@
 'use client';
 import { getUserById, checkUserState } from "src/data/data";
 import { useState, useEffect } from "react";
-import { Button, Spinner } from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
+import { PuffLoader } from "react-spinners";
 
 export default function ProfilePage() {
 
@@ -33,16 +34,16 @@ export default function ProfilePage() {
     },[])
 
     return (
-        <section className="p-16 flex flex-col text-black w-full">
+        <section className="p-16 flex flex-col text-black w-full items-center">
             { isLoading ? 
-            <Spinner/>
+            <PuffLoader color="#2563EB"/>
             : 
             <section className="w-full h-[38vh]">
                 { isLogged ? 
-                    <div className="w-full flex items-center text-center">
+                    <div className="w-full flex flex-col items-center text-center">
                         <h1 className="font-bold text-xl my-4">Nombre:{userData.name}</h1>
                         <h2 className="font-semibold text-lg my-4">Nombre de usuario:@{userData.username}</h2>
-                        <h1 className="font-bold text-xl my-4">Correo electrónico:</h1>
+                        <h1 className="font-bold text-xl my-4">Correo electrónico:{userData.email}</h1>
                         <Button onClick={handleEditProfile}>Editar perfil</Button>
                     </div>
                 :
