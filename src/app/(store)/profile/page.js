@@ -7,7 +7,6 @@ import { PuffLoader } from "react-spinners";
 export default function ProfilePage() {
 
     const [isLogged, setIsLogged] = useState(false);
-    const [editUser, setEditUser] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [userData, setUserData] = useState([]);
 
@@ -25,10 +24,6 @@ export default function ProfilePage() {
         console.log(isLogged)
     }
 
-    const handleEditProfile = () =>{
-        setEditUser(true);
-    }
-
     useEffect(()=>{
         searchUser();
     },[])
@@ -36,7 +31,9 @@ export default function ProfilePage() {
     return (
         <section className="p-16 flex flex-col text-black w-full items-center">
             { isLoading ? 
-            <PuffLoader color="#2563EB"/>
+            <div className="flex h-[38vh] items-center justify-center">
+                <PuffLoader color="#2563EB" size={80}/>
+            </div>
             : 
             <section className="w-full h-[38vh]">
                 { isLogged ? 
@@ -44,7 +41,6 @@ export default function ProfilePage() {
                         <h1 className="font-bold text-xl my-4">Nombre:{userData.name}</h1>
                         <h2 className="font-semibold text-lg my-4">Nombre de usuario:@{userData.username}</h2>
                         <h1 className="font-bold text-xl my-4">Correo electrónico:{userData.email}</h1>
-                        <Button onClick={handleEditProfile}>Editar perfil</Button>
                     </div>
                 :
 

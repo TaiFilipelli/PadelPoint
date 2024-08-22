@@ -36,10 +36,15 @@ export default function Login() {
             const result = await userLogin(validatedData);
             console.log(result.message);
             localStorage.setItem('username', validatedData.username);
-            toast.success('Inicio de sesión correcto. Bienvenido!')
-            setTimeout(()=>{
+            toast.success('Inicio de sesión correcto. Bienvenido!');
+
+            setTimeout(() => {
                 router.push('/');
-            },2500);
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1600); // Ejecuta la recarga inmediatamente después de la redirección
+            }, 1500);
+
         } catch (error) {
             if (error instanceof z.ZodError) {
                 const fieldErrors = {};
@@ -114,7 +119,7 @@ export default function Login() {
                         </Link>
                     </div>
                 </form>
-                <ToastContainer position="bottom-right" autoClose={3000} transition={Slide} theme="light" closeOnClick draggable/>
+                <ToastContainer position="bottom-right" autoClose={1500} transition={Slide} theme="light" closeOnClick draggable/>
             </section>
         </main>
     );
