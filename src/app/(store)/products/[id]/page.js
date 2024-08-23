@@ -56,7 +56,7 @@ export default function ProductDetailPage() {
   }
 
   return (
-    <section className={`flex flex-col justify-center p-16 ${pop.className} font-semibold`}>
+    <section className={`flex flex-col justify-center p-16 ${pop.className} font-semibold text-black`}>
       <section className="flex flex-wrap my-6">
         <div className="flex flex-wrap p-2">
           <div className="block w-24 mr-2">
