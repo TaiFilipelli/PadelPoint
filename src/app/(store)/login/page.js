@@ -42,7 +42,7 @@ export default function Login() {
                 router.push('/');
                 setTimeout(() => {
                     window.location.reload();
-                }, 1600); // Ejecuta la recarga inmediatamente después de la redirección
+                }, 1600);
             }, 1500);
 
         } catch (error) {
@@ -53,7 +53,7 @@ export default function Login() {
                 });
                 setErrors(fieldErrors);
             }
-            toast.error('Error al iniciar sesión. Inténtelo más tarde');
+            toast.error('Las crendenciales no coinciden. Inténtelo de nuevo.');
         }
     };
 
@@ -64,14 +64,14 @@ export default function Login() {
 
     return (
         <main className="flex justify-center items-center text-center p-20 bg-[#264492]">
-            <section className="flex flex-col text-center justify-center items-center p-8 rounded-lg bg-white text-black w-1/2">
+            <section className="flex flex-col text-center justify-center items-center p-8 rounded-lg bg-white text-black w-[45%]">
                 <h1 className={`${pop.className} text-4xl`}>Bienvenido de vuelta!</h1>
-                <form className="w-full text-left" onSubmit={handleSubmit}>
+                <form className="w-full" onSubmit={handleSubmit}>
                     <fieldset className="mt-6 mb-2">
                         <Input 
                             type="text" 
                             label="Nombre de usuario" 
-                            className="w-3/4 shadow-lg" 
+                            className="w-[60%] shadow-lg" 
                             labelPlacement="outside"
                             name="username"
                             required
@@ -84,7 +84,7 @@ export default function Login() {
                         <Input 
                             type={isVisible ? "text" : "password"} 
                             label="Contraseña" 
-                            className="w-3/4 shadow-lg" 
+                            className="w-[60%] shadow-lg" 
                             labelPlacement="outside"
                             name="password"
                             value={formData.password}

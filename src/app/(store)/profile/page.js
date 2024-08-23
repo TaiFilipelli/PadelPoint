@@ -1,8 +1,10 @@
 'use client';
 import { getUserById, checkUserState } from "src/data/data";
 import { useState, useEffect } from "react";
-import { Button } from "@nextui-org/react";
+import { Avatar, Button } from "@nextui-org/react";
 import { PuffLoader } from "react-spinners";
+import Link from "next/link";
+import { ArrowLeft } from "@phosphor-icons/react";
 
 export default function ProfilePage() {
 
@@ -29,18 +31,21 @@ export default function ProfilePage() {
     },[])
 
     return (
-        <section className="p-16 flex flex-col text-black w-full items-center">
+        <section className="p-20 flex flex-col text-black w-full items-center">
             { isLoading ? 
             <div className="flex h-[38vh] items-center justify-center">
                 <PuffLoader color="#2563EB" size={80}/>
             </div>
             : 
             <section className="w-full h-[38vh]">
+                <Button as={Link} href="/" className="bg-red-500 text-white"><ArrowLeft size={30}/></Button>
                 { isLogged ? 
                     <div className="w-full flex flex-col items-center text-center">
-                        <h1 className="font-bold text-xl my-4">Nombre:{userData.name}</h1>
-                        <h2 className="font-semibold text-lg my-4">Nombre de usuario:@{userData.username}</h2>
-                        <h1 className="font-bold text-xl my-4">Correo electrónico:{userData.email}</h1>
+                        <Avatar src="/LogoPadelPoint.png" className="w-32 h-32"/>
+                        <h1 className="font-bold text-3xl mt-4">{userData.name}</h1>
+                        <h2 className="font-semibold text-xl mb-4 text-default-400">@{userData.username}</h2>
+                        <h1 className="font-bold text-xl my-4">Correo electrónico: {userData.email}</h1>
+                        
                     </div>
                 :
 
