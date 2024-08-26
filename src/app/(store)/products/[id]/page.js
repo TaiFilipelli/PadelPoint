@@ -49,7 +49,7 @@ export default function ProductDetailPage() {
 
   if (!product) {
     return(
-      <div className="flex justify-center items-center h-[20rem] w-full">
+      <div className="flex justify-center items-center h-[31rem] w-full">
         <PuffLoader color="#2563EB"/>
       </div>
   );
@@ -70,7 +70,8 @@ export default function ProductDetailPage() {
         </div>
         <div className="text-left flex flex-col p-2">
           <h1 className='text-4xl mb-10'>{product.name}</h1>
-          <p className="text-3xl mb-10">US${product.price}</p>
+          <p className="text-3xl mb-2">US${product.price}</p>
+          <p className="text-xl mb-10 text-green-500">12 cuotas de {(product.price / 12).toFixed(0)} dólares</p>
           <p className="text-xl">Marca: {product.brand.name}</p>
           <p className="text-xl">Tipo: {product.type.name}</p>
           <Button className="rounded-lg py-4 mt-4 w-2/3 px-4 text-xl bg-transparent border-2 hover:bg-gradient-to-tr from-red-300 to-red-600 ease-in-out transition-all 
