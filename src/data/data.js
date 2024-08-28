@@ -135,7 +135,7 @@ export const refreshUserToken = async() => {
     return result;
 }
 // MÉTODOS PARA EL DASHBOARD: Actualización de precios
-export const updateProductPrice = async (id, price) => {
+export const updateProduct = async (id, price) => {
     const response = await fetch(`${baseUrl}/product/${id}`, {
         method: 'PATCH',
         headers: {
@@ -149,3 +149,29 @@ export const updateProductPrice = async (id, price) => {
     }
     return result;
 };
+
+export const addProduct = async(data) => {
+    const response = await fetch(`${baseUrl}/product`,{
+        method:'POST',
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({data})
+    });
+    const result = await verifyResponse(response);
+    if(response.ok){console.log('New product added to Database succesfully', result)}
+    return result;
+}
+export const addNewType = async(name) => {
+    console.log('Al método entró el name:',name);
+    const response = await fetch(`${baseUrl}/type`,{
+        method:'POST',
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({name})
+    });
+    const result = await verifyResponse(response);
+    console.log(result);
+    return result;
+}
