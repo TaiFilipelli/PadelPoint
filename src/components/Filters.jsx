@@ -46,11 +46,11 @@ export const Filters = () => {
     }, []);
 
   return (
-    <section className={`w-full h-20 mb-10 bg-white text-black border-1 border-black shadow-sm shadow-slate-700 rounded-lg flex flex-row gap-10 items-center justify-center p-2 ${pop.className}`}>
-      <h3 className='text-bold text-2xl ml-2'>Filtrar por:</h3>
+    <section className={`w-full h-20 max-[1545px]:h-28 max-[1464px]: mb-10 bg-white text-black border-1 border-black shadow-sm shadow-slate-700 rounded-lg flex flex-row max-[1000px]:flex-wrap max-[1000px]:h-full gap-10 max-[1100px]:gap-2 items-center justify-center p-2 ${pop.className}`}>
+      <h3 className='text-bold text-2xl ml-2 max-[1220px]:text-xl'>Filtrar por:</h3>
       <Dropdown>
             <DropdownTrigger>
-                <Button className="ml-4 p-6 text-xl bg-default-200" variant="light" radius="sm">Tipos</Button>
+                <Button className="ml-4 p-6 text-xl max-[1200px]:text-lg bg-default-200" variant="light" radius="sm">Tipos</Button>
             </DropdownTrigger>
             <DropdownMenu className="p-0 w-full" itemClasses={{ base: "gap-4" }}>
                 {types.map(type => (
@@ -67,14 +67,14 @@ export const Filters = () => {
             maxValue={400} 
             defaultValue={[0,100]} 
             formatOptions={{style: "currency", currency: "USD"}}
-            className="max-w-md"
+            className="max-w-md max-[1530px]:w-1/5"
             onChange={handleValueRangeChange}
         />
         <Divider orientation='vertical'/>
         <Input type='text' labelPlacement='outside' label='Buscar producto por nombre' placeholder='Buscar...' className='w-1/6 mb-1' isClearable value={searchedName} onChange={handleNameChange}/>
         <Divider orientation='vertical'/>
-        <Button onClick={applyFilters} className='rounded-lg bg-black text-white mr-4'>Aplicar filtros</Button>
-        <Button onClick={deleteFilters} className="bg-red-500 text-white rounded-lg">Borrar filtros</Button>
+        <Button onClick={applyFilters} className='rounded-lg bg-black text-white mr-4 max-[1275px]:mr-0 max-[1464px]:w-1/6 max-[1325px]:w-1/5 max-[1200px]:w-1/4 max-[1100px]:w-1/3'>Aplicar filtros</Button>
+        <Button onClick={deleteFilters} className="bg-red-500 text-white rounded-lg max-[1464px]:w-1/6 max-[1325px]:w-1/5 max-[1200px]:w-1/4 max-[1100px]:w-1/3">Borrar filtros</Button>
     </section>
   )
 }
