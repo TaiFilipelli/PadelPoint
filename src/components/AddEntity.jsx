@@ -129,18 +129,18 @@ const AddEntity = ({ entity }) => {
         </div>
         <form onSubmit={handleSubmit} className="flex flex-col items-center w-2/3">
         <fieldset className="my-2 w-2/3">
-            <Input label='Nombre' value={name} onChange={(e) => setName(e.target.value)}/>
+            <Input label='Nombre' value={name} onChange={(e) => setName(e.target.value)} isClearable/>
         </fieldset>
         {entity === "producto" && (
                 <>
                     <fieldset className="my-2 w-2/3">
-                        <Input label='Imagen' fullWidth value={image} onChange={(e) => setImage(e.target.value)}/>
+                        <Input label='Imagen' fullWidth value={image} onChange={(e) => setImage(e.target.value)} isClearable/>
                     </fieldset>
                     <fieldset className="my-2 w-2/3">
-                        <Input label='Descripción del producto' fullWidth value={description} onChange={(e) => setDescription(e.target.value)}/>
+                        <Input label='Descripción del producto' fullWidth value={description} onChange={(e) => setDescription(e.target.value)} isClearable/>
                     </fieldset>
                     <fieldset className="my-2 w-2/3">
-                        <Input label='Precio' type="number" fullWidth value={price} onChange={(e) => setPrice(e.target.value)}/>
+                        <Input label='Precio' type="number" fullWidth value={price} onChange={(e) => setPrice(e.target.value)} isClearable/>
                     </fieldset>
                     <div className="flex flex-row gap-2 w-full mt-4">
                     <Dropdown>
@@ -176,7 +176,7 @@ const AddEntity = ({ entity }) => {
                     </div>
                 {secondariesImages.map((img, index) => (
                     <fieldset key={index} className="my-2 w-full flex items-center">
-                        <Input label={`Imagen secundaria ${index + 1}`} fullWidth value={img} onChange={(e) => updateSecondaryImage(index, e.target.value)}/>
+                        <Input label={`Imagen secundaria ${index + 1}`} fullWidth value={img} onChange={(e) => updateSecondaryImage(index, e.target.value)} isClearable/>
                         <Button onClick={() => removeSecondaryImage(index)} className="ml-2">Eliminar</Button>
                     </fieldset>
                 ))}
