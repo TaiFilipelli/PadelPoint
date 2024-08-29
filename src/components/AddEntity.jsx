@@ -96,9 +96,9 @@ const AddEntity = ({ entity}) => {
 
   return (
     <section className='flex flex-wrap items-center p-16'>
-        <div className="p-4 w-1/3">
-            <h1 className="text-4xl font-bold">{`Añadir ${entity}`}</h1>
-            <h2 className="text-lg mt-4">Ingrese los campos solicitados de forma correcta.</h2>
+        <div className="p-2 w-1/3">
+            <h1 className="text-4xl font-semibold">{`Añadir ${entity}`}</h1>
+            <h2 className="text-lg font-normal mt-4">Ingrese los campos solicitados de forma correcta.</h2>
         </div>
         <form onSubmit={handleSubmit} className="flex flex-col items-center w-2/3">
         <fieldset className="my-2 w-2/3">
@@ -117,7 +117,7 @@ const AddEntity = ({ entity}) => {
                     </fieldset>
                     <Dropdown className="my-4">
                         <DropdownTrigger>
-                            <Button className="ml-4 p-2 mb-4 text-medium text-black bg-white w-1/3" variant="light" radius="sm">{selectedBrand.id? selectedBrand.name : 'Seleccione marca'}</Button>
+                            <Button className="p-2 mb-4 font-medium text-black bg-white w-1/3" variant="light" radius="sm">{selectedBrand.id? selectedBrand.name : 'Elija marca'}</Button>
                         </DropdownTrigger>
                         <DropdownMenu className="p-0 w-full" itemClasses={{ base: "gap-4" }} selectionMode="single">
                             {brands.map(brand => (
@@ -127,7 +127,7 @@ const AddEntity = ({ entity}) => {
                     </Dropdown>
                     <Dropdown>
                         <DropdownTrigger>
-                            <Button className="ml-4 p-2 mb-4 text-sm text-black bg-white w-1/3" variant="light" radius="sm">{selectedSupplier.id? selectedSupplier.name : 'Seleccione proveedor'}</Button>
+                            <Button className="p-2 mb-4 font-medium text-sm text-black bg-white w-1/3" variant="light" radius="sm">{selectedSupplier.id? selectedSupplier.name : 'Elija proveedor'}</Button>
                         </DropdownTrigger>
                         <DropdownMenu className="p-0 w-full" itemClasses={{ base: "gap-4" }} selectionMode="single">
                             {suppliers.map(supplier => (
@@ -135,9 +135,19 @@ const AddEntity = ({ entity}) => {
                             ))}
                         </DropdownMenu>
                     </Dropdown>
+                    <Dropdown>
+                        <DropdownTrigger>
+                            <Button className="p-2 mb-4 font-medium text-black bg-white w-1/3" variant="light" radius="sm">{selectedType.id? selectedType.name : 'Elija tipo'}</Button>
+                        </DropdownTrigger>
+                        <DropdownMenu className="p-0 w-full" itemClasses={{ base: "gap-4" }} selectionMode="single">
+                            {types.map(type => (
+                                <DropdownItem key={type.id} onClick={()=>setSelectedType(type)} className="text-black">{type.name}</DropdownItem>
+                            ))}
+                        </DropdownMenu>
+                    </Dropdown>
                 </>
             )}
-        <Button type="submit" className="my-4">Añadir</Button>
+        <Button type="submit" className="mt-4 w-2/5">Añadir</Button>
       </form>
       <ToastContainer position="bottom-right" autoClose={1500} transition={Slide} theme="light" closeOnClick draggable/>
     </section>
