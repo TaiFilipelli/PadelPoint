@@ -134,8 +134,9 @@ export const refreshUserToken = async() => {
     const result = await verifyResponse(response);
     return result;
 }
-// MÉTODOS PARA EL DASHBOARD: Actualización de precios
-export const updateProduct = async (id, price) => {
+// MÉTODOS PARA EL DASHBOARD: Creación de productos, tipos, marcas, roles 
+
+/*export const updateProduct = async (id, price) => {
     const response = await fetch(`${baseUrl}/product/${id}`, {
         method: 'PATCH',
         headers: {
@@ -148,7 +149,7 @@ export const updateProduct = async (id, price) => {
         console.log("New price updated", result);
     }
     return result;
-};
+};*/
 
 export const addProduct = async(data) => {
     const response = await fetch(`${baseUrl}/product`,{
@@ -194,6 +195,11 @@ export const addNewSupplier = async(name) => {
     });
     const result = await verifyResponse(response);
     return result;
+}
+export const getSuppliers = async()=>{
+    const response = await fetch(`${baseUrl}/supplier`);
+    const data = await verifyResponse(response);
+    return data;
 }
 export const addNewRole = async(name) => {
     const response = await fetch(`${baseUrl}/roles`,{
