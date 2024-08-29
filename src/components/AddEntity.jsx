@@ -1,9 +1,10 @@
 import { Input, Button, Dropdown, DropdownTrigger, DropdownItem, DropdownMenu } from "@nextui-org/react"
 import { useState, useEffect } from "react";
-import { addNewType, getTypes, addNewBrand, getBrands, addNewSupplier, getSuppliers, addNewRole } from "src/data/data";
+import { addNewType, getTypes, addNewBrand, getBrands, addNewSupplier, getSuppliers, addNewRole, addNewProduct } from "src/data/data";
 import { toast, ToastContainer, Slide } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-const AddEntity = ({ entity}) => {
+
+const AddEntity = ({ entity }) => {
 
     //Estados que almacenarán los datos ingresados para pasarlos como parámetro y para su posterior adición a la db.
     const [name, setName] = useState('');
@@ -20,6 +21,7 @@ const AddEntity = ({ entity}) => {
     const [selectedBrand, setSelectedBrand] = useState([]);
     const [selectedSupplier, setSelectedSupplier] = useState([]);
     const [selectedType, setSelectedType] = useState([]);
+    const [secondariesImages, setSecondariesImages] = useState([]);
 
     const [loading, setLoading] = useState(true);
 
@@ -63,11 +65,26 @@ const AddEntity = ({ entity}) => {
       if (loading && entity === "producto") {
         return <div>Cargando...</div>;
       }
+
+    const addSecondaryImage = () => {
+        setSecondariesImages([...secondariesImages, ""]);
+    };
+    
+    const updateSecondaryImage = (index, value) => {
+        const updatedImages = secondariesImages.map((img, i) => i === index ? value : img);
+        setSecondariesImages(updatedImages);
+    };
+    
+    const removeSecondaryImage = (index) => {
+        const updatedImages = secondariesImages.filter((_, i) => i !== index);
+        setSecondariesImages(updatedImages);
+    };
     const handleSubmit = (e) => {
         e.preventDefault();
         switch(entity){
             case 'producto':
-                addProduct(name, image, description, price, selectedBrand, selectedSupplier, selectedType);
+                addProduct(name, image, description, price, selectedBrand, selectedSupplier, selectedType, secondariesImages);
+                // toast.success('Añadido nuevo producto a la base de datos!')
                 break;
             case 'marca':
                 addNewBrand(name);
@@ -89,9 +106,19 @@ const AddEntity = ({ entity}) => {
                 console.error("Entidad no reconocida");
         }
     }
-    const addProduct = (name, image, description, price, brandId, supplierId, typeId) => {
-        // Implementar la lógica para añadir un producto
-        console.log(`Producto añadido: ${name}, ${image}, ${description}, ${price}`);
+    const addProduct = async(name, image, description, price, brandId, supplierId, typeId, secondariesImages) => {
+        const newProduct = {
+            name: name,
+            image: image,
+            description: description,
+            secondariesImages: secondariesImages,
+            price: parseFloat(price),
+            brandId: brandId.id,
+            supplierId: supplierId.id,
+            typeId: typeId.id
+        };
+        const result = await addNewProduct(newProduct);
+        toast.success('Producto añadido con éxito!', result)
     }
 
   return (
@@ -115,9 +142,10 @@ const AddEntity = ({ entity}) => {
                     <fieldset className="my-2 w-2/3">
                         <Input label='Precio' type="number" fullWidth value={price} onChange={(e) => setPrice(e.target.value)}/>
                     </fieldset>
-                    <Dropdown className="my-4">
+                    <div className="flex flex-row gap-2 w-full mt-4">
+                    <Dropdown>
                         <DropdownTrigger>
-                            <Button className="p-2 mb-4 font-medium text-black bg-white w-1/3" variant="light" radius="sm">{selectedBrand.id? selectedBrand.name : 'Elija marca'}</Button>
+                            <Button className="p-2 mb-4 font-medium text-black bg-white w-[40%]" variant="light" radius="sm">{selectedBrand.id? selectedBrand.name : 'Marca'}</Button>
                         </DropdownTrigger>
                         <DropdownMenu className="p-0 w-full" itemClasses={{ base: "gap-4" }} selectionMode="single">
                             {brands.map(brand => (
@@ -127,7 +155,7 @@ const AddEntity = ({ entity}) => {
                     </Dropdown>
                     <Dropdown>
                         <DropdownTrigger>
-                            <Button className="p-2 mb-4 font-medium text-sm text-black bg-white w-1/3" variant="light" radius="sm">{selectedSupplier.id? selectedSupplier.name : 'Elija proveedor'}</Button>
+                            <Button className="p-2 mb-4 font-medium text-sm text-black bg-white w-[40%]" variant="light" radius="sm">{selectedSupplier.id? selectedSupplier.name : 'Proveedor'}</Button>
                         </DropdownTrigger>
                         <DropdownMenu className="p-0 w-full" itemClasses={{ base: "gap-4" }} selectionMode="single">
                             {suppliers.map(supplier => (
@@ -137,7 +165,7 @@ const AddEntity = ({ entity}) => {
                     </Dropdown>
                     <Dropdown>
                         <DropdownTrigger>
-                            <Button className="p-2 mb-4 font-medium text-black bg-white w-1/3" variant="light" radius="sm">{selectedType.id? selectedType.name : 'Elija tipo'}</Button>
+                            <Button className="p-2 mb-4 font-medium text-black bg-white w-[40%]" variant="light" radius="sm">{selectedType.id? selectedType.name : 'Tipo'}</Button>
                         </DropdownTrigger>
                         <DropdownMenu className="p-0 w-full" itemClasses={{ base: "gap-4" }} selectionMode="single">
                             {types.map(type => (
@@ -145,9 +173,17 @@ const AddEntity = ({ entity}) => {
                             ))}
                         </DropdownMenu>
                     </Dropdown>
-                </>
-            )}
-        <Button type="submit" className="mt-4 w-2/5">Añadir</Button>
+                    </div>
+                {secondariesImages.map((img, index) => (
+                    <fieldset key={index} className="my-2 w-full flex items-center">
+                        <Input label={`Imagen secundaria ${index + 1}`} fullWidth value={img} onChange={(e) => updateSecondaryImage(index, e.target.value)}/>
+                        <Button onClick={() => removeSecondaryImage(index)} className="ml-2">Eliminar</Button>
+                    </fieldset>
+                ))}
+            <Button type="button" onClick={addSecondaryImage} className="my-4">Añadir Imagen Secundaria</Button>
+            </>
+        )}
+        <Button type="submit" className="mt-4 w-2/5 bg-blue-600 text-white">{`Añadir ${entity}`}</Button>
       </form>
       <ToastContainer position="bottom-right" autoClose={1500} transition={Slide} theme="light" closeOnClick draggable/>
     </section>

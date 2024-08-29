@@ -151,13 +151,13 @@ export const refreshUserToken = async() => {
     return result;
 };*/
 
-export const addProduct = async(data) => {
+export const addNewProduct = async(data) => {
     const response = await fetch(`${baseUrl}/product`,{
         method:'POST',
         headers:{
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({data})
+        body: JSON.stringify(data)
     });
     const result = await verifyResponse(response);
     if(response.ok){console.log('New product added to Database succesfully', result)}
