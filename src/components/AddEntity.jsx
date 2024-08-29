@@ -1,6 +1,6 @@
 import { Input, Button } from "@nextui-org/react"
 import { useState } from "react";
-import { addNewType } from "src/data/data";
+import { addNewType, addNewBrand, addNewSupplier, addNewRole } from "src/data/data";
 import { toast, ToastContainer, Slide } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 const AddEntity = ({ entity}) => {
@@ -17,17 +17,20 @@ const AddEntity = ({ entity}) => {
                 addProduct(name, image, description, price);
                 break;
             case 'marca':
-                addBrand(name);
+                addNewBrand(name);
+                toast.success('Nueva marca añadida con éxito!')
                 break;
             case 'tipo':
                 addNewType(name);
-                toast.success('Nuevo tipo de producto creado con éxito.')
+                toast.success('Nuevo tipo de producto creado con éxito!')
                 break;
             case 'proveedor':
-                addSupplier(name);
+                addNewSupplier(name);
+                toast.success('Nuevo proveedor añadido con éxito!')
                 break;
             case 'rol':
-                addRole(name);
+                addNewRole(name);
+                toast.success('Nuevo rol añadido con éxito!')
                 break;
             default:
                 console.error("Entidad no reconocida");
@@ -36,21 +39,6 @@ const AddEntity = ({ entity}) => {
     const addProduct = (name, image, description, price) => {
         // Implementar la lógica para añadir un producto
         console.log(`Producto añadido: ${name}, ${image}, ${description}, ${price}`);
-    }
-
-    const addBrand = (name) => {
-        // Implementar la lógica para añadir una marca
-        console.log(`Marca añadida: ${name}`);
-    }
-
-    const addSupplier = (name) => {
-        // Implementar la lógica para añadir un proveedor
-        console.log(`Proveedor añadido: ${name}`);
-    }
-
-    const addRole = (name) => {
-        // Implementar la lógica para añadir un rol
-        console.log(`Rol añadido: ${name}`);
     }
 
   return (

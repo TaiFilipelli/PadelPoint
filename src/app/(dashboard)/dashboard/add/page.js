@@ -22,7 +22,7 @@ export default function AddEntitiesPage() {
                     <Button className="text-lg" onClick={()=> setEntity('tipo')}>Nuevo tipo de producto</Button>
                 </ButtonGroup>
             </div>
-            <section className="mt-4">
+            <section className="my-20">
                 {!entity ? 
                     <h1 className={`${mont.className} text-lg`}>Seleccione una opción para continuar.</h1>
                  :

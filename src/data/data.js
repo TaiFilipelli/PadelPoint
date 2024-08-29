@@ -163,7 +163,6 @@ export const addProduct = async(data) => {
     return result;
 }
 export const addNewType = async(name) => {
-    console.log('Al método entró el name:',name);
     const response = await fetch(`${baseUrl}/type`,{
         method:'POST',
         headers:{
@@ -172,6 +171,38 @@ export const addNewType = async(name) => {
         body: JSON.stringify({name})
     });
     const result = await verifyResponse(response);
-    console.log(result);
+    return result;
+}
+export const addNewBrand = async(name) => {
+    const response = await fetch(`${baseUrl}/brand`,{
+        method:'POST',
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({name})
+    });
+    const result = await verifyResponse(response);
+    return result;
+}
+export const addNewSupplier = async(name) => {
+    const response = await fetch(`${baseUrl}/supplier`,{
+        method:'POST',
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({name})
+    });
+    const result = await verifyResponse(response);
+    return result;
+}
+export const addNewRole = async(name) => {
+    const response = await fetch(`${baseUrl}/roles`,{
+        method:'POST',
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({name})
+    });
+    const result = await verifyResponse(response);
     return result;
 }
