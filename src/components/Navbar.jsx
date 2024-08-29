@@ -63,7 +63,7 @@ const Nav = () => {
             <NavbarBrand justify="start">
               <img src="/LogoPadelPoint.png" alt="Logo de PadelPoint" className="h-[9rem] invert-0 dark:invert" />
             </NavbarBrand>
-            <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} className="sm:hidden"/>
+            <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} className="sm:hidden text-black"/>
           </NavbarContent>
 
           <NavbarContent className="hidden sm:flex gap-4 z-50" justify="end">
