@@ -10,7 +10,7 @@ export default function AddEntitiesPage() {
     const [entity, setEntity] = useState(null);
 
     return (
-        <section className="">
+        <section>
             <h1 className={`${mont.className} text-3xl font-semibold mb-2`}>Añadir entidades</h1>
             <h2 className={`${mont.className} text-xl font-normal mb-8`}>Elija a continuación qué añadir a la base de datos</h2>
             <div>
