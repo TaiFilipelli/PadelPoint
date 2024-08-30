@@ -1,6 +1,6 @@
 import React from 'react'
 
-const DeleteEntity = () => {
+const DeleteEntity = ({entity}) => {
   return (
     <div>
       
