@@ -134,21 +134,6 @@ export const refreshUserToken = async() => {
 }
 // MÉTODOS PARA EL DASHBOARD: Creación, edición y eliminación de registros de la base de datos.
 
-/*export const updateProduct = async (id, price) => {
-    const response = await fetch(`${baseUrl}/product/${id}`, {
-        method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ price })
-    });
-    const result = await verifyResponse(response);
-    if (response.ok) {
-        console.log("New price updated", result);
-    }
-    return result;
-};*/
-
 //MÉTODOS USADOS EN EL DASHBOARD PARA AÑADIR ENTIDADES
 export const addNewProduct = async(data) => {
     const response = await fetch(`${baseUrl}/product`,{
@@ -251,3 +236,33 @@ export const deleteProduct = async(id) => {
     });
     return response;
 }
+
+//MÉTODOS USADOS EN EL DASHBOARD PARA ACTUALIZAR ENTIDADES
+
+export const updateNAMEONLYEntities = async(id, name, entity) => {
+    const response = await fetch(`${baseUrl}/${entity}/${id}`,{
+        method:'PATCH',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify({ name })
+    });
+    const result = await verifyResponse(response);
+    return result;
+}
+export const updateProductPriceOrSupplier = async (id, price, supplierId) => {
+    const numericPrice = parseFloat(price);
+    const response = await fetch(`${baseUrl}/product/${id}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ price:numericPrice, supplierId })
+    });
+    console.log("Data sent:", JSON.stringify({ price, supplierId }));
+    const result = await verifyResponse(response);
+    if (response.ok) {
+        console.log("New price updated", result);
+    }
+    return result;
+};
