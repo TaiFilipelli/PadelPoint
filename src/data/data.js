@@ -14,14 +14,12 @@ export async function getProducts(params = {}){
     const query = buildQuery(params);
     const response = await fetch(`${baseUrl}/product${query}`);
     const data = await verifyResponse(response);
-    console.log('Fetched data:', data);
     return data;
 }
 
 export const getOneProductById = async(id) => {
     const response = await fetch(`${baseUrl}/product/${id}`);
     const data = await verifyResponse(response);
-    console.log('Fetched data:', data);
     return data;
 }
 
@@ -134,7 +132,7 @@ export const refreshUserToken = async() => {
     const result = await verifyResponse(response);
     return result;
 }
-// MÉTODOS PARA EL DASHBOARD: Creación de productos, tipos, marcas, roles 
+// MÉTODOS PARA EL DASHBOARD: Creación, edición y eliminación de registros de la base de datos.
 
 /*export const updateProduct = async (id, price) => {
     const response = await fetch(`${baseUrl}/product/${id}`, {
@@ -151,6 +149,7 @@ export const refreshUserToken = async() => {
     return result;
 };*/
 
+//MÉTODOS USADOS EN EL DASHBOARD PARA AÑADIR ENTIDADES
 export const addNewProduct = async(data) => {
     const response = await fetch(`${baseUrl}/product`,{
         method:'POST',
@@ -211,4 +210,44 @@ export const addNewRole = async(name) => {
     });
     const result = await verifyResponse(response);
     return result;
+}
+
+//MÉTODOS USADOS EN EL DASHBOARD PARA ELIMINAR REGISTROS DE ENTIDADES
+
+export const deleteBrand = async(id) => {
+    const response = await fetch(`${baseUrl}/brand/${id}`,{
+        method:'DELETE',
+    });
+    return response;
+}
+
+export const deleteSupplier = async(id) => {
+    const response = await fetch(`${baseUrl}/supplier/${id}`,{
+        method:'DELETE',
+    });
+    return response;
+}
+
+export const deleteTypeOfProduct = async(id) => {
+    const response = await fetch(`${baseUrl}/type/${id}`,{
+        method:'DELETE',
+    });
+    return response;
+}
+export const getRoles = async()=>{
+    const response = await fetch(`${baseUrl}/roles`);
+    const data = await verifyResponse(response);
+    return data;
+}
+export const deleteRoles = async(id) => {
+    const response = await fetch(`${baseUrl}/roles/${id}`,{
+        method:'DELETE',
+    });
+    return response;
+}
+export const deleteProduct = async(id) => {
+    const response = await fetch(`${baseUrl}/product/${id}`,{
+        method:'DELETE',
+    });
+    return response;
 }
