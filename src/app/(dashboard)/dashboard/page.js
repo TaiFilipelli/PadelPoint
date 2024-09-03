@@ -6,7 +6,7 @@ import { Button } from "@nextui-org/react";
 
 const mont = Montserrat({subsets:['latin'],weight:'600'});
 
-export default function Dashboard() {
+export default function Dashboard(){
   return (
     <main className="flex items-center flex-col">
         <h1 className={`${mont.className} text-3xl my-2`}>Menú de Administrador</h1>
