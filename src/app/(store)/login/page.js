@@ -6,8 +6,8 @@ import { Eye, EyeClosed, SignIn, GoogleLogo } from "@phosphor-icons/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { z } from "zod"; 
-import { loginSchema } from "schemas/Login";
-import { userLogin} from "src/data/data";
+import { loginSchema } from "../../../../schemas/Login";
+import { userLogin} from "../../../data/data";
 import { toast, ToastContainer, Slide } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 

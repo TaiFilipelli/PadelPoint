@@ -4,11 +4,11 @@ import { Divider, Button, Image } from "@nextui-org/react";
 // Componentes de nextui
 import Link from "next/link";
 // Link para navegar entre páginas
-import { getProducts } from "src/data/data";
+import {getProducts, searchUserAuthenticated} from '../../data/data'
 // Método para fetchear productos
 import { Truck, CreditCard, Racquet, InstagramLogo, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
 // Iconos de React especificos para SSR
-import ImageCarouselAndFeaturedProducts from "src/components/ClientComponents";
+import ImageCarouselAndFeaturedProducts from '../../components/ClientComponents'
 // Componentes CSR 
 
 const pop = Poppins({ subsets: ["latin"], weight:['700','600','400'] });

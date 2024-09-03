@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { Input, Button, CircularProgress } from "@nextui-org/react";
 import Link from "next/link";
-import { searchUserAuthenticated, updateOneUser} from "src/data/data";
+import { searchUserAuthenticated, updateOneUser} from "../../../../data/data";
 import { toast, ToastContainer, Slide } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from "next/navigation";

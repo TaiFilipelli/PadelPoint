@@ -1,9 +1,9 @@
 'use client';
 import { Poppins } from "next/font/google";
-import ProductsCard from "src/components/ProductsCard";
+import ProductsCard from "../../../components/ProductsCard";
 import { useEffect, useState } from "react";
-import { getProducts} from "src/data/data";
-import Filters from "src/components/Filters";
+import { getProducts} from "../../../data/data";
+import Filters from "../../../components/Filters";
 
 const pop = Poppins({subsets:["latin"], weight:'600'})
 export default function ProductsList() {

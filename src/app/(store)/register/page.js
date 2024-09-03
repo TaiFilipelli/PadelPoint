@@ -2,8 +2,8 @@
 import { Poppins } from "next/font/google";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from "react-hook-form";
-import { registerSchema } from "schemas/Register";
-import { createOneUser } from "src/data/data";
+import { registerSchema } from "../../../../schemas/Register";
+import { createOneUser } from "../../../data/data";
 import { Input, Button } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import { Slide, ToastContainer, toast } from "react-toastify";

@@ -8,7 +8,7 @@ import { Navbar,
   NavbarMenuItem, 
   Link, Button, Dropdown, DropdownItem, DropdownTrigger, DropdownMenu } from "@nextui-org/react";
 import { Poppins } from "next/font/google";
-import { getBrands, userLogout, checkUserState } from "src/data/data";
+import { getBrands, userLogout, checkUserState, searchUserAuthenticated } from "../data/data";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { ShoppingCart, SignOut, SignIn, UserCircle } from "@phosphor-icons/react";
@@ -19,6 +19,7 @@ const Nav = () => {
   const [brands, setBrands] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false); //Estado reservado para pantallas chicas, controla el menú desplegable.
   const [isLogged, setIsLogged] = useState(false); //Estado que nos permitirá conocer si hay un usuario loggeado o no.
+  const [isAdmin, setIsAdmin] = useState(false);
   const [username, setUsername] = useState('');
   const router = useRouter();
 
@@ -49,10 +50,26 @@ const Nav = () => {
     }
 }
 
+  const checkIfAdmin = async () => {
+    try {
+      const data = await searchUserAuthenticated();
+      if (data.user && data.user.roles && data.user.roles.some(role => role.name === 'admin')) {
+        setIsAdmin(true);
+      }
+      console.log('ESTO SUCEDE POR LA NAVBAR;',data)
+    } catch (err) {
+      console.error(err);
+    }
+};
+
   useEffect(() => {
+    const initializeComponent = async () => {
     setUsername(localStorage.getItem('username'));
-    getStatus();
-    fetchBrands();
+    await getStatus();
+    await checkIfAdmin();
+    await fetchBrands();
+  };
+    initializeComponent();
   }, []);
 
   return (
@@ -86,6 +103,11 @@ const Nav = () => {
                     <DropdownItem startContent={<ShoppingCart size={30}/>} href="/cart" className="w-full text-black">
                       <h1 className="text-lg font-bold">Carrito</h1>
                     </DropdownItem>
+                    {isAdmin && (<DropdownItem startContent={<ShoppingCart size={30}/>} href="/dashboard" className="w-full text-black">
+                        <h1 className="text-lg font-bold">Dashboard</h1>
+                     </DropdownItem>)
+                     
+                   }
                     <DropdownItem className="w-full text-black" onClick={handleLogout} startContent={<SignOut size={30}/>}>
                       <h1 className="font-bold text-lg">Logout</h1>
                     </DropdownItem>

@@ -1,4 +1,4 @@
-import { verifyResponse } from "utils/services";
+import { verifyResponse } from "../../utils/services";
 
 const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
@@ -116,11 +116,8 @@ export const searchUserAuthenticated = async() =>{
     const response = await fetch(`${baseUrl}/user/cookie`,{
         credentials: 'include'
     });
-    const result = await verifyResponse(response);
-    if(response.ok){
-        console.log("User info from cookie searched");
-    }
-    return result;
+    const data = await response.json();
+    return data;
 }
 
 export const refreshUserToken = async() => {

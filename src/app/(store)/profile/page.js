@@ -1,5 +1,5 @@
 'use client';
-import { getUserById, checkUserState } from "src/data/data";
+import { getUserById, checkUserState } from "../../../data/data";
 import { useState, useEffect } from "react";
 import { Avatar, Button } from "@nextui-org/react";
 import { PuffLoader } from "react-spinners";

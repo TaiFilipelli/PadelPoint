@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Skeleton, Button } from "@nextui-org/react";
-import { useCartStore } from "src/data/useCartStore";
+import { useCartStore } from "../data/useCartStore";
 import { useState, useEffect } from "react";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 
