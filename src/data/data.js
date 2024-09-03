@@ -132,6 +132,38 @@ export const refreshUserToken = async() => {
     const result = await verifyResponse(response);
     return result;
 }
+
+export const sendEmailToResetPass = async(email) =>{
+    const response = await fetch(`${baseUrl}/user/reset-pass-code`,{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({ email }),
+        credentials:'include'
+    })
+    console.log(response)
+    return response;
+}
+export const verifyCode = async(email, code) => {
+    const numericCode = parseFloat(code)
+    const response = await fetch(`${baseUrl}/user/reset-pass-validate-code`,{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({email, code:numericCode}),
+        credentials:'include'
+    })
+    console.log(JSON.stringify({email, code:numericCode}));
+    return response;
+}
+export const changePassword = async(newPassword) => {
+    const response = await fetch(`${baseUrl}/user/reset-pass`,{
+        method:'PATCH',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({ newPassword }),
+        credentials:'include'
+    })
+    console.log(response);
+    return response;
+}
 // MÉTODOS PARA EL DASHBOARD: Creación, edición y eliminación de registros de la base de datos.
 
 //MÉTODOS USADOS EN EL DASHBOARD PARA AÑADIR ENTIDADES

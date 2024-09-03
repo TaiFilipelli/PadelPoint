@@ -107,15 +107,20 @@ export default function Login() {
                         />
                         {errors.password && <p className="text-red-500">{errors.password}</p>}
                     </fieldset>
-                    <div className="flex flex-row justify-between items-center">
+                    <div className="flex flex-row justify-start gap-4 items-center">
                         <Button radius="medium" variant='flat' className="bg-red-500 text-white font-semibold shadow-lg" endContent={<SignIn size={25}/>} type='submit'>
                         Iniciar sesión
                         </Button>
                         <Button radius="medium" variant='flat' className='bg-gray-50 text-black font-semibold shadow-lg' onClick={handleGoogleLogin} endContent={<GoogleLogo size={25}/>}>
                             Iniciar sesión con Google
                         </Button>
+                    </div>
+                    <div className="mt-4 text-left flex flex-row justify-between">
                         <Link href='/register' className="hover:underline hover:text-blue-600 transition-all">
                             No tienes cuenta? Registrate ahora!
+                        </Link>
+                        <Link href='/login/forgot_password' className="hover:text-blue-700 hover:underline">
+                        Olvidé mi contraseña
                         </Link>
                     </div>
                 </form>
