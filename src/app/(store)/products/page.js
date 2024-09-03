@@ -29,7 +29,6 @@ export default function ProductsList() {
 
         if (brand !== null) params.brand = brand;
         if (name !== null && name!=='') params.name = name;
-        //Lo que se extraña TypeScript, mamita... mirá esto:
         if (minPrice !== null) {
             const minPriceNumber = Number(minPrice);
             params.minPrice = minPriceNumber === 0 ? 1 : minPriceNumber;
@@ -40,7 +39,7 @@ export default function ProductsList() {
 
     return (
         <section className="flex justify-center items-center text-center flex-col p-10 bg-[#264492]">
-            <h1 className={`${pop.className} text-6xl mb-10`}>Productos</h1>
+            <h1 className={`${pop.className} text-6xl mb-10 max-[390px]:text-4xl`}>Productos</h1>
             <Filters/>
             <section className="w-4/5 max-w-[4/5] max-[1260px]:w-full">
                 <div className="flex flex-wrap justify-center max-[600px]:pt-0 ">
