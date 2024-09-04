@@ -1,13 +1,12 @@
 'use client';
 import { useEffect, useState } from "react";
 import { useParams } from 'next/navigation';
-import { getOneProductById } from "src/data/data";
 import { Poppins } from "next/font/google";
 import { Button, Divider } from "@nextui-org/react";
 import Link from "next/link";
 import ProductsCard from "src/components/ProductsCard";
-import { getProducts } from "src/data/data";
-import { useCartStore } from "src/data/useCartStore";
+import { getProducts, getOneProductById } from "../../../../data/data";
+import { useCartStore } from "../../../../data/useCartStore";
 import { PuffLoader } from "react-spinners";
 
 const pop = Poppins({subsets:['latin'], weight:['600','400']})

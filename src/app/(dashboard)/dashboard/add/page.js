@@ -2,7 +2,7 @@
 import { ButtonGroup, Button, Link } from "@nextui-org/react";
 import { Montserrat } from "next/font/google";
 import { useState } from "react";
-import AddEntity from "src/components/AddEntity";
+import AddEntity from "../../../../components/AddEntity";
 
 const mont = Montserrat({subsets:['latin'],weight:['600','400','300']});
 export default function AddEntitiesPage() {

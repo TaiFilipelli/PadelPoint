@@ -1,6 +1,6 @@
 import { Input, Button, Dropdown, DropdownTrigger, DropdownItem, DropdownMenu } from "@nextui-org/react"
 import { useState, useEffect } from "react";
-import { addNewType, getTypes, addNewBrand, getBrands, addNewSupplier, getSuppliers, addNewRole, addNewProduct } from "src/data/data";
+import { addNewType, getTypes, addNewBrand, getBrands, addNewSupplier, getSuppliers, addNewRole, addNewProduct } from "../data/data";
 import { toast, ToastContainer, Slide } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 

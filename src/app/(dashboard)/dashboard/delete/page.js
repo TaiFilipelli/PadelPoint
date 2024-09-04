@@ -1,6 +1,6 @@
 'use client'
 import { ButtonGroup, Button, Link } from "@nextui-org/react";
-import DeleteEntity from "src/components/DeleteEntity";
+import DeleteEntity from "../../../../components/DeleteEntity";
 import { useState } from "react";
 
 import { Montserrat } from "next/font/google";

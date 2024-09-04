@@ -2,7 +2,7 @@ import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Dropd
 import { useState, useEffect } from "react";
 import { toast, ToastContainer, Slide } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { getBrands, deleteBrand, getSuppliers, deleteSupplier, getTypes, deleteTypeOfProduct, getRoles, deleteRoles, getProducts, deleteProduct } from "src/data/data";
+import { getBrands, deleteBrand, getSuppliers, deleteSupplier, getTypes, deleteTypeOfProduct, getRoles, deleteRoles, getProducts, deleteProduct } from "../data/data";
 
 const DeleteEntity = ({entity}) => {
   

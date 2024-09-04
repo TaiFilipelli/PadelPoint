@@ -1,8 +1,8 @@
 'use client';
 import { Poppins } from "next/font/google";
-import { useCartStore } from "src/data/useCartStore";
+import { useCartStore } from "../../../data/useCartStore";
 import { useState, useEffect } from "react";
-import { getOneProductById, checkUserState, refreshUserToken } from "src/data/data";
+import { getOneProductById, checkUserState, refreshUserToken } from "../../../data/data";
 import { SmileySad, Trash, LockKey, Plus, Minus, ClockUser, UserSwitch } from "@phosphor-icons/react";
 import { Divider, Button, Modal, ModalBody, ModalContent, ModalFooter, Link } from "@nextui-org/react";
 import { useRouter } from "next/navigation";

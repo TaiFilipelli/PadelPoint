@@ -1,7 +1,7 @@
 'use client';
 import { useState } from "react";
 import { ButtonGroup, Button, Link } from "@nextui-org/react";
-import EditEntity from "src/components/EditEntity";
+import EditEntity from "../../../../components/EditEntity";
 
 import { Montserrat } from "next/font/google";
 const mont = Montserrat({subsets:['latin'], weight:['600','400','300']});
