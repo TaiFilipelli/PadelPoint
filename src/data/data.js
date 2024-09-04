@@ -117,6 +117,7 @@ export const searchUserAuthenticated = async() =>{
         credentials: 'include'
     });
     const data = await response.json();
+    console.log(data)
     return data;
 }
 
