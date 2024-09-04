@@ -4,7 +4,7 @@ import { useParams } from 'next/navigation';
 import { Poppins } from "next/font/google";
 import { Button, Divider } from "@nextui-org/react";
 import Link from "next/link";
-import ProductsCard from "src/components/ProductsCard";
+import ProductsCard from "../../../../components/ProductsCard";
 import { getProducts, getOneProductById } from "../../../../data/data";
 import { useCartStore } from "../../../../data/useCartStore";
 import { PuffLoader } from "react-spinners";
