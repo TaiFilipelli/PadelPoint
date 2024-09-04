@@ -14,6 +14,8 @@ En el lado del Front, decidí utilizar el framework **Next**. La elección se ba
 * react-responsive-carousel para el carrusel de imágenes principal.
 * ([hook forms](https://github.com/react-hook-form/react-hook-form)) para el manejo de formularios e ingreso de datos.
 * react-spinners,([por David Hu](https://www.davidhu.io)) para componentes "Spinner", mayormente usados para renderizarse en estados de carga de productos o detalles de algún producto o usuario.
+* Zustand para el manejo de estados globales y manejo del carrito en local storage.
+* jwt-decode para desglosar el contenido del token desde el servidor y blindar el dashboard mediante control de roles
 
 ## Features aplicadas hasta el momento:
 
