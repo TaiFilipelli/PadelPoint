@@ -13,6 +13,12 @@ export default function NewPasswordPage() {
     const router = useRouter();
 
     const submitChanges = async() => {
+
+        if (newPass.length < 6) {
+            toast.error('La contraseña debe tener al menos 6 caracteres.');
+            return;
+        }
+
         const change = await changePassword(newPass);
         if (change.status === 200){
             toast.success('Contraseña actualizada correctamente!');
@@ -30,7 +36,7 @@ export default function NewPasswordPage() {
             <h1 className="text-4xl font-bold mb-2">Verificación exitosa!</h1>
             <h2 className="text-xl font-medium mb-6">Ingrese la nueva contraseña. Recuerde no compartirle sus credenciales a nadie (y también su contraseña, en lo posible!).</h2>
             <Input label='Nueva contraseña' labelPlacement="outside" value={newPass} onChange={(e)=>setNewPass(e.target.value)} className="w-1/3"/>
-            <Button onClick={submitChanges} className="w-1/4 mt-8 font-semibold text-lg p-6 bg-red-600 text-white items-center" endContent={<ArrowRight size={30}/>}>Crear nueva contraseña</Button>
+            <Button onClick={submitChanges} className="w-1/6 mt-8 font-semibold text-lg p-6 bg-red-600 text-white items-center" endContent={<ArrowRight size={30}/>}>Crear nueva contraseña</Button>
             <ToastContainer 
                 position="bottom-right" 
                 autoClose={1500} 
