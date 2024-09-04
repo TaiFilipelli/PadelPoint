@@ -86,7 +86,7 @@ export const Filters = () => {
                 <Button className="ml-4 p-6 text-xl max-[1200px]:text-lg bg-default-200 w-1/5 max-[880px]:w-1/3 max-[400px]:w-2/3" variant="light" radius="sm">Nombre</Button>
             </DropdownTrigger>
             <DropdownMenu className="p-2 rounded-lg">
-               <DropdownItem className='text-black'>
+               <DropdownItem className='text-black' isReadOnly>
                 <Input type='text' labelPlacement='outside' label='Buscar producto por nombre' 
                     placeholder='Buscar...' className='w-full mb-1' isClearable value={searchedName} onChange={handleNameChange}/>
                </DropdownItem>
