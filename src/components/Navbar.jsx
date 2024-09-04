@@ -11,7 +11,7 @@ import { Poppins } from "next/font/google";
 import { getBrands, userLogout, checkUserState, searchUserAuthenticated } from "../data/data";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { ShoppingCart, SignOut, SignIn, UserCircle } from "@phosphor-icons/react";
+import { ShoppingCart, SignOut, SignIn, UserCircle, TerminalWindow } from "@phosphor-icons/react";
 
 const pop = Poppins({ subsets: ["latin"], weight: '500' });
 
@@ -103,7 +103,7 @@ const Nav = () => {
                     <DropdownItem startContent={<ShoppingCart size={30}/>} href="/cart" className="w-full text-black">
                       <h1 className="text-lg font-bold">Carrito</h1>
                     </DropdownItem>
-                    {isAdmin && (<DropdownItem startContent={<ShoppingCart size={30}/>} href="/dashboard" className="w-full text-black">
+                    {isAdmin && (<DropdownItem startContent={<TerminalWindow size={30}/>} href="/dashboard" className="w-full text-black">
                         <h1 className="text-lg font-bold">Dashboard</h1>
                      </DropdownItem>)
                      
