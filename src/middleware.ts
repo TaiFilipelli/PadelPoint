@@ -1,6 +1,6 @@
-// import { NextResponse } from 'next/server';
-// import type { NextRequest, NextFetchEvent } from 'next/server';
-// import { searchUserAuthenticated } from './data/data';
+import { NextResponse } from 'next/server';
+import type { NextRequest, NextFetchEvent } from 'next/server';
+import { searchUserAuthenticated } from './data/data';
 
 // const checkIfAdmin = async () => {
 //   const data = await searchUserAuthenticated();
@@ -27,20 +27,20 @@
 //   return NextResponse.next();
 // };
 
-// export async function middleware(req: NextRequest, event: NextFetchEvent) {
-//   const { pathname } = req.nextUrl;
+export async function middleware(req: NextRequest, event: NextFetchEvent) {
+  const { pathname } = req.nextUrl;
 
-//   if (pathname.startsWith('/dashboard')) {
-//     const response = await checkIfAdmin();
-//     if (response.status === 200) {
-//       return response;
-//     }
-//     return response; 
-//   }
+  // if (pathname.startsWith('/dashboard')) {
+  //   const response = await checkIfAdmin();
+  //   if (response.status === 200) {
+  //     return response;
+  //   }
+  //   return response; 
+  // }
 
-//   return NextResponse.next();
-// }
+  return NextResponse.next();
+}
 
-// export const config = {
-//   matcher: ['/dashboard/:path*'],
-// };
+export const config = {
+  matcher: ['/dashboard/:path*'],
+};

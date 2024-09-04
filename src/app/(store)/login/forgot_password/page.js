@@ -1,7 +1,7 @@
 'use client';
 import { useState } from "react";
 import { Input, Button } from "@nextui-org/react";
-import { sendEmailToResetPass, verifyCode } from "src/data/data";
+import { sendEmailToResetPass, verifyCode } from "../../../../data/data";
 import { toast, ToastContainer, Slide } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from "next/navigation";

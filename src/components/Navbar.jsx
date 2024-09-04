@@ -56,7 +56,6 @@ const Nav = () => {
       if (data.user && data.user.roles && data.user.roles.some(role => role.name === 'admin')) {
         setIsAdmin(true);
       }
-      console.log('ESTO SUCEDE POR LA NAVBAR;',data)
     } catch (err) {
       console.error(err);
     }
