@@ -12,7 +12,10 @@ export const buildQuery = (params) => {
 
 export async function getProducts(params = {}){
     const query = buildQuery(params);
-    const response = await fetch(`${baseUrl}/product${query}`);
+    const response = await fetch(`${baseUrl}/product${query}`,{
+            cache:'force-cache',
+        }
+    );
     const data = await verifyResponse(response);
     return data;
 }
@@ -117,7 +120,6 @@ export const searchUserAuthenticated = async() =>{
         credentials: 'include'
     });
     const data = await response.json();
-    console.log(data)
     return data;
 }
 
