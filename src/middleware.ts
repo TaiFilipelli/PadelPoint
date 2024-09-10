@@ -1,42 +1,37 @@
 import { NextResponse } from 'next/server';
-import type { NextRequest, NextFetchEvent } from 'next/server';
-import { searchUserAuthenticated } from './data/data';
+import type { NextRequest } from 'next/server';
+import {jwtDecode} from 'jwt-decode';
+import { JwtPayload } from 'jwt-decode';
 
-// const checkIfAdmin = async () => {
-//   const data = await searchUserAuthenticated();
-//   if (!data) {
-//     return NextResponse.json({
-//       message: 'ERROR FETCHEANDO DATA',
-//       dataError: data,
-//     });
-//   }
-//   if (!data.user) {
-//     return NextResponse.json({
-//       message: 'NO HAY PERMISOS',
-//       statusCode: data.statusCode,
-//       dataError: data,
-//     });
-//   }
-//   if (!data.user.roles.some((role: { name: string }) => role.name === 'admin')) {
-//     return NextResponse.json({
-//       message: 'NO TIENE LOS PERMISOS NECESARIOS PARA ENTRAR ACÁ',
-//       statusCode: data.statusCode,
-//       dataError: data,
-//     });
-//   }
-//   return NextResponse.next();
-// };
+interface CustomJwtPayload extends JwtPayload {
+  roles: { id: number; name: string }[];
+}
 
-export async function middleware(req: NextRequest, event: NextFetchEvent) {
+export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
-  // if (pathname.startsWith('/dashboard')) {
-  //   const response = await checkIfAdmin();
-  //   if (response.status === 200) {
-  //     return response;
-  //   }
-  //   return response; 
-  // }
+  if (pathname.startsWith('/dashboard')) {
+    const token = req.cookies.get('user')?.value;
+
+    if (!token) {
+      return NextResponse.redirect(new URL('/', req.url));
+    }
+
+    try {
+      const decodedToken = jwtDecode<CustomJwtPayload>(token);
+
+      const roles = decodedToken.roles || [];
+      const isAdmin = roles.some((role) => role.name === 'admin');
+
+      if (!isAdmin) {
+        return NextResponse.redirect(new URL('/', req.url));
+      }
+
+      return NextResponse.next();
+    } catch (error) {
+      return NextResponse.redirect(new URL('/', req.url));
+    }
+  }
 
   return NextResponse.next();
 }
