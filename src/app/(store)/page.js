@@ -46,18 +46,18 @@ export default async function Home() {
         </div>
       </section>
       <Divider/>
-      <h1 className={`${pop.className} font-bold text-4xl my-6 max-[500px]:ml-2`}>Bienvenido a la tienda de padel más grande de San Nicolás</h1>
-      <section className="w-2/3 max-[500px]:w-full p-4">
-      <div className="flex flex-col text-left items-start p-1 w-2/3 mb-4">
-        <h1 className={`${pop.className} font-semibold text-2xl mb-4`}>Nuestro objetivo: todo el país</h1>
+      <h1 className={`${pop.className} font-bold text-4xl max-[500px]:text-5xl m-6 max-[500px]:ml-2`}>Bienvenido a la tienda de padel más grande de San Nicolás</h1>
+      <section className="w-2/3 max-[900px]:w-full p-4">
+      <div className="flex flex-col text-left items-start p-1 w-2/3 max-[500px]:w-full mb-4">
+        <h1 className={`${pop.className} font-semibold text-2xl max-[500px]:text-3xl mb-4`}>Nuestro objetivo: todo el país</h1>
         <p className="font-normal text-xl mb-4">Unite a una familia en constante crecimiento, unida por una fuerte pasión por este increíble deporte.
           Empezamos siendo un humilde emprendimiento de venta de artículos de padel y aspiramos a llegar a los hogares de todos y cada uno de los 
           amantes del padel para equiparlos con lo mejor del mercado, con lo que merecen.
         </p>
         <Image src="/STOCKMAIN1.jpg" width={600} isBlurred/>
       </div>
-      <div className="flex flex-col text-right justify-end items-end p-1 ml-80 max-[500px]:ml-32 mb-4">
-        <h1 className={`${pop.className} font-bold text-2xl my-4`}>Tu paleta de ensueño, a dos clicks de distancia</h1>
+      <div className="flex flex-col text-right max-[500px]:text-left justify-end max-[500px]:justify-start items-end max-[500px]:items-start p-1 ml-80 max-[700px]:ml-60 max-[600px]:ml-40 max-[500px]:ml-0 mb-4">
+        <h1 className={`${pop.className} font-bold text-2xl max-[500px]:text-3xl my-4`}>Tu paleta de ensueño, a dos clicks de distancia</h1>
         <p className="font-normal text-xl mb-4">Encontrar tu equipamiento ideal nunca fue tan fácil! Ingresá con tu cuenta (o unite a la familia si
           es tu primera vez por acá) y descubrí nuestra amplia gama de productos para acompañarte tanto dentro de la cancha como fuera de ella. Además,
           siempre tenemos ofertas, sorteos, rifas y mucho más!
@@ -77,7 +77,7 @@ export default async function Home() {
       </div>
       <Divider/>
       <div className="flex flex-row w-1/2 text-center">
-          <Link href='/dashboard'>Ir al Dashboard</Link>
+          <Link href='/dashboard' className="bg-red-600 text-white p-4 rounded-lg mt-6">Ir al Dashboard</Link>
       </div>
     </main>
   );
