@@ -63,15 +63,15 @@ export default function Login() {
       
 
     return (
-        <main className="flex justify-center items-center text-center p-20 bg-[#264492]">
-            <section className="flex flex-col text-center justify-center items-center p-8 rounded-lg bg-white text-black w-[45%]">
+        <main className="flex justify-center items-center p-20 max-[700px]:px-10 bg-[#264492]">
+            <section className="flex flex-col justify-center items-center p-8 rounded-lg bg-white text-black w-[45%] max-[900px]:w-[90%] max-[390px]:w-full">
                 <h1 className={`${pop.className} text-4xl`}>Bienvenido de vuelta!</h1>
                 <form className="w-full" onSubmit={handleSubmit}>
                     <fieldset className="mt-6 mb-2">
                         <Input 
                             type="text" 
                             label="Nombre de usuario" 
-                            className="w-[60%] shadow-lg" 
+                            className="w-[60%] max-[1500px]:w-full shadow-lg" 
                             labelPlacement="outside"
                             name="username"
                             required
@@ -84,7 +84,7 @@ export default function Login() {
                         <Input 
                             type={isVisible ? "text" : "password"} 
                             label="Contraseña" 
-                            className="w-[60%] shadow-lg" 
+                            className="w-[60%] max-[1500px]:w-full shadow-lg" 
                             labelPlacement="outside"
                             name="password"
                             value={formData.password}
@@ -111,7 +111,7 @@ export default function Login() {
                         <Button radius="medium" variant='flat' className="bg-red-500 text-white font-semibold shadow-lg" endContent={<SignIn size={25}/>} type='submit'>
                         Iniciar sesión
                         </Button>
-                        <Button radius="medium" variant='flat' className='bg-gray-50 text-black font-semibold shadow-lg' onClick={handleGoogleLogin} endContent={<GoogleLogo size={25}/>}>
+                        <Button radius="medium" variant='flat' className='bg-gray-50 text-black font-semibold shadow-lg' onClick={handleGoogleLogin} endContent={<GoogleLogo size={25} className="object-contain"/>}>
                             Iniciar sesión con Google
                         </Button>
                     </div>
