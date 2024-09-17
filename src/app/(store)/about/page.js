@@ -8,14 +8,14 @@ const pop = Poppins({subsets:['latin'], weight:'500'})
 export default function About() {
     
     const itemClasses = {
-        base: "p-2 w-full",
+        base: "p-2 w-full max-[320px]:py-4",
         title: "font-bold text-xl text-white",
         trigger: "px-2 py-0 rounded-lg h-14 flex items-center",
         indicator: "text-medium",
         content: "text-lg px-2",
       };
     return (
-        <section className={`flex flex-col justify-center text-left items-center p-16 ${pop.className} bg-[#264492]`}>
+        <section className={`flex flex-col justify-center text-left items-center p-16 max-[390px]:px-8 ${pop.className} bg-[#264492]`}>
             <h1 className="font-bold text-5xl">Esto es PadelPoint</h1>
             <h3 className="mt-5 text-xl mb-5">
                 ¡Hola! Soy Ignacio Merlo, fundador de PadelPoint, y estoy encantado de darte la bienvenida a 
