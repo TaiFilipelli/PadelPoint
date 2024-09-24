@@ -19,13 +19,12 @@ export default function Cart() {
     const [needsRefresh, setNeedsRefresh] = useState(false);
     const [needsLogin, setNeedsLogin] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [subtotal, setSubtotal] = useState(0);
 
     const router = useRouter();
     
     const checkRefreshToken = async() => {
-      console.log('-Se llegó al método.')
       const status = await checkUserState();
-      console.log('-Status:',status)
       if(status.isLogged === false && status.refreshTokenExists === true){
         setNeedsRefresh(true);
         setIsModalOpen(true);
@@ -35,7 +34,7 @@ export default function Cart() {
         setIsModalOpen(true);
       }
       else{
-        router.push('/');
+        router.push('/cart/payment');
       }
     }
 
@@ -59,6 +58,15 @@ export default function Cart() {
         };
         fetchProducts();
       }, [cart]);
+      
+      useEffect(()=>{
+        if(cart.length > 0){
+          const newSubtotal = products.reduce((acc, product) => acc + (product.price * product.cantidad), 0);
+          setSubtotal(newSubtotal);
+        }else{
+          setSubtotal(0);
+        }
+      })
 
     const handleIncrease = (idProducto, cantidad) => {
         const newCantidad = cantidad + 1;
@@ -73,7 +81,6 @@ export default function Cart() {
     };
 
     const handlePaymentButton = async() =>{
-      console.log('-Se tocó el botón.');
       await checkRefreshToken();
     };
 
@@ -113,7 +120,7 @@ export default function Cart() {
             )}
             <Divider/>
             <div className="flex flex-row justify-between w-1/2 my-4">
-              <h3 className="text-3xl font-semibold">Subtotal: $$$</h3>
+              <h3 className="text-3xl font-semibold">Subtotal: ${subtotal} </h3>
               <Button className="bg-red-600 text-white font-semibold text-xl px-6 py-6" startContent={<LockKey weight="duotone" size={25}/>} onClick={handlePaymentButton}>Finalizar compra</Button>
             </div>
             <Modal isOpen={isModalOpen} onClose={handleModalClose} isDismissable={false} isKeyboardDismissDisabled={false} placement="top-center">
