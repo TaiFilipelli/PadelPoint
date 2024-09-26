@@ -75,11 +75,11 @@ const EditEntity = ({entity}) => {
   }
 
   return (
-    <section className='flex items-center flex-col p-10'>
+    <section className='flex items-center flex-col p-10 max-[470px]:p-2'>
         <h1 className='font-semibold text-2xl mt-4'>Editar {entity}</h1>
         <h3 className='font-normal text-xl mb-8'>Elija el item que quiera editar y llene los campos que desee.</h3>
         <Dropdown>
-            <DropdownTrigger className='w-1/2 text-medium'>
+            <DropdownTrigger className='w-1/2 max-[750px]:w-full text-medium'>
                 <Button className='bg-white text-black'>{selectedItem.id ? selectedItem.name : `Elegir ${entity} a editar`}</Button>
             </DropdownTrigger>
         <DropdownMenu className='text-black'>
@@ -90,9 +90,9 @@ const EditEntity = ({entity}) => {
         </Dropdown>
         {entity === 'producto' ? 
         <>
-            <Input type='number' placeholder={ selectedItem.id ? `Precio viejo: $${selectedItem.price}` : 'Precio viejo: $???'} onChange={(e)=>setUpdatedPrice(e.target.value)} className='w-2/6 mb-4 text-black mt-4'/>
+            <Input type='number' placeholder={ selectedItem.id ? `Precio viejo: $${selectedItem.price}` : 'Precio viejo: $???'} onChange={(e)=>setUpdatedPrice(e.target.value)} className='w-2/6 max-[750px]:w-1/2 mb-4 text-black mt-4'/>
             <Dropdown>
-            <DropdownTrigger className='w-1/2 text-lg mb-8'>
+            <DropdownTrigger className='w-1/2 text-lg mb-8 max-[780px]:w-full'>
                 <Button className='bg-white text-black'>{selectedSupplier.id ? selectedSupplier.name : `Elegir proveedor`}</Button>
             </DropdownTrigger>
             <DropdownMenu className='text-black'>
@@ -103,7 +103,7 @@ const EditEntity = ({entity}) => {
             </Dropdown>
         </>
         :
-            <Input type='text' placeholder='Nuevo nombre...' className='w-2/6 text-black mb-4 mt-4' onChange={(e)=>setUpdatedName(e.target.value)} isClearable/>
+            <Input type='text' placeholder='Nuevo nombre...' className='w-2/6 max-[780px]:w-full text-black mb-4 mt-4' onChange={(e)=>setUpdatedName(e.target.value)} isClearable/>
     }
         <Button onClick={handleEdit} className='bg-blue-600 text-white text-lg'>Actualizar</Button>
       <ToastContainer position="bottom-right" autoClose={2000} theme="light" closeOnClick draggable transition={Slide}/>

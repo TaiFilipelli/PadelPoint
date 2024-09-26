@@ -108,7 +108,7 @@ const DeleteEntity = ({entity}) => {
     <section className='flex items-center flex-col pt-12'>
       <h1 className="text-2xl font-semibold mb-8">Seleccione el item a eliminar de la base de datos</h1>
       <Dropdown>
-        <DropdownTrigger className="w-1/2 text-lg mb-8">
+        <DropdownTrigger className="w-1/2 max-[1000px]:w-full text-lg mb-8">
           <Button className="bg-white text-black">{selectedItem.id ? selectedItem.name : `Elegir ${entity}`}</Button>
         </DropdownTrigger>
         <DropdownMenu>

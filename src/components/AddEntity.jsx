@@ -122,30 +122,30 @@ const AddEntity = ({ entity }) => {
     }
 
   return (
-    <section className='flex flex-wrap items-center p-16'>
-        <div className="p-2 w-1/3">
+    <section className='flex flex-wrap max-[950px]:flex-col items-center p-16 max-[600px]:p-10'>
+        <div className="p-2 w-1/3 max-[950px]:w-full">
             <h1 className="text-4xl font-semibold">{`Añadir ${entity}`}</h1>
-            <h2 className="text-lg font-normal mt-4">Ingrese los campos solicitados de forma correcta.</h2>
+            <h2 className="text-lg font-normal my-4">Ingrese los campos solicitados de forma correcta.</h2>
         </div>
-        <form onSubmit={handleSubmit} className="flex flex-col items-center w-2/3">
-        <fieldset className="my-2 w-2/3">
+        <form onSubmit={handleSubmit} className="flex flex-col items-center w-2/3 max-[950px]:w-full">
+        <fieldset className="my-2 w-2/3 max-[450px]:w-full">
             <Input label='Nombre' value={name} onChange={(e) => setName(e.target.value)} isClearable/>
         </fieldset>
         {entity === "producto" && (
                 <>
-                    <fieldset className="my-2 w-2/3">
+                    <fieldset className="my-2 w-2/3 max-[450px]:w-full">
                         <Input label='Imagen' fullWidth value={image} onChange={(e) => setImage(e.target.value)} isClearable/>
                     </fieldset>
-                    <fieldset className="my-2 w-2/3">
+                    <fieldset className="my-2 w-2/3 max-[450px]:w-full">
                         <Input label='Descripción del producto' fullWidth value={description} onChange={(e) => setDescription(e.target.value)} isClearable/>
                     </fieldset>
-                    <fieldset className="my-2 w-2/3">
+                    <fieldset className="my-2 w-2/3 max-[450px]:w-full">
                         <Input label='Precio' type="number" fullWidth value={price} onChange={(e) => setPrice(e.target.value)} isClearable/>
                     </fieldset>
-                    <div className="flex flex-row gap-2 w-full mt-4">
+                    <div className="flex flex-row max-[550px]:flex-col items-center gap-2 w-full mt-4">
                     <Dropdown>
                         <DropdownTrigger>
-                            <Button className="p-2 mb-4 font-medium text-black bg-white w-[40%]" variant="light" radius="sm">{selectedBrand.id? selectedBrand.name : 'Marca'}</Button>
+                            <Button className="p-2 mb-4 font-medium text-black bg-white w-[40%] max-[550px]:w-3/4" variant="light" radius="sm">{selectedBrand.id? selectedBrand.name : 'Marca'}</Button>
                         </DropdownTrigger>
                         <DropdownMenu className="p-0 w-full" itemClasses={{ base: "gap-4" }} selectionMode="single">
                             {brands.map(brand => (
@@ -155,7 +155,7 @@ const AddEntity = ({ entity }) => {
                     </Dropdown>
                     <Dropdown>
                         <DropdownTrigger>
-                            <Button className="p-2 mb-4 font-medium text-sm text-black bg-white w-[40%]" variant="light" radius="sm">{selectedSupplier.id? selectedSupplier.name : 'Proveedor'}</Button>
+                            <Button className="p-2 mb-4 font-medium text-sm text-black bg-white w-[40%] max-[550px]:w-3/4" variant="light" radius="sm">{selectedSupplier.id? selectedSupplier.name : 'Proveedor'}</Button>
                         </DropdownTrigger>
                         <DropdownMenu className="p-0 w-full" itemClasses={{ base: "gap-4" }} selectionMode="single">
                             {suppliers.map(supplier => (
@@ -165,7 +165,7 @@ const AddEntity = ({ entity }) => {
                     </Dropdown>
                     <Dropdown>
                         <DropdownTrigger>
-                            <Button className="p-2 mb-4 font-medium text-black bg-white w-[40%]" variant="light" radius="sm">{selectedType.id? selectedType.name : 'Tipo'}</Button>
+                            <Button className="p-2 mb-4 font-medium text-black bg-white w-[40%] max-[550px]:w-3/4" variant="light" radius="sm">{selectedType.id? selectedType.name : 'Tipo'}</Button>
                         </DropdownTrigger>
                         <DropdownMenu className="p-0 w-full" itemClasses={{ base: "gap-4" }} selectionMode="single">
                             {types.map(type => (
@@ -180,10 +180,10 @@ const AddEntity = ({ entity }) => {
                         <Button onClick={() => removeSecondaryImage(index)} className="ml-2">Eliminar</Button>
                     </fieldset>
                 ))}
-            <Button type="button" onClick={addSecondaryImage} className="my-4">Añadir Imagen Secundaria</Button>
+            <Button type="button" onClick={addSecondaryImage} className="mt-4">Añadir Imagen Secundaria</Button>
             </>
         )}
-        <Button type="submit" className="mt-4 w-2/5 bg-blue-600 text-white">{`Añadir ${entity}`}</Button>
+        <Button type="submit" className="mt-4 w-2/5 max-[490px]:w-full bg-blue-600 text-white">{`Añadir ${entity}`}</Button>
       </form>
       <ToastContainer position="bottom-right" autoClose={1500} transition={Slide} theme="light" closeOnClick draggable/>
     </section>

@@ -27,10 +27,10 @@ export default async function DashboardLayout({children}) {
 
     return (
     <html lang="es">
-      <body className='h-[120vh] w-full p-20 bg-gradient-to-br from-indigo-950 to-black text-white'>
+      <body className='h-[140vh] max-[950px]:h-auto w-auto p-20 max-[640px]:px-2 max-[400px]:py-10 bg-gradient-to-br from-indigo-950 to-black text-white'>
         <Providers>
         <h1 className={`${mont.className} text-5xl`}>Bienvenido, admin!</h1>
-          <section className={`rounded-lg bg-black text-white w-full p-10 text-center flex flex-col mt-8 ${robtop.className} items-center`}>
+          <section className={`rounded-lg bg-black text-white w-full text-center flex flex-col mt-8 ${robtop.className} items-center`}>
             {children}
           </section>
         </Providers>

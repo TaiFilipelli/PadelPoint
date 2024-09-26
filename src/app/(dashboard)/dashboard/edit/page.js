@@ -11,16 +11,14 @@ export default function EditEntitiesPage() {
     const [entity, setEntity] = useState(null);
 
     return (
-        <section>
+        <section className="p-10">
             <h1 className={`${mont.className} text-3xl font-semibold mb-2`}>Editar entidades</h1>
             <h2 className={`${mont.className} text-xl font-normal mb-8`}>Seleccione la entidad que desee editar. </h2>
-            <div>
-                <ButtonGroup>
-                    <Button className="text-lg" onClick={()=>setEntity('producto')}>Editar productos</Button>
-                    <Button className="text-lg" onClick={()=>setEntity('marca')}>Editar marcas</Button>
-                    <Button className="text-lg" onClick={()=>setEntity('proveedor')}>Editar proveedores</Button>
-                    <Button className="text-lg" onClick={()=>setEntity('tipo')}>Editar tipos</Button>
-                </ButtonGroup>
+            <div className="flex items-center max-[800px]:flex-col gap-2">
+                <Button className="text-base max-[800px]:text-lg w-1/4 max-[800px]:w-full" onClick={()=>setEntity('producto')}>Editar productos</Button>
+                <Button className="text-lg w-1/4 max-[800px]:w-full" onClick={()=>setEntity('marca')}>Editar marcas</Button>
+                <Button className="text-base max-[800px]:text-lg w-1/4 max-[800px]:w-full" onClick={()=>setEntity('proveedor')}>Editar proveedores</Button>
+                <Button className="text-lg w-1/4 max-[800px]:w-full" onClick={()=>setEntity('tipo')}>Editar tipos</Button>
             </div>
             <section className={`${mont.className} my-4`}>
                 {!entity ? 
