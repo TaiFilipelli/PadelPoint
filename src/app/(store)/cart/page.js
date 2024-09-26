@@ -98,8 +98,8 @@ export default function Cart() {
                 </section>
             ) : (
                 products.map(product => (
-                  <section key={product.id} className={`${pop.className} flex items-center justify-between p-4 my-4 w-2/5 bg-default-300 rounded-lg text-black`}>
-                    <div className="flex items-center">
+                  <section key={product.id} className={`${pop.className} sm:flex overflow-x-auto items-center justify-between p-4 my-4 w-2/5 max-[1080px]:w-[70%] max-[650px]:w-full bg-default-300 rounded-lg text-black`}>
+                    <div className="flex items-center max-[440px]:flex-wrap">
                       <img src={product.image} alt={product.name} className="w-20 h-20 object-cover rounded-lg" />
                       <div className="ml-4 text-left">
                         <h2 className='text-lg font-semibold'>{product.name}</h2>
@@ -119,9 +119,9 @@ export default function Cart() {
                 ))
             )}
             <Divider/>
-            <div className="flex flex-row justify-between w-1/2 my-4">
+            <div className="flex flex-row max-[967px]:flex-col max-[967px]:gap-4 justify-between w-1/2 max-[470px]:w-full my-4">
               <h3 className="text-3xl font-semibold">Subtotal: ${subtotal} </h3>
-              <Button className="bg-red-600 text-white font-semibold text-xl px-6 py-6" startContent={<LockKey weight="duotone" size={25}/>} onClick={handlePaymentButton}>Finalizar compra</Button>
+              <Button className="bg-red-600 text-white font-semibold text-xl p-6 max-[470px]:text-lg" startContent={<LockKey weight="duotone" size={25}/>} onClick={handlePaymentButton}>Finalizar compra</Button>
             </div>
             <Modal isOpen={isModalOpen} onClose={handleModalClose} isDismissable={false} isKeyboardDismissDisabled={false} placement="top-center">
                 <ModalContent>
