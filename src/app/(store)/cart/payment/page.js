@@ -1,6 +1,6 @@
 'use client'
 import { useRouter } from "next/navigation";
-import { Button, Skeleton } from "@nextui-org/react";
+import { Button, Skeleton, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from "@nextui-org/react";
 import { useState, useEffect, useMemo } from "react";
 import { useCartStore } from "../../../../data/useCartStore";
 import { getOneProductById } from "../../../../data/data";
@@ -13,7 +13,10 @@ export default function PaymentMethodPage() {
 
     const cart = useCartStore((state)=>state.cart);
     const [products, setProducts] = useState([]);
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(true);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [total, setTotal] = useState(0);
+    const [method, setMethod]=useState('');
 
     const message = useMemo(() => {
         if (products.length === 0) return '';
@@ -26,16 +29,27 @@ export default function PaymentMethodPage() {
 
         const total = products.reduce((acc, product) => acc + (product.cantidad * product.price), 0);
         message += `Total: $${total}`;
+        setTotal(total);
 
-        setIsLoading(false);
         return message;
     }, [products]);
 
     const linkBuilder = () =>{
         const number = '3364181788';
-        console.log(`https://wa.me/${number}?text=${message}`)
+        // console.log(`https://wa.me/${number}?text=${message}`)
         return `https://wa.me/${number}?text=${message}`;
     }
+    const handleModalClose = () => {
+      setIsModalOpen(false);
+  };
+    const handleOPButton = () => {
+        setMethod('Crédito/Débito');
+        setIsModalOpen(true);
+    };
+    const handleEFVOButton = () => {
+        setMethod('Efectivo/Transferencia');
+        setIsModalOpen(true);
+    };
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -45,6 +59,7 @@ export default function PaymentMethodPage() {
               return { ...res, cantidad: item.cantidad };
             }));
             setProducts(productsData);
+            setIsLoading(false);
           }
           else{
             setProducts([]);
@@ -72,12 +87,25 @@ export default function PaymentMethodPage() {
                 </>
             :
                 <>
-                <Button isDisabled className="text-lg p-6">Tarjetas de crédito</Button>
-                <Button isDisabled className="text-lg p-6">Depósito o similares</Button>
-                <Button as={Link} href={linkBuilder()} color="success" className="text-white text-lg p-6">Efectivo/transferencia</Button>
+                <Button className="text-lg p-6" onClick={handleOPButton}>Crédito o débito</Button>
+                <Button onClick={handleEFVOButton} color="success" className="text-white text-lg p-6">Efectivo/transferencia</Button>
                 </>
         }
             </div>
+            <Modal isOpen={isModalOpen} onClose={handleModalClose} isDismissable={false} isKeyboardDismissDisabled={false} placement="top-center">
+                <ModalContent>
+                    <ModalHeader className="text-black flex text-center justify-center">
+                        <h2 className="text-3xl font-bold mb-4">Confirmación de pago</h2>
+                    </ModalHeader>
+                    <ModalBody className="text-black p-6">
+                        <h2 className="text-2xl font-bold mb-4">Usted pagará {total} USD con {method}. Desea continuar?</h2>
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button as={Link} href={linkBuilder()} className="bg-blue-600 text-white text-medium">Confirmar pago</Button>
+                        <Button onClick={handleModalClose} className="bg-red-600 text-white text-medium">Cancelar</Button>
+                    </ModalFooter>
+                </ModalContent>
+            </Modal>
         </section>
     );
 }
