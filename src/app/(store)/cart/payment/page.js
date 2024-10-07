@@ -69,15 +69,12 @@ export default function PaymentMethodPage() {
       }, [cart]);
 
     return (
-        <section className={`${pop.className} p-16 flex flex-col items-center text-center bg-[#264492]`}>
+        <section className={`${pop.className} p-16 flex flex-col items-center text-center bg-[#264492] h-[50vh] max-[540px]:h-full`}>
             <h1 className="font-semibold text-4xl">Finalizar pago</h1>
-            <h3 className="font-normal text-xl mt-6">Seleccione el método de pago deseado</h3>
-            <div className="flex flex-col w-1/6 gap-6 my-10">
+            <h3 className="font-normal text-xl mt-4">Seleccione el método de pago deseado.</h3>
+            <div className="flex flex-col w-[20%] max-[1150px]:w-[50%] max-[540px]:w-full gap-6 my-10">
             {isLoading? 
                 <>
-                <Skeleton className="w-full rounded-xl">
-                    <div className="bg-secondary-700 p-6"/>
-                </Skeleton>
                 <Skeleton className="w-full rounded-xl">
                     <div className="bg-secondary-700 p-6"/>
                 </Skeleton>
@@ -87,18 +84,20 @@ export default function PaymentMethodPage() {
                 </>
             :
                 <>
-                <Button className="text-lg p-6" onClick={handleOPButton}>Crédito o débito</Button>
-                <Button onClick={handleEFVOButton} color="success" className="text-white text-lg p-6">Efectivo/transferencia</Button>
+                <Button className="text-lg p-6 hover:bg-[#004481] hover:text-[#14C8BE] border-1 transition-colors ease-linear" onClick={handleOPButton}>Crédito o débito</Button>
+                <Button onClick={handleEFVOButton} className="text-black hover:bg-green-600 hover:text-white border-1 transition-colors ease-linear text-lg p-6">Efectivo/transferencia</Button>
                 </>
         }
             </div>
+            <p className="text-lg">Ante cualquier inconveniente, no dude en comunicarse directamente con nosotros! 😊</p>
             <Modal isOpen={isModalOpen} onClose={handleModalClose} isDismissable={false} isKeyboardDismissDisabled={false} placement="top-center">
                 <ModalContent>
                     <ModalHeader className="text-black flex text-center justify-center">
-                        <h2 className="text-3xl font-bold mb-4">Confirmación de pago</h2>
+                        <h2 className="text-3xl font-bold">Confirmación de pago</h2>
                     </ModalHeader>
-                    <ModalBody className="text-black p-6">
-                        <h2 className="text-2xl font-bold mb-4">Usted pagará {total} USD con {method}. Desea continuar?</h2>
+                    <ModalBody className="text-black px-6 py-4">
+                        <h2 className="text-2xl font-bold mb-2">Usted pagará USD${total} con {method}. Desea continuar?</h2>
+                        <p className="text-lg font-semibold">Se le redireccionará a la página de pago adecuada según el método elegido.</p>
                     </ModalBody>
                     <ModalFooter>
                         <Button as={Link} href={linkBuilder()} className="bg-blue-600 text-white text-medium">Confirmar pago</Button>
