@@ -140,11 +140,11 @@ const Nav = () => {
         </Navbar>
       </div>
       <div className="fixed w-full top-24 z-20">
-        <Navbar className="flex text-center h-16 bg-gray-400 dark:bg-gray-800 w-full justify-center">
-          <NavbarContent className="gap-10">
+        <Navbar className="flex text-center h-auto max-[600px]:h-[5rem] bg-gray-400 dark:bg-gray-800 w-full justify-center">
+          <NavbarContent className="gap-10 max-[600px]:gap-0 flex max-[600px]:flex-wrap">
             <Dropdown>
               <DropdownTrigger>
-                <Button className="ml-4 p-2 text-lg" variant="light" radius="sm">Las mejores marcas!</Button>
+                <Button className="p-2 text-lg" variant="light" radius="sm">Las mejores marcas!</Button>
               </DropdownTrigger>
               <DropdownMenu className="p-0 w-full" itemClasses={{ base: "gap-4" }}>
                 {brands.map(brand => (
@@ -152,7 +152,7 @@ const Nav = () => {
                 ))}
               </DropdownMenu>
             </Dropdown>
-            <Button as={Link} href="/register" className={`${pop.className} font-medium text-lg bg-transparent hover:bg-[#B3B7BF]`}>Únete a la familia PadelPoint</Button>
+            <Button as={Link} href="/register" className={`${pop.className} p-2 font-medium text-lg bg-transparent hover:bg-[#B3B7BF]`}>Únete a PadelPoint hoy</Button>
           </NavbarContent>
         </Navbar>
       </div>
