@@ -10,6 +10,9 @@ const config = {
   ],
   theme: {
     extend: {
+      gridTemplateColumns:{
+        'auto-fix-minmax':'grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));'
+      }
     },
   },
   darkMode: "class",
