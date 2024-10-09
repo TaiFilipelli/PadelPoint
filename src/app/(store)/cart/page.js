@@ -1,10 +1,10 @@
 'use client';
 import { Poppins } from "next/font/google";
 import { useCartStore } from "../../../data/useCartStore";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { getOneProductById, checkUserState, refreshUserToken } from "../../../data/data";
 import { SmileySad, Trash, LockKey, Plus, Minus, ClockUser, UserSwitch } from "@phosphor-icons/react";
-import { Divider, Button, Modal, ModalBody, ModalContent, ModalFooter, Link } from "@nextui-org/react";
+import { Divider, Button, Modal, ModalBody, ModalContent, ModalFooter,ModalHeader, Link } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import { toast, ToastContainer, Slide } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
@@ -20,9 +20,28 @@ export default function Cart() {
     const [needsLogin, setNeedsLogin] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [subtotal, setSubtotal] = useState(0);
+    const [method, setMethod]=useState('Efectivo/Transferencia');
 
     const router = useRouter();
-    
+
+    const message = useMemo(() => {
+      if (products.length === 0) return '';
+
+      let message = 'Hola! Deseo comprar los siguientes productos:%0A';
+
+      products.forEach((product) => {
+          message += `${product.cantidad}x ${product.name} - $${product.price}%0A`;
+      });
+      message += `Total: $${subtotal}`;
+      return message;
+  }, [products]);
+
+  const linkBuilder = () =>{
+    const number = '3364181788'; //Aquí va el número del receptor del mensaje de wp.
+    // console.log(`https://wa.me/${number}?text=${message}`)
+    return `https://wa.me/${number}?text=${message}`;
+  }
+
     const checkRefreshToken = async() => {
       const status = await checkUserState();
       if(status.isLogged === false && status.refreshTokenExists === true){
@@ -34,7 +53,7 @@ export default function Cart() {
         setIsModalOpen(true);
       }
       else{
-        router.push('/cart/payment');
+        setIsModalOpen(true);
       }
     }
 
@@ -43,6 +62,16 @@ export default function Cart() {
       setIsModalOpen(false);
       toast.success('Sesión actualizada! Puede continuar');
     }
+
+    const handleOPButton = () => {
+      setMethod('Crédito/Débito');
+      toast.success('Método actualizado!')
+    };
+    const handleEFVOButton = () => {
+      setMethod('Efectivo/Transferencia');
+      toast.success('Método actualizado!');
+    };
+
     useEffect(() => {
         const fetchProducts = async () => {
           if (cart.length > 0) {
@@ -89,7 +118,7 @@ export default function Cart() {
   };
 
     return (
-        <section className="p-16 flex flex-col items-center text-center bg-[#264492]">
+        <section className="p-16 flex flex-col max-[500px]:items-center max-[500px]:text-center bg-[#264492]">
             <h1 className={`${pop.className} text-5xl font-bold mb-4`}>Carrito</h1>
             {products.length < 1 ? (
                 <section className="flex flex-col my-10 items-center justify-center rounded-3xl p-11 border-1 border-black bg-default-100 text-black">
@@ -119,12 +148,19 @@ export default function Cart() {
                 ))
             )}
             <Divider/>
-            <div className="flex flex-row max-[967px]:flex-col max-[967px]:gap-4 justify-between w-1/2 max-[470px]:w-full my-4">
-              <h3 className="text-3xl font-semibold">Subtotal: ${subtotal} </h3>
-              <Button className="bg-red-600 text-white font-semibold text-xl p-6 max-[470px]:text-lg" startContent={<LockKey weight="duotone" size={25}/>} onClick={handlePaymentButton}>Finalizar compra</Button>
+            <h3 className="text-3xl font-semibold mt-4">Subtotal: ${subtotal}USD </h3>
+            <h2 className="font-normal text-xl mt-4">Seleccione el método de pago a usar</h2>
+            <div className="flex flex-row max-[967px]:flex-col gap-4 w-auto max-[967px]:w-[40%] max-[579px]:w-[60%] max-[470px]:w-full mt-4 mb-8">
+              <Button className="text-lg p-6 hover:bg-[#004481] hover:text-[#14C8BE] border-1 transition-colors ease-linear" onClick={handleOPButton}>Crédito o débito</Button>
+              <Button onClick={handleEFVOButton} className="text-black hover:bg-green-600 hover:text-white border-1 transition-colors ease-linear text-lg p-6">Efectivo/transferencia</Button>
             </div>
+              <Button className="bg-red-600 w-1/4 max-[1000px]:w-1/2 max-[579px]:w-2/3 max-[450px]:w-full text-white font-semibold text-xl p-6 max-[470px]:text-lg" startContent={<LockKey weight="duotone" size={25}/>} onClick={handlePaymentButton}>Finalizar compra</Button>
+              <p className="text-lg mt-4">Ante cualquier inconveniente, no dude en comunicarse directamente con nosotros! 😊</p>
             <Modal isOpen={isModalOpen} onClose={handleModalClose} isDismissable={false} isKeyboardDismissDisabled={false} placement="top-center">
                 <ModalContent>
+                    <ModalHeader className="text-black flex text-center justify-center">
+                        <h2 className="text-3xl font-bold">Confirmación de pago</h2>
+                    </ModalHeader>
                     <ModalBody className="text-black p-6">
                         {needsRefresh ? (
                             <div className="flex flex-col items-center text-center">
@@ -138,7 +174,12 @@ export default function Cart() {
                                 <ClockUser size={70}/>
                                 <p className="font-medium text-lg mt-4">Debe iniciar sesión para poder utilizar esta función de forma segura.</p>
                             </div>
-                        ) : null}
+                        ) : 
+                          <div className="text-black px-6 py-4">
+                            <h2 className="text-2xl font-bold mb-2">Usted pagará USD${subtotal} con {method}. Desea continuar?</h2>
+                            <p className="text-lg font-semibold">Se le redireccionará a la página de pago adecuada según el método elegido.</p>
+                          </div>
+                    }
                     </ModalBody>
                     <ModalFooter>
                         {needsRefresh ? (
@@ -151,7 +192,11 @@ export default function Cart() {
                                 <Button as={Link} href="/login" className="bg-blue-600 text-white text-medium">Iniciar sesión</Button>
                                 <Button onClick={handleModalClose} className="bg-red-600 text-white text-medium">Cancelar</Button>
                             </>
-                        ) : null}
+                        ) : 
+                            <>
+                              <Button as={Link} href={linkBuilder()} className="bg-blue-600 text-white text-medium">Confirmar pago</Button>
+                              <Button onClick={handleModalClose} className="bg-red-600 text-white text-medium">Cancelar</Button>
+                            </>}
                     </ModalFooter>
                 </ModalContent>
             </Modal>
