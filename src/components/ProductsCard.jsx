@@ -12,9 +12,13 @@ const ProductsCard = ({name, image, brand, price, idProducto, isLoading}) => {
   const displayPrice = (price/3).toFixed(0);
 
   useEffect(() => {
-    if (cart.includes(idProducto)) {
+    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+    const itemInCartState = storedCart.find(item => item.id === idProducto);
+
+    if(itemInCartState){
       setIsInCart(true);
     }
+    
   }, [cart, idProducto]);
 
   const handleAddToCart = () => {
@@ -26,22 +30,30 @@ const ProductsCard = ({name, image, brand, price, idProducto, isLoading}) => {
 
   if (isLoading) {
     return (
-      <section className='bg-default-100 text-black w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 flex flex-col justify-center items-center rounded-lg text-center border-2 border-gray-200 shadow-xl p-4 my-4'>
-        <Skeleton className='mt-2 w-3/4 rounded-md'>
+      <section className='bg-default-100 text-black w-auto flex flex-col justify-center items-center rounded-lg text-center border-2 border-gray-200 shadow-xl p-4 my-4'>
+        <Skeleton className='mt-2 w-48 rounded-md'>
           <div className="bg-secondary-50 h-7"></div>
         </Skeleton>
-        <Skeleton className="mt-6 w-5/6 rounded-md">
-          <div className="bg-secondary-50 h-72"></div>
+        <Skeleton className="mt-6 w-52 rounded-md">
+          <div className="bg-secondary-50 h-64"></div>
         </Skeleton>
-        <Skeleton className='mt-3 w-2/5 rounded-md'>
+        <Skeleton className='mt-3 w-24 rounded-md'>
           <div className="bg-secondary-50 h-5"></div>
         </Skeleton>
-        <Skeleton className='mt-3 w-1/3 rounded-md'>
+        <Skeleton className='mt-3 w-32 rounded-md'>
+          <div className="bg-secondary-50 h-5"></div>
+        </Skeleton>
+        <Skeleton className='mt-3 w-36 rounded-md'>
           <div className="bg-secondary-50 h-6"></div>
         </Skeleton>
-        <Skeleton className="mt-3 w-2/5 rounded-md">
-          <div className="bg-secondary-50 h-5"></div>
+        <div className="flex flex-row justify-between gap-4 items-center">
+        <Skeleton className="mt-3 w-28 rounded-md">
+          <div className="bg-secondary-50 h-8"></div>
         </Skeleton>
+        <Skeleton className="mt-3 w-20 rounded-md">
+          <div className="bg-secondary-50 h-8"></div>
+        </Skeleton>
+        </div>
       </section>
     );
   }
