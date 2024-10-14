@@ -298,3 +298,33 @@ export const updateProductPriceOrSupplier = async (id, price, supplierId) => {
     }
     return result;
 };
+
+//MÉTODOS PARA EL PAYTMENT CON OPENPAY
+export const getOpenpayToken = async () => {
+    try{
+
+        const response = await fetch(`${baseUrl}/payment/token`);
+        const data = await verifyResponse(response);
+        console.log(data)
+        return data;
+
+    }catch(error){
+        console.log(error)
+    }
+}
+export const createPaymentIntent = async(data) => {
+    try{
+        const response = await fetch(`${baseUrl}/payment/intent`,{
+            method:'POST',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+        const data = await verifyResponse(response);
+        console.log(data)
+        return data;
+    }catch(error){
+        console.log(error)
+    }
+}

@@ -57,7 +57,7 @@ export default function ResultLogin() {
     },[]);
 
     return (
-        <section className="flex items-center justify-center text-center p-20 flex-col bg-[#264492]">
+        <section className="flex items-center justify-center text-center h-[60vh] p-20 flex-col bg-[#264492]">
            {isLoading ? (
                 <CircularProgress size="lg"/>
             ) : (

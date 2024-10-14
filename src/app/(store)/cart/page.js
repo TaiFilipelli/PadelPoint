@@ -2,7 +2,7 @@
 import { Poppins } from "next/font/google";
 import { useCartStore } from "../../../data/useCartStore";
 import { useState, useEffect, useMemo } from "react";
-import { getOneProductById, checkUserState, refreshUserToken } from "../../../data/data";
+import { getOneProductById, checkUserState, refreshUserToken, getOpenpayToken, createPaymentIntent } from "../../../data/data";
 import { SmileySad, Trash, LockKey, Plus, Minus, ClockUser, UserSwitch } from "@phosphor-icons/react";
 import { Divider, Button, Modal, ModalBody, ModalContent, ModalFooter,ModalHeader, Link } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
@@ -36,10 +36,22 @@ export default function Cart() {
       return message;
   }, [products]);
 
-  const linkBuilder = () =>{
-    const number = '3364181788'; //Aquí va el número del receptor del mensaje de wp.
-    // console.log(`https://wa.me/${number}?text=${message}`)
-    return `https://wa.me/${number}?text=${message}`;
+  const linkBuilder = async() =>{
+
+    if(method==='Efectivo/Transferencia'){
+
+      const number = '3364181788'; //Aquí va el número del receptor del mensaje de wp.
+      // console.log(`https://wa.me/${number}?text=${message}`)
+      return `https://wa.me/${number}?text=${message}`;
+    }
+    else{
+      const key = await getOpenpayToken();
+      if(key){
+        console.log('Key desplegada con éxito. Revisar cookies')
+        const link = await sendCartToAPI();
+        if(link)return link;
+      }
+    } 
   }
 
     const checkRefreshToken = async() => {
@@ -58,9 +70,12 @@ export default function Cart() {
     }
 
     const refreshToken = async() => {
-      await refreshUserToken();
-      setIsModalOpen(false);
-      toast.success('Sesión actualizada! Puede continuar');
+      const refreshedToken = await refreshUserToken();
+      console.log(refreshedToken)
+      if(refreshedToken.token!==null){
+        setIsModalOpen(false);
+        toast.success('Sesión actualizada! Puede continuar');
+      }
     }
 
     const handleOPButton = () => {
@@ -116,6 +131,44 @@ export default function Cart() {
     const handleModalClose = () => {
       setIsModalOpen(false);
   };
+
+  const sendCartToAPI = async () => {
+    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+    
+    const items = cartItems.map((cartItem) => {
+      const productDetails = products.find(product => product.id === cartItem.id);
+  
+      return {
+        id: cartItem.id,
+        name: productDetails.name,
+        unitPrice: {currency: "032",amount: productDetails.price}, // Ya esperamos que venga en el formato adecuado
+        quantity: cartItem.cantidad
+      };
+    });
+  
+    const payload = {
+      data: {
+        attributes: {
+          currency: "032",
+          items
+        }
+      }
+    };
+  
+    try {
+      const response = await createPaymentIntent(payload);
+
+      if (response.ok) {
+        console.log('Payment link succesfully created!',response);
+        return response.url;
+      } else {
+        console.error('Error:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
 
     return (
         <section className="p-16 flex flex-col max-[500px]:items-center max-[500px]:text-center bg-[#264492]">
