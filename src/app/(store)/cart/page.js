@@ -8,6 +8,7 @@ import { Divider, Button, Modal, ModalBody, ModalContent, ModalFooter,ModalHeade
 import { useRouter } from "next/navigation";
 import { toast, ToastContainer, Slide } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { SyncLoader } from "react-spinners";
 
 const pop = Poppins({subsets:['latin'],weight:['700','400']});
 
@@ -20,7 +21,9 @@ export default function Cart() {
     const [needsLogin, setNeedsLogin] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [subtotal, setSubtotal] = useState(0);
-    const [method, setMethod]=useState('Efectivo/Transferencia');
+    const [loading, setLoading] = useState(false);
+    const [method, setMethod]=useState(true);
+    //Método booleano para optimizar el rendimiento de la aplicación: true == Efectivo/Transferencia, false == Crédito/Débito
 
     const router = useRouter();
 
@@ -37,8 +40,8 @@ export default function Cart() {
   }, [products]);
 
   const linkBuilder = async() =>{
-
-    if(method==='Efectivo/Transferencia'){
+    setLoading(true);
+    if(method===true){
 
       const number = '3364181788'; //Aquí va el número del receptor del mensaje de wp.
       return router.push(`https://wa.me/${number}?text=${message}`);
@@ -74,16 +77,17 @@ export default function Cart() {
       console.log(refreshedToken)
       if(refreshedToken.token!==null){
         setIsModalOpen(false);
+        window.location.reload();
         toast.success('Sesión actualizada! Puede continuar');
       }
     }
 
     const handleOPButton = () => {
-      setMethod('Crédito/Débito');
+      setMethod(false);
       toast.success('Método actualizado!')
     };
     const handleEFVOButton = () => {
-      setMethod('Efectivo/Transferencia');
+      setMethod(true);
       toast.success('Método actualizado!');
     };
 
@@ -229,7 +233,7 @@ export default function Cart() {
                             </div>
                         ) : 
                           <div className="text-black px-6 py-4">
-                            <h2 className="text-2xl font-bold mb-2">Usted pagará USD${subtotal} con {method}. Desea continuar?</h2>
+                            <h2 className="text-2xl font-bold mb-2">Usted pagará USD${subtotal} con {method? 'Efectivo/transferencia':'Crédito/débito'}. Desea continuar?</h2>
                             <p className="text-lg font-semibold">Se le redireccionará a la página de pago adecuada según el método elegido.</p>
                           </div>
                     }
@@ -247,8 +251,8 @@ export default function Cart() {
                             </>
                         ) : 
                             <>
-                              <Button as={Link} onClick={linkBuilder} className="bg-blue-600 text-white text-medium">Confirmar pago</Button>
-                              <Button onClick={handleModalClose} className="bg-red-600 text-white text-medium">Cancelar</Button>
+                              <Button as={Link} onClick={linkBuilder} className="bg-blue-600 text-white text-medium p-6">{loading? <SyncLoader color="#fff" size={15}/>:'Confirmar pago'}</Button>
+                              <Button onClick={handleModalClose} className="bg-red-600 text-white text-medium p-6">Cancelar</Button>
                             </>}
                     </ModalFooter>
                 </ModalContent>

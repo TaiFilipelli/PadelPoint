@@ -302,8 +302,8 @@ export const updateProductPriceOrSupplier = async (id, price, supplierId) => {
 //MÉTODOS PARA EL PAYTMENT CON OPENPAY
 export const getOpenpayToken = async () => {
     try{
-        const response = await fetch(`${baseUrl}/payment/token`);
-        const data = await verifyResponse(response);
+        const response = await fetch(`${baseUrl}/payment/token`,{credentials:'include'});
+        const data = await verifyResponse(response)
         return data;
     }catch(error){
         console.log(error)
