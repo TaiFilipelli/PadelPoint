@@ -41,15 +41,15 @@ export default function Cart() {
     if(method==='Efectivo/Transferencia'){
 
       const number = '3364181788'; //Aquí va el número del receptor del mensaje de wp.
-      // console.log(`https://wa.me/${number}?text=${message}`)
-      return `https://wa.me/${number}?text=${message}`;
+      return router.push(`https://wa.me/${number}?text=${message}`);
     }
     else{
       const key = await getOpenpayToken();
-      if(key){
-        console.log('Key desplegada con éxito. Revisar cookies')
+      if(key.status===true){
         const link = await sendCartToAPI();
-        if(link)return link;
+        if(link){
+          return router.push(link.url);
+        }
       }
     } 
   }
@@ -141,7 +141,7 @@ export default function Cart() {
       return {
         id: cartItem.id,
         name: productDetails.name,
-        unitPrice: {currency: "032",amount: productDetails.price}, // Ya esperamos que venga en el formato adecuado
+        unitPrice: {currency: "032",amount: productDetails.price * 100}, // Ya esperamos que venga en el formato adecuado
         quantity: cartItem.cantidad
       };
     });
@@ -158,11 +158,11 @@ export default function Cart() {
     try {
       const response = await createPaymentIntent(payload);
 
-      if (response.ok) {
-        console.log('Payment link succesfully created!',response);
-        return response.url;
+      if (response) {
+        console.log('Payment link succesfully created!');
+        return response;
       } else {
-        console.error('Error:', response.statusText);
+        console.error('Error:', response.message);
       }
     } catch (error) {
       console.error('Error:', error);
@@ -247,7 +247,7 @@ export default function Cart() {
                             </>
                         ) : 
                             <>
-                              <Button as={Link} href={linkBuilder()} className="bg-blue-600 text-white text-medium">Confirmar pago</Button>
+                              <Button as={Link} onClick={linkBuilder} className="bg-blue-600 text-white text-medium">Confirmar pago</Button>
                               <Button onClick={handleModalClose} className="bg-red-600 text-white text-medium">Cancelar</Button>
                             </>}
                     </ModalFooter>
