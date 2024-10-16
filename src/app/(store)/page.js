@@ -28,7 +28,7 @@ export default async function Home() {
       {/* <h1 className={`${pop.className} font-semibold text-7xl p-6`}>PadelPoint Oficial</h1> */}
       <ImageCarouselAndFeaturedProducts mainProducts={mainProducts}/>
       <Divider />
-      <section className="my-10 flex justify-center items-center flex-row gap-10 w-3/5 max-[510px]:w-4/5">
+      <section className="my-10 flex justify-center items-center flex-row gap-10 w-3/5 max-[510px]:w-4/5 animate-appear">
         <div className="w-1/3 flex flex-col text-center items-center">
           <Truck size={60} type="light" />
           <h1 className={`${pop.className} font-semibold text-2xl max-[500px]:mb-4`}>Envíos a todo el país</h1>
@@ -46,9 +46,9 @@ export default async function Home() {
         </div>
       </section>
       <Divider/>
-      <h1 className={`${pop.className} font-bold text-4xl max-[500px]:text-5xl m-6 max-[500px]:ml-2`}>Bienvenido a la tienda de padel más grande de San Nicolás</h1>
+      <h1 className={`${pop.className} font-bold text-4xl max-[500px]:text-5xl m-6 max-[500px]:ml-2 animate-appear`}>Bienvenido a la tienda de padel más grande de San Nicolás</h1>
       <section className="w-2/3 max-[900px]:w-full p-4">
-      <div className="flex flex-col text-left items-start p-1 w-2/3 max-[500px]:w-full mb-4">
+      <div className="flex flex-col text-left items-start p-1 w-2/3 max-[500px]:w-full mb-4 animate-appear">
         <h1 className={`${pop.className} font-semibold text-2xl max-[500px]:text-3xl mb-4 underline`}>Nuestro objetivo: todo el país</h1>
         <p className="font-normal text-xl mb-4">Unite a una familia en constante crecimiento, unida por una fuerte pasión por este increíble deporte.
           Empezamos siendo un humilde emprendimiento de venta de artículos de padel y aspiramos a llegar a los hogares de todos y cada uno de los 
@@ -56,7 +56,7 @@ export default async function Home() {
         </p>
         <Image src="/STOCKMAIN1.jpg" width={600} isBlurred/>
       </div>
-      <div className="flex flex-col text-right max-[500px]:text-left justify-end max-[500px]:justify-start items-end max-[500px]:items-start p-1 ml-80 max-[700px]:ml-60 max-[600px]:ml-40 max-[500px]:ml-0 mb-4">
+      <div className="flex flex-col text-right max-[500px]:text-left justify-end max-[500px]:justify-start items-end max-[500px]:items-start p-1 ml-80 max-[700px]:ml-60 max-[600px]:ml-40 max-[500px]:ml-0 mb-4 animate-appear">
         <h1 className={`${pop.className} font-bold text-2xl max-[500px]:text-3xl my-4 underline`}>Tu paleta de ensueño, a dos clicks de distancia</h1>
         <p className="font-normal text-xl mb-4">Encontrar tu equipamiento ideal nunca fue tan fácil! Ingresá con tu cuenta (o unite a la familia si
           es tu primera vez por acá) y descubrí nuestra amplia gama de productos para acompañarte tanto dentro de la cancha como fuera de ella. Además,
@@ -66,8 +66,8 @@ export default async function Home() {
       </div>
       </section>
       <Divider />
-      <h1 className={`${pop.className} text-3xl mt-5 font-bold`}>Contáctanos!</h1>
-      <div className="flex flex-row w-1/2 justify-around items-center my-10">
+      <h1 className={`${pop.className} text-3xl mt-5 font-bold animate-appear`}>Contáctanos!</h1>
+      <div className="flex flex-row w-1/2 justify-around items-center my-10 animate-appear">
         <Button as={Link} href="https://www.instagram.com/_padelpoint/" className="flex items-center p-5 rounded-lg bg-transparent hover:bg-gradient-to-tr from-[#FFDC80] to-[#E1306C] transition-all duration-300 ease-in-out" startContent={<InstagramLogo size={40} color="white"/>}>
           <p className="font-bold text-lg text-white">Instagram</p>
         </Button>
