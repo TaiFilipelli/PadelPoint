@@ -88,7 +88,7 @@ export default function RegisterPage() {
                         {errors.confirmPassword && <p className="text-red-500">{errors.confirmPassword.message}</p>}
                     </div>
                     {errors.apiError && <p className="text-red-500">{errors.apiError.message}</p>}
-                    <Button type="submit" className="w-full bg-red-500 text-white">
+                    <Button type="submit" className="w-full bg-red-500 text-white" aria-label="Botón de registro">
                         Registrarse
                     </Button>
                 </form>
