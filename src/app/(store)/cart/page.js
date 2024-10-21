@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { toast, ToastContainer, Slide } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { SyncLoader } from "react-spinners";
+import { set } from "react-hook-form";
 
 const pop = Poppins({subsets:['latin'],weight:['700','400']});
 
@@ -90,6 +91,9 @@ export default function Cart() {
       setMethod(true);
       toast.success('Método actualizado!');
     };
+    // const handleMPButton = () =>{
+    //   setMethod()
+    // }
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -135,6 +139,7 @@ export default function Cart() {
     const handleModalClose = () => {
       setIsModalOpen(false);
   };
+
 
   const sendCartToAPI = async () => {
     const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
@@ -210,6 +215,7 @@ export default function Cart() {
             <div className="flex flex-row max-[967px]:flex-col gap-4 w-auto max-[967px]:w-[40%] max-[579px]:w-[60%] max-[470px]:w-full mt-4 mb-8">
               <Button className="text-lg p-6 hover:bg-[#004481] hover:text-[#14C8BE] border-1 transition-colors ease-linear" onClick={handleOPButton}>Crédito o débito</Button>
               <Button onClick={handleEFVOButton} className="text-black hover:bg-green-600 hover:text-white border-1 transition-colors ease-linear text-lg p-6">Efectivo/transferencia</Button>
+              <Button className="text-lg p-6 border-1 hover:bg-white transition-colors ease-linear"><img src="/MP_PNGs/azul-horizontal.png" alt="Logo Mercado Pago" className="w-full h-14"/></Button>
             </div>
               <Button className="bg-red-600 w-1/4 max-[1000px]:w-1/2 max-[579px]:w-2/3 max-[450px]:w-full text-white font-semibold text-xl p-6 max-[470px]:text-lg" startContent={<LockKey weight="duotone" size={25}/>} onClick={handlePaymentButton}>Finalizar compra</Button>
               <p className="text-lg mt-4">Ante cualquier inconveniente, no dude en comunicarse directamente con nosotros! 😊</p>
