@@ -299,7 +299,7 @@ export const updateProductPriceOrSupplier = async (id, price, supplierId) => {
     return result;
 };
 
-//MÉTODOS PARA EL PAYTMENT CON OPENPAY
+//MÉTODOS PARA EL PAYTMENT CON OPENPAY Y MERCADO PAGO RESPECTIVAMENTE
 export const getOpenpayToken = async () => {
     try{
         const response = await fetch(`${baseUrl}/payment/token`,{credentials:'include'});
@@ -326,3 +326,20 @@ export const createPaymentIntent = async(data) => {
         console.log(error)
     }
 }
+
+// export const createMPPreference = async(data) => {
+//     try{
+//         const response = await fetch(`${baseUrl}/payment/mp/preference`,{
+//             method:'POST',
+//             headers:{
+//                 'Content-Type': 'application/json',
+//             },
+//             credentials: 'include',
+//             body: JSON.stringify(data)
+//         });
+//         const link = await verifyResponse(response);
+//         return link;
+//     }catch(error){
+//         console.log(error)
+//     }
+// }
