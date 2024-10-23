@@ -51,7 +51,7 @@ export default function MP_Page() {
             }
             console.log(link.status);
         }catch(error){
-            console.error("Error al crear la preferencia de pago:", error);
+            console.error("Fatal error creating Mercado Pago payment preference:", error);
         }
         
     }

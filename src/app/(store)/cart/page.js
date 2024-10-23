@@ -23,8 +23,8 @@ export default function Cart() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [subtotal, setSubtotal] = useState(0);
     const [loading, setLoading] = useState(false);
-    const [method, setMethod]=useState(true);
-    //Método booleano para optimizar el rendimiento de la aplicación: true == Efectivo/Transferencia, false == Crédito/Débito
+    const [method, setMethod]=useState(0);
+    //Método entero para optimizar el rendimiento de la aplicación: 0 == Efectivo/Transferencia, 1 == Crédito/Débito, 2 == MP
 
     const router = useRouter();
 
@@ -42,20 +42,22 @@ export default function Cart() {
 
   const linkBuilder = async() =>{
     setLoading(true);
-    if(method===true){
-
+    if(method===0){
       const number = '3364181788'; //Aquí va el número del receptor del mensaje de wp.
       return router.push(`https://wa.me/${number}?text=${message}`);
     }
-    else{
+    else if(method===1){
       const key = await getOpenpayToken();
       if(key.status===true){
         const link = await sendCartToAPI();
         if(link){
-          return router.push(link.url);
+          router.push(link.url);
         }
       }
-    } 
+    }
+    else{
+      router.push('/payment');
+    }
   }
 
     const checkRefreshToken = async() => {
@@ -84,15 +86,16 @@ export default function Cart() {
     }
 
     const handleOPButton = () => {
-      setMethod(false);
-      toast.success('Método actualizado!')
+      setMethod(1);
+      toast.success('Método actualizado (Créd/Deb)!')
     };
     const handleEFVOButton = () => {
-      setMethod(true);
-      toast.success('Método actualizado!');
+      setMethod(0);
+      toast.success('Método actualizado (Efvo/Trs)!');
     };
     const handleMP = () =>{
-      router.push('/payment');
+      setMethod(2);
+      toast.success('Método actualizado (MercadoPago)!')
     }
 
     useEffect(() => {
@@ -239,7 +242,7 @@ export default function Cart() {
                             </div>
                         ) : 
                           <div className="text-black px-6 py-4">
-                            <h2 className="text-2xl font-bold mb-2">Usted pagará USD${subtotal} con {method? 'Efectivo/transferencia':'Crédito/débito'}. Desea continuar?</h2>
+                            <h2 className="text-2xl font-bold mb-2">Usted pagará USD${subtotal} con {method==0? 'Efectivo/transferencia': method==1?'Crédito/débito':'Mercado Pago'}. Desea continuar?</h2>
                             <p className="text-lg font-semibold">Se le redireccionará a la página de pago adecuada según el método elegido.</p>
                           </div>
                     }
