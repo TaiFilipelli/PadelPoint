@@ -4,7 +4,7 @@ import { Divider, Button, Image } from "@nextui-org/react";
 // Componentes de nextui
 import Link from "next/link";
 // Link para navegar entre páginas
-import {getProducts, searchUserAuthenticated} from '../../data/data'
+import {getProducts} from '../../data/storeData'
 // Método para fetchear productos
 import { Truck, CreditCard, Racquet, InstagramLogo, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
 // Iconos de React especificos para SSR

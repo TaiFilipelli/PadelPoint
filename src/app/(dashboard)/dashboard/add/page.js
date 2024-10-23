@@ -1,5 +1,5 @@
 'use client';
-import { ButtonGroup, Button, Link } from "@nextui-org/react";
+import { Button, Link } from "@nextui-org/react";
 import { Montserrat } from "next/font/google";
 import { useState } from "react";
 import AddEntity from "../../../../components/AddEntity";

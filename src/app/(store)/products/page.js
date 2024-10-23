@@ -2,7 +2,7 @@
 import { Poppins } from "next/font/google";
 import ProductsCard from "../../../components/ProductsCard";
 import { useEffect, useState } from "react";
-import { getProducts} from "../../../data/data";
+import { getProducts} from "../../../data/storeData";
 import Filters from "../../../components/Filters";
 
 const pop = Poppins({subsets:["latin"], weight:'600'})

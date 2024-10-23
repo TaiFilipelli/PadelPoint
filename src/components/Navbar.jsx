@@ -8,7 +8,8 @@ import { Navbar,
   NavbarMenuItem, 
   Link, Button, Dropdown, DropdownItem, DropdownTrigger, DropdownMenu } from "@nextui-org/react";
 import { Poppins } from "next/font/google";
-import { getBrands, userLogout, checkUserState, searchUserAuthenticated } from "../data/data";
+import { userLogout, checkUserState, searchUserAuthenticated } from "../data/loginData";
+import { getBrands } from "../data/storeData";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { ShoppingCart, SignOut, SignIn, UserCircle, TerminalWindow } from "@phosphor-icons/react";

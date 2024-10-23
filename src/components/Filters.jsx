@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { Poppins } from 'next/font/google';
-import { getTypes } from '../data/data';
+import { getTypes } from '../data/storeData';
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button, Slider, Divider, Input } from '@nextui-org/react';
 
 const pop = Poppins({subsets:['latin'], weight:'500'})

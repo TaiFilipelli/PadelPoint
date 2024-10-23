@@ -2,7 +2,8 @@
 import { Poppins } from "next/font/google";
 import { useCartStore } from "../../../data/useCartStore";
 import { useState, useEffect, useMemo } from "react";
-import { getOneProductById, checkUserState, refreshUserToken, getOpenpayToken, createPaymentIntent } from "../../../data/data";
+import { checkUserState, refreshUserToken } from "../../../data/loginData";
+import { getOpenpayToken, createPaymentIntent, getOneProductById } from "../../../data/storeData";
 import { SmileySad, Trash, LockKey, Plus, Minus, ClockUser, UserSwitch } from "@phosphor-icons/react";
 import { Divider, Button, Modal, ModalBody, ModalContent, ModalFooter,ModalHeader, Link } from "@nextui-org/react";
 import { useRouter } from "next/navigation";

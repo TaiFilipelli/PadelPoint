@@ -3,7 +3,7 @@ import { Input, Button } from "@nextui-org/react";
 import { ArrowRight } from "@phosphor-icons/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { changePassword } from "../../../../../data/data";
+import { changePassword } from "../../../../../data/loginData";
 import { toast, ToastContainer, Slide } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 export default function NewPasswordPage() {
