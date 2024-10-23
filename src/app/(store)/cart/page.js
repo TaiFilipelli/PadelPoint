@@ -198,7 +198,7 @@ export default function Cart() {
                       <div className="ml-4 text-left">
                         <h2 className='text-lg font-semibold'>{product.name}</h2>
                         <p className='font-normal'>Marca: {product.brand.name}</p>
-                        <p className='font-normal'>Precio: US${product.price}</p>
+                        <p className='font-normal'>Precio: ARS${product.price}</p>
                         <div className="flex items-center gap-2 my-2">
                             <Button onClick={() => handleDecrease(product.id, product.cantidad)} className="bg-transparent text-black px-2"><Minus weight="regular" size={20}/></Button>
                             <p className="font-medium">{product.cantidad}</p>
@@ -213,7 +213,7 @@ export default function Cart() {
                 ))
             )}
             <Divider/>
-            <h3 className="text-3xl font-semibold mt-4">Subtotal: ${subtotal}USD </h3>
+            <h3 className="text-3xl font-semibold mt-4">Subtotal: ARS${subtotal} </h3>
             <h2 className="font-normal text-xl mt-4">Seleccione el método de pago a usar</h2>
             <div className="flex flex-row max-[967px]:flex-col gap-4 w-auto max-[967px]:w-[40%] max-[579px]:w-[60%] max-[470px]:w-full mt-4 mb-8">
               <Button className="text-lg p-6 hover:bg-[#004481] hover:text-[#14C8BE] border-1 transition-colors ease-linear" onClick={handleOPButton}>Crédito o débito</Button>
@@ -242,7 +242,7 @@ export default function Cart() {
                             </div>
                         ) : 
                           <div className="text-black px-6 py-4">
-                            <h2 className="text-2xl font-bold mb-2">Usted pagará USD${subtotal} con {method==0? 'Efectivo/transferencia': method==1?'Crédito/débito':'Mercado Pago'}. Desea continuar?</h2>
+                            <h2 className="text-2xl font-bold mb-2">Usted pagará ARS${subtotal} con {method==0? 'Efectivo/transferencia': method==1?'Crédito/débito':'Mercado Pago'}. Desea continuar?</h2>
                             <p className="text-lg font-semibold">Se le redireccionará a la página de pago adecuada según el método elegido.</p>
                           </div>
                     }
