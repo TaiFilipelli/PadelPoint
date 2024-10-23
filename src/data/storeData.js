@@ -66,19 +66,18 @@ export const createPaymentIntent = async(data) => {
     }
 }
 
-// export const createMPPreference = async(data) => {
-//     try{
-//         const response = await fetch(`${baseUrl}/payment/mp/preference`,{
-//             method:'POST',
-//             headers:{
-//                 'Content-Type': 'application/json',
-//             },
-//             credentials: 'include',
-//             body: JSON.stringify(data)
-//         });
-//         const link = await verifyResponse(response);
-//         return link;
-//     }catch(error){
-//         console.log(error)
-//     }
-// }
+export const createMPPreference = async(items) => {
+    const data = await fetch(`${baseUrl}/payment/mp/preference`,{
+        method:'POST',
+        credentials:'include',
+        headers:{
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({items})
+    })
+    .then(response => response.json())
+    .then(data=>data)
+    .catch(error=>console.log(error));
+    console.log(data);
+    return data;
+}
