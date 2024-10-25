@@ -57,9 +57,10 @@ export default function MP_Page() {
     }
 
     return (
-        <section className="h-[60vh] flex flex-col items-center p-16 px-auto">
-            <h1 className="my-4 text-black font-bold">Mercado Pago Payment</h1>
-            <Button onClick={handlePreference}>Pagar con MP</Button>
+        <section className="h-[60vh] flex flex-col items-center justify-center p-16 px-auto bg-[#264492]">
+            <h1 className="my-4 font-bold text-4xl">Finalizar pago con MercadoPago </h1>
+            <h3 className="text-xl font-medium mb-4">Haga click en el botón a continuación para redirigirlo a su billetera de pago</h3>
+            <Button className="p-6 text-lg font-semibold mt-6 transition-all hover:scale-105 duration-700" onClick={handlePreference}>Pagar con MP</Button>
         </section>
     );
 }
