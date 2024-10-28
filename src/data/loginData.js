@@ -128,3 +128,9 @@ export const changePassword = async(newPassword) => {
     console.log(response);
     return response;
 }
+
+export const getAllIdTypes = async()=>{
+    const response = await fetch(`${baseUrl}/id-type`);
+    const data = await verifyResponse(response);
+    return data;
+}
