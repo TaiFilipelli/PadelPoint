@@ -11,7 +11,7 @@ export const registerSchema = z.object({
     .trim()
     .min(8, "La contraseña debe tener, al menos, 8 caracteres"),
   confirmPassword: z.string().trim(),
-  idNumber: z.string().trim(),
+  idNumber:z.string().trim().min(1, "Se necesita un número de ID"),
   addressStreet: z.string().trim(),
   addressNumber: z.string().trim(),
 })

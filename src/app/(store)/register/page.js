@@ -25,7 +25,6 @@ export default function RegisterPage() {
 
     const getTypes = async() =>{
         const types = await getAllIdTypes();
-        console.log('types of ids', types);
         setTypes(types);
     }
 
@@ -43,6 +42,7 @@ export default function RegisterPage() {
         }
 
         credentials.idType = selectedType.id;
+        credentials.idNumber = parseInt(credentials.idNumber);
 
         console.log('Credentials', credentials);
 
@@ -127,7 +127,7 @@ export default function RegisterPage() {
                     </Dropdown>
                     <div>
                         <Input
-                            type="text"
+                            type="number"
                             label="Número de ID"
                             {...register("idNumber")}
                             className="w-full"

@@ -12,7 +12,7 @@ export const createOneUser = async(credenciales)=>{
         },
         body: JSON.stringify(credenciales)
     });
-    const result = await verifyResponse(response);
+    const result = await response.json();
     return result;
 }
 
