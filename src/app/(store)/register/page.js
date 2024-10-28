@@ -69,21 +69,21 @@ export default function RegisterPage() {
                 <h1 className={`${pop.className} text-3xl mb-4`}>Únete a la familia PadelPoint hoy</h1>
                 <hr className="border-black"/>
                 <form onSubmit={handleSubmit(onSubmit)} className="mt-2">
-                    <section className="flex flex-row gap-4 mb-4">
-                        <article className="w-1/2 flex flex-col gap-4">
-                        <header className="flex flex-row items-center gap-4">
-                            <IdentificationCard size={60} weight="regular"/>
-                            <h1 className={`${pop.className} font-bold text-2xl`}>Datos Personales</h1>
-                        </header>
-                    <div>
-                        <Input 
-                            type="text"
-                            label="Nombre"
-                            {...register("name")}
-                            className="w-full"
-                        />
-                        {errors.name && <p className="text-red-500">{errors.name.message}</p>}
-                    </div>
+                    <section className="flex flex-row max-[740px]:flex-col gap-4 mb-4">
+                        <article className="w-1/2 max-[740px]:w-full flex flex-col gap-4">
+                            <header className="flex flex-row items-center gap-4">
+                                <IdentificationCard size={60} weight="regular"/>
+                                <h1 className={`${pop.className} font-bold text-2xl`}>Datos Personales</h1>
+                            </header>
+                            <div>
+                                <Input 
+                                    type="text"
+                                    label="Nombre"
+                                    {...register("name")}
+                                    className="w-full"
+                                />
+                                {errors.name && <p className="text-red-500">{errors.name.message}</p>}
+                            </div>
                     <div>
                         <Input
                             type="text"
@@ -113,13 +113,13 @@ export default function RegisterPage() {
                     </div>
                     <Dropdown>
                         <DropdownTrigger className="w-full bg-red-500 text-white text-lg">
-                            <Button className="w-full bg-red-500 text-white text-lg" aria-label="Botón de registro">
-                                { selectedType ? selectedType.name : 'Seleccione el tipo de documento'}
+                            <Button className="w-full bg-red-500 text-white text-lg max-[500px]:text-sm" aria-label="Botón de registro">
+                                { selectedType ? selectedType.name : 'Seleccione tipo de documento'}
                             </Button>
                         </DropdownTrigger>
                         <DropdownMenu>
                             {types.map((type) => (
-                                <DropdownItem key={type.id} className="w-full bg-red-500 text-white text-lg" onClick={() => setSelectedType(type)}>
+                                <DropdownItem key={type.id} className="w-full bg-white text-black text-lg" onClick={() => setSelectedType(type)}>
                                     {type.name}
                                 </DropdownItem>
                             ))}
@@ -145,7 +145,7 @@ export default function RegisterPage() {
                     </div>
 
                     </article>
-                    <article className="w-1/2 flex flex-col gap-4">
+                    <article className="w-1/2 max-[740px]:w-full flex flex-col gap-4">
                     <header className="flex flex-row items-center gap-4">
                         <UserCircle size={60} weight="regular"/>
                         <h1 className={`${pop.className} font-bold text-2xl`}>Datos de cuenta</h1>

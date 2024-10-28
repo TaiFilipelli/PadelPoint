@@ -51,7 +51,7 @@ export const Filters = () => {
       <h3 className='text-bold text-2xl ml-2'>Filtrar por:</h3>
       <Dropdown>
             <DropdownTrigger>
-                <Button className="ml-4 p-6 text-xl bg-default-200 w-1/5 max-[880px]:w-1/3 max-[400px]:w-2/3" variant="light" radius="sm">Tipos</Button>
+                <Button className="ml-4 p-6 text-xl bg-default-200 w-1/5 max-[880px]:w-1/3 max-[400px]:w-2/3" variant="light" radius="sm"> {selectedType? selectedType : 'Tipos'}</Button> 
             </DropdownTrigger>
             <DropdownMenu className="p-0 w-full" itemClasses={{ base: "gap-4" }}>
                 {types.map(type => (
@@ -64,8 +64,8 @@ export const Filters = () => {
             <DropdownTrigger>
                 <Button className="ml-4 p-6 text-xl bg-default-200 w-1/5 max-[880px]:w-1/3 max-[400px]:w-2/3" variant="light" radius="sm">Precios</Button>
             </DropdownTrigger>
-            <DropdownMenu className="p-2 rounded-lg">
-               <DropdownItem className='text-black'>
+            <DropdownMenu className="p-2 rounded-lg" >
+               <DropdownItem className='text-black' isReadOnly>
                 <Slider 
                     label="USD$"
                     color='foreground'
