@@ -70,7 +70,7 @@ export default function Login() {
                     <fieldset className="mt-6 mb-2">
                         <Input 
                             type="text" 
-                            label="Nombre de usuario" 
+                            label="Nombre de usuario o email" 
                             className="w-[60%] max-[1500px]:w-full shadow-lg" 
                             labelPlacement="outside"
                             name="username"
