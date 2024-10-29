@@ -32,19 +32,17 @@ export const updateOneUser = async(id, username)=>{
 }
 
 export const userLogin = async(credenciales)=>{
-    console.log('Entraron las creds',credenciales);
+    console.log('entraron las creds:',JSON.stringify(credenciales))
     const response = await fetch(`${baseUrl}/auth/login/local`,{
         method:'POST',
         headers:{
             'Content-Type':'application/json'
         },
-        body: JSON.stringify(credenciales),
+        body: JSON.stringify({credenciales}),
         credentials:'include'
     });
-    const result = await response.json();
-    if(response.ok){
-        console.log('login succesfull', result)
-    }
+    console.log(response)
+    const result = await verifyResponse(response);
     return result;
 }
 

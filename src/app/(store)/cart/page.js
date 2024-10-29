@@ -77,7 +77,6 @@ export default function Cart() {
 
     const refreshToken = async() => {
       const refreshedToken = await refreshUserToken();
-      console.log(refreshedToken)
       if(refreshedToken.token!==null){
         setIsModalOpen(false);
         window.location.reload();
@@ -182,6 +181,8 @@ export default function Cart() {
   };
 
 
+
+
     return (
         <section className="p-16 flex flex-col max-[500px]:items-center max-[500px]:text-center bg-[#264492]">
             <h1 className={`${pop.className} text-5xl font-bold mb-4`}>Carrito</h1>
@@ -212,6 +213,12 @@ export default function Cart() {
                   </section>
                 ))
             )}
+            <Divider/>
+            <section className="flex flex-col gap-4 w-auto max-[967px]:w-[40%] max-[579px]:w-[60%] max-[470px]:w-full mt-4 mb-8">
+              <h3 className="font-bold text-3xl">Dirección de envío</h3>
+              <p className="text-xl text-wrap">Seleccione su dirección de envío. En caso no se encuentre la dirección deseada, añada una nueva.</p>
+              
+            </section>
             <Divider/>
             <h3 className="text-3xl font-semibold mt-4">Subtotal: ARS${subtotal} </h3>
             <h2 className="font-normal text-xl mt-4">Seleccione el método de pago a usar</h2>

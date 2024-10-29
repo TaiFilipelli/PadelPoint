@@ -16,7 +16,7 @@ const pop = Poppins({ subsets: ['latin'], weight: '500' });
 export default function Login() {
     const [isVisible, setIsVisible] = useState(false);
     const [formData, setFormData] = useState({
-        username: '',
+        usernameOrEmail: '',
         password: '',
     });
     const [errors, setErrors] = useState({});
@@ -73,12 +73,12 @@ export default function Login() {
                             label="Nombre de usuario o email" 
                             className="w-[60%] max-[1500px]:w-full shadow-lg" 
                             labelPlacement="outside"
-                            name="username"
+                            name="usernameOrEmail"
                             required
-                            value={formData.username}
+                            value={formData.usernameOrEmail}
                             onChange={handleChange}
                         />
-                        {errors.username && <p className="text-red-500">{errors.username}</p>}
+                        {errors.usernameOrEmail && <p className="text-red-500">{errors.usernameOrEmail}</p>}
                     </fieldset>
                     <fieldset className="mt-4 mb-8">
                         <Input 
