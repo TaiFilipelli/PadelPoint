@@ -81,3 +81,9 @@ export const createMPPreference = async(items) => {
     console.log(data);
     return data;
 }
+
+export const searchAddressById = async(id) =>{
+    const data = await fetch(`${baseUrl}/address/${id}`);
+    const result = await verifyResponse(data);
+    return result;
+}
