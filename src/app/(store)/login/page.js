@@ -64,7 +64,7 @@ export default function Login() {
 
     return (
         <main className="flex justify-center items-center p-20 max-[700px]:px-10 bg-[#264492]">
-            <section className="flex flex-col justify-center items-center p-8 rounded-lg bg-white text-black w-[45%] max-[900px]:w-[90%] max-[390px]:w-full">
+            <section className="flex flex-col justify-center items-center p-8 rounded-lg bg-white text-black w-[45%] max-[1150px]:w-[90%] max-[390px]:w-full">
                 <h1 className={`${pop.className} text-4xl`}>Bienvenido de vuelta!</h1>
                 <form className="w-full" onSubmit={handleSubmit}>
                     <fieldset className="mt-6 mb-2">
@@ -107,15 +107,15 @@ export default function Login() {
                         />
                         {errors.password && <p className="text-red-500">{errors.password}</p>}
                     </fieldset>
-                    <div className="flex flex-row justify-start gap-4 items-center">
+                    <div className="flex flex-row max-[570px]:flex-col justify-start gap-4 items-center max-[570px]:items-start">
                         <Button radius="medium" variant='flat' className="bg-red-500 text-white font-semibold shadow-lg" aria-label="Botón de iniciar sesión" endContent={<SignIn size={25}/>} type='submit'>
                         Iniciar sesión
                         </Button>
                         <Button radius="medium" variant='flat' className='bg-gray-50 text-black font-semibold shadow-lg' aria-label="Botón de inicio de sesión con Google" onClick={handleGoogleLogin} endContent={<GoogleLogo size={25} className="object-contain"/>}>
-                            Iniciar sesión con Google
+                            Ingresar con Google
                         </Button>
                     </div>
-                    <div className="mt-4 text-left flex flex-row justify-between">
+                    <div className="mt-4 gap-2 text-left flex flex-row justify-between">
                         <Link href='/register' className="hover:underline hover:text-blue-600 transition-all">
                             No tienes cuenta? Registrate ahora!
                         </Link>

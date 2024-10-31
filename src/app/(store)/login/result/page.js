@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from "react";
-import { Input, Button, CircularProgress } from "@nextui-org/react";
+import { Input, Button } from "@nextui-org/react";
+import { PuffLoader } from "react-spinners";
 import Link from "next/link";
 import { searchUserAuthenticated, updateOneUser} from "../../../../data/loginData";
 import { toast, ToastContainer, Slide } from "react-toastify";
@@ -59,7 +60,7 @@ export default function ResultLogin() {
     return (
         <section className="flex items-center justify-center text-center h-[60vh] p-20 flex-col bg-[#264492]">
            {isLoading ? (
-                <CircularProgress size="lg"/>
+                <PuffLoader color="#fff" size={100}/>
             ) : (
                 isNewUser ? (
                     <>
