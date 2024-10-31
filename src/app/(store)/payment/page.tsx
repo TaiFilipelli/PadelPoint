@@ -4,7 +4,8 @@ import {createMPPreference, getOneProductById} from "../../../data/storeData";
 import { checkUserState } from "../../../data/loginData";
 import {useCartStore} from "../../../data/useCartStore";
 import { useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
+import { PuffLoader } from "react-spinners";
 
 export default function MP_Page() {
     
@@ -81,10 +82,12 @@ export default function MP_Page() {
     }
 
     return (
-        <section className="h-[60vh] flex flex-col items-center justify-center p-16 px-auto bg-[#264492]">
-            <h1 className="my-4 font-bold text-4xl">Finalizar pago con MercadoPago </h1>
-            <h3 className="text-xl font-medium mb-4">Haga click en el botón a continuación para redirigirlo a su billetera de pago</h3>
-            <Button className="p-6 text-lg font-semibold mt-6 transition-all hover:scale-105 duration-700" onClick={handlePreference}>Pagar con MP</Button>
-        </section>
+        <Suspense fallback={<PuffLoader size={100} color="#fff"/>}>
+            <section className="h-[60vh] flex flex-col items-center justify-center p-16 px-auto bg-[#264492]">
+                <h1 className="my-4 font-bold text-4xl">Finalizar pago con MercadoPago </h1>
+                <h3 className="text-xl font-medium mb-4">Haga click en el botón a continuación para redirigirlo a su billetera de pago</h3>
+                <Button className="p-6 text-lg font-semibold mt-6 transition-all hover:scale-105 duration-700" onClick={handlePreference}>Pagar con MP</Button>
+            </section>
+        </Suspense>
     );
 }

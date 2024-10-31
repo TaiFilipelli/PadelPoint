@@ -1,6 +1,7 @@
-'use client'
+'use client';
 import { CheckFat, Clock, Warning } from "@phosphor-icons/react";
 import { useSearchParams } from 'next/navigation';
+import { Suspense } from "react";
 import { PuffLoader } from "react-spinners";
 import Link from "next/link";
 import { useState, useEffect } from "react";
@@ -76,23 +77,25 @@ export default function ResultPaymentPage() {
     }
 
     useEffect(() => {
-        if(paymentId){
+        if(paymentId!==null){
             setIsLoading(false);
             setStatus(paymentStatus);
         }else{
             setTimeout(() => {
-                setStatus(paymentStatus);
+                setStatus('failure');
             }, 1000);
         }
     }, []);
 
     return (
-        <section className="h-[60dvh] flex flex-col items-center justify-center p-16 px-auto bg-[#264492]">
-            {isLoading ? (
-                <PuffLoader size={100} color="#fff"/>
-            ) : (
-                content
-            )}
-        </section>
+        <Suspense fallback={<PuffLoader size={100} color="#fff"/>}>
+            <section className="h-[60dvh] flex flex-col items-center justify-center p-16 px-auto bg-[#264492]">
+                {isLoading ? (
+                    <PuffLoader size={100} color="#fff"/>
+                ) : (
+                    content
+                )}
+            </section>
+        </Suspense>
     );
 }
