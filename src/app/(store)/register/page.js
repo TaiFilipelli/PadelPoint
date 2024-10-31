@@ -33,13 +33,21 @@ export default function RegisterPage() {
     },[])
 
     const onSubmit = async (data) => {
-        const { confirmPassword, ...credentials } = data;
+        const { confirmPassword,addressStreet, addressNumber, postalCode, ...credentials } = data;
 
         if (!selectedType) {
             console.error('El tipo de identificación no ha sido seleccionado');
             toast.error("Debe seleccionar un tipo de documento.");
             return;
         }
+
+        credentials.address = [
+            {
+                addressStreet: data.addressStreet,
+                addressNumber: data.addressNumber,
+                postalCode: data.postalCode
+            }
+        ]
 
         credentials.idType = selectedType.id;
         credentials.idNumber = parseInt(credentials.idNumber);
@@ -48,11 +56,16 @@ export default function RegisterPage() {
 
         try {
             const result = await createOneUser(credentials);
-            toast.success("Usuario creado exitosamente!")
-            console.log('Usuario creado! Revisar DB', result);
-            setTimeout(() => {
-                router.push('/');
-            }, 2500);
+            if(result.statusCode !== 404){
+                toast.success("Usuario creado exitosamente!")
+                console.log('Usuario creado! Revisar DB', result);
+                setTimeout(() => {
+                    router.push('/');
+                }, 2500);
+            }else{
+                toast.error('ERROR')
+                console.error(result);
+            }
         } catch (error) {
             console.error('ERROR ACÁ PA:', error);
             toast.error("Error al crear el usuario.")
