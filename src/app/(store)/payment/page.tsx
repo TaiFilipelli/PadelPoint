@@ -1,11 +1,31 @@
 'use client';
 import { Button } from "@nextui-org/react";
 import {createMPPreference, getOneProductById} from "../../../data/storeData";
+import { checkUserState } from "../../../data/loginData";
 import {useCartStore} from "../../../data/useCartStore";
+import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 
 export default function MP_Page() {
     
     const cart = useCartStore((state) => state.cart) as Array<{id:string, cantidad:number}>;
+    const searchParams = useSearchParams();
+    const addressId = parseInt(searchParams.get('addressId'));
+    console.log(addressId);
+    useEffect(() => {
+        const fetchUser = async () => {
+            const userState = await checkUserState();
+            console.log(userState);
+            if (userState.isLogged) {
+                const userId = userState.payload.id;
+                sessionStorage.setItem('userId', userId);
+                console.log(userId);
+            }
+        };
+        
+        fetchUser();
+    }, []);
+    
     interface Item {
         id:          string;
         title:       string;
@@ -45,9 +65,13 @@ export default function MP_Page() {
                 }
             }));
             console.log(items)
-            const link = await createMPPreference(items);
-            if(link){
+            const userId = parseInt(sessionStorage.getItem('userId'));
+            const body = {addressId:addressId, userId:userId, items};
+            const link = await createMPPreference(body);
+            if(link!=undefined){
                 window.location.href = link.url;
+            }else{
+                console.log(link);
             }
             console.log(link.status);
         }catch(error){

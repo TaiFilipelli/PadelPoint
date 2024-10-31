@@ -73,7 +73,7 @@ export const createMPPreference = async(info) => {
         headers:{
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({info})
+        body: JSON.stringify(info)
     })
     .then(response => response.json())
     .then(data=>data)

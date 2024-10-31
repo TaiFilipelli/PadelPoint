@@ -58,7 +58,7 @@ export default function Cart() {
       }
     }
     else{
-      router.push('/payment');
+      router.push('/payment?addressId='+selectedAddress);
     }
   }
 
