@@ -66,14 +66,14 @@ export const createPaymentIntent = async(data) => {
     }
 }
 
-export const createMPPreference = async(items) => {
+export const createMPPreference = async(info) => {
     const data = await fetch(`${baseUrl}/payment/mp/preference`,{
         method:'POST',
         credentials:'include',
         headers:{
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({items})
+        body: JSON.stringify({info})
     })
     .then(response => response.json())
     .then(data=>data)
@@ -82,8 +82,8 @@ export const createMPPreference = async(items) => {
     return data;
 }
 
-export const searchAddressById = async(id) =>{
-    const data = await fetch(`${baseUrl}/address/${id}`);
+export const searchAllAddresses = async() =>{ 
+    const data = await fetch(`${baseUrl}/address`);
     const result = await verifyResponse(data);
     return result;
 }

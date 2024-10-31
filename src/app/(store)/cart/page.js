@@ -3,15 +3,15 @@ import { Poppins } from "next/font/google";
 import { useCartStore } from "../../../data/useCartStore";
 import { useState, useEffect, useMemo } from "react";
 import { checkUserState, refreshUserToken } from "../../../data/loginData";
-import { getOpenpayToken, createPaymentIntent, getOneProductById, searchAddressById } from "../../../data/storeData";
+import { getOpenpayToken, createPaymentIntent, getOneProductById, searchAllAddresses } from "../../../data/storeData";
 import { SmileySad, Trash, LockKey, Plus, Minus, ClockUser, UserSwitch } from "@phosphor-icons/react";
-import { Divider, Button, Modal, ModalBody, ModalContent, ModalFooter,ModalHeader, Link, Accordion, AccordionItem } from "@nextui-org/react";
+import { Divider, Button, Modal, ModalBody, ModalContent, ModalFooter,ModalHeader, Link } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import { toast, ToastContainer, Slide } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { PuffLoader } from "react-spinners";
 
-const pop = Poppins({subsets:['latin'],weight:['700','400']});
+const pop = Poppins({subsets:['latin'],weight:['700','600','400']});
 
 export default function Cart() {
     const cart = useCartStore((state) => state.cart);
@@ -19,6 +19,7 @@ export default function Cart() {
     const updateCartItem = useCartStore((state) => state.updateCartItem);
     const [products, setProducts] = useState([]);
     const [address, setAddress] = useState([]);
+    const [selectedAddress, setSelectedAddress] = useState(null);
     const [needsRefresh, setNeedsRefresh] = useState(false);
     const [needsLogin, setNeedsLogin] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -112,10 +113,12 @@ export default function Cart() {
           }
         };
         const fetchAddress = async () =>{
-          const address = await searchAddressById(1);
-          setAddress(address);
+          const address = await searchAllAddresses();
           console.log(address);
+          if(address){
+          setAddress(address);
           setLoading(false)
+        }
         }
         fetchProducts();
         fetchAddress();
@@ -228,22 +231,22 @@ export default function Cart() {
               ))
           )}
           <Divider/>
-          <section className="flex flex-col gap-4 w-auto max-[967px]:w-[40%] max-[579px]:w-[60%] max-[470px]:w-full mt-4 mb-8">
+          <section className="flex flex-col gap-4 w-auto max-[470px]:w-full mt-4 mb-8">
             <h3 className="font-bold text-3xl">Dirección de envío</h3>
             <p className="text-xl text-wrap">Seleccione su dirección de envío. En caso no se encuentre la dirección deseada, añada una nueva.</p>
             { loading ? (
                 <p className="text-xl text-center">Cargando direcciones...</p>
               ) : (
-                address.length > 0 ? (
-                  <Accordion variant="bordered" className="flex flex-col gap-4 items-center">
+                address ? (
+                  <section className="flex flex-col max-[500px]:text-center gap-4 mt-4">
                     {address.map(address => (
-                      <AccordionItem className="font-semibold">
-                        <h3>{address.addressStreet} {address.addressNumber}</h3>
-                        <p>{address.postalCode}</p>
-                        <Button className="bg-red-500 text-white px-2">Seleccionar</Button>
-                      </AccordionItem>
+                      <article key={address.id} className={`${pop.className} rounded-3xl p-5 border-1 border-white bg-default-100 text-white ${selectedAddress === address.id ? 'bg-green-500':'bg-transparent'} w-1/3 max-[750px]:w-2/3 max-[500px]:w-full transition-colors duration-700`}>	
+                        <h3 className="font-semibold text-2xl">{address.addressStreet} {address.addressNumber}</h3>
+                        <p className="font-normal text-lg mb-4">C.P. {address.postalCode}</p>
+                        <Button className={`bg-red-500 text-white font-light px-2 ${selectedAddress === address.id ? 'bg-green-900' : ''}`} onClick={() => setSelectedAddress(address.id)}>{selectedAddress === address.id ? 'Seleccionado' : 'Seleccionar'}</Button>
+                      </article>
                   ))}
-                </Accordion>
+                  </section>
               ) : (
               <p className="text-xl text-center">No hay direcciones registradas. Añada una nueva.</p>
             ))
