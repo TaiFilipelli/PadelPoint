@@ -4,7 +4,7 @@ import { useCartStore } from "../../../data/useCartStore";
 import { useState, useEffect, useMemo } from "react";
 import { checkUserState, refreshUserToken } from "../../../data/loginData";
 import { getOpenpayToken, createPaymentIntent, getOneProductById, searchAllAddresses } from "../../../data/storeData";
-import { SmileySad, Trash, LockKey, Plus, Minus, ClockUser, UserSwitch } from "@phosphor-icons/react";
+import { SmileySad, Trash, LockKey, Plus, Minus, ClockUser, UserSwitch,MapPin } from "@phosphor-icons/react";
 import { Divider, Button, Modal, ModalBody, ModalContent, ModalFooter,ModalHeader, Link } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import { toast, ToastContainer, Slide } from "react-toastify";
@@ -246,6 +246,7 @@ export default function Cart() {
                         <Button className={`bg-red-500 text-white font-light px-2 ${selectedAddress === address.id ? 'bg-green-900' : ''}`} onClick={() => setSelectedAddress(address.id)}>{selectedAddress === address.id ? 'Seleccionado' : 'Seleccionar'}</Button>
                       </article>
                   ))}
+                  <Button as={Link} href={"/profile/new_address"} className={`bg-blue-600 text-white p-6 w-1/3 ${pop.className} text-lg rounded-3xl`} endContent={<MapPin size={40} weight="light"/>} >Añadir dirección</Button>
                   </section>
               ) : (
               <p className="text-xl text-center">No hay direcciones registradas. Añada una nueva.</p>

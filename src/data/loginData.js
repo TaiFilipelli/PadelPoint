@@ -136,3 +136,24 @@ export const getAllIdTypes = async()=>{
     const data = await verifyResponse(response);
     return data;
 }
+
+export const createAddress = async(address) =>{
+    const response = await fetch(`${baseUrl}/address`,{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify(address),
+        credentials:'include'
+    })
+    const data = await verifyResponse(response);
+    return data;
+}
+
+export const deleteAddress = async(id) =>{
+    const response = await fetch(`${baseUrl}/address/${id}`,{
+        method:'DELETE',
+        headers:{'Content-Type':'application/json'},
+        credentials:'include'
+    })
+    const data = await verifyResponse(response);
+    return data;
+}
