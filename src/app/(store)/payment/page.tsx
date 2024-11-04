@@ -70,6 +70,7 @@ export default function MP_Page() {
             const link = await createMPPreference(body);
             if(link!=undefined){
                 window.location.href = link.url;
+                console.log(link)
             }else{
                 console.log(link);
             }

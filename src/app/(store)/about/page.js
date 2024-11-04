@@ -1,6 +1,6 @@
 'use client';
 import { Poppins } from "next/font/google";
-import { Accordion, AccordionItem } from "@nextui-org/react";
+import { Accordion, AccordionItem, Image } from "@nextui-org/react";
 import { CaretRight } from "@phosphor-icons/react";
 
 const pop = Poppins({subsets:['latin'], weight:'500'})
@@ -17,6 +17,7 @@ export default function About() {
     return (
         <section className={`flex flex-col justify-center text-left items-center p-16 max-[390px]:px-8 ${pop.className} bg-[#264492]`}>
             <h1 className="font-bold text-5xl">Esto es PadelPoint</h1>
+            {/* <Image src="/PadelPoint_IMGS/stock3.jpg"/> */}
             <h3 className="mt-5 text-xl mb-5">
                 ¡Hola! Soy Ignacio Merlo, fundador de PadelPoint, y estoy encantado de darte la bienvenida a 
                 nuestra tienda. Tengo 23 años, soy jugador y profesor de pádel, y tengo una verdadera pasión por este deporte. Inicié PadelPoint hace 
