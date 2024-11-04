@@ -62,7 +62,7 @@ export default async function Home() {
           es tu primera vez por acá) y descubrí nuestra amplia gama de productos para acompañarte tanto dentro de la cancha como fuera de ella. Además,
           siempre tenemos ofertas, sorteos, rifas y mucho más!
         </p>
-        <Image src="/PadelPoint_IMGS/paletas3.jpg" width={600} isBlurred alt="Imagen de paletas de PadelPoint"/>
+        <Image src="/Padelpoint_IMGS/paletas3.jpg" width={600} isBlurred alt="Imagen de paletas de PadelPoint"/>
       </div>
       </section>
       <Divider />
