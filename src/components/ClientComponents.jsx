@@ -11,7 +11,7 @@ export default function ImageCaruoselAndFeaturedProducts({mainProducts}) {
     <>
        <MyCarousel />
        <h2 className={`${pop.className} font-bold text-4xl mt-5 animate-appear`}>Productos destacados:</h2>
-      <div className="flex flex-row max-[940px]:flex-wrap justify-center gap-2 w-3/4 mt-10 mb-14 max-w-[1440px]:w-full animate-appear">
+      <div className="flex flex-row max-[940px]:flex-wrap justify-center gap-2 w-3/4 mt-10 max-[555px]:mt-4 mb-14 animate-appear">
         {mainProducts.length === 0 ? (
           Array.from({ length: 4 }).map((_, index) => (
             <ProductsCard key={index} isLoading={true} />

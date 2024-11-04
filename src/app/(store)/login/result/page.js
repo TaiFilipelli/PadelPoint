@@ -58,19 +58,19 @@ export default function ResultLogin() {
     },[]);
 
     return (
-        <section className="flex items-center justify-center text-center h-[60vh] p-20 flex-col bg-[#264492]">
+        <section className="flex items-center justify-center text-center h-[60vh] max-[500px]:h-auto max-[500px]:p-10 p-20 flex-col bg-[#264492]">
            {isLoading ? (
                 <PuffLoader color="#fff" size={100}/>
             ) : (
                 isNewUser ? (
                     <>
-                        <section className="flex flex-col w-1/2 p-20 mt-10 rounded-lg text-left text-black bg-white">
+                        <section className="flex flex-col w-1/2 max-[1000px]:w-3/4 max-[560px]:w-full p-16 max-[1000px]:p-6 mt-10 rounded-lg text-left text-black bg-white">
                             <h1 className="font-bold text-3xl mb-2">Una última cosa...</h1>
-                            <h2 className="font-semibold text-xl mb-2">Bievenido a la familia PadelPoint! Como es su primera vez aquí, nos gustaría que ingrese un nombre de usuario por única vez
-                                para reconocerlo futuras veces!
+                            <h2 className="font-semibold text-xl max-[560px]:text-lg mb-6">Bievenido a la familia PadelPoint! Como es su primera vez aquí, nos gustaría que ingrese un nombre de usuario por única vez
+                                para reconocerlo futuras veces.
                             </h2>
-                            <Input type="text" labelPlacement="outside" label='Nombre de usuario nuevo' className="mb-2" value={newUsername} onChange={(e) => setNewUsername(e.target.value)} />
-                            <Button className="bg-blue-500 rounded-lg p-4 w-1/4 text-white font-semibold text-xl" onClick={handleUsernameChange}>Unirme</Button>
+                            <Input type="text" labelPlacement="outside" label='Nombre de usuario nuevo' className="mb-4" value={newUsername} onChange={(e) => setNewUsername(e.target.value)} />
+                            <Button className="bg-blue-500 rounded-lg p-4 w-1/4 max-[600px]:w-2/3 text-white font-semibold text-xl" onClick={handleUsernameChange}>Unirme</Button>
                         </section>
                         <ToastContainer position="bottom-right" autoClose={2500} transition={Slide} theme="light" closeOnClick draggable />
                     </>

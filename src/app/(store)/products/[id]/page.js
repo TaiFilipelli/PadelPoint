@@ -74,13 +74,13 @@ export default function ProductDetailPage() {
                 "@type": "Brand",
                 "name": product.brand.name
               },
-              "offers": {
-                "@type": "Offer",
-                "url": `https://mi-sitio.com/productos/${product.id}`,
-                "priceCurrency": "USD",
-                "price": product.price,
-                "availability": "https://schema.org/InStock"
-              },
+              // "offers": {
+              //   "@type": "Offer",
+              //   "url": `https://mi-sitio.com/productos/${product.id}`,
+              //   "priceCurrency": "USD",
+              //   "price": product.price,
+              //   "availability": "https://schema.org/InStock"
+              // },
               "category": product.type.name
             })
           }}
