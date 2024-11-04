@@ -25,7 +25,7 @@ export default function RegisterPage() {
 
     const getTypes = async() =>{
         const types = await getAllIdTypes();
-        setTypes(types);
+        setTypes(types.recourse);
     }
 
     useEffect(()=>{

@@ -8,6 +8,7 @@ import ProductsCard from "../../../../components/ProductsCard";
 import { getProducts, getOneProductById } from "../../../../data/storeData";
 import { useCartStore } from "../../../../data/useCartStore";
 import { PuffLoader } from "react-spinners";
+import Head from "next/head";
 
 const pop = Poppins({subsets:['latin'], weight:['600','400']})
 export default function ProductDetailPage() {
@@ -35,7 +36,7 @@ export default function ProductDetailPage() {
       const fetchProduct = async () => {
         try {
           const data = await getOneProductById(id);
-          setProduct(data);
+          setProduct(data.recourse);
         } catch (error) {
           console.error('Error fetching product:', error);
         }
@@ -55,7 +56,37 @@ export default function ProductDetailPage() {
   }
 
   return (
-    <section className={`flex flex-col justify-center p-16 max-[500px]:px-6 max-[500px]:py-4 ${pop.className} font-semibold text-black`}>
+    <>
+    <Head>
+    <title>{product.name}</title>
+        <meta name="description" content={product.description} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org/",
+              "@type": "Product",
+              "name": product.name,
+              "image": product.image,
+              "description": product.description,
+              "sku": product.id,
+              "brand": {
+                "@type": "Brand",
+                "name": product.brand.name
+              },
+              "offers": {
+                "@type": "Offer",
+                "url": `https://mi-sitio.com/productos/${product.id}`,
+                "priceCurrency": "USD",
+                "price": product.price,
+                "availability": "https://schema.org/InStock"
+              },
+              "category": product.type.name
+            })
+          }}
+        />
+    </Head>
+    <section className={`flex flex-col justify-center p-16 max-[500px]:px-6 max-[500px]:py-4 ${pop.className} font-semibold bg-[#264492]`}>
       <section className="flex flex-wrap my-6">
         <div className="flex flex-wrap max-[807px]:flex-col p-2">
           <div className="block max-[807px]:flex w-24 max-[807px]:gap-4 mr-2">
@@ -74,12 +105,12 @@ export default function ProductDetailPage() {
           <p className="text-xl">Marca: {product.brand.name}</p>
           <p className="text-xl">Tipo: {product.type.name}</p>
           <Button className="rounded-lg py-6 mt-4 w-2/3 px-4 text-xl bg-transparent border-2 hover:bg-gradient-to-tr from-red-300 to-red-600 ease-in-out transition-all 
-          hover:border-black hover:text-white hover:scale-105" variant="light" onClick={()=>addToCart(product.id)}>Comprar</Button>
+          hover:border-black text-white hover:scale-105" variant="light" onClick={()=>addToCart(product.id)}>Comprar</Button>
           <Link href='/products' className={`mt-5 w-1/2 text-lg underline hover:text-red-600 transition-colors ${pop.className} font-normal`}>Volver a ver los productos</Link>
         </div>
       </section>
       <Divider/>
-      <div className={`${pop.className} font-normal bg-default-200 rounded-lg flex text-left flex-col p-4 my-6`}>
+      <div className={`${pop.className} font-normal bg-default-200 text-black rounded-lg flex text-left flex-col p-4 my-6`}>
         <h1 className={`text-4xl mb-6 mt-2 ${pop.className} font-semibold`}>Descripción del producto</h1>
         <p className="text-lg">{product.description}</p>
       </div>
@@ -108,5 +139,6 @@ export default function ProductDetailPage() {
         </div>      
       </div>
     </section>
+    </>
   );
 }

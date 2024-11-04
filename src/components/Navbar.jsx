@@ -31,14 +31,14 @@ const Nav = () => {
   const fetchBrands = async () => {
     try {
       const data = await getBrands();
-      setBrands(data);
+      setBrands(data.recourse);
     } catch (error) {
       console.error('Error fetching brands:', error);
     }
   };
 
   const handleLogout = async() =>{
-    const result = await userLogout();
+    await userLogout();
     window.location.reload();
 } 
   const getStatus = async() =>{

@@ -104,7 +104,8 @@ export default function Cart() {
           if (cart.length > 0) {
             const productsData = await Promise.all(cart.map(async item => {
               const res = await getOneProductById(item.id);
-              return { ...res, cantidad: item.cantidad };
+              const product = res.recourse;
+              return { ...product, cantidad: item.cantidad };
             }));
             setProducts(productsData);
           }
@@ -115,11 +116,13 @@ export default function Cart() {
         const fetchAddress = async () =>{
           const address = await searchAllAddresses();
           console.log(address);
-          if(address){
-          setAddress(address);
+          if(address.status){
+          setAddress(address.recourse);
           setLoading(false)
-        }
-        }
+        }else{
+          setAddress([]);
+          setLoading(false);
+        }}
         fetchProducts();
         fetchAddress();
       }, [cart]);
