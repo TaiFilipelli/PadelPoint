@@ -27,13 +27,13 @@ export default function ProfilePage() {
 
     const showAlert = () =>{
         const alert = document.getElementById('alert');
-        alert.classList.toggle('opacity-100');
-        alert.classList.toggle('scale-100');
+        alert.classList.add('opacity-100');
+        alert.classList.add('scale-100');
     }
     const hideAlert = () =>{
         const alert = document.getElementById('alert');
-        alert.classList.toggle('opacity-0');
-        alert.classList.toggle('scale-0');
+        alert.classList.remove('opacity-100');
+        alert.classList.remove('scale-100');
     }
 
     const handleDeleteAddress = async(id) =>{
@@ -57,8 +57,8 @@ export default function ProfilePage() {
     return (
         <section className={`${pop.className} p-20 max-[520px]:py-15 max-[520px]:px-10 flex flex-col bg-[#264492] w-full items-center`}>
             {isLoading ? (
-                <div className="flex h-[38vh] items-center justify-center">
-                    <PuffLoader color="#2563EB" size={80} />
+                <div className="flex h-[45vh] items-center justify-center">
+                    <PuffLoader color="#fff" size={80} />
                 </div>
             ) : (
                 <section className="w-full h-auto">
@@ -75,7 +75,7 @@ export default function ProfilePage() {
                                 <h4 className="font-normal text-xl">{userData.idType.name}: {userData.idNumber}</h4>
                             </div>
                             <div className="flex flex-col mt-6">
-                                <h1 className="font-bold text-2xl">Direcciones de envío</h1>
+                                <h1 className="font-bold text-2xl mb-4">Direcciones de envío</h1>
                                 {userData.address && userData.address.length > 0 ? (
                                     userData.address.map((address) => (
                                         <section className="flex flex-row items-center gap-10 max-[420px]:gap-4">
@@ -97,7 +97,7 @@ export default function ProfilePage() {
                                     ))
                                     
                                 ) : (
-                                    <p className="text-center text-xl">Usted no ha proporcionado direcciones de envío</p>
+                                    <p className="text-center text-lg mb-4">Usted no ha proporcionado direcciones de envío</p>
                                 )}
                                 <Link href={'/profile/new_address'} className="bg-gray-400 text-black p-4 rounded-xl font-semibold">Añadir nueva dirección</Link>
                             </div>

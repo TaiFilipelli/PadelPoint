@@ -78,7 +78,7 @@ const ProductsCard = ({name, image, brand, price, idProducto, isLoading}) => {
         {isInCart ? (
           <Button as={Link} href="/cart" className="bg-green-500 text-white font-medium text-md" endContent={<ArrowUpRight/>}>Ver Carrito</Button>
         ) : (
-          <Button onClick={handleAddToCart} className="bg-red-500 text-white font-medium text-md" startContent={<Basket size={20}/>}>Añadir</Button>
+          <Button onClick={handleAddToCart} className="bg-blue-500 text-white font-medium text-md" startContent={<Basket size={20}/>}>Añadir</Button>
         )}
         <Link key={idProducto} href={`/products/${idProducto}`} className="hover:underline">Ver más</Link>
       </div>

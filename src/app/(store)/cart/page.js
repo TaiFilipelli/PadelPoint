@@ -26,7 +26,7 @@ export default function Cart() {
     const [subtotal, setSubtotal] = useState(0);
     const [loading, setLoading] = useState(true);
     const [method, setMethod]=useState(0);
-    //Método entero para optimizar el rendimiento de la aplicación: 0 == Efectivo/Transferencia, 1 == Crédito/Débito, 2 == MP
+    //Método entero para optimizar el rendimiento de la aplicación: 0 == Efectivo/Transferencia, 1 == MP
 
     const router = useRouter();
 
@@ -48,15 +48,15 @@ export default function Cart() {
       const number = '3364181788'; //Aquí va el número del receptor del mensaje de wp.
       return router.push(`https://wa.me/${number}?text=${message}`);
     }
-    else if(method===1){
-      const key = await getOpenpayToken();
-      if(key.status===true){
-        const link = await sendCartToAPI();
-        if(link){
-          router.push(link.url);
-        }
-      }
-    }
+    // else if(method===1){
+    //   const key = await getOpenpayToken();
+    //   if(key.status===true){
+    //     const link = await sendCartToAPI();
+    //     if(link){
+    //       router.push(link.url);
+    //     }
+    //   }
+    // }
     else{
       router.push('/payment?addressId='+selectedAddress);
     }
@@ -86,16 +86,16 @@ export default function Cart() {
       }
     }
 
-    const handleOPButton = () => {
-      setMethod(1);
-      toast.success('Método actualizado (Créd/Deb)!')
-    };
+    // const handleOPButton = () => {
+    //   setMethod(1);
+    //   toast.success('Método actualizado (Créd/Deb)!')
+    // };
     const handleEFVOButton = () => {
       setMethod(0);
       toast.success('Método actualizado (Efvo/Trs)!');
     };
     const handleMP = () =>{
-      setMethod(2);
+      setMethod(1);
       toast.success('Método actualizado (MercadoPago)!')
     }
 
@@ -157,42 +157,42 @@ export default function Cart() {
   };
 
 
-  const sendCartToAPI = async () => {
-    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+  // const sendCartToAPI = async () => {
+  //   const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
     
-    const items = cartItems.map((cartItem) => {
-      const productDetails = products.find(product => product.id === cartItem.id);
+  //   const items = cartItems.map((cartItem) => {
+  //     const productDetails = products.find(product => product.id === cartItem.id);
   
-      return {
-        id: cartItem.id,
-        name: productDetails.name,
-        unitPrice: {currency: "032",amount: productDetails.price * 100}, // Ya esperamos que venga en el formato adecuado
-        quantity: cartItem.cantidad
-      };
-    });
+  //     return {
+  //       id: cartItem.id,
+  //       name: productDetails.name,
+  //       unitPrice: {currency: "032",amount: productDetails.price * 100}, // Ya esperamos que venga en el formato adecuado
+  //       quantity: cartItem.cantidad
+  //     };
+  //   });
   
-    const payload = {
-      data: {
-        attributes: {
-          currency: "032",
-          items
-        }
-      }
-    };
+  //   const payload = {
+  //     data: {
+  //       attributes: {
+  //         currency: "032",
+  //         items
+  //       }
+  //     }
+  //   };
   
-    try {
-      const response = await createPaymentIntent(payload);
+  //   try {
+  //     const response = await createPaymentIntent(payload);
 
-      if (response) {
-        console.log('Payment link succesfully created!');
-        return response;
-      } else {
-        console.error('Error:', response.message);
-      }
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
+  //     if (response) {
+  //       console.log('Payment link succesfully created!');
+  //       return response;
+  //     } else {
+  //       console.error('Error:', response.message);
+  //     }
+  //   } catch (error) {
+  //     console.error('Error:', error);
+  //   }
+  // };
 
 
 
@@ -260,7 +260,7 @@ export default function Cart() {
           <h3 className="text-3xl font-semibold mt-4">Subtotal: ARS${subtotal} </h3>
           <h2 className="font-normal text-xl mt-4">Seleccione el método de pago a usar</h2>
           <div className="flex flex-row max-[967px]:flex-col gap-4 w-auto max-[967px]:w-[40%] max-[579px]:w-[60%] max-[470px]:w-full mt-4 mb-8">
-            <Button className="text-lg p-6 hover:bg-[#004481] hover:text-[#14C8BE] border-1 transition-colors ease-linear" onClick={handleOPButton}>Crédito o débito</Button>
+            {/* <Button className="text-lg p-6 hover:bg-[#004481] hover:text-[#14C8BE] border-1 transition-colors ease-linear" onClick={handleOPButton}>Crédito o débito</Button> */}
             <Button onClick={handleEFVOButton} className="text-black hover:bg-green-600 hover:text-white border-1 transition-colors ease-linear text-lg p-6">Efectivo/transferencia</Button>
             <Button onClick={handleMP} className="text-lg p-6 border-1 hover:bg-white transition-colors ease-linear"><img src="/MP_PNGs/azul-horizontal.png" alt="Logo Mercado Pago" className="w-full h-14 max-[470px]:h-20"/></Button>
           </div>

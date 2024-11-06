@@ -9,6 +9,7 @@ import { getProducts, getOneProductById } from "../../../../data/storeData";
 import { useCartStore } from "../../../../data/useCartStore";
 import { PuffLoader } from "react-spinners";
 import Head from "next/head";
+import { useRouter } from "next/navigation";
 
 const pop = Poppins({subsets:['latin'], weight:['600','400']})
 export default function ProductDetailPage() {
@@ -17,18 +18,26 @@ export default function ProductDetailPage() {
   const [product, setProduct] = useState(null);
   const [recProducts, setRecProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isOnCart, setIsOnCart] = useState(false);
 
   const addToCart = useCartStore((s)=> s.addToCart);
+
+  const router = useRouter();
 
   const dataRecProducts = async(params) => {
     try{
       const data = await getProducts(params);
-      setRecProducts(data);
+      setRecProducts(data.recourse);
       setIsLoading(false);
     }catch(error){
       console.error('Error fetching main products');
       setIsLoading(true);
     }
+  }
+
+  const handleBuyButton = (id) => {
+    addToCart(id);
+    setIsOnCart(true);
   }
 
   useEffect(() => {
@@ -49,8 +58,8 @@ export default function ProductDetailPage() {
 
   if (!product) {
     return(
-      <div className="flex justify-center items-center h-[31rem] w-full">
-        <PuffLoader color="#2563EB"/>
+      <div className="flex justify-center items-center h-[35rem] bg-[#264492] w-full">
+        <PuffLoader color="#fff"/>
       </div>
   );
   }
@@ -104,9 +113,10 @@ export default function ProductDetailPage() {
           <p className="text-xl mb-10 text-green-500">12 cuotas de {(product.price / 12).toFixed(0)} dólares</p>
           <p className="text-xl">Marca: {product.brand.name}</p>
           <p className="text-xl">Tipo: {product.type.name}</p>
-          <Button className="rounded-lg py-6 mt-4 w-2/3 px-4 text-xl bg-transparent border-2 hover:bg-gradient-to-tr from-red-300 to-red-600 ease-in-out transition-all 
-          hover:border-black text-white hover:scale-105" variant="light" onClick={()=>addToCart(product.id)}>Comprar</Button>
-          <Link href='/products' className={`mt-5 w-1/2 text-lg underline hover:text-red-600 transition-colors ${pop.className} font-normal`}>Volver a ver los productos</Link>
+          {isOnCart ? <Button as={Link} href="/cart" className="rounded-lg py-6 mt-4 w-2/3 px-4 text-xl bg-blue-600 border-2 border-white text-white" variant="light">Ver carro</Button> : <Button className="rounded-lg py-6 mt-4 w-2/3 px-4 
+          text-xl bg-transparent border-2 hover:bg-gradient-to-tr from-red-300 to-red-600 ease-in-out transition-all hover:border-black text-white hover:scale-105" 
+          variant="light" onClick={() => handleBuyButton(product.id)}>Comprar</Button>}
+          <Link href='/products' className={`mt-5 w-1/2 text-lg underline hover:text-red-600 transition-colors ${pop.className} font-normal`}>Volver a los productos</Link>
         </div>
       </section>
       <Divider/>
@@ -117,7 +127,7 @@ export default function ProductDetailPage() {
       <Divider/>
       <div className="flex flex-col items-center text-center my-6">
         <h1 className={`${pop.className} text-3xl`}>Otros usuarios también vieron esto</h1>
-        <div className=/*grid grid-cols-auto-fix-minmax*/ "flex flex-wrap gap-4 justify-center items-center mt-10 mb-10 font-normal">
+        <div className=/*grid grid-cols-auto-fix-minmax*/ "flex flex-wrap gap-4 justify-center items-center my-10 font-normal">
         {isLoading ? (
                         Array.from({ length: 4 }).map((_, index) => (
                             <ProductsCard key={index} isLoading={true} />
