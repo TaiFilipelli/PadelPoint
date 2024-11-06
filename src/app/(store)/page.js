@@ -18,7 +18,9 @@ export default async function Home() {
 
   try {
     const params = { limit: 4 };
-    mainProducts = await getProducts(params);
+    const response = await getProducts(params);
+    mainProducts = response.recourse;
+    console.log(mainProducts)
   } catch (error) {
     console.error('Error fetching main products:', error);
   }

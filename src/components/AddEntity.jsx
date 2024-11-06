@@ -37,7 +37,7 @@ const AddEntity = ({ entity }) => {
       const fetchBrands = async () => {
         try {
           const data = await getBrands();
-          setBrands(data);
+          setBrands(data.recourse);
         } catch (error) {
           console.error("Error fetching brands:", error);
         }
@@ -46,7 +46,7 @@ const AddEntity = ({ entity }) => {
       const fetchSuppliers = async () => {
         try {
           const data = await getSuppliers();
-          setSuppliers(data);
+          setSuppliers(data.recourse);
         } catch (error) {
           console.error("Error fetching suppliers:", error);
         }
@@ -55,7 +55,7 @@ const AddEntity = ({ entity }) => {
       const fetchTypes = async () => {
         try {
           const data = await getTypes()
-          setTypes(data);
+          setTypes(data.recourse);
           setLoading(false);
         } catch (error) {
           console.error("Error fetching types:", error);

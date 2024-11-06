@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Skeleton, Button } from "@nextui-org/react";
 import { useCartStore } from "../data/useCartStore";
 import { useState, useEffect } from "react";
-import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
+import { ArrowUpRight, Basket } from "@phosphor-icons/react/dist/ssr";
 
 const ProductsCard = ({name, image, brand, price, idProducto, isLoading}) => {
   const cart = useCartStore((state)=> state.cart);
@@ -78,7 +78,7 @@ const ProductsCard = ({name, image, brand, price, idProducto, isLoading}) => {
         {isInCart ? (
           <Button as={Link} href="/cart" className="bg-green-500 text-white font-medium text-md" endContent={<ArrowUpRight/>}>Ver Carrito</Button>
         ) : (
-          <Button onClick={handleAddToCart} className="bg-red-500 text-white font-medium text-md">Añadir al carrito</Button>
+          <Button onClick={handleAddToCart} className="bg-red-500 text-white font-medium text-md" startContent={<Basket size={20}/>}>Añadir</Button>
         )}
         <Link key={idProducto} href={`/products/${idProducto}`} className="hover:underline">Ver más</Link>
       </div>

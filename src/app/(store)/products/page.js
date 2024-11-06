@@ -7,12 +7,12 @@ import Filters from "../../../components/Filters";
 
 const pop = Poppins({subsets:["latin"], weight:'600'})
 export default function ProductsList() {
-    const [paletas, setPaletas] = useState([]);
+    const [products, setProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const dataPaletas = async (params) => {
+    const dataProducts = async (params) => {
         try {
             const data = await getProducts(params);
-            setPaletas(data);
+            setProducts(data.recourse);
             setIsLoading(false);
         } catch (error) {
             console.error('ERROR ACÁ:', error);
@@ -34,7 +34,7 @@ export default function ProductsList() {
             params.minPrice = minPriceNumber === 0 ? 1 : minPriceNumber;
         }
         if (maxPrice !== null) params.maxPrice = maxPrice;
-        dataPaletas(params);
+        dataProducts(params);
     }, []);
 
     return (
@@ -48,7 +48,7 @@ export default function ProductsList() {
                             <ProductsCard key={index} isLoading={true} />
                         ))
                     ) : (
-                        paletas.map(paleta => (
+                        products.map(paleta => (
                             <ProductsCard 
                                 key={paleta.id} 
                                 name={paleta.name} 

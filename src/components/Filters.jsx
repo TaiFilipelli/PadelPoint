@@ -29,7 +29,7 @@ export const Filters = () => {
     }
     const fetchTypes = async() =>{
         const data = await getTypes();
-        setTypes(data);
+        setTypes(data.recourse);
     }
     const handleNameChange = (event) => {
         setSearchedName(event.target.value);

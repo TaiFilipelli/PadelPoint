@@ -76,23 +76,23 @@ const DeleteEntity = ({entity}) => {
         switch(entity){
           case 'producto':
             result = await getProducts();
-            setData(result);
+            setData(result.recourse);
             break
           case 'marca':
             result = await getBrands();
-            setData(result);
+            setData(result.recourse);
             break
           case 'tipo':
             result = await getTypes();
-            setData(result);
+            setData(result.recourse);
             break;
           case 'proveedor':
             result = await getSuppliers();
-            setData(result);
+            setData(result.recourse);
             break;
           case 'rol':
             result = await getRoles();
-            setData(result);
+            setData(result.recourse);
             break;
           default:
             console.error("Entidad no reconocida");

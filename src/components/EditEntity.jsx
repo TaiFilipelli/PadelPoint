@@ -24,20 +24,20 @@ const EditEntity = ({entity}) => {
             case 'producto':
               result = await getProducts();
               suppliers = await getSuppliers();
-              setData(result);
-              setSupplier(suppliers);
+              setData(result.recourse);
+              setSupplier(suppliers.recourse);
               break
             case 'marca':
               result = await getBrands();
-              setData(result);
+              setData(result.recourse);
               break
             case 'tipo':
               result = await getTypes();
-              setData(result);
+              setData(result.recourse);
               break;
             case 'proveedor':
               result = await getSuppliers();
-              setData(result);
+              setData(result.recourse);
               break;
             default:
               console.error("Entidad no reconocida");
