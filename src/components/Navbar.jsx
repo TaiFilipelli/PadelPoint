@@ -173,8 +173,8 @@ const Nav = () => {
         </Navbar>
       </div>
       <div className="fixed w-full top-24 z-20">
-        <Navbar className="flex text-center h-auto max-[600px]:h-[5rem] bg-gray-400 dark:bg-gray-800 w-full justify-center">
-          <NavbarContent className="gap-10 max-[600px]:gap-0 flex max-[600px]:flex-wrap">
+        <Navbar className="flex text-center h-auto max-[700px]:h-[6rem] bg-gray-400 dark:bg-gray-800 w-full justify-center items-center">
+          <NavbarContent className="gap-10 max-[760px]:gap-2 max-[700px]:gap-0 flex max-[700px]:flex-wrap">
             <Dropdown>
               <DropdownTrigger>
                 <Button className="p-2 text-lg" variant="light" radius="sm">¡Las mejores marcas!</Button>
