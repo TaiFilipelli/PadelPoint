@@ -49,8 +49,14 @@ export default function RegisterPage() {
             }
         ]
 
+        // Ligeras verificaciones de que los tipos de identificación sean correctos antes de entrar a la API.
         credentials.idType = selectedType.id;
         credentials.idNumber = parseInt(credentials.idNumber);
+
+        // Sistema nefasto pero útil para ponerle mayúsculas a las primeras letras del nombre y apellido.
+        credentials.name = credentials.name.charAt(0).toUpperCase() + credentials.name.slice(1).toLowerCase();
+        credentials.surname = credentials.surname.charAt(0).toUpperCase() + credentials.surname.slice(1).toLowerCase();
+
 
         console.log('Credentials', credentials);
 
@@ -93,7 +99,7 @@ export default function RegisterPage() {
                                     type="text"
                                     label="Nombre"
                                     {...register("name")}
-                                    className="w-full"
+                                    className="w-full first-letter:uppercase"
                                 />
                                 {errors.name && <p className="text-red-500">{errors.name.message}</p>}
                             </div>
@@ -102,7 +108,7 @@ export default function RegisterPage() {
                             type="text"
                             label="Apellido"
                             {...register("surname")}
-                            className="w-full"
+                            className="w-full first-letter:uppercase"
                         />
                         {errors.surname && <p className="text-red-500">{errors.surname.message}</p>}
                     </div>

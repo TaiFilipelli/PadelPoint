@@ -177,7 +177,7 @@ const Nav = () => {
           <NavbarContent className="gap-10 max-[600px]:gap-0 flex max-[600px]:flex-wrap">
             <Dropdown>
               <DropdownTrigger>
-                <Button className="p-2 text-lg" variant="light" radius="sm">Las mejores marcas!</Button>
+                <Button className="p-2 text-lg" variant="light" radius="sm">¡Las mejores marcas!</Button>
               </DropdownTrigger>
               <DropdownMenu className="p-0 w-full" itemClasses={{ base: "gap-4" }}>
                 {brands.map(brand => (
@@ -186,6 +186,7 @@ const Nav = () => {
               </DropdownMenu>
             </Dropdown>
             <Button as={Link} href="/register" className={`${pop.className} p-2 font-medium text-lg bg-transparent hover:bg-[#B3B7BF]`}>Únete a PadelPoint hoy</Button>
+            <Button as={Link} href="/about" className={`${pop.className} p-2 font-medium text-lg bg-transparent hover:bg-[#B3B7BF]`}>¿Qué es PadelPoint?</Button>
           </NavbarContent>
         </Navbar>
       </div>
