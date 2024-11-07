@@ -13,7 +13,7 @@ const MyCarousel = () => {
           <img src="/Padelpoint_IMGS/paletas1.jpg" alt="Imagen 4 de Stock PadelPoint" className="object-contain max-w-full h-auto"/>
         </div>
         <div className="flex justify-center items-center w-full max-h-[690px]">
-          <img src="/Padelpoint_IMGS/items1.jpg" alt="Imagen 3 de Stock PadelPoint" className="object-contain max-w-full h-auto"/>
+          <img src="/Padelpoint_IMGS/items2.jpg" alt="Imagen 3 de Stock PadelPoint" className="object-contain max-w-full h-auto"/>
         </div>
         <div className="flex justify-center items-center w-full max-h-[690px]">
         <img src="/Padelpoint_IMGS/stock1.jpg" alt="Imagen 2 de Stock PadelPoint" className=" max-w-full h-auto"/>
