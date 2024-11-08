@@ -4,7 +4,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import React from "react";
 const MyCarousel = () => {
   return (
-    <section className="p-5 w-full">
+    <section className="p-5 w-full max-w-full">
      <Carousel stopOnHover swipeable autoPlay showThumbs={false} axis="horizontal" infiniteLoop showArrows useKeyboardArrows showStatus={false}>
        <div className="flex justify-center items-center w-full max-h-[850px]">
           <img src="/Padelpoint_IMGS/stock3.jpg" alt="Imagen de Stock PadelPoint" className="object-cover max-w-full h-auto"/>

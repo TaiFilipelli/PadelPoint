@@ -30,20 +30,20 @@ export default async function Home() {
       {/* <h1 className={`${pop.className} font-semibold text-7xl p-6`}>PadelPoint Oficial</h1> */}
       <ImageCarouselAndFeaturedProducts mainProducts={mainProducts}/>
       <Divider />
-      <section className="my-10 flex justify-center items-center flex-row gap-10 w-3/5 max-[510px]:w-4/5 animate-appear">
-        <div className="w-1/3 flex flex-col text-center items-center">
-          <Truck size={60} type="light" />
-          <h1 className={`${pop.className} font-semibold text-2xl max-[500px]:mb-4`}>Envíos a todo el país</h1>
+      <section className="my-10 flex justify-center items-center flex-row max-[450px]:flex-col gap-10 w-3/5 max-[940px]:w-4/5 max-[410px]:w-full animate-appear">
+        <div className="w-1/3 max-[450px]:w-full flex flex-col text-center items-center text-wrap"> 
+          <Truck size={60} type="light" className="w-16 h-16"/>
+          <h1 className={`${pop.className} font-semibold text-2xl mb-2`}>Envíos a todo el país</h1>
           <p className="text-xl font-normal">Comprá cómodo desde tu casa. Nos encargamos del resto!</p>
         </div>
-        <div className="w-1/3 flex flex-col text-center items-center">
-          <CreditCard size={60} type="light" />
-          <h3 className={`${pop.className} font-semibold text-2xl max-[500px]:mb-4`}>Los mejores precios</h3>
+        <div className="w-1/3 max-[450px]:w-full flex flex-col text-center items-center">
+          <CreditCard size={60} type="light" className="max-w-full"/>
+          <h3 className={`${pop.className} font-semibold text-2xl mb-2 max-[500px]:mb-4`}>Los mejores precios</h3>
           <p className="text-xl font-normal">Múltiples métodos de pago para tu comodidad y ofertas especiales!</p>
         </div>
-        <div className="w-1/3 flex flex-col text-center items-center">
+        <div className="w-1/3 max-[450px]:w-full flex flex-col text-center items-center">
           <Racquet size={60} type="light" />
-          <h3 className={`${pop.className} font-semibold text-2xl max-[500px]:mb-4`}>Las mejores marcas</h3>
+          <h3 className={`${pop.className} font-semibold text-2xl mb-2 max-[500px]:mb-4`}>Las mejores marcas</h3>
           <p className='text-xl font-normal'>Encontrá tu mejor compañera en nuestra selecta y variada colección!</p>
         </div>
       </section>
