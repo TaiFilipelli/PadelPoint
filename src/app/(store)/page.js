@@ -72,7 +72,7 @@ export default async function Home() {
           para estar bien equipado dentro de la cancha. Desde pelotas y camisetas hasta productos especializados como sprays adherentes para paletas o bolsos para llevar tu equipamiento
           al siguiente nivel.
         </p>
-        <Image src="/PadelPoint_IMGS/items1.jpg" width={600} isBlurred alt="Items varios de PadelPoint"/>
+        <Image src="/Padelpoint_IMGS/items1.jpg" width={600} isBlurred alt="Items varios de PadelPoint"/>
       </div>
       </section>
       <Divider />

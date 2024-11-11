@@ -135,6 +135,24 @@ const Nav = () => {
               <Link href="/products" className="w-full text-xl p-2 text-black dark:text-white">Productos</Link>
             </NavbarMenuItem>
             <NavbarMenuItem>
+              <Dropdown>
+              <DropdownTrigger>
+                <Button className="p-2 text-xl" variant="light" radius="sm">¡Las mejores marcas!</Button>
+              </DropdownTrigger>
+              <DropdownMenu className="p-0 w-full" itemClasses={{ base: "gap-4" }}>
+                {brands.map(brand => (
+                  <DropdownItem key={brand.id} onClick={() => handleBrandSelect(brand.name)} className="text-black">{brand.name}</DropdownItem>
+                ))}
+              </DropdownMenu>
+              </Dropdown>
+            </NavbarMenuItem>
+            <NavbarMenuItem>
+              <Button as={Link} href="/register" className={`p-3 text-xl bg-transparent hover:bg-[#B3B7BF]`}>Unirme a PadelPoint</Button>
+            </NavbarMenuItem>
+            <NavbarMenuItem>
+              <Button as={Link} href="/about" className={`p-3 text-xl bg-transparent hover:bg-[#B3B7BF]`}>Sobre Nosotros</Button>
+            </NavbarMenuItem>
+            <NavbarMenuItem>
             {isLogged ? 
                    <Dropdown>
                    <DropdownTrigger className="bg-red-600 p-4 w-full text-white">
@@ -172,12 +190,12 @@ const Nav = () => {
           </NavbarMenu>
         </Navbar>
       </div>
-      <div className="fixed w-full top-24 z-20">
-        <Navbar className="flex text-center h-auto max-[700px]:h-[6rem] bg-gray-400 dark:bg-gray-800 w-full justify-center items-center">
-          <NavbarContent className="gap-10 max-[760px]:gap-2 max-[700px]:gap-0 flex max-[700px]:flex-col">
+      <div className="fixed w-full top-24 z-20 hidden min-[640px]:block">
+        <Navbar className="flex h-auto max-[700px]:h-[6.5rem] bg-gray-400 dark:bg-gray-800 w-auto justify-center items-center max-[700px]:items-start">
+          <NavbarContent className="gap-10 max-[760px]:gap-[0.60rem] flex max-[700px]:flex-col"> 
             <Dropdown>
               <DropdownTrigger>
-                <Button className="p-2 text-lg" variant="light" radius="sm">¡Las mejores marcas!</Button>
+                <Button className="p-3 text-lg max-[700px]:w-full max-[700px]:mt-2" variant="light" radius="sm">¡Las mejores marcas!</Button>
               </DropdownTrigger>
               <DropdownMenu className="p-0 w-full" itemClasses={{ base: "gap-4" }}>
                 {brands.map(brand => (
@@ -185,8 +203,8 @@ const Nav = () => {
                 ))}
               </DropdownMenu>
             </Dropdown>
-            <Button as={Link} href="/register" className={`${pop.className} p-2 font-medium text-lg bg-transparent hover:bg-[#B3B7BF]`}>Únete a PadelPoint hoy</Button>
-            <Button as={Link} href="/about" className={`${pop.className} p-2 font-medium text-lg bg-transparent hover:bg-[#B3B7BF]`}>¿Qué es PadelPoint?</Button>
+            <Button as={Link} href="/register" className={`${pop.className} p-3 font-medium text-lg bg-transparent hover:bg-[#B3B7BF]`}>Únete a PadelPoint hoy</Button>
+            <Button as={Link} href="/about" className={`${pop.className} p-3 font-medium text-lg bg-transparent hover:bg-[#B3B7BF]`}>¿Qué es PadelPoint?</Button>
           </NavbarContent>
         </Navbar>
       </div>

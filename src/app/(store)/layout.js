@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="es">
-      <body className='h-screen bg-transparent text-white dark:bg-black dark:text-white pt-36'>
+      <body className='h-screen bg-transparent text-white dark:bg-black dark:text-white pt-36 max-[700px]:pt-28'>
         <Providers>
           <Nav/>
           {children}
