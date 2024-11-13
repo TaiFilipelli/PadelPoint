@@ -83,7 +83,7 @@ export default function RegisterPage() {
     };
 
     return (
-        <main className="flex flex-col items-center justify-center text-center p-16 bg-[#264492]">
+        <main className="flex flex-col items-center justify-center text-center p-16 max-[400px]:p-8 bg-[#264492]">
             <section className="w-full max-w-screen-xl p-8 bg-gray-300 rounded-lg shadow-lg text-black">
                 <h1 className={`${pop.className} text-3xl mb-4`}>Únete a la familia PadelPoint hoy</h1>
                 <hr className="border-black"/>
