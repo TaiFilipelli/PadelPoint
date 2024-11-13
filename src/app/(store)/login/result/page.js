@@ -58,7 +58,7 @@ export default function ResultLogin() {
     },[]);
 
     return (
-        <section className="flex items-center justify-center text-center h-[60vh] max-[500px]:h-auto max-[500px]:p-10 p-20 flex-col bg-[#264492]">
+        <section className="flex items-center justify-center text-center h-[70vh] max-[500px]:h-auto max-[500px]:p-10 p-20 flex-col bg-[#264492]">
            {isLoading ? (
                 <PuffLoader color="#fff" size={100}/>
             ) : (
@@ -76,9 +76,9 @@ export default function ResultLogin() {
                     </>
                 ) : (
                     <section className="flex flex-col items-center text-center p-10">
-                        <h1 className="text-green-500 font-bold text-4xl mb-4">Bienvenido, {username}</h1>
-                        <h2 className="font-semibold text-xl mb-8">Puede retornar a la tienda y comprar libremente</h2>
-                        <Link href='/' className="hover:underline">Volver al inicio</Link>
+                        <h1 className="text-green-500 font-bold text-5xl mb-4">Bienvenido, {username}</h1>
+                        <h2 className="font-semibold text-2xl mb-8">Puede retornar a la tienda y comprar libremente</h2>
+                        <Link href='/' className="hover:underline text-lg">Volver al inicio</Link>
                     </section>
                 )
             )}

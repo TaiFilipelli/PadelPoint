@@ -23,6 +23,8 @@ export default function ForgotPasswordPage() {
             toast.error('Ingrese un correo válido o inténtelo de nuevo más adelante.');
         }else{
             toast.success('Código enviado con éxito!');
+            const code = document.getElementById('code');
+            code.classList.add('opacity-100');
         }
     };
 
@@ -47,20 +49,18 @@ export default function ForgotPasswordPage() {
     };
 
     return (
-        <section className="flex flex-col items-center text-center p-16 text-white bg-[#264492]">
-            <h1 className={`${pop.className} text-4xl font-bold mb-4`}>Recuperá tu contraseña</h1>
-            <h2 className={`${pop.className} text-2xl mb-6 font-normal`}>Ingresá el correo de tu cuenta. Te llegará a la dirección otorgada un código único de 6 caractéres para validar tu usuario.
-                Ingresalo a continuación.
-            </h2>
+        <section className="flex flex-col items-center text-center p-16 text-white bg-[#264492] h-[70vh] max-[920px]:h-auto">
+            <h1 className={`${pop.className} text-4xl font-bold mb-4 mt-8`}>Recuperá tu contraseña</h1>
+            <h2 className={`${pop.className} text-2xl max-[620px]:text-xl mb-6 font-normal`}>Ingresá el correo de tu cuenta. Te llegará a la dirección otorgada un código único de 6 caractéres para validar tu usuario.</h2>
             <Input 
                 type="email" 
                 placeholder="example@gmail.com"
                 value={email} 
                 onChange={(e) => setEmail(e.target.value)} 
-                className="w-1/3 mb-4 text-black"
+                className="w-1/3 max-[620px]:w-full mb-10 text-black"
             />
-            <Button onClick={handleEmail} className="mb-10 bg-blue-600 text-white text-lg p-6" >Enviar código</Button>
-            <div className="flex flex-row gap-2 mb-4">
+            <Button onClick={handleEmail} className="mb-10 bg-blue-600 text-white text-lg p-6 max-[620px]:w-full" >Enviar código</Button>
+            <div className="flex flex-row gap-2 my-4 opacity-20" id="code">
                 {code.map((digit, index) => (
                     <Input 
                         key={index} 
@@ -72,7 +72,7 @@ export default function ForgotPasswordPage() {
                     />
                 ))}
             </div>
-            <Button onClick={handleVerifyCode} className="">Verificar código</Button>
+            <Button onClick={handleVerifyCode} className="bg-blue-600 text-white text-lg p-6 opacity-20 mt-4 max-[620px]:w-full" id="code">Verificar código</Button>
             <ToastContainer 
                 position="bottom-right" 
                 autoClose={1500} 

@@ -32,11 +32,11 @@ export default function NewPasswordPage() {
     }
 
     return (
-        <section className="p-20 text-white bg-[#264492] flex flex-col">
+        <section className="p-20 max-[560px]:p-10 text-white bg-[#264492] flex flex-col justify-center h-[67vh]">
             <h1 className="text-4xl font-bold mb-2">Verificación exitosa!</h1>
-            <h2 className="text-xl font-medium mb-6">Ingrese la nueva contraseña. Recuerde no compartirle sus credenciales a nadie (y también su contraseña, en lo posible!).</h2>
-            <Input label='Nueva contraseña' labelPlacement="outside" value={newPass} onChange={(e)=>setNewPass(e.target.value)} className="w-1/3"/>
-            <Button onClick={submitChanges} className="w-1/6 mt-8 font-semibold text-lg p-6 bg-red-600 text-white items-center" endContent={<ArrowRight size={30}/>}>Crear nueva contraseña</Button>
+            <h2 className="text-xl font-medium mb-6">Ingrese la nueva contraseña. Recuerde no compartirle sus credenciales a nadie.</h2>
+            <Input label='Nueva contraseña' labelPlacement="outside" value={newPass} onChange={(e)=>setNewPass(e.target.value)} className="w-1/3 max-[990px]:w-2/3 max-[560px]:w-full"/>
+            <Button onClick={submitChanges} className="w-1/3 max-[990px]:w-2/3 max-[560px]:w-full mt-4 font-semibold text-lg max-[310px]:text-base p-6 bg-red-600 text-white items-center" endContent={<ArrowRight size={30}/>}>Crear nueva contraseña</Button>
             <ToastContainer 
                 position="bottom-right" 
                 autoClose={1500} 
