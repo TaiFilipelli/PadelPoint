@@ -76,8 +76,8 @@ export default async function Home() {
       </div>
       </section>
       <Divider />
-      <h1 className={`${pop.className} text-3xl mt-5 font-bold animate-appear`}>Contáctanos por las redes oficiales!</h1>
-      <div className="flex flex-row w-1/2 justify-around items-center my-10 animate-appear">
+      <h1 className={`${pop.className} text-3xl mt-5 font-bold animate-appear max-[555px]:ml-2 max-[310px]:text-2xl`}>Contáctanos por las redes oficiales!</h1>
+      <div className="flex flex-row max-[780px]:flex-col gap-4 w-1/2 justify-around items-center my-10 animate-appear">
         <Button as={Link} href="https://www.instagram.com/_padelpoint/" aria-label="Página oficial de Instagram" className="flex items-center p-5 rounded-lg bg-transparent hover:bg-[#E1306C] transition-all duration-300 ease-in-out" startContent={<InstagramLogo size={40} color="white"/>}>
           <p className="font-bold text-lg text-white">Instagram Oficial</p>
         </Button>
