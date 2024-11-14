@@ -4,6 +4,7 @@ import { useSearchParams } from 'next/navigation';
 import { PuffLoader } from "react-spinners";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { useCartStore } from './../../../../data/useCartStore';
 
 export default function ResultPaymentPage() {
 
@@ -14,6 +15,7 @@ export default function ResultPaymentPage() {
     const paymentId = params.get('payment_id');
     const paymentStatus = params.get('status');
 
+    const cart = useCartStore((state)=> state.cart);
 
     console.log('El pago ',paymentId,' tiene el estado ',paymentStatus);
 
@@ -84,7 +86,38 @@ export default function ResultPaymentPage() {
                 setStatus('failure');
             }, 1000);
         }
-    }, []);
+    }, [status]);
+
+    useEffect(()=>{
+        const ordenCreation = async()=>{
+            const products = cart.map(item => ({
+                productId:item.id, 
+                quantity:item.cantidad
+            })); 
+            console.log(products);
+
+            const orderData = {
+                userId,
+                addressId,
+                paymentId:paymentId,
+                products:products,
+                installments:1,
+                paymentMethod:'MP_TRANSFER'
+            }
+
+            try{
+                const response = await createOrder(orderData);
+                if(response.status===200){
+                    console.log('Creación de orden exitosa:',response);
+                }
+            } catch(err){
+                console.error('Error:',err);
+            }
+        };
+        if (status === 'approved') {
+            ordenCreation();
+        }
+    }, [])
 
     return (
             <section className="h-[60dvh] flex flex-col items-center justify-center p-16 px-auto bg-[#264492]">

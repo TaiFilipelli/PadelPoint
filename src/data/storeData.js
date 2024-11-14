@@ -82,6 +82,22 @@ export const createMPPreference = async(info) => {
     return data;
 }
 
+export const createOrder = async(data) => {
+    const response = await fetch(`${baseUrl}/order`,{
+        method:'POST',
+        headers:{
+            'Content-Type': 'application/json',
+        },
+        credentials:'include',
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data=>data)
+    .catch(error=>console.log(error));
+    console.log(response);
+    return response;
+}
+
 export const searchAllAddresses = async() =>{ 
     const data = await fetch(`${baseUrl}/address`);
     const result = await verifyResponse(data);
