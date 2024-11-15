@@ -98,6 +98,12 @@ export const createOrder = async(data) => {
     return response;
 }
 
+export const getAllOrders = async() =>{ 
+    const data = await fetch(`${baseUrl}/order`);
+    const result = await verifyResponse(data);
+    return result;
+}
+
 export const searchAllAddresses = async() =>{ 
     const data = await fetch(`${baseUrl}/address`);
     const result = await verifyResponse(data);

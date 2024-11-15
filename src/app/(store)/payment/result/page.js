@@ -5,6 +5,7 @@ import { PuffLoader } from "react-spinners";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useCartStore } from './../../../../data/useCartStore';
+import { createOrder } from "../../../../data/storeData";
 
 export default function ResultPaymentPage() {
 
@@ -16,6 +17,8 @@ export default function ResultPaymentPage() {
     const paymentStatus = params.get('status');
 
     const cart = useCartStore((state)=> state.cart);
+    const user = localStorage.getItem('userId');
+    const address = localStorage.getItem('addressId');
 
     console.log('El pago ',paymentId,' tiene el estado ',paymentStatus);
 
@@ -94,12 +97,11 @@ export default function ResultPaymentPage() {
                 productId:item.id, 
                 quantity:item.cantidad
             })); 
-            console.log(products);
 
             const orderData = {
-                userId,
-                addressId,
-                paymentId:paymentId,
+                userId:parseInt(user),
+                addressId:parseInt(address),
+                paymentId:parseInt(paymentId),
                 products:products,
                 installments:1,
                 paymentMethod:'MP_TRANSFER'
@@ -107,20 +109,23 @@ export default function ResultPaymentPage() {
 
             try{
                 const response = await createOrder(orderData);
-                if(response.status===200){
+                if(response.statusCode===200){
                     console.log('Creación de orden exitosa:',response);
+                    localStorage.removeItem('userId');
+                    localStorage.removeItem('addressId');
+                    cart.clearCart();
                 }
             } catch(err){
                 console.error('Error:',err);
             }
         };
-        if (status === 'approved') {
+        if (paymentStatus === 'approved') {
             ordenCreation();
         }
     }, [])
 
     return (
-            <section className="h-[60dvh] flex flex-col items-center justify-center p-16 px-auto bg-[#264492]">
+            <section className="h-[70dvh] flex flex-col items-center justify-center p-16 px-auto bg-[#264492]">
                 {isLoading ? (
                     <PuffLoader size={100} color="#fff"/>
                 ) : (
