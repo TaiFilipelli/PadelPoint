@@ -39,7 +39,7 @@ export const userLogin = async(credenciales)=>{
             'Content-Type':'application/json'
         },
         body: JSON.stringify({
-            "input":credenciales.usernameOrEmail,
+            "usernameOrEmail":credenciales.usernameOrEmail,
             "password":credenciales.password
         }),
         credentials:'include'

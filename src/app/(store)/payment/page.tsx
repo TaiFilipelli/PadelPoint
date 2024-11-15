@@ -12,14 +12,14 @@ export default function MP_Page() {
     const cart = useCartStore((state) => state.cart) as Array<{id:string, cantidad:number}>;
     const searchParams = useSearchParams();
     const addressId = parseInt(searchParams.get('addressId'));
-    console.log(addressId);
+    localStorage.setItem('addressId', addressId.toString());
     useEffect(() => {
         const fetchUser = async () => {
             const userState = await checkUserState();
             console.log(userState);
             if (userState.isLogged) {
                 const userId = userState.payload.id;
-                sessionStorage.setItem('userId', userId);
+                localStorage.setItem('userId', userId);
                 console.log(userId);
             }
         };
@@ -72,7 +72,7 @@ export default function MP_Page() {
                 window.location.href = link.url;
                 console.log(link)
             }else{
-                console.log(link);
+                console.error('There is an internal issue with MP preference creation');
             }
             console.log(link.status);
         }catch(error){

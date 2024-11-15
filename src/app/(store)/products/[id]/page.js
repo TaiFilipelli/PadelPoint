@@ -110,7 +110,9 @@ export default function ProductDetailPage() {
         <div className="text-left flex flex-col p-2">
           <h1 className='text-4xl mb-6'>{product.name}</h1>
           <p className="text-3xl mb-2">US${product.price}</p>
-          <p className="text-xl mb-10 text-green-500">12 cuotas de {(product.price / 12).toFixed(0)} dólares</p>
+          <p className="text-xl mb-2 text-green-500">12 cuotas de {(product.price / 12).toFixed(0)} dólares</p>
+          <p className="text-xl mb-6">Coste de envío: ${product.shippingCost}</p>
+          <p className={`text-xl mb-4 ${product.stock<5? 'text-red-400': product.stock<10? 'text-orange-400':'text-green-600'}`}>Stock {product.stock<5? 'bajo': product.stock<10? 'medio': 'alto'}</p> 
           <p className="text-xl">Marca: {product.brand.name}</p>
           <p className="text-xl">Tipo: {product.type.name}</p>
           {isOnCart ? <Button as={Link} href="/cart" className="rounded-lg py-6 mt-4 w-2/3 px-4 text-xl bg-blue-600 border-2 border-white text-white" variant="light">Ver carro</Button> : <Button className="rounded-lg py-6 mt-4 w-2/3 px-4 
