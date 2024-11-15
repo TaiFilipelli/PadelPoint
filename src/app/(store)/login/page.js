@@ -63,7 +63,7 @@ export default function Login() {
       
 
     return (
-        <main className="flex justify-center items-center p-20 max-[700px]:px-10 bg-[#264492]">
+        <main className="flex justify-center items-center p-20 max-[700px]:px-10 bg-[#264492] h-[70dvh]">
             <section className="flex flex-col justify-center items-center p-8 rounded-lg bg-white text-black w-[45%] max-[1150px]:w-[90%] max-[390px]:w-full">
                 <h1 className={`${pop.className} text-4xl`}>Bienvenido de vuelta!</h1>
                 <form className="w-full" onSubmit={handleSubmit}>
