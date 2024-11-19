@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { toast, ToastContainer, Slide } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { PuffLoader } from "react-spinners";
+import { set } from "zod";
 
 const pop = Poppins({subsets:['latin'],weight:['700','600','400']});
 
@@ -18,7 +19,7 @@ export default function Cart() {
     const removeFromCart = useCartStore((state) => state.removeFromCart);
     const updateCartItem = useCartStore((state) => state.updateCartItem);
     const [products, setProducts] = useState([]);
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState(0);
     const [address, setAddress] = useState([]);
     const [selectedAddress, setSelectedAddress] = useState(null);
     const [needsRefresh, setNeedsRefresh] = useState(false);
@@ -87,48 +88,55 @@ export default function Cart() {
     }
 
     useEffect(() => {
-        const checkRefreshToken = async() => {
+      const checkRefreshToken = async () => {
         const status = await checkUserState();
-        if(status.isLogged === false && status.refreshTokenExists === true){
+        console.log(status);
+        if (status.isLogged === false && status.refreshTokenExists === true) {
           setNeedsRefresh(true);
-          setIsModalOpen(true);
-        }
-        else if(status.isLogged === false || status.refreshTokenExists === false){
+        } else if (status.isLogged === false || status.refreshTokenExists === false) {
           setNeedsLogin(true);
-          setIsModalOpen(true);
-        }
-        else{
+        } else {
           setUser(status.payload.id);
         }
+        setLoading(false)
+      };
+      checkRefreshToken();
+    }, []);
+    
+    useEffect(() => {
+      const fetchAddress = async () => {
+        if (user!==0) {
+          const address = await getUserAddresses(user);
+          console.log(address);
+          if (address.status) {
+            setAddress(address.recourse);
+          }
+        } else {
+            setAddress([]);
         }
-        const fetchProducts = async () => {
-          if (cart.length > 0) {
-            const productsData = await Promise.all(cart.map(async item => {
+        setLoading(false);
+      };
+      fetchAddress();
+    }, [user]);
+    
+    useEffect(() => {
+      const fetchProducts = async () => {
+        if (cart.length > 0) {
+          const productsData = await Promise.all(
+            cart.map(async (item) => {
               const res = await getOneProductById(item.id);
               const product = res.recourse;
               return { ...product, cantidad: item.cantidad };
-            }));
-            setProducts(productsData);
-          }
-          else{
-            setProducts([]);
-          }
-        };
-        const fetchAddress = async () =>{
-          // const address = await getUserAddresses(user);
-          const address = await searchAllAddresses();
-          console.log(address);
-          if(address.status){
-            setAddress(address.recourse);
-            setLoading(false)
-          }else{
-            setAddress([]);
-            setLoading(false);
-        }}
-        fetchProducts();
-        fetchAddress();
-        checkRefreshToken();
-      }, [cart]);
+            })
+          );
+          setProducts(productsData);
+        } else {
+          setProducts([]);
+        }
+      };
+      fetchProducts();
+    }, [cart]);
+    
       
       useEffect(()=>{
         if(cart.length > 0){
@@ -243,7 +251,7 @@ export default function Cart() {
             { loading ? (
                 <p className="text-xl text-center">Cargando direcciones...</p>
               ) : (
-                address ? (
+                address.length>0 ? (
                   <section className="flex flex-col max-[500px]:text-center gap-4 mt-4">
                     {address.map(address => (
                       <article key={address.id} className={`${pop.className} rounded-3xl p-5 border-1 border-white bg-default-100 text-white ${selectedAddress === address.id ? 'bg-green-500':'bg-transparent'} w-1/3 max-[750px]:w-2/3 max-[500px]:w-full transition-colors duration-700`}>	
