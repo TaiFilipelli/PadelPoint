@@ -204,7 +204,7 @@ export default function Cart() {
         <section className="p-16 flex flex-col max-[500px]:items-center max-[500px]:text-center bg-[#264492]">
             <h1 className={`${pop.className} text-5xl font-bold mb-4`}>Carrito</h1>
             { loading ? (
-                <div className="flex h-[38vh] items-center justify-center">
+                <div className="flex h-[50vh] items-center justify-center">
                     <PuffLoader color="#2563EB" size={80}/>
                 </div>
             ):

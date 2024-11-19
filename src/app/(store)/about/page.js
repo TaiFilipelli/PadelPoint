@@ -9,10 +9,10 @@ export default function About() {
     
     const itemClasses = {
         base: "p-2 w-full max-[320px]:py-4 bg-gray-300",
-        title: "font-bold text-xl max-[530px]:h-1/2 text-black",
+        title: "font-bold text-xl max-[470px]:text-lg max-[400px]:text-base max-[530px]:h-full text-black",
         trigger: "px-2 py-0 max-[530px]:py-4 rounded-lg h-14 flex items-center bg-gray-300",
         indicator: "text-medium text-black",
-        content: "text-lg px-2 text-black",
+        content: "text-lg p-2 text-black",
       };
     return (
         <section className={`flex flex-col justify-center text-left items-center p-16 max-[650px]:px-8 ${pop.className} bg-[#264492]`}>
@@ -56,7 +56,7 @@ export default function About() {
                     Para jugadores intermedios, una paleta que ofrezca un buen balance entre control y potencia es ideal. Los jugadores avanzados suelen preferir palas de mayor potencia, 
                     con un balance más hacia la cabeza. Si necesitas asesoramiento personalizado, ¡no dudes en contactarnos!
                 </AccordionItem>
-                <AccordionItem key='paleta_fibra_vidrio' aria-label="¿Cuál es la diferencia entre las paletas de pádel de fibra de vidrio y de carbono?" indicator={<CaretRight size={20}/>} title='¿Cuál es la diferencia entre las paletas de pádel de fibra de vidrio y de carbono?'>
+                <AccordionItem key='paleta_fibra_vidrio' aria-label="¿Cuál es la diferencia entre las paletas de pádel de fibra de vidrio y de carbono?" indicator={<CaretRight size={20}/>} title='¿Diferencias entre las paletas de fibra de vidrio y de carbono?'>
                     Las palas de carbono son más duraderas y proporcionan un mejor rendimiento en términos de potencia y control, ya que el material es más rígido. 
                     Son perfectas para jugadores avanzados. Por otro lado, las palas de fibra de vidrio son más flexibles, lo que las hace ideales para jugadores principiantes o 
                     intermedios, ya que ofrecen un mejor confort y control. Cada material tiene sus ventajas dependiendo de tu estilo y nivel de juego.
