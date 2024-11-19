@@ -65,11 +65,12 @@ export default function MP_Page() {
                     unit_price: product.price
                 }
             }));
-            const userId = parseInt(sessionStorage.getItem('userId'));
+            const userId = parseInt(localStorage.getItem('userId'));
             const body = {addressId:addressId, userId:userId, items};
             const link = await createMPPreference(body);
+            console.log(link);
             if(link!=undefined){
-                window.location.href = link.url;
+                // window.location.href = link.url;
                 console.log(link)
             }else{
                 console.error('There is an internal issue with MP preference creation');
