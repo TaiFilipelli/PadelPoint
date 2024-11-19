@@ -3,7 +3,7 @@ import { Poppins } from "next/font/google";
 import { useCartStore } from "../../../data/useCartStore";
 import { useState, useEffect, useMemo } from "react";
 import { checkUserState, refreshUserToken } from "../../../data/loginData";
-import { getOpenpayToken, createPaymentIntent, getOneProductById, searchAllAddresses } from "../../../data/storeData";
+import { getOpenpayToken, createPaymentIntent, getOneProductById, getUserAddresses, searchAllAddresses } from "../../../data/storeData";
 import { SmileySad, Trash, LockKey, Plus, Minus, ClockUser, UserSwitch,MapPin } from "@phosphor-icons/react";
 import { Divider, Button, Modal, ModalBody, ModalContent, ModalFooter,ModalHeader, Link } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
@@ -18,6 +18,7 @@ export default function Cart() {
     const removeFromCart = useCartStore((state) => state.removeFromCart);
     const updateCartItem = useCartStore((state) => state.updateCartItem);
     const [products, setProducts] = useState([]);
+    const [user, setUser] = useState({});
     const [address, setAddress] = useState([]);
     const [selectedAddress, setSelectedAddress] = useState(null);
     const [needsRefresh, setNeedsRefresh] = useState(false);
@@ -62,20 +63,6 @@ export default function Cart() {
     }
   }
 
-    const checkRefreshToken = async() => {
-      const status = await checkUserState();
-      if(status.isLogged === false && status.refreshTokenExists === true){
-        setNeedsRefresh(true);
-        setIsModalOpen(true);
-      }
-      else if(status.isLogged === false || status.refreshTokenExists === false){
-        setNeedsLogin(true);
-        setIsModalOpen(true);
-      }
-      else{
-        setIsModalOpen(true);
-      }
-    }
 
     const refreshToken = async() => {
       const refreshedToken = await refreshUserToken();
@@ -100,6 +87,20 @@ export default function Cart() {
     }
 
     useEffect(() => {
+        const checkRefreshToken = async() => {
+        const status = await checkUserState();
+        if(status.isLogged === false && status.refreshTokenExists === true){
+          setNeedsRefresh(true);
+          setIsModalOpen(true);
+        }
+        else if(status.isLogged === false || status.refreshTokenExists === false){
+          setNeedsLogin(true);
+          setIsModalOpen(true);
+        }
+        else{
+          setUser(status.payload.id);
+        }
+        }
         const fetchProducts = async () => {
           if (cart.length > 0) {
             const productsData = await Promise.all(cart.map(async item => {
@@ -114,17 +115,19 @@ export default function Cart() {
           }
         };
         const fetchAddress = async () =>{
+          // const address = await getUserAddresses(user);
           const address = await searchAllAddresses();
           console.log(address);
           if(address.status){
-          setAddress(address.recourse);
-          setLoading(false)
-        }else{
-          setAddress([]);
-          setLoading(false);
+            setAddress(address.recourse);
+            setLoading(false)
+          }else{
+            setAddress([]);
+            setLoading(false);
         }}
         fetchProducts();
         fetchAddress();
+        checkRefreshToken();
       }, [cart]);
       
       useEffect(()=>{
@@ -149,7 +152,7 @@ export default function Cart() {
     };
 
     const handlePaymentButton = async() =>{
-      await checkRefreshToken();
+      setIsModalOpen(true);
     };
 
     const handleModalClose = () => {
@@ -286,7 +289,7 @@ export default function Cart() {
                           </div>
                       ) : 
                         <div className="text-black px-6 py-4">
-                          <h2 className="text-2xl font-bold mb-2">Usted pagará ARS${subtotal} con {method==0? 'Efectivo/transferencia': method==1?'Crédito/débito':'Mercado Pago'}. Desea continuar?</h2>
+                          <h2 className="text-2xl font-bold mb-2">Usted pagará ARS${subtotal} con {method==0? 'Efectivo/transferencia':'Mercado Pago'}. Desea continuar?</h2>
                           <p className="text-lg font-semibold">Se le redireccionará a la página de pago adecuada según el método elegido.</p>
                         </div>
                   }

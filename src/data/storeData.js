@@ -109,3 +109,9 @@ export const searchAllAddresses = async() =>{
     const result = await verifyResponse(data);
     return result;
 }
+
+export const getUserAddresses = async(id) =>{ 
+    const data = await fetch(`${baseUrl}/user/address/${id}`);
+    const result = await verifyResponse(data);
+    return result;
+}
