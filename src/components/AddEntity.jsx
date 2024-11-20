@@ -9,7 +9,7 @@ const AddEntity = ({ entity }) => {
 
     //Estados que almacenarán los datos ingresados para pasarlos como parámetro y para su posterior adición a la db.
     const [name, setName] = useState('');
-    const [image, setImage] = useState('');
+    const [image, setImage] = useState();
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
 
@@ -128,14 +128,14 @@ const AddEntity = ({ entity }) => {
             <h1 className="text-4xl font-semibold">{`Añadir ${entity}`}</h1>
             <h2 className="text-lg font-normal my-4">Ingrese los campos solicitados de forma correcta.</h2>
         </div>
-        <form onSubmit={handleSubmit} className="flex flex-col items-center w-2/3 max-[950px]:w-full">
+        <form onSubmit={handleSubmit} className="flex flex-col items-center w-2/3 max-[950px]:w-full" encType="multipart/form-data">
         <fieldset className="my-2 w-2/3 max-[450px]:w-full">
             <Input label='Nombre' value={name} onChange={(e) => setName(e.target.value)} isClearable/>
         </fieldset>
         {entity === "producto" && (
                 <>
                     <fieldset className="my-2 w-2/3 max-[450px]:w-full">
-                        <Input label='Imagen' fullWidth value={image} onChange={(e) => setImage(e.target.value)} isClearable/>
+                        <Input type="file" fullWidth value={image} onChange={(e) => setImage(e.target.value)} isClearable/>
                     </fieldset>
                     <fieldset className="my-2 w-2/3 max-[450px]:w-full">
                         <Input label='Descripción del producto' fullWidth value={description} onChange={(e) => setDescription(e.target.value)} isClearable/>
@@ -177,8 +177,8 @@ const AddEntity = ({ entity }) => {
                     </div>
                 {secondariesImages.map((img, index) => (
                     <fieldset key={index} className="my-2 w-full flex items-center">
-                        <Input label={`Imagen secundaria ${index + 1}`} fullWidth value={img} onChange={(e) => updateSecondaryImage(index, e.target.value)} isClearable/>
-                        <Button onClick={() => removeSecondaryImage(index)} className="ml-2">Eliminar</Button>
+                        <Input /*label={`Imagen secundaria ${index + 1}`}*/ fullWidth value={img} onChange={(e) => updateSecondaryImage(index, e.target.value)} type="file"/>
+                        <Button onClick={() => removeSecondaryImage(index)} className="ml-2 bg-red-600 text-white">Eliminar</Button>
                     </fieldset>
                 ))}
             <Button type="button" onClick={addSecondaryImage} className="mt-4">Añadir Imagen Secundaria</Button>

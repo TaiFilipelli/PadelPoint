@@ -18,6 +18,8 @@ export default function Dashboard(){
       if(response.status){
       setOrders(response.recourse);
       console.log(orders);
+    }else{
+      setOrders([])
     }}catch(error){
       console.log(error);
     }

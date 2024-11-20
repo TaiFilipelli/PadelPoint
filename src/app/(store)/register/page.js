@@ -57,9 +57,6 @@ export default function RegisterPage() {
         credentials.name = credentials.name.charAt(0).toUpperCase() + credentials.name.slice(1).toLowerCase();
         credentials.surname = credentials.surname.charAt(0).toUpperCase() + credentials.surname.slice(1).toLowerCase();
 
-
-        console.log('Credentials', credentials);
-
         try {
             const result = await createOneUser(credentials);
             if(result.statusCode !== 404){
