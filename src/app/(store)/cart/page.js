@@ -3,22 +3,23 @@ import { Poppins } from "next/font/google";
 import { useCartStore } from "../../../data/useCartStore";
 import { useState, useEffect, useMemo } from "react";
 import { checkUserState, refreshUserToken } from "../../../data/loginData";
-import { getOpenpayToken, createPaymentIntent, getOneProductById, getUserAddresses, searchAllAddresses } from "../../../data/storeData";
+import { getOpenpayToken, createPaymentIntent, getOneProductById, getUserAddresses, getProducts } from "../../../data/storeData";
 import { SmileySad, Trash, LockKey, Plus, Minus, ClockUser, UserSwitch,MapPin } from "@phosphor-icons/react";
 import { Divider, Button, Modal, ModalBody, ModalContent, ModalFooter,ModalHeader, Link } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import { toast, ToastContainer, Slide } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { PuffLoader } from "react-spinners";
-import { set } from "zod";
+import { Accesories } from "../../../components/cart/Accesories";
+import { Products } from "../../../components/cart/Products"
+
 
 const pop = Poppins({subsets:['latin'],weight:['700','600','400']});
 
 export default function Cart() {
     const cart = useCartStore((state) => state.cart);
-    const removeFromCart = useCartStore((state) => state.removeFromCart);
-    const updateCartItem = useCartStore((state) => state.updateCartItem);
     const [products, setProducts] = useState([]);
+    const [accesories, setAccesories] = useState([]);
     const [user, setUser] = useState(0);
     const [address, setAddress] = useState([]);
     const [selectedAddress, setSelectedAddress] = useState(null);
@@ -134,7 +135,18 @@ export default function Cart() {
           setProducts([]);
         }
       };
+      const fetchRecommendedAccesories = async () => {
+        const res = await getProducts({type:'Accesorios', limit:2});
+        if(res){
+          const recProducts = res.recourse;
+          setAccesories(recProducts);
+          return recProducts;
+        }else{
+          setAccesories([]);
+        }
+      };
       fetchProducts();
+      fetchRecommendedAccesories();
     }, [cart]);
     
       
@@ -146,18 +158,6 @@ export default function Cart() {
           setSubtotal(0);
         }
       })
-
-    const handleIncrease = (idProducto, cantidad) => {
-        const newCantidad = cantidad + 1;
-        updateCartItem(idProducto, newCantidad);
-    };
-
-    const handleDecrease = (idProducto, cantidad) => {
-        if (cantidad > 1) {
-            const newCantidad = cantidad - 1;
-            updateCartItem(idProducto, newCantidad);
-        }
-    };
 
     const handlePaymentButton = async() =>{
       setIsModalOpen(true);
@@ -217,42 +217,18 @@ export default function Cart() {
                 </div>
             ):
             <section>
-            {products.length < 1 ? (
-              <section className="flex flex-col my-10 items-center justify-center rounded-3xl p-11 border-1 border-black bg-default-100 text-black">
-                  <h2 className={`${pop.className} font-semibold text-3xl m-2`}>Tu carrito está vacío</h2>
-                  <SmileySad size={80}/>
-              </section>
-          ) : (
-              products.map(product => (
-                <section key={product.id} className={`${pop.className} sm:flex overflow-x-auto items-center justify-between p-4 my-4 w-2/5 max-[1080px]:w-[70%] max-[650px]:w-full bg-default-300 rounded-lg text-black`}>
-                  <div className="flex items-center max-[440px]:flex-wrap">
-                    <img src={product.image} alt={product.name} className="w-20 h-20 object-cover rounded-lg" />
-                    <div className="ml-4 text-left">
-                      <h2 className='text-lg font-semibold'>{product.name}</h2>
-                      <p className='font-normal'>Marca: {product.brand.name}</p>
-                      <p className='font-normal'>Precio: ARS${product.price}</p>
-                      <div className="flex items-center gap-2 my-2">
-                          <Button onClick={() => handleDecrease(product.id, product.cantidad)} className="bg-transparent text-black px-2"><Minus weight="regular" size={20}/></Button>
-                          <p className="font-medium">{product.cantidad}</p>
-                          <Button onClick={() => handleIncrease(product.id, product.cantidad)} className="bg-transparent text-black px-2"><Plus/></Button>
-                      </div>
-                    </div>
-                  </div>
-                  <Button className="bg-red-500 text-white px-2" onClick={() => removeFromCart(product.id)}>
-                      <Trash size={24} />
-                  </Button>
-                </section>
-              ))
-          )}
-          <Divider/>
-          <section className="flex flex-col gap-4 w-auto max-[470px]:w-full mt-4 mb-8">
-            <h3 className="font-bold text-3xl">Dirección de envío</h3>
-            <p className="text-xl text-wrap">Seleccione su dirección de envío. En caso no se encuentre la dirección deseada, añada una nueva.</p>
-            { loading ? (
-                <p className="text-xl text-center">Cargando direcciones...</p>
-              ) : (
-                address.length>0 ? (
-                  <section className="flex flex-col max-[500px]:text-center gap-4 mt-4">
+              <Products products={products} />
+              <Divider />
+              <Accesories accessories={accesories} />
+              <Divider/>
+              <section className="flex flex-col gap-4 w-auto max-[470px]:w-full mt-4 mb-8">
+                <h3 className="font-bold text-3xl">Dirección de envío</h3>
+                <p className="text-xl text-wrap">Seleccione su dirección de envío. En caso no se encuentre la dirección deseada, añada una nueva.</p>
+                { loading ? (
+                    <p className="text-xl text-center">Cargando direcciones...</p>
+                  ) : (
+                    address.length>0 ? (
+                    <section className="flex flex-col max-[500px]:text-center gap-4 mt-4">
                     {address.map(address => (
                       <article key={address.id} className={`${pop.className} rounded-3xl p-5 border-1 border-white bg-default-100 text-white ${selectedAddress === address.id ? 'bg-green-500':'bg-transparent'} w-1/3 max-[750px]:w-2/3 max-[500px]:w-full transition-colors duration-700`}>	
                         <h3 className="font-semibold text-2xl">{address.addressStreet} {address.addressNumber}</h3>

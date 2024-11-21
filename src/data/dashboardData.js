@@ -111,7 +111,7 @@ export const deleteProduct = async(id) => {
 
 export const updateNAMEONLYEntities = async(id, name, entity) => {
     const response = await fetch(`${baseUrl}/${entity}/${id}`,{
-        method:'PATCH',
+        method:'PUT',
         headers:{
             'Content-Type':'application/json'
         },

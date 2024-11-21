@@ -2,8 +2,8 @@ import React, {useState, useEffect} from 'react'
 import { toast, ToastContainer, Slide } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { Button, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Input } from '@nextui-org/react';
-import { updateNAMEONLYEntities, updateProductPriceOrSupplier, getSuppliers} from '../data/dashboardData';
-import { getBrands, getProducts, getTypes } from '../data/storeData';
+import { updateNAMEONLYEntities, updateProductPriceOrSupplier, getSuppliers} from '../../data/dashboardData';
+import { getBrands, getProducts, getTypes } from '../../data/storeData';
 
 const EditEntity = ({entity}) => {
 
