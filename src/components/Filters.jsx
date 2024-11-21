@@ -47,11 +47,11 @@ export const Filters = () => {
 
   return (
     <section className={`w-full h-24 max-[1464px]: mb-10 bg-white text-black border-1 border-black shadow-sm shadow-slate-700 rounded-lg flex flex-row 
-                        max-[1000px]:flex-col max-[1000px]:items-center max-[1000px]:h-full gap-10 max-[1100px]:gap-2 items-center justify-center p-2 ${pop.className}`}>
+    max-[1000px]:flex-col max-[1000px]:items-center max-[1000px]:h-full gap-10 max-[1100px]:gap-2 items-center justify-center p-2 ${pop.className}`}>
       <h3 className='text-bold text-2xl ml-2'>Filtrar por:</h3>
       <Dropdown>
             <DropdownTrigger>
-                <Button className="ml-4 p-6 text-xl bg-default-200 w-1/5 max-[880px]:w-1/3 max-[400px]:w-2/3" variant="light" radius="sm"> {selectedType? selectedType : 'Tipos'}</Button> 
+                <Button className="ml-4 p-6 text-xl bg-default-200 w-1/5 max-[880px]:w-1/3 max-[600px]:w-2/3" variant="light" radius="sm"> {selectedType? selectedType : 'Tipos'}</Button> 
             </DropdownTrigger>
             <DropdownMenu className="p-0 w-full" itemClasses={{ base: "gap-4" }}>
                 {types.map(type => (
@@ -62,7 +62,7 @@ export const Filters = () => {
         <Divider orientation='vertical'/>
         <Dropdown className='w-full'>
             <DropdownTrigger>
-                <Button className="ml-4 p-6 text-xl bg-default-200 w-1/5 max-[880px]:w-1/3 max-[400px]:w-2/3" variant="light" radius="sm">Precios</Button>
+                <Button className="ml-4 p-6 text-xl bg-default-200 w-1/5 max-[880px]:w-1/3 max-[600px]:w-2/3" variant="light" radius="sm">Precios</Button>
             </DropdownTrigger>
             <DropdownMenu className="p-2 rounded-lg" >
                <DropdownItem className='text-black' isReadOnly>
@@ -83,7 +83,7 @@ export const Filters = () => {
         <Divider orientation='vertical'/>
         <Dropdown className='w-full'>
             <DropdownTrigger>
-                <Button className="ml-4 p-6 text-xl max-[1200px]:text-lg bg-default-200 w-1/5 max-[880px]:w-1/3 max-[400px]:w-2/3" variant="light" radius="sm">Nombre</Button>
+                <Button className="ml-4 p-6 text-xl max-[1200px]:text-lg bg-default-200 w-1/5 max-[880px]:w-1/3 max-[600px]:w-2/3" variant="light" radius="sm">Nombre</Button>
             </DropdownTrigger>
             <DropdownMenu className="p-2 rounded-lg">
                <DropdownItem className='text-black' isReadOnly>

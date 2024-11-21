@@ -51,7 +51,7 @@ export default function About() {
             </section>
             <h1 className="font-bold text-4xl mt-8 mb-4">FAQ</h1>
             <Accordion variant="bordered" className="bg-gray-300" itemClasses={itemClasses} id="faq">
-                <AccordionItem key='paleta_adecuada' aria-label="¿Cómo puedo elegir la paleta de pádel adecuada para mí?" indicator={<CaretRight size={20}/>} title='¿Cómo puedo elegir la paleta de pádel adecuada para mí?'>
+                <AccordionItem key='paleta_adecuada' aria-label="¿Cómo puedo elegir la paleta de pádel adecuada para mí?" indicator={<CaretRight size={20}/>} title='¿Cómo puedo elegir la paleta adecuada para mí?'>
                     La elección de la paleta depende de tu nivel de juego, estilo y preferencias. Si eres principiante, te recomendamos una paleta con mayor control y una superficie más grande. 
                     Para jugadores intermedios, una paleta que ofrezca un buen balance entre control y potencia es ideal. Los jugadores avanzados suelen preferir palas de mayor potencia, 
                     con un balance más hacia la cabeza. Si necesitas asesoramiento personalizado, ¡no dudes en contactarnos!
