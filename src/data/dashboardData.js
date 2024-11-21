@@ -136,3 +136,15 @@ export const updateProductPriceOrSupplier = async (id, price, supplierId) => {
     }
     return result;
 };
+
+export const createImage = async (id, image) => {
+    const response = await fetch(`${baseUrl}/images/${id}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(image)
+    });
+    const result = await verifyResponse(response);
+    return result;
+}

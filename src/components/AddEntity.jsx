@@ -1,7 +1,7 @@
 import { Input, Button, Dropdown, DropdownTrigger, DropdownItem, DropdownMenu } from "@nextui-org/react"
 import { useState, useEffect } from "react";
-import { getTypes, getBrands } from "../data/storeData";
-import { addNewBrand, addNewProduct, addNewRole, addNewType, addNewSupplier, getSuppliers } from "../data/dashboardData";
+import { getTypes, getBrands, getOneProductById } from "../data/storeData";
+import { addNewBrand, addNewProduct, addNewRole, addNewType, addNewSupplier, getSuppliers, createImage } from "../data/dashboardData";
 import { toast, ToastContainer, Slide } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -9,7 +9,7 @@ const AddEntity = ({ entity }) => {
 
     //Estados que almacenarán los datos ingresados para pasarlos como parámetro y para su posterior adición a la db.
     const [name, setName] = useState('');
-    const [image, setImage] = useState();
+    const [image, setImage] = useState(null);
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
 
@@ -25,6 +25,7 @@ const AddEntity = ({ entity }) => {
     const [secondariesImages, setSecondariesImages] = useState([]);
 
     const [loading, setLoading] = useState(true);
+
 
     useEffect(() => {
         if (entity === "producto") {
@@ -87,6 +88,10 @@ const AddEntity = ({ entity }) => {
                 addProduct(name, image, description, price, selectedBrand, selectedSupplier, selectedType, secondariesImages);
                 // toast.success('Añadido nuevo producto a la base de datos!')
                 break;
+            case 'imagen':
+                addNewImage(name, image);
+                toast.success('Nueva imagen añadida con éxito!')
+                break;
             case 'marca':
                 addNewBrand(name);
                 toast.success('Nueva marca añadida con éxito!')
@@ -118,8 +123,29 @@ const AddEntity = ({ entity }) => {
             supplierId: supplierId.id,
             typeId: typeId.id
         };
+        console.log(newProduct)
+        console.log(image)
+        if (image.size > 10 * 1024 * 1024) { 
+            toast.error("El archivo es demasiado grande (máximo 10MB).");
+            return;
+          }
         const result = await addNewProduct(newProduct);
-        toast.success('Producto añadido con éxito!', result)
+        if(result.status === 200){
+            toast.success('Producto añadido con éxito!', result.message)
+        }else{
+            toast.error('Error al añadir el producto');
+        }
+    }
+
+    const addNewImage = async (id, image) => {
+        const product = await getOneProductById(parseInt(id));
+        console.log(image)
+        console.log(product);
+        if(product){
+            const result = await createImage(product.recourse.id, image);
+            console.log(result);
+            // toast.success('Imagen añadida con éxito!', result)
+        }
     }
 
   return (
@@ -135,7 +161,7 @@ const AddEntity = ({ entity }) => {
         {entity === "producto" && (
                 <>
                     <fieldset className="my-2 w-2/3 max-[450px]:w-full">
-                        <Input type="file" fullWidth value={image} onChange={(e) => setImage(e.target.value)} isClearable/>
+                        <Input type="file" fullWidth onChange={(e) => setImage(e.target.files[0])} accept="image/*" name="image"/>
                     </fieldset>
                     <fieldset className="my-2 w-2/3 max-[450px]:w-full">
                         <Input label='Descripción del producto' fullWidth value={description} onChange={(e) => setDescription(e.target.value)} isClearable/>
@@ -183,6 +209,9 @@ const AddEntity = ({ entity }) => {
                 ))}
             <Button type="button" onClick={addSecondaryImage} className="mt-4">Añadir Imagen Secundaria</Button>
             </>
+        )}
+        {entity === 'imagen' && (
+            <Input type="file" className="mt-4 w-2/5 max-[490px]:w-full bg-blue-600 text-white" accept="image/*" required/>
         )}
         <Button type="submit" className="mt-4 w-2/5 max-[490px]:w-full bg-blue-600 text-white">{`Añadir ${entity}`}</Button>
       </form>

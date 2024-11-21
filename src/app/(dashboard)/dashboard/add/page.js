@@ -15,6 +15,7 @@ export default function AddEntitiesPage() {
             <h2 className={`${mont.className} text-xl font-normal mb-8`}>Elija a continuación qué añadir a la base de datos</h2>
             <div className="flex items-center max-[940px]:flex-col gap-2">
                 <Button className="text-lg w-1/5 max-[940px]:w-full" onClick={()=> setEntity('producto')}>Nuevo producto</Button>
+                <Button className="text-lg w-1/5 max-[940px]:w-full" onClick={()=> setEntity('imagen')}>Nueva imagen</Button>
                 <Button className="text-lg w-1/5 max-[940px]:w-full" onClick={()=> setEntity('marca')}>Nueva marca</Button>
                 <Button className="text-lg w-1/5 max-[940px]:w-full" onClick={()=> setEntity('rol')}>Nuevo rol</Button>
                 <Button className="text-lg w-1/5 max-[940px]:w-full" onClick={()=> setEntity('proveedor')}>Nuevo proveedor</Button>
