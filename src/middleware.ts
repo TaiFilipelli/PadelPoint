@@ -14,7 +14,7 @@ export async function middleware(req: NextRequest) {
     const token = req.cookies.get('user')?.value;
 
     if (!token) {
-      return NextResponse.redirect(new URL('/', req.url));
+      return NextResponse.redirect(new URL('/404', req.url));
     }
 
     try {
@@ -24,12 +24,12 @@ export async function middleware(req: NextRequest) {
       const isAdmin = roles.some((role) => role.name === 'admin');
 
       if (!isAdmin) {
-        return NextResponse.redirect(new URL('/', req.url));
+        return NextResponse.redirect(new URL('/404', req.url));
       }
 
       return NextResponse.next();
     } catch (error) {
-      return NextResponse.redirect(new URL('/', req.url));
+      return NextResponse.redirect(new URL('/404', req.url));
     }
   }
 

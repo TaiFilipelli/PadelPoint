@@ -86,7 +86,7 @@ const AddEntity = ({ entity }) => {
         switch(entity){
             case 'producto':
                 addProduct(name, image, description, price, selectedBrand, selectedSupplier, selectedType, secondariesImages);
-                // toast.success('Añadido nuevo producto a la base de datos!')
+                e.target.reset();
                 break;
             case 'imagen':
                 addNewImage(name, image);
@@ -131,7 +131,7 @@ const AddEntity = ({ entity }) => {
           }
         const result = await addNewProduct(newProduct);
         if(result.status === 200){
-            toast.success('Producto añadido con éxito!', result.message)
+            toast.success('Producto añadido con éxito!', result.message);
         }else{
             toast.error('Error al añadir el producto');
         }
