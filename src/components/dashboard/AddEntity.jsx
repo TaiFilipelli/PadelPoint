@@ -12,6 +12,8 @@ const AddEntity = ({ entity }) => {
     const [image, setImage] = useState(null);
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
+    const [stock, setStock] = useState('');
+    const [shipping, setShipping] = useState('');
 
     //Estados para almacenar los valores traidos desde la db
     const [brands, setBrands] = useState([]);
@@ -85,7 +87,7 @@ const AddEntity = ({ entity }) => {
         e.preventDefault();
         switch(entity){
             case 'producto':
-                addProduct(name, image, description, price, selectedBrand, selectedSupplier, selectedType, secondariesImages);
+                addProduct(name, image, description, price, stock, shipping, selectedBrand, selectedSupplier, selectedType, secondariesImages);
                 e.target.reset();
                 break;
             case 'imagen':
@@ -112,13 +114,15 @@ const AddEntity = ({ entity }) => {
                 console.error("Entidad no reconocida");
         }
     }
-    const addProduct = async(name, image, description, price, brandId, supplierId, typeId, secondariesImages) => {
+    const addProduct = async(name, image, description, price, stock, shipping, brandId, supplierId, typeId /*secondariesImages*/) => {
         const newProduct = {
             name: name,
             image: image,
             description: description,
-            secondariesImages: secondariesImages,
+            // secondariesImages: secondariesImages,
             price: parseFloat(price),
+            stock: parseInt(stock),
+            shippingCost: parseInt(shipping),
             brandId: brandId.id,
             supplierId: supplierId.id,
             typeId: typeId.id
@@ -130,6 +134,7 @@ const AddEntity = ({ entity }) => {
             return;
           }
         const result = await addNewProduct(newProduct);
+        console.log('Response from API deaum:',result)
         if(result.status === 200){
             toast.success('Producto añadido con éxito!', result.message);
         }else{
@@ -169,6 +174,12 @@ const AddEntity = ({ entity }) => {
                     <fieldset className="my-2 w-2/3 max-[450px]:w-full">
                         <Input label='Precio' type="number" fullWidth value={price} onChange={(e) => setPrice(e.target.value)} isClearable/>
                     </fieldset>
+                    <fieldset className="my-2 w-2/3 max-[450px]:w-full">
+                        <Input label='Stock' type="number" fullWidth value={stock} onChange={(e) => setStock(e.target.value)} isClearable/>
+                    </fieldset>
+                    <fieldset className="my-2 w-2/3 max-[450px]:w-full">
+                        <Input label='Coste de envío' type="number" fullWidth value={shipping} onChange={(e) => setShipping(e.target.value)} isClearable/>
+                    </fieldset>
                     <div className="flex flex-row max-[550px]:flex-col items-center gap-2 w-full mt-4">
                     <Dropdown>
                         <DropdownTrigger>
@@ -203,7 +214,7 @@ const AddEntity = ({ entity }) => {
                     </div>
                 {secondariesImages.map((img, index) => (
                     <fieldset key={index} className="my-2 w-full flex items-center">
-                        <Input /*label={`Imagen secundaria ${index + 1}`}*/ fullWidth value={img} onChange={(e) => updateSecondaryImage(index, e.target.value)} type="file"/>
+                        <Input /*label={`Imagen secundaria ${index + 1}`}*/ fullWidth onChange={(e) => setImage(e.target.files[0])} type="file" accept="image/*"/>
                         <Button onClick={() => removeSecondaryImage(index)} className="ml-2 bg-red-600 text-white">Eliminar</Button>
                     </fieldset>
                 ))}

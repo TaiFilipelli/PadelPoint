@@ -13,7 +13,9 @@ export const addNewProduct = async(data) => {
         },
         body: JSON.stringify(data)
     });
+    console.log('Desde el método addNewProduct', response)
     const result = await verifyResponse(response);
+    console.log(result)
     if(response.ok){console.log('New product added to Database succesfully', result)}
     return result;
 }
