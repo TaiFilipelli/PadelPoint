@@ -4,6 +4,7 @@ import { getTypes, getBrands, getOneProductById } from "../../data/storeData";
 import { addNewBrand, addNewProduct, addNewRole, addNewType, addNewSupplier, getSuppliers, createImage } from "../../data/dashboardData";
 import { toast, ToastContainer, Slide } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { type } from "os";
 
 const AddEntity = ({ entity }) => {
 
@@ -115,27 +116,29 @@ const AddEntity = ({ entity }) => {
         }
     }
     const addProduct = async(name, image, description, price, stock, shipping, brandId, supplierId, typeId /*secondariesImages*/) => {
-        const newProduct = {
-            name: name,
-            image: image,
-            description: description,
-            // secondariesImages: secondariesImages,
-            price: parseFloat(price),
-            stock: parseInt(stock),
-            shippingCost: parseInt(shipping),
-            brandId: brandId.id,
-            supplierId: supplierId.id,
-            typeId: typeId.id
-        };
-        console.log(newProduct)
-        console.log(image)
+
+
+        const form = document.getElementById('formProduct');
+        const formData = new FormData(form);
+        formData.append('name', name);
+        formData.append('image', image);
+        formData.append('description', description);
+        formData.append('price', price);
+        formData.append('stock', stock);
+        formData.append('shippingCost', shipping);
+        formData.append('brandId', brandId.id);
+        formData.append('supplierId', supplierId.id);
+        formData.append('typeId', typeId.id);
+        // formData.append('secondariesImages', secondariesImages);
+        console.log('FormData:', formData)
+        console.log('Imagen:', image)
         if (image.size > 10 * 1024 * 1024) { 
             toast.error("El archivo es demasiado grande (máximo 10MB).");
             return;
-          }
-        const result = await addNewProduct(newProduct);
+        }
+        const result = await addNewProduct(formData);
         console.log('Response from API deaum:',result)
-        if(result.status === 200){
+        if(result.status){
             toast.success('Producto añadido con éxito!', result.message);
         }else{
             toast.error('Error al añadir el producto');
@@ -159,7 +162,7 @@ const AddEntity = ({ entity }) => {
             <h1 className="text-4xl font-semibold">{`Añadir ${entity}`}</h1>
             <h2 className="text-lg font-normal my-4">Ingrese los campos solicitados de forma correcta.</h2>
         </div>
-        <form onSubmit={handleSubmit} className="flex flex-col items-center w-2/3 max-[950px]:w-full" encType="multipart/form-data">
+        <form encType="multipart/form-data" method="post" id="formProduct" onSubmit={handleSubmit} className="flex flex-col items-center w-2/3 max-[950px]:w-full">
         <fieldset className="my-2 w-2/3 max-[450px]:w-full">
             <Input label='Nombre' value={name} onChange={(e) => setName(e.target.value)} isClearable/>
         </fieldset>

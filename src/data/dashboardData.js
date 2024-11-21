@@ -8,16 +8,13 @@ const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 export const addNewProduct = async(data) => {
     const response = await fetch(`${baseUrl}/product`,{
         method:'POST',
-        headers:{
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    });
+        body:data, 
+    }).then((data) => data.json())
+    .catch((err)=>console.log('ERROR EN EL METODO:',err));
+
     console.log('Desde el método addNewProduct', response)
-    const result = await verifyResponse(response);
-    console.log(result)
-    if(response.ok){console.log('New product added to Database succesfully', result)}
-    return result;
+    if(response.status){console.log('New product added to Database succesfully')}
+    return response;
 }
 export const addNewType = async(name) => {
     const response = await fetch(`${baseUrl}/type`,{
