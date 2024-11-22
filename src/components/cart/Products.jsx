@@ -31,7 +31,7 @@ export function Products({ products }) {
             products.map(product => (
                 <section key={product.id} className={`${pop.className} sm:flex overflow-x-auto items-center justify-between p-4 my-4 w-2/5 max-[1080px]:w-[70%] max-[650px]:w-full bg-default-300 rounded-lg text-black`}>
                     <div className="flex items-center max-[440px]:flex-wrap">
-                        <img src={product.image} alt={product.name} className="w-20 h-20 object-cover rounded-lg" />
+                        <img src={`https://${product.image}`}  alt={product.name} className="w-20 h-20 object-cover rounded-lg" />
                         <div className="ml-4 text-left">
                             <h2 className='text-lg font-semibold'>{product.name}</h2>
                             <p className='font-normal'>Marca: {product.brand.name}</p>

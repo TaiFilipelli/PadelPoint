@@ -13,7 +13,6 @@ export default function ProductsList() {
         try {
             const data = await getProducts(params);
             setProducts(data.recourse);
-            console.log(data.recourse)
             setIsLoading(false);
         } catch (error) {
             console.error('ERROR ACÁ:', error);

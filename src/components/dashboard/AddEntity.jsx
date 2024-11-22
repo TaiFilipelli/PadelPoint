@@ -118,8 +118,7 @@ const AddEntity = ({ entity }) => {
     const addProduct = async(name, image, description, price, stock, shipping, brandId, supplierId, typeId /*secondariesImages*/) => {
 
 
-        const form = document.getElementById('formProduct');
-        const formData = new FormData(form);
+        const formData = new FormData();
         formData.append('name', name);
         formData.append('image', image);
         formData.append('description', description);
@@ -169,7 +168,7 @@ const AddEntity = ({ entity }) => {
         {entity === "producto" && (
                 <>
                     <fieldset className="my-2 w-2/3 max-[450px]:w-full">
-                        <Input type="file" fullWidth onChange={(e) => setImage(e.target.files[0])} accept="image/*" name="image"/>
+                        <Input type="file" label='Imagen principal' labelPlacement="outside" fullWidth onChange={(e) => setImage(e.target.files[0])} accept="image/*" name="image"/>
                     </fieldset>
                     <fieldset className="my-2 w-2/3 max-[450px]:w-full">
                         <Input label='Descripción del producto' fullWidth value={description} onChange={(e) => setDescription(e.target.value)} isClearable/>

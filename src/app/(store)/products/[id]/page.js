@@ -104,7 +104,7 @@ export default function ProductDetailPage() {
            ))}
           </div>
           <div className="h-[35rem] min-w-96">
-            <img src={product.image} alt={product.name} className="h-full border-1 rounded-xl object-cover" />
+            <img src={`https://${product.image}`}  alt={product.name} className="h-full border-1 rounded-xl object-cover" />
           </div>
         </div>
         <div className="text-left flex flex-col p-2">

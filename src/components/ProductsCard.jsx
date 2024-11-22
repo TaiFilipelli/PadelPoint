@@ -65,9 +65,9 @@ const ProductsCard = ({name, image, brand, price, idProducto, isLoading}) => {
     <section className='bg-white text-black w-auto object-cover flex flex-col justify-center items-center rounded-lg text-center border-2 border-gray-200 shadow-xl p-4 my-4'>
       <h1 className='mt-2 text-lg font-bold'>{limitedName}</h1>
       <img 
-        src={image} 
+        src={`https://${image}`} 
         alt="Imagen paleta" 
-        className="h-64 max-h-64 object-cover rounded-md mt-2"
+        className="w-64 h-64 max-h-64 object-cover rounded-md mt-2"
       />
       <p className='font-semibold mt-2'>Marca: {brand}</p>
       <div className='w-full flex flex-col items-center justify-center mt-2'>

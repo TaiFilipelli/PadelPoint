@@ -22,7 +22,7 @@ return (
     {accessories.map(accessorie =>(
         <div key={accessorie.id} className="flex flex-row justify-between items-center gap-4 w-auto max-[470px]:w-full my-4 text-black bg-white p-4 rounded-3xl">
             <article className='flex flex-col'>
-                <img src={accessorie.image} alt="Imagen de accesorio" />
+                <img src={`https://${accessorie.image}`} alt="Imagen de accesorio" className="w-20 h-20 object-cover rounded-lg"/>
                 <h3 className="font-bold text-2xl mb-2">{accessorie.name}</h3>
                 <p className="text-lg">{accessorie.description}</p>
             </article>
