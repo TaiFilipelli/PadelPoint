@@ -81,7 +81,7 @@ export default async function Home() {
         <Button as={Link} href="https://www.instagram.com/_padelpoint/" aria-label="Página oficial de Instagram" className="flex items-center p-5 rounded-lg bg-transparent hover:bg-[#E1306C] transition-all duration-300 ease-in-out" startContent={<InstagramLogo size={40} color="white"/>}>
           <p className="font-bold text-lg text-white">Instagram Oficial</p>
         </Button>
-        <Button as={Link} href="https://api.whatsapp.com/send/?phone=%2B543364003555&text&type=phone_number&app_absent=0" aria-label="WhatsApp de PadelPoint" className="flex items-center p-5 bg-transparent hover:bg-[#25D366] transition-all duration-300 ease-in-out rounded-lg" startContent={<WhatsappLogo size={40} color="white" />}>
+        <Button as={Link} href="https://api.whatsapp.com/send/?phone=%2B543364003555&text&type=phone_number&app_absent=0"  aria-label="WhatsApp de PadelPoint" className="flex items-center p-5 bg-transparent hover:bg-[#25D366] transition-all duration-300 ease-in-out rounded-lg" startContent={<WhatsappLogo size={40} color="white" />}>
           <p className="font-bold text-lg text-white">Whatsapp</p>
         </Button>
       </div>

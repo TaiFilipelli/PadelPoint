@@ -20,7 +20,7 @@ export default function NewPasswordPage() {
         }
 
         const change = await changePassword(newPass);
-        if (change.status === 200){
+        if (change.status === 201){
             toast.success('Contraseña actualizada correctamente!');
             setTimeout(()=>{
                 router.push('/login');

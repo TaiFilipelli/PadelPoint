@@ -12,6 +12,7 @@ const pop = Poppins({ subsets: ['latin'], weight: ['700', '400'] });
 export default function ForgotPasswordPage() {
     const [email, setEmail] = useState('');
     const [code, setCode] = useState(Array(6).fill(''));
+    const [isVisible, setIsVisible] = useState(false);
 
     const router = useRouter();
 
@@ -23,8 +24,7 @@ export default function ForgotPasswordPage() {
             toast.error('Ingrese un correo válido o inténtelo de nuevo más adelante.');
         }else{
             toast.success('Código enviado con éxito!');
-            const code = document.getElementById('code');
-            code.classList.add('opacity-100');
+            setIsVisible(true);
         }
     };
 
@@ -60,7 +60,7 @@ export default function ForgotPasswordPage() {
                 className="w-1/3 max-[620px]:w-full mb-10 text-black"
             />
             <Button onClick={handleEmail} className="mb-10 bg-blue-600 text-white text-lg p-6 max-[620px]:w-full" >Enviar código</Button>
-            <div className="flex flex-row gap-2 my-4 opacity-20" id="code">
+            <div className={`flex flex-row gap-2 my-4 ${isVisible? 'opacity-100' : 'opacity-20'}`}>
                 {code.map((digit, index) => (
                     <Input 
                         key={index} 
@@ -72,7 +72,7 @@ export default function ForgotPasswordPage() {
                     />
                 ))}
             </div>
-            <Button onClick={handleVerifyCode} className="bg-blue-600 text-white text-lg p-6 opacity-20 mt-4 max-[620px]:w-full" id="code">Verificar código</Button>
+            <Button onClick={handleVerifyCode} className="bg-blue-600 text-white text-lg p-6 mt-4 max-[620px]:w-full" isDisabled={isVisible? false:true} id="code">Verificar código</Button>
             <ToastContainer 
                 position="bottom-right" 
                 autoClose={1500} 

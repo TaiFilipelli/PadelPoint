@@ -99,11 +99,11 @@ export const refreshUserToken = async() => {
     return result;
 }
 
-export const sendEmailToResetPass = async(email) =>{
+export const sendEmailToResetPass = async(user) =>{
     const response = await fetch(`${baseUrl}/user/reset-pass-code`,{
         method:'POST',
         headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({ email }),
+        body:JSON.stringify({ usernameOrEmail:user }),
         credentials:'include'
     })
     console.log(response)
@@ -122,7 +122,7 @@ export const verifyCode = async(email, code) => {
 }
 export const changePassword = async(newPassword) => {
     const response = await fetch(`${baseUrl}/user/reset-pass`,{
-        method:'PATCH',
+        method:'PUT',
         headers:{'Content-Type':'application/json'},
         body:JSON.stringify({ newPassword }),
         credentials:'include'
