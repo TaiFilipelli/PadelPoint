@@ -49,7 +49,7 @@ export default function ForgotPasswordPage() {
     };
 
     return (
-        <section className="flex flex-col items-center text-center p-16 text-white bg-[#264492] h-[70vh] max-[920px]:h-auto">
+        <section className="flex flex-col items-center text-center p-16 text-white bg-[#264492] h-auto">
             <h1 className={`${pop.className} text-4xl font-bold mb-4 mt-8`}>Recuperá tu contraseña</h1>
             <h2 className={`${pop.className} text-2xl max-[620px]:text-xl mb-6 font-normal`}>Ingresá el correo de tu cuenta. Te llegará a la dirección otorgada un código único de 6 caractéres para validar tu usuario.</h2>
             <Input 
@@ -60,17 +60,17 @@ export default function ForgotPasswordPage() {
                 className="w-1/3 max-[620px]:w-full mb-10 text-black"
             />
             <Button onClick={handleEmail} className="mb-10 bg-blue-600 text-white text-lg p-6 max-[620px]:w-full" >Enviar código</Button>
-            <div className={`flex flex-row gap-2 my-4 ${isVisible? 'opacity-100' : 'opacity-20'}`}>
+            <div className={`flex flex-row gap-2 my-4 ${isVisible ? 'opacity-100' : 'opacity-20'} w-full justify-center`}>
                 {code.map((digit, index) => (
-                    <Input 
-                        key={index} 
-                        type="number" 
-                        value={digit} 
-                        onChange={(e) => handleCodeChange(index, e.target.value)} 
-                        className="w-16 text-center" 
-                        maxLength={1}
-                    />
-                ))}
+                <input 
+                    key={index} 
+                    type="number" 
+                    value={digit} 
+                    onChange={(e) => handleCodeChange(index, e.target.value)} 
+                    className="w-20 h-20 rounded-xl text-center sm:w-14 sm:h-18 md:w-12 md:h-16 max-[510px]:w-12 max-[510px]:h-14 max-[340px]:w-10" 
+                    maxLength={1}
+                />
+            ))}
             </div>
             <Button onClick={handleVerifyCode} className="bg-blue-600 text-white text-lg p-6 mt-4 max-[620px]:w-full" isDisabled={isVisible? false:true} id="code">Verificar código</Button>
             <ToastContainer 

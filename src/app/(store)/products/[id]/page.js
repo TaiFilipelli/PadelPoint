@@ -96,17 +96,20 @@ export default function ProductDetailPage() {
         />
     </Head>
     <section className={`flex flex-col justify-center p-16 max-[500px]:px-6 max-[500px]:py-4 ${pop.className} font-semibold bg-[#264492]`}>
-      <section className="flex flex-wrap my-6">
-        <div className="flex flex-wrap max-[807px]:flex-col p-2">
+      <section className="flex max-[800px]:flex-col my-6">
+        <article className="flex flex-wrap max-[807px]:flex-col p-2">
+          {product.secondariesImages>0? 
           <div className="block max-[807px]:flex w-24 max-[807px]:gap-4 mr-2">
           {product.secondariesImages.map(image => (
               <img key={image.id} src={image.url} alt={`Image ${image.id}`} className="border-1 rounded-xl mb-1" />
            ))}
           </div>
-          <div className="h-[35rem] min-w-96">
+          : null
+        }
+          <article className="h-[35rem] min-w-96">
             <img src={`https://${product.image}`}  alt={product.name} className="h-full border-1 rounded-xl object-cover" />
-          </div>
-        </div>
+          </article>
+        </article>
         <div className="text-left flex flex-col p-2">
           <h1 className='text-4xl mb-6'>{product.name}</h1>
           <p className="text-3xl mb-2">US${product.price}</p>
