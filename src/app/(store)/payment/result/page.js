@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useCartStore } from './../../../../data/useCartStore';
 import { createOrder } from "../../../../data/storeData";
+import {trackPurchase} from '../../../../../utils/pixel'
 
 export default function ResultPaymentPage() {
 
@@ -111,6 +112,7 @@ export default function ResultPaymentPage() {
                 const response = await createOrder(orderData);
                 if(response.statusCode===200){
                     console.log('Creación de orden exitosa:',response);
+                    trackPurchase(100,'ARS',parseInt(paymentId))
                     localStorage.removeItem('userId');
                     localStorage.removeItem('addressId');
                     cart.clearCart();

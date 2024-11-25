@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Poppins } from 'next/font/google';
 import { getTypes } from '../data/storeData';
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button, Slider, Divider, Input } from '@nextui-org/react';
+import {trackSearch} from '../../utils/pixel';
 
 const pop = Poppins({subsets:['latin'], weight:'500'})
 
@@ -33,6 +34,7 @@ export const Filters = () => {
     }
     const handleNameChange = (event) => {
         setSearchedName(event.target.value);
+        trackSearch(event.target.value);
     }
     const handleValueRangeChange = (value) => {
         setPriceRange(value);

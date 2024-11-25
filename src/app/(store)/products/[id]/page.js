@@ -10,6 +10,7 @@ import { useCartStore } from "../../../../data/useCartStore";
 import { PuffLoader } from "react-spinners";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
+import { trackViewContent } from "../../../../../utils/pixel";
 
 const pop = Poppins({subsets:['latin'], weight:['600','400']})
 export default function ProductDetailPage() {
@@ -46,6 +47,7 @@ export default function ProductDetailPage() {
         try {
           const data = await getOneProductById(id);
           setProduct(data.recourse);
+          trackViewContent(id, 'product');
         } catch (error) {
           console.error('Error fetching product:', error);
         }

@@ -6,6 +6,7 @@ import {useCartStore} from "../../../data/useCartStore";
 import { useSearchParams } from "next/navigation";
 import { useEffect, Suspense } from "react";
 import { PuffLoader } from "react-spinners";
+import { trackInitiateCheckout } from "../../../../utils/pixel";
 
 export default function MP_Page() {
     
@@ -70,7 +71,9 @@ export default function MP_Page() {
             const link = await createMPPreference(body);
             console.log(link);
             if(link!=undefined){
-                // window.location.href = link.url;
+                const totalValue = items.reduce((acc, item) => acc + item.unit_price * item.quantity, 0);
+                trackInitiateCheckout(totalValue, 'ARS');
+                window.location.href = link.url;
                 console.log(link)
             }else{
                 console.error('There is an internal issue with MP preference creation');

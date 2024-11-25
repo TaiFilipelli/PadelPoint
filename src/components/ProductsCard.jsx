@@ -3,6 +3,7 @@ import { Skeleton, Button } from "@nextui-org/react";
 import { useCartStore } from "../data/useCartStore";
 import { useState, useEffect } from "react";
 import { ArrowUpRight, Basket } from "@phosphor-icons/react/dist/ssr";
+import { trackAddToCart } from "../../utils/pixel";
 
 const ProductsCard = ({name, image, brand, price, idProducto, isLoading}) => {
   const cart = useCartStore((state)=> state.cart);
@@ -25,6 +26,7 @@ const ProductsCard = ({name, image, brand, price, idProducto, isLoading}) => {
     if (!isInCart) {
       addToCart(idProducto);
       setIsInCart(true);
+      trackAddToCart(idProducto, price, 'ARS');
     }
   };
 
