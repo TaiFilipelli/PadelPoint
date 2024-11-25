@@ -59,14 +59,14 @@ export default function RegisterPage() {
 
         try {
             const result = await createOneUser(credentials);
-            if(result.statusCode !== 404){
+            if(result.statusCode !== 400){
                 toast.success("Usuario creado exitosamente!")
                 console.log('Usuario creado! Revisar DB', result);
                 setTimeout(() => {
                     router.push('/');
                 }, 2500);
             }else{
-                toast.error('ERROR')
+                toast.error('ERROR: Revise los campos')
                 console.error(result);
             }
         } catch (error) {
@@ -112,7 +112,7 @@ export default function RegisterPage() {
                     <div>
                         <Input
                             type="text"
-                            label="Dirección (opcional)"
+                            label="Dirección"
                             {...register("addressStreet")}
                             className="w-full"
                         />
@@ -121,11 +121,20 @@ export default function RegisterPage() {
                     <div>
                         <Input
                             type="text"
-                            label="Nro. dirección (opcional)"
+                            label="Nro. dirección"
                             {...register("addressNumber")}
                             className="w-full"
                         />
                         {errors.addressNumber && <p className="text-red-500">{errors.addressNumber.message}</p>}
+                    </div>
+                    <div>
+                        <Input
+                            type="text"
+                            label="Nro. teléfono"
+                            {...register("phone")}
+                            className="w-full"
+                        />
+                        {errors.phone && <p className="text-red-500">{errors.phone.message}</p>}
                     </div>
                     <Dropdown>
                         <DropdownTrigger className="w-full bg-red-500 text-white text-lg">
