@@ -15,7 +15,7 @@ const handleAccessorieAdd = (accesory) => {
     setAdddedAccessory(true);
 }
 
-const maxlength = 75;
+const maxlength = 70;
 
 return (
     <section className="my-6">
@@ -27,7 +27,7 @@ return (
             : accessory.description;
 
         return(
-        <div key={accessory.id} className="flex flex-row justify-between items-center gap-4 w-1/2 max-[470px]:w-full my-4 text-black bg-default-100 p-4 rounded-3xl">
+        <div key={accessory.id} className="flex flex-row justify-between items-center gap-4 w-1/2 max-[470px]:w-full my-4 text-black bg-default-100 p-4 rounded-2xl">
             <article className='flex flex-col'>
                 <img src={`https://${accessory.image}`} alt="Imagen de accesorio" className="w-20 h-20 object-cover rounded-lg"/>
                 <Link href={`/products/${accessory.id}`} className="font-bold text-black hover:underline text-2xl mb-2">{accessory.name}</Link>

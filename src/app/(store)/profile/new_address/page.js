@@ -15,13 +15,14 @@ export default function NewAddressPage() {
         addressStreet: '',
         addressNumber: '',
         postalCode: '',
+        userId:''
     });
 
     const handleAddressSubmit = async(e) =>{
         e.preventDefault();
         const userState = await checkUserState();
         if(userState.isLogged){
-            const result = await createAddress(address);
+            const result = await createAddress({...address, userId: userState.payload.id});
             if(result.statusCode !== 404){
                 toast.success('Dirección creada exitosamente!')
                 console.log('Dirección creada exitosamente!', result);

@@ -1,16 +1,17 @@
 import { Input, Button, Dropdown, DropdownTrigger, DropdownItem, DropdownMenu } from "@nextui-org/react"
 import { useState, useEffect } from "react";
-import { getTypes, getBrands, getOneProductById } from "../../data/storeData";
+import { getTypes, getBrands, getOneProductById, getProducts } from "../../data/storeData";
 import { addNewBrand, addNewProduct, addNewRole, addNewType, addNewSupplier, getSuppliers, createImage } from "../../data/dashboardData";
 import { toast, ToastContainer, Slide } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { type } from "os";
+import { IncomingMessage } from "http";
 
 const AddEntity = ({ entity }) => {
 
     //Estados que almacenarán los datos ingresados para pasarlos como parámetro y para su posterior adición a la db.
     const [name, setName] = useState('');
     const [image, setImage] = useState(null);
+    const [products, setProducts] = useState([]);
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
     const [stock, setStock] = useState('');
@@ -25,17 +26,24 @@ const AddEntity = ({ entity }) => {
     const [selectedBrand, setSelectedBrand] = useState([]);
     const [selectedSupplier, setSelectedSupplier] = useState([]);
     const [selectedType, setSelectedType] = useState([]);
-    const [secondariesImages, setSecondariesImages] = useState([]);
+    const [selectedProduct, setSelectedProduct] = useState([]);
 
     const [loading, setLoading] = useState(true);
 
 
     useEffect(() => {
-        if (entity === "producto") {
-          fetchBrands();
-          fetchSuppliers();
-          fetchTypes();
+
+        const conditionalFetch = async() => {
+            if (entity === "producto") {
+              await fetchBrands();
+              await fetchSuppliers();
+              await fetchTypes();
+            }else if(entity==='imagen'){
+                const products = await getProducts();
+                setProducts(products.recourse)
+            }
         }
+        conditionalFetch();
       }, [entity]);
 
       const fetchBrands = async () => {
@@ -70,20 +78,6 @@ const AddEntity = ({ entity }) => {
       if (loading && entity === "producto") {
         return <div>Cargando...</div>;
       }
-
-    const addSecondaryImage = () => {
-        setSecondariesImages([...secondariesImages, ""]);
-    };
-    
-    const updateSecondaryImage = (index, value) => {
-        const updatedImages = secondariesImages.map((img, i) => i === index ? value : img);
-        setSecondariesImages(updatedImages);
-    };
-    
-    const removeSecondaryImage = (index) => {
-        const updatedImages = secondariesImages.filter((_, i) => i !== index);
-        setSecondariesImages(updatedImages);
-    };
     const handleSubmit = (e) => {
         e.preventDefault();
         switch(entity){
@@ -92,8 +86,8 @@ const AddEntity = ({ entity }) => {
                 e.target.reset();
                 break;
             case 'imagen':
-                addNewImage(name, image);
-                toast.success('Nueva imagen añadida con éxito!')
+                addNewImage(selectedProduct.id, image);
+                // toast.success('Nueva imagen añadida con éxito!')
                 break;
             case 'marca':
                 addNewBrand(name);
@@ -115,7 +109,7 @@ const AddEntity = ({ entity }) => {
                 console.error("Entidad no reconocida");
         }
     }
-    const addProduct = async(name, image, description, price, stock, shipping, brandId, supplierId, typeId /*secondariesImages*/) => {
+    const addProduct = async(name, image, description, price, stock, shipping, brandId, supplierId, typeId) => {
 
 
         const formData = new FormData();
@@ -128,7 +122,6 @@ const AddEntity = ({ entity }) => {
         formData.append('brandId', brandId.id);
         formData.append('supplierId', supplierId.id);
         formData.append('typeId', typeId.id);
-        // formData.append('secondariesImages', secondariesImages);
         console.log('FormData:', formData)
         console.log('Imagen:', image)
         if (image.size > 10 * 1024 * 1024) { 
@@ -145,13 +138,27 @@ const AddEntity = ({ entity }) => {
     }
 
     const addNewImage = async (id, image) => {
-        const product = await getOneProductById(parseInt(id));
+        const formData = new FormData();
+        formData.append('image', image);
+
         console.log(image)
-        console.log(product);
-        if(product){
-            const result = await createImage(product.recourse.id, image);
-            console.log(result);
-            // toast.success('Imagen añadida con éxito!', result)
+
+        if (image.size > 10 * 1024 * 1024) { 
+            toast.error("El archivo es demasiado grande (máximo 10MB).");
+            return;
+        }
+
+        console.log(formData)
+        if(id!==0){
+            const result = await createImage(id, formData);
+            if(result.status===201){
+                console.log(result);
+                toast.success('Imagen añadida con éxito!')
+            }else{
+                toast.error('Error al añadir la imagen')
+            }
+        }else{
+            toast.error('Seleccione un producto')
         }
     }
 
@@ -162,6 +169,24 @@ const AddEntity = ({ entity }) => {
             <h2 className="text-lg font-normal my-4">Ingrese los campos solicitados de forma correcta.</h2>
         </div>
         <form encType="multipart/form-data" method="post" id="formProduct" onSubmit={handleSubmit} className="flex flex-col items-center w-2/3 max-[950px]:w-full">
+        {entity==='imagen'?
+        <>
+            <Dropdown>
+                <DropdownTrigger>
+                    <Button className="p-2 mb-4 font-medium text-black bg-white w-[40%] max-[550px]:w-3/4" variant="light" radius="sm">{selectedProduct.id? selectedProduct.name : 'Elegir producto'}</Button>
+                </DropdownTrigger>
+                <DropdownMenu className="p-0 w-full" itemClasses={{ base: "gap-4" }} selectionMode="single">
+                    {products.map(prod => (
+                        <DropdownItem key={prod.id} onClick={()=>setSelectedProduct(prod)} className="text-black">{prod.name}</DropdownItem>
+                    ))}
+                </DropdownMenu>
+            </Dropdown>
+            <fieldset className="my-2 w-2/3 max-[450px]:w-full">
+                <Input type="file" className="mt-4 bg-blue-600 text-white" fullWidth onChange={(e) => setImage(e.target.files[0])} accept="image/*" required/>
+            </fieldset>        
+        </>
+        :
+        <>
         <fieldset className="my-2 w-2/3 max-[450px]:w-full">
             <Input label='Nombre' value={name} onChange={(e) => setName(e.target.value)} isClearable/>
         </fieldset>
@@ -214,18 +239,10 @@ const AddEntity = ({ entity }) => {
                         </DropdownMenu>
                     </Dropdown>
                     </div>
-                {secondariesImages.map((img, index) => (
-                    <fieldset key={index} className="my-2 w-full flex items-center">
-                        <Input /*label={`Imagen secundaria ${index + 1}`}*/ fullWidth onChange={(e) => setImage(e.target.files[0])} type="file" accept="image/*"/>
-                        <Button onClick={() => removeSecondaryImage(index)} className="ml-2 bg-red-600 text-white">Eliminar</Button>
-                    </fieldset>
-                ))}
-            <Button type="button" onClick={addSecondaryImage} className="mt-4">Añadir Imagen Secundaria</Button>
             </>
         )}
-        {entity === 'imagen' && (
-            <Input type="file" className="mt-4 w-2/5 max-[490px]:w-full bg-blue-600 text-white" accept="image/*" required/>
-        )}
+        </>
+    }
         <Button type="submit" className="mt-4 w-2/5 max-[490px]:w-full bg-blue-600 text-white">{`Añadir ${entity}`}</Button>
       </form>
       <ToastContainer position="bottom-right" autoClose={1500} transition={Slide} theme="light" closeOnClick draggable/>

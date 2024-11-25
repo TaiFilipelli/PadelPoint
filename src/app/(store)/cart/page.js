@@ -221,6 +221,14 @@ export default function Cart() {
               <Divider />
               <Accesories accessories={accesories} />
               <Divider/>
+              <h3 className="text-3xl font-semibold mt-4">Subtotal: ARS${subtotal} </h3>
+              <h2 className="font-normal text-xl mt-4">Seleccione el método de pago a usar</h2>
+              <div className="flex flex-row max-[967px]:flex-col gap-4 w-auto max-[967px]:w-[40%] max-[579px]:w-[60%] max-[470px]:w-full mt-4 mb-8">
+                {/* <Button className="text-lg p-6 hover:bg-[#004481] hover:text-[#14C8BE] border-1 transition-colors ease-linear" onClick={handleOPButton}>Crédito o débito</Button> */}
+                <Button onClick={handleEFVOButton} className="text-black hover:bg-green-600 hover:text-white border-1 transition-colors ease-linear text-lg p-6">Efectivo/transferencia</Button>
+                <Button onClick={handleMP} className="text-lg p-6 border-1 hover:bg-white transition-colors ease-linear"><img src="/MP_PNGs/azul-horizontal.png" alt="Logo Mercado Pago" className="w-full h-14 max-[470px]:h-20"/></Button>
+              </div>
+              <Divider/>
               <section className="flex flex-col gap-4 w-auto max-[470px]:w-full mt-4 mb-8">
                 <h3 className="font-bold text-3xl">Dirección de envío</h3>
                 <p className="text-xl text-wrap">Seleccione su dirección de envío. En caso no se encuentre la dirección deseada, añada una nueva.</p>
@@ -239,20 +247,13 @@ export default function Cart() {
                   <Button as={Link} href={"/profile/new_address"} className={`bg-blue-600 text-white p-6 w-1/3 ${pop.className} text-lg rounded-3xl`} endContent={<MapPin size={40} weight="light"/>} >Añadir dirección</Button>
                   </section>
               ) : (
-              <p className="text-xl text-center">No hay direcciones registradas. Añada una nueva.</p>
+              <p className="text-xl text-red-300 font-bold">No hay direcciones registradas. Añada una nueva.</p>
             ))
           }
           </section>
           <Divider/>
-          <h3 className="text-3xl font-semibold mt-4">Subtotal: ARS${subtotal} </h3>
-          <h2 className="font-normal text-xl mt-4">Seleccione el método de pago a usar</h2>
-          <div className="flex flex-row max-[967px]:flex-col gap-4 w-auto max-[967px]:w-[40%] max-[579px]:w-[60%] max-[470px]:w-full mt-4 mb-8">
-            {/* <Button className="text-lg p-6 hover:bg-[#004481] hover:text-[#14C8BE] border-1 transition-colors ease-linear" onClick={handleOPButton}>Crédito o débito</Button> */}
-            <Button onClick={handleEFVOButton} className="text-black hover:bg-green-600 hover:text-white border-1 transition-colors ease-linear text-lg p-6">Efectivo/transferencia</Button>
-            <Button onClick={handleMP} className="text-lg p-6 border-1 hover:bg-white transition-colors ease-linear"><img src="/MP_PNGs/azul-horizontal.png" alt="Logo Mercado Pago" className="w-full h-14 max-[470px]:h-20"/></Button>
-          </div>
-            <Button className="bg-red-600 w-1/4 max-[1000px]:w-1/2 max-[579px]:w-2/3 max-[450px]:w-full text-white font-semibold text-xl p-6 max-[470px]:text-lg" startContent={<LockKey weight="duotone" size={25}/>} onClick={handlePaymentButton}>Finalizar compra</Button>
-            <p className="text-lg mt-4">Ante cualquier inconveniente, no dude en comunicarse directamente con nosotros! 😊</p>
+          <Button className="bg-red-600 mt-4 w-1/4 max-[1000px]:w-1/2 max-[579px]:w-2/3 max-[450px]:w-full text-white font-semibold text-xl p-6 max-[470px]:text-lg" startContent={<LockKey weight="duotone" size={25}/>} onClick={handlePaymentButton}>Finalizar compra</Button>
+          <p className="text-lg mt-4">Ante cualquier inconveniente, no dude en comunicarse directamente con nosotros! 😊</p>
           <Modal isOpen={isModalOpen} onClose={handleModalClose} isDismissable={false} isKeyboardDismissDisabled={false} placement="top-center">
               <ModalContent>
                   <ModalHeader className="text-black flex text-center justify-center">

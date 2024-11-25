@@ -137,13 +137,11 @@ export const updateProductPriceOrSupplier = async (id, price, supplierId) => {
 };
 
 export const createImage = async (id, image) => {
+    console.log('Llegaron los params:', id, image)
     const response = await fetch(`${baseUrl}/images/${id}`, {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(image)
-    });
-    const result = await verifyResponse(response);
-    return result;
+        body:image
+    }).then((data) => data.json())
+    .catch((err)=>console.log('ERROR EN EL METODO:',err));
+    return response;    
 }
