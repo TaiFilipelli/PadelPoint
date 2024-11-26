@@ -25,6 +25,7 @@ export default function ProductsList() {
         const name = localStorage.getItem('name');
         const minPrice = localStorage.getItem('minPrice');
         const maxPrice = localStorage.getItem('maxPrice');
+        const type = localStorage.getItem('type');
         const params = {};
 
         if (brand !== null) params.brand = brand;
@@ -34,11 +35,12 @@ export default function ProductsList() {
             params.minPrice = minPriceNumber === 0 ? 1 : minPriceNumber;
         }
         if (maxPrice !== null) params.maxPrice = maxPrice;
+        if(type!==null) params.type = type;
         dataProducts(params);
     }, []);
 
     return (
-        <section className="flex justify-center items-center text-center flex-col p-10 bg-[#264492]">
+        <section className="flex justify-center items-center text-center flex-col py-10 px-5 bg-[#264492]">
             <h1 className={`${pop.className} text-6xl mb-10 max-[390px]:text-4xl`}>Productos</h1>
             <Filters/>
             <section className="w-4/5 max-w-[4/5] max-[1260px]:w-full">

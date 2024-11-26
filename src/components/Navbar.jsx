@@ -93,7 +93,7 @@ const Nav = () => {
             <NavbarItem>
                   {isLogged ? 
                    <Dropdown>
-                   <DropdownTrigger className="bg-red-600 p-4 w-full text-white">
+                   <DropdownTrigger className="bg-red-600 shadow-md shadow-black p-4 w-full text-white">
                       <Button className="ml-4 p-2 text-lg" variant="flat" radius="lg">{username}</Button>
                    </DropdownTrigger>
                    <DropdownMenu className="p-0 w-full gap-4">
@@ -120,7 +120,7 @@ const Nav = () => {
                       color="default"
                       variant="flat"
                       endContent={<SignIn size={25}/>}
-                      className='m-4 text-lg w-full bg-red-600 text-white hover:bg-red-400 transition-colors p-4 rounded-lg'>
+                      className='m-4 text-lg w-full bg-red-600 text-white shadow shadow-gray-500 hover:bg-red-400 transition-colors p-4 rounded-lg'>
                       Iniciar sesión
                     </Button>
                 }

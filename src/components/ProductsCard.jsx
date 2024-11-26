@@ -65,7 +65,7 @@ const ProductsCard = ({name, image, brand, price, idProducto, isLoading}) => {
 
   return (
     <section className='bg-white text-black w-auto object-cover flex flex-col justify-center items-center rounded-lg text-center border-2 border-gray-200 shadow-xl p-4 my-4'>
-      <h1 className='mt-2 text-lg font-bold'>{limitedName}</h1>
+      <h1 className='mt-2 text-xl font-bold'>{limitedName}</h1>
       <img 
         src={`https://${image}`} 
         alt="Imagen paleta" 
@@ -74,7 +74,7 @@ const ProductsCard = ({name, image, brand, price, idProducto, isLoading}) => {
       <p className='font-semibold mt-2'>Marca: {brand}</p>
       <div className='w-full flex flex-col items-center justify-center mt-2'>
         <p className='text-xl font-bold bg-gradient-to-br from-green-950 to-green-400 bg-clip-text text-transparent'>3 cuotas de ${displayPrice}</p>
-        <p className="font-light">Contado/transferencia: ${price}</p>
+        <p className="font-light">Transferencia: ${price}</p>
       </div>
       <div className="flex justify-between items-center gap-4 my-4">
         {isInCart ? (

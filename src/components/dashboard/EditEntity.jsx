@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { toast, ToastContainer, Slide } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { Button, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Input } from '@nextui-org/react';
-import { updateNAMEONLYEntities, updateProductPriceOrSupplier, getSuppliers} from '../../data/dashboardData';
+import { updateNAMEONLYEntities, getSuppliers, updateProductPriceSupplierOrStock} from '../../data/dashboardData';
 import { getBrands, getProducts, getTypes } from '../../data/storeData';
 
 const EditEntity = ({entity}) => {
@@ -13,6 +13,7 @@ const EditEntity = ({entity}) => {
 
   const [updatedName, setUpdatedName] = useState(null);
   const [updatedPrice, setUpdatedPrice] = useState(null);
+  const [updatedStock, setUpdatedStock] = useState(null);
   const [supplier, setSupplier] = useState([]);
 
   useEffect(()=>{
@@ -58,8 +59,9 @@ const EditEntity = ({entity}) => {
             toast.success('Marca actualizada correctamente')
             break
         case 'producto':
-            const product = await updateProductPriceOrSupplier(selectedItem.id, updatedPrice, selectedSupplier.id)
+            const product = await updateProductPriceSupplierOrStock(selectedItem.id, updatedPrice, selectedSupplier.id, parseInt(updatedStock))
             toast.success('Producto actualizado con éxito')
+            console.log(product)
             break
         case 'tipo':
             await updateNAMEONLYEntities(selectedItem.id, updatedName, 'type');
@@ -92,6 +94,7 @@ const EditEntity = ({entity}) => {
         {entity === 'producto' ? 
         <>
             <Input type='number' placeholder={ selectedItem.id ? `Precio viejo: $${selectedItem.price}` : 'Precio viejo: $???'} onChange={(e)=>setUpdatedPrice(e.target.value)} className='w-2/6 max-[750px]:w-1/2 mb-4 text-black mt-4'/>
+            <Input type='number' placeholder={ selectedItem.id ? `Stock actual: ${selectedItem.stock}` : 'Stock: ???'} onChange={(e)=>setUpdatedStock(e.target.value)} className='w-2/6 max-[750px]:w-1/2 mb-4 text-black mt-4'/>
             <Dropdown>
             <DropdownTrigger className='w-1/2 text-lg mb-8 max-[780px]:w-full'>
                 <Button className='bg-white text-black'>{selectedSupplier.id ? selectedSupplier.name : `Elegir proveedor`}</Button>

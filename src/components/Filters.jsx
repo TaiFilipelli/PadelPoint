@@ -9,7 +9,7 @@ const pop = Poppins({subsets:['latin'], weight:'500'})
 
 export const Filters = () => {
     const [searchedName, setSearchedName] = useState('');
-    const [priceRange, setPriceRange] = useState([0,400]);
+    const [priceRange, setPriceRange] = useState([0,200000]);
     const [types, setTypes] = useState([])
     const [selectedType, setSelectedType] = useState('');
 
@@ -69,11 +69,11 @@ export const Filters = () => {
             <DropdownMenu className="p-2 rounded-lg" >
                <DropdownItem className='text-black' isReadOnly>
                 <Slider 
-                    label="USD$"
+                    label="ARS$"
                     color='foreground'
                     step={25} 
                     minValue={0} 
-                    maxValue={400} 
+                    maxValue={500000} 
                     defaultValue={[0,100]} 
                     formatOptions={{style: "currency", currency: "USD"}}
                     className="max-w-full"
@@ -85,7 +85,7 @@ export const Filters = () => {
         <Divider orientation='vertical'/>
         <Dropdown className='w-full'>
             <DropdownTrigger>
-                <Button className="ml-4 p-6 text-xl max-[1200px]:text-lg bg-default-200 w-1/5 max-[880px]:w-1/3 max-[600px]:w-2/3" variant="light" radius="sm">Nombre</Button>
+                <Button className="ml-4 p-6 text-xl max-[1200px]:text-lg bg-default-200 w-1/5 max-[880px]:w-1/3 max-[600px]:w-2/3" variant="light" radius="sm">Modelo</Button>
             </DropdownTrigger>
             <DropdownMenu className="p-2 rounded-lg">
                <DropdownItem className='text-black' isReadOnly>

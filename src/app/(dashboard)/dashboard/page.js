@@ -30,7 +30,7 @@ export default function Dashboard(){
   },[])
 
   return (
-    <main className="gap-10 flex flex-col w-auto">
+    <main className="gap-10 flex flex-col w-auto"> 
       <section className="flex items-center flex-col p-10 bg-black rounded-lg w-full">
         <h1 className={`${mont.className} text-3xl my-2 max-[410px]:my-8`}>Menú de Administrador</h1>
         <h2 className={`${mont.className} text-xl mb-8`}>Elija la opción que desee.</h2>
@@ -42,9 +42,9 @@ export default function Dashboard(){
         <Link href='/' className="hover:underline">Volver a la tienda</Link>
       </section>
       <section className={`flex items-center flex-col p-10 bg-black rounded-lg w-auto ${mont.className}`}>
-        <h2 className='text-3xl mb-4 max-[410px]:my-8'>Últimas órdenes</h2> 
+        <h2 className='text-3xl mb-4 max-[410px]:my-8'>Últimas órdenes del mes</h2> 
         <div className="overflow-x-auto w-auto">
-        <table className="table-auto w-full bg-white rounded-lg overflow-hidden text-left">
+        <table className="table-auto w-full bg-white text-black rounded-lg overflow-hidden text-left">
           <thead className="bg-gray-800 text-white">
           <tr>
           <th className="px-4 py-2">ID</th>

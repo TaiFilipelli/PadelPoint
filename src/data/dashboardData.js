@@ -119,16 +119,16 @@ export const updateNAMEONLYEntities = async(id, name, entity) => {
     const result = await verifyResponse(response);
     return result;
 }
-export const updateProductPriceOrSupplier = async (id, price, supplierId) => {
+export const updateProductPriceSupplierOrStock = async (id, price, supplierId, stock) => {
     const numericPrice = parseFloat(price);
     const response = await fetch(`${baseUrl}/product/${id}`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ price:numericPrice, supplierId })
+        body: JSON.stringify({ price:numericPrice, supplierId, stock })
     });
-    console.log("Data sent:", JSON.stringify({ price, supplierId }));
+    console.log("Data sent:", JSON.stringify({ price, supplierId, stock }));
     const result = await verifyResponse(response);
     if (response.ok) {
         console.log("New price updated", result);

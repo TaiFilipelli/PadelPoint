@@ -247,7 +247,7 @@ export default function Cart() {
                   <Button as={Link} href={"/profile/new_address"} className={`bg-blue-600 text-white p-6 w-1/3 ${pop.className} text-lg rounded-3xl`} endContent={<MapPin size={40} weight="light"/>} >Añadir dirección</Button>
                   </section>
               ) : (
-              <p className="text-xl text-red-300 font-bold">No hay direcciones registradas. Añada una nueva.</p>
+              <p className="text-xl text-red-300 font-bold">No hay direcciones registradas. Añada una nueva o inicie sesión.</p>
             ))
           }
           </section>

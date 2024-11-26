@@ -98,12 +98,12 @@ export default function ProductDetailPage() {
         />
     </Head>
     <section className={`flex flex-col justify-center p-16 max-[500px]:px-6 max-[500px]:py-4 ${pop.className} font-semibold bg-[#264492]`}>
-      <section className="flex max-[800px]:flex-col my-6">
+      <section className="flex max-[1330px]:flex-col my-6">
         <article className="flex flex-wrap max-[807px]:flex-col p-2">
-          {product.secondariesImages>0? 
+          {product.secondariesImages.length>0? 
           <div className="block max-[807px]:flex w-24 max-[807px]:gap-4 mr-2">
           {product.secondariesImages.map(image => (
-              <img key={image.id} src={image.url} alt={`Image ${image.id}`} className="border-1 rounded-xl mb-1" />
+              <img key={image.id} src={`https://${image.url}`} alt={`Imagen ${image.id}`} className="border-1 rounded-xl mb-1" /> 
            ))}
           </div>
           : null

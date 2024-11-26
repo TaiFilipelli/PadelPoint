@@ -137,8 +137,8 @@ export default function RegisterPage() {
                         {errors.phone && <p className="text-red-500">{errors.phone.message}</p>}
                     </div>
                     <Dropdown>
-                        <DropdownTrigger className="w-full bg-red-500 text-white text-lg">
-                            <Button className="w-full bg-red-500 text-white text-lg max-[500px]:text-sm" aria-label="Botón de registro">
+                        <DropdownTrigger className="w-full text-white text-lg">
+                            <Button className="w-full bg-blue-500 text-white text-lg max-[500px]:text-sm" aria-label="Botón de registro">
                                 { selectedType ? selectedType.name : 'Seleccione tipo de documento'}
                             </Button>
                         </DropdownTrigger>
@@ -214,7 +214,7 @@ export default function RegisterPage() {
                     </article>
                     </section>
                     {errors.apiError && <p className="text-red-500">{errors.apiError.message}</p>}
-                    <Button type="submit" className="w-full bg-red-500 text-white text-lg" aria-label="Botón de registro">
+                    <Button type="submit" className="w-full bg-blue-500 text-white text-lg" aria-label="Botón de registro">
                         Registrarse
                     </Button>
                 </form>
