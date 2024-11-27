@@ -1,35 +1,18 @@
 'use client';
 import { Poppins } from "next/font/google";
 import MyCarousel from "./Carousel";
-import ProductsCard from "./ProductsCard";
-import React from "react";
+import MainProducts from './MainProducts';
 
 const pop = Poppins({ subsets: ["latin"], weight:['700','600','400'] });
 
-export default function ImageCaruoselAndFeaturedProducts({mainProducts}) {
+export default function ImageCaruoselAndFeaturedProducts({mainProducts, subMainProducts}) {
   return(
     <>
        <MyCarousel />
-       <h2 className={`${pop.className} font-bold text-4xl mt-5 animate-appear`}>Productos destacados:</h2>
-      <div className="flex flex-row max-[940px]:flex-wrap justify-center gap-2 w-3/4 mt-10 max-[555px]:mt-4 mb-14 animate-appear">
-        {mainProducts.length === 0 ? (
-          Array.from({ length: 4 }).map((_, index) => (
-            <ProductsCard key={index} isLoading={true} />
-          ))
-        ) : (
-          mainProducts.map(product => (
-            <ProductsCard 
-              key={product.id} 
-              name={product.name} 
-              image={product.image} 
-              brand={product.brand.name} 
-              price={product.price}
-              idProducto={product.id}
-              isLoading={false}
-            />
-          ))
-        )}
-      </div>
+       <h2 className={`${pop.className} font-bold text-5xl mt-4 animate-appear`}>Productos destacados:</h2>
+       <MainProducts products={mainProducts}/>
+       <h3 className={`${pop.className} font-bold text-4xl mt-4 animate-appear`}>Equipate con lo mejor del mercado</h3> 
+       <MainProducts products={subMainProducts}/>
     </>
   );
 }

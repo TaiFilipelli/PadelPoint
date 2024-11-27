@@ -82,7 +82,7 @@ const AddEntity = ({ entity }) => {
         e.preventDefault();
         switch(entity){
             case 'producto':
-                addProduct(name, image, description, price, stock, shipping, selectedBrand, selectedSupplier, selectedType, secondariesImages);
+                addProduct(name, image, description, price, stock, shipping, selectedBrand, selectedSupplier, selectedType);
                 e.target.reset();
                 break;
             case 'imagen':

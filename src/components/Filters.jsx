@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { Poppins } from 'next/font/google';
-import { getTypes } from '../data/storeData';
+import { getTypes, getBrands } from '../data/storeData';
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button, Slider, Divider, Input } from '@nextui-org/react';
 import {trackSearch} from '../../utils/pixel';
 
@@ -11,7 +11,9 @@ export const Filters = () => {
     const [searchedName, setSearchedName] = useState('');
     const [priceRange, setPriceRange] = useState([0,200000]);
     const [types, setTypes] = useState([])
+    const [brands, setBrands] = useState([])
     const [selectedType, setSelectedType] = useState('');
+    const [selectedBrand, setSelectedBrand] = useState('');
 
     const deleteFilters = () =>{
         localStorage.removeItem('selectedBrand');
@@ -28,9 +30,11 @@ export const Filters = () => {
         localStorage.setItem('type',selectedType);
         window.location.reload();
     }
-    const fetchTypes = async() =>{
-        const data = await getTypes();
-        setTypes(data.recourse);
+    const fetchData = async() =>{
+        const typesP = await getTypes();
+        const brandsP = await getBrands();
+        setBrands(brandsP.recourse);
+        setTypes(typesP.recourse);
     }
     const handleNameChange = (event) => {
         setSearchedName(event.target.value);
@@ -42,9 +46,12 @@ export const Filters = () => {
     const handleTypeSelect = (value) => {
         setSelectedType(value);
     }
+    const handleBrandSelect = (value) => {
+        setSelectedBrand(value);
+    }
 
     useEffect(()=>{
-        fetchTypes();
+        fetchData();
     }, []);
 
   return (
@@ -53,7 +60,7 @@ export const Filters = () => {
       <h3 className='text-bold text-2xl ml-2'>Filtrar por:</h3>
       <Dropdown>
             <DropdownTrigger>
-                <Button className="ml-4 p-6 text-xl bg-default-200 w-1/5 max-[880px]:w-1/3 max-[600px]:w-2/3" variant="light" radius="sm"> {selectedType? selectedType : 'Tipos'}</Button> 
+                <Button className="p-6 text-xl bg-default-200 w-1/5 max-[880px]:w-1/3 max-[600px]:w-2/3" variant="light" radius="sm"> {selectedType? selectedType : 'Tipos'}</Button> 
             </DropdownTrigger>
             <DropdownMenu className="p-0 w-full" itemClasses={{ base: "gap-4" }}>
                 {types.map(type => (
@@ -64,7 +71,7 @@ export const Filters = () => {
         <Divider orientation='vertical'/>
         <Dropdown className='w-full'>
             <DropdownTrigger>
-                <Button className="ml-4 p-6 text-xl bg-default-200 w-1/5 max-[880px]:w-1/3 max-[600px]:w-2/3" variant="light" radius="sm">Precios</Button>
+                <Button className="p-6 text-xl bg-default-200 w-1/5 max-[880px]:w-1/3 max-[600px]:w-2/3" variant="light" radius="sm">Precios</Button>
             </DropdownTrigger>
             <DropdownMenu className="p-2 rounded-lg" >
                <DropdownItem className='text-black' isReadOnly>
@@ -85,13 +92,24 @@ export const Filters = () => {
         <Divider orientation='vertical'/>
         <Dropdown className='w-full'>
             <DropdownTrigger>
-                <Button className="ml-4 p-6 text-xl max-[1200px]:text-lg bg-default-200 w-1/5 max-[880px]:w-1/3 max-[600px]:w-2/3" variant="light" radius="sm">Modelo</Button>
+                <Button className="p-6 text-xl max-[1200px]:text-lg bg-default-200 w-1/5 max-[880px]:w-1/3 max-[600px]:w-2/3" variant="light" radius="sm">Modelo</Button>
             </DropdownTrigger>
             <DropdownMenu className="p-2 rounded-lg">
                <DropdownItem className='text-black' isReadOnly>
                 <Input type='text' labelPlacement='outside' label='Buscar producto por nombre' 
                     placeholder='Buscar...' className='w-full mb-1' isClearable value={searchedName} onChange={handleNameChange}/>
                </DropdownItem>
+            </DropdownMenu>
+        </Dropdown>
+        <Divider orientation='vertical'/>
+        <Dropdown className='w-full'>
+            <DropdownTrigger>
+                <Button className="p-6 text-xl bg-default-200 w-1/5 max-[880px]:w-1/3 max-[600px]:w-2/3" variant="light" radius="sm">Marcas</Button>
+            </DropdownTrigger>
+            <DropdownMenu className="p-2 rounded-lg" >
+            {brands.map(brand => (
+                  <DropdownItem key={brand.id} onClick={() => handleBrandSelect(brand.name)} className='text-black'>{brand.name}</DropdownItem>
+                ))}
             </DropdownMenu>
         </Dropdown>
         <Divider orientation='vertical'/>

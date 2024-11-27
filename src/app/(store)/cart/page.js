@@ -12,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { PuffLoader } from "react-spinners";
 import { Accesories } from "../../../components/cart/Accesories";
 import { Products } from "../../../components/cart/Products"
+import { set } from "react-hook-form";
 
 
 const pop = Poppins({subsets:['latin'],weight:['700','600','400']});
@@ -29,6 +30,7 @@ export default function Cart() {
     const [subtotal, setSubtotal] = useState(0);
     const [loading, setLoading] = useState(true);
     const [method, setMethod]=useState(0);
+    const [warning, setWarning] = useState(false);
     //Método entero para optimizar el rendimiento de la aplicación: 0 == Efectivo/Transferencia, 1 == MP
 
     const router = useRouter();
@@ -85,6 +87,7 @@ export default function Cart() {
     };
     const handleMP = () =>{
       setMethod(1);
+      setWarning(true);
       toast.success('Método actualizado (MercadoPago)!')
     }
 
@@ -228,6 +231,7 @@ export default function Cart() {
                 <Button onClick={handleEFVOButton} className="text-black hover:bg-green-600 hover:text-white border-1 transition-colors ease-linear text-lg p-6">Efectivo/transferencia</Button>
                 <Button onClick={handleMP} className="text-lg p-6 border-1 hover:bg-white transition-colors ease-linear"><img src="/MP_PNGs/azul-horizontal.png" alt="Logo Mercado Pago" className="w-full h-14 max-[470px]:h-20"/></Button>
               </div>
+              {warning && <span className="text-red-600 font-bold">MercadoPago permite comprar con cualquier tarjeta de crédito o débito. Puede elegir las cuotas deseadas en el formulario de pago.</span>}
               <Divider/>
               <section className="flex flex-col gap-4 w-auto max-[470px]:w-full mt-4 mb-8">
                 <h3 className="font-bold text-3xl">Dirección de envío</h3>

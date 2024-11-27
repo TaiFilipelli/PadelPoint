@@ -15,21 +15,26 @@ const pop = Poppins({ subsets: ["latin"], weight:['700','600','400'] });
 
 export default async function Home() {
   let mainProducts = [];
+  let subProducts = [];
 
   try {
-    const params = { limit: 4 };
+    const params = { limit: 5 };
+    const subParams = {type:'Bolsos' };
     const response = await getProducts(params);
+    const subResponse = await getProducts(subParams);
     mainProducts = response.recourse;
-    console.log(mainProducts)
+    subProducts = subResponse.recourse;
   } catch (error) {
     console.error('Error fetching main products:', error);
   }
 
   return (
     <main className="flex flex-col items-center justify-between py-8 bg-[#264492]">
-      {/* <h1 className={`${pop.className} font-semibold text-7xl p-6`}>PadelPoint Oficial</h1> */}
-      <ImageCarouselAndFeaturedProducts mainProducts={mainProducts}/>
-      <Divider />
+      <ImageCarouselAndFeaturedProducts mainProducts={mainProducts} subMainProducts={subProducts}/>
+      <Divider/>
+      <div className="flex flex-row max-[940px]:flex-wrap justify-center gap-2 w-full mt-6 max-[555px]:mt-2 mb-14 animate-appear">
+      </div>
+      <Divider/>
       <section className="my-10 flex justify-center items-center flex-row max-[450px]:flex-col gap-10 w-3/5 max-[940px]:w-4/5 max-[410px]:w-full animate-appear">
         <div className="w-1/3 max-[450px]:w-full flex flex-col text-center items-center text-wrap"> 
           <Truck size={60} type="light" className="w-16 h-16"/>
@@ -49,8 +54,8 @@ export default async function Home() {
       </section>
       <Divider/>
       <h1 className={`${pop.className} font-bold text-4xl max-[500px]:text-5xl m-6 max-[500px]:ml-2 animate-appear`}>Bienvenido a la tienda de padel más grande de San Nicolás</h1>
-      <section className="w-2/3 max-[900px]:w-full p-4">
-      <div className="flex flex-col text-left items-start p-1 w-2/3 max-[500px]:w-full mb-4 animate-appear">
+      <section className="w-4/5 py-4 px-8">
+      <div className="flex flex-col text-left items-start p-1 w-3/4 max-[500px]:w-full mb-4 animate-appear">
         <h1 className={`${pop.className} font-semibold text-2xl max-[500px]:text-3xl mb-4 underline`}>Nuestro objetivo: todo el país</h1>
         <p className="font-normal text-xl mb-4">Unite a una familia en constante crecimiento, unida por una fuerte pasión por este increíble deporte.
           PadelPoint empezó siendo un humilde emprendimiento de venta de artículos de padel. Hoy, aspiramos a llegar a los hogares de todos y cada uno de los 
@@ -64,7 +69,7 @@ export default async function Home() {
           es tu primera vez por acá) y descubrí nuestra amplia gama de productos para acompañarte tanto dentro de la cancha como fuera de ella. Además,
           siempre tenemos ofertas, sorteos, rifas y mucho más!
         </p>
-        <Image src="/PadelStock1.png" width={600} isBlurred alt="Imagen de paletas de PadelPoint"/>
+        <Image src="/PadelStock1.png" width={700} isBlurred alt="Imagen de paletas de PadelPoint"/>
       </div>
       <div className="flex flex-col text-left items-start p-1 w-2/3 max-[500px]:w-full mb-4 animate-appear">
         <h1 className={`${pop.className} font-semibold text-2xl max-[500px]:text-3xl mb-4 underline`}>Todo el equipamiento que necesitas está acá</h1>
