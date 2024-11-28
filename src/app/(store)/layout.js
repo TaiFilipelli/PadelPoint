@@ -1,7 +1,8 @@
 import '../../../styles/globals.css'
 import { Providers } from '../providers';
-import Nav from '../../components/Navbar'
-import Footer from '../../components/Footer';
+import Nav from '../../components/store/Navbar'
+import AnimatedBar from '../../components/store/AnimatedBar'
+import Footer from '../../components/store/Footer';
 
 export const metadata = {
   title: 'PadelPoint SN Oficial',
@@ -15,6 +16,7 @@ export default function RootLayout({ children }) {
     <html lang="es">
       <body className='h-screen bg-transparent text-white dark:bg-black dark:text-white pt-36 max-[700px]:pt-28'>
         <Providers>
+          <AnimatedBar/>
           <Nav/>
           {children}
           <Footer />

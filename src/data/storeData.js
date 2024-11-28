@@ -32,6 +32,12 @@ export const getBrands = async()=>{
     return data;
 }
 
+export const getSomeBrands = async()=>{
+    const response = await fetch(`${baseUrl}/brand?limit=5`); //preguntar qué marcas en particular mostrar.
+    const data = await verifyResponse(response);
+    return data;
+}
+
 export const getTypes = async() =>{
     const response = await fetch(`${baseUrl}/type`);
     const data = await verifyResponse(response);
