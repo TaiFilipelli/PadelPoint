@@ -114,7 +114,7 @@ export default function ProductDetailPage() {
         </article>
         <div className="text-left flex flex-col p-2">
           <h1 className='text-4xl mb-6'>{product.name}</h1>
-          <p className="text-3xl mb-2">US${product.price}</p>
+          <p className="text-3xl mb-2">ARS${product.price}</p>
           <p className="text-xl mb-2 text-green-500">12 cuotas de {(product.price / 12).toFixed(0)} dólares</p>
           <p className="text-xl mb-6">Coste de envío: ${product.shippingCost}</p>
           <p className={`text-xl mb-4 ${product.stock<5? 'text-red-400': product.stock<10? 'text-orange-400':'text-green-600'}`}>Stock {product.stock<5? 'bajo': product.stock<10? 'medio': 'alto'}</p> 

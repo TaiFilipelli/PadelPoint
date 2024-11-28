@@ -3,7 +3,7 @@ import { Montserrat } from "next/font/google";
 import Link from "next/link";
 import { Pencil, Plus, Eraser } from "@phosphor-icons/react";
 import { Button } from "@nextui-org/react";
-import { getAllOrders } from "../../../data/storeData";
+import { getAllOrders } from "../../../data/dashboardData";
 import { useEffect, useState } from "react";
 
 const mont = Montserrat({subsets:['latin'],weight:'600'});
@@ -14,7 +14,19 @@ export default function Dashboard(){
 
   const getOrders = async()=>{
     try{
-      const response = await getAllOrders();
+      const toDate = new Date();
+      const fromDate = new Date(toDate.getMonth()-1);
+
+      const toDateString = toDate.toISOString();
+      const fromDateString = fromDate.toISOString();
+      console.log('Fechas con formateo ISOString',toDateString,fromDateString)
+
+      const params = {
+        minDate:fromDateString.trim(),
+        maxDate:toDateString.trim()
+      }
+
+      const response = await getAllOrders(params);
       if(response.status){
       setOrders(response.recourse);
       console.log(orders);

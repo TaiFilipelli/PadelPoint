@@ -83,6 +83,7 @@ export default function Cart() {
     // };
     const handleEFVOButton = () => {
       setMethod(0);
+      setWarning(false);
       toast.success('Método actualizado (Efvo/Trs)!');
     };
     const handleMP = () =>{
@@ -91,19 +92,20 @@ export default function Cart() {
       toast.success('Método actualizado (MercadoPago)!')
     }
 
+    const checkRefreshToken = async () => {
+      const status = await checkUserState();
+      console.log(status);
+      if (status.isLogged === false && status.refreshTokenExists === true) {
+        setNeedsRefresh(true);
+      } else if (status.isLogged === false || status.refreshTokenExists === false) {
+        setNeedsLogin(true);
+      } else {
+        setUser(status.payload.id);
+      }
+      setLoading(false)
+    };
+
     useEffect(() => {
-      const checkRefreshToken = async () => {
-        const status = await checkUserState();
-        console.log(status);
-        if (status.isLogged === false && status.refreshTokenExists === true) {
-          setNeedsRefresh(true);
-        } else if (status.isLogged === false || status.refreshTokenExists === false) {
-          setNeedsLogin(true);
-        } else {
-          setUser(status.payload.id);
-        }
-        setLoading(false)
-      };
       checkRefreshToken();
     }, []);
     
@@ -163,6 +165,7 @@ export default function Cart() {
       })
 
     const handlePaymentButton = async() =>{
+      await checkRefreshToken();
       setIsModalOpen(true);
     };
 
@@ -226,13 +229,13 @@ export default function Cart() {
               <Divider/>
               <h3 className="text-3xl font-semibold mt-4">Subtotal: ARS${subtotal} </h3>
               <h2 className="font-normal text-xl mt-4">Seleccione el método de pago a usar</h2>
-              <div className="flex flex-row max-[967px]:flex-col gap-4 w-auto max-[967px]:w-[40%] max-[579px]:w-[60%] max-[470px]:w-full mt-4 mb-8">
+              <div className="flex flex-row max-[967px]:flex-col gap-4 w-auto max-[967px]:w-[40%] max-[579px]:w-[60%] max-[470px]:w-full my-4">
                 {/* <Button className="text-lg p-6 hover:bg-[#004481] hover:text-[#14C8BE] border-1 transition-colors ease-linear" onClick={handleOPButton}>Crédito o débito</Button> */}
                 <Button onClick={handleEFVOButton} className="text-black hover:bg-green-600 hover:text-white border-1 transition-colors ease-linear text-lg p-6">Efectivo/transferencia</Button>
                 <Button onClick={handleMP} className="text-lg p-6 border-1 hover:bg-white transition-colors ease-linear"><img src="/MP_PNGs/azul-horizontal.png" alt="Logo Mercado Pago" className="w-full h-14 max-[470px]:h-20"/></Button>
               </div>
-              {warning && <span className="text-red-600 font-bold">MercadoPago permite comprar con cualquier tarjeta de crédito o débito. Puede elegir las cuotas deseadas en el formulario de pago.</span>}
-              <Divider/>
+              {warning && <span className="text-green-600 text-xl text-wrap font-bold">MercadoPago permite comprar con cualquier tarjeta de crédito o débito. Puede elegir las cuotas deseadas en el formulario de pago.</span>}
+              <Divider className="mt-4"/>
               <section className="flex flex-col gap-4 w-auto max-[470px]:w-full mt-4 mb-8">
                 <h3 className="font-bold text-3xl">Dirección de envío</h3>
                 <p className="text-xl text-wrap">Seleccione su dirección de envío. En caso no se encuentre la dirección deseada, añada una nueva.</p>

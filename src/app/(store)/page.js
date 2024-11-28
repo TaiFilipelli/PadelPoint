@@ -32,9 +32,6 @@ export default async function Home() {
     <main className="flex flex-col items-center justify-between py-8 bg-[#264492]">
       <ImageCarouselAndFeaturedProducts mainProducts={mainProducts} subMainProducts={subProducts}/>
       <Divider/>
-      <div className="flex flex-row max-[940px]:flex-wrap justify-center gap-2 w-full mt-6 max-[555px]:mt-2 mb-14 animate-appear">
-      </div>
-      <Divider/>
       <section className="my-10 flex justify-center items-center flex-row max-[450px]:flex-col gap-10 w-3/5 max-[940px]:w-4/5 max-[410px]:w-full animate-appear">
         <div className="w-1/3 max-[450px]:w-full flex flex-col text-center items-center text-wrap"> 
           <Truck size={60} type="light" className="w-16 h-16"/>
@@ -55,30 +52,30 @@ export default async function Home() {
       <Divider/>
       <h1 className={`${pop.className} font-bold text-4xl max-[500px]:text-5xl m-6 max-[500px]:ml-2 animate-appear`}>Bienvenido a la tienda de padel más grande de San Nicolás</h1>
       <section className="w-4/5 py-4 px-8">
-      <div className="flex flex-col text-left items-start p-1 w-3/4 max-[500px]:w-full mb-4 animate-appear">
+      <article className="flex flex-col text-left items-start bg-white text-black rounded-xl p-4 w-[50%] max-[500px]:w-full mb-4 animate-appear">
         <h1 className={`${pop.className} font-semibold text-2xl max-[500px]:text-3xl mb-4 underline`}>Nuestro objetivo: todo el país</h1>
         <p className="font-normal text-xl mb-4">Unite a una familia en constante crecimiento, unida por una fuerte pasión por este increíble deporte.
           PadelPoint empezó siendo un humilde emprendimiento de venta de artículos de padel. Hoy, aspiramos a llegar a los hogares de todos y cada uno de los 
           amantes de este deporte para equiparlos con lo mejor del mercado, lo que se merecen.
         </p>
-        <Image src="/STOCKMAIN1.jpg" width={600} isBlurred alt="Jugador de padel en cancha de ladrillo azul"/>
-      </div>
-      <div className="flex flex-col text-right max-[500px]:text-left justify-end max-[500px]:justify-start items-end max-[500px]:items-start p-1 ml-80 max-[700px]:ml-60 max-[600px]:ml-40 max-[500px]:ml-0 mb-4 animate-appear">
+        <Image src="/STOCKMAIN1.jpg" width={900} isBlurred alt="Jugador de padel en cancha de ladrillo azul"/>
+      </article>
+      <article className="flex flex-col text-right max-[500px]:text-left justify-end max-[500px]:justify-start items-end max-[500px]:items-start bg-white text-black p-4 rounded-xl ml-96 max-[700px]:ml-60 max-[600px]:ml-40 max-[500px]:ml-0 mb-4 animate-appear">
         <h1 className={`${pop.className} font-bold text-2xl max-[500px]:text-3xl my-4 underline`}>Tu paleta de ensueño, a dos clicks de distancia</h1>
         <p className="font-normal text-xl mb-4">Encontrar tu compañera ideal nunca fue tan fácil! Ingresá con tu cuenta (o unite a la familia PadelPoint si
           es tu primera vez por acá) y descubrí nuestra amplia gama de productos para acompañarte tanto dentro de la cancha como fuera de ella. Además,
           siempre tenemos ofertas, sorteos, rifas y mucho más!
         </p>
-        <Image src="/PadelStock1.png" width={700} isBlurred alt="Imagen de paletas de PadelPoint"/>
-      </div>
-      <div className="flex flex-col text-left items-start p-1 w-2/3 max-[500px]:w-full mb-4 animate-appear">
+        <Image src="/PadelStock1.png" width={1000} isBlurred alt="Imagen de paletas de PadelPoint"/>
+      </article>
+      <article className="flex flex-col text-left items-start bg-white text-black rounded-xl p-4 w-[50%] max-[500px]:w-full mb-4 animate-appear">
         <h1 className={`${pop.className} font-semibold text-2xl max-[500px]:text-3xl mb-4 underline`}>Todo el equipamiento que necesitas está acá</h1>
         <p className="font-normal text-xl mb-4">Sabemos más que nadie que no sólo es la paleta lo que importa. Nuestro catálogo también cubre todo lo que necesitas
           para estar bien equipado dentro de la cancha. Desde pelotas y camisetas hasta productos especializados como sprays adherentes para paletas o bolsos para llevar tu equipamiento
           al siguiente nivel.
         </p>
-        <Image src="/Padelpoint_IMGS/items1.jpg" width={600} isBlurred alt="Items varios de PadelPoint"/>
-      </div>
+        <Image src="/Padelpoint_IMGS/items1.jpg" width={1000} isBlurred alt="Items varios de PadelPoint"/>
+      </article>
       </section>
       <Divider />
       <h1 className={`${pop.className} text-3xl mt-5 font-bold animate-appear max-[555px]:ml-2 max-[310px]:text-2xl`}>Contáctanos por las redes oficiales!</h1>

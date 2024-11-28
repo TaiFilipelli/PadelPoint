@@ -98,12 +98,6 @@ export const createOrder = async(data) => {
     return response;
 }
 
-export const getAllOrders = async() =>{ 
-    const data = await fetch(`${baseUrl}/order`);
-    const result = await verifyResponse(data);
-    return result;
-}
-
 export const searchAllAddresses = async() =>{ 
     const data = await fetch(`${baseUrl}/address`);
     const result = await verifyResponse(data);
@@ -113,5 +107,11 @@ export const searchAllAddresses = async() =>{
 export const getUserAddresses = async(id) =>{ 
     const data = await fetch(`${baseUrl}/user/address/${id}`);
     const result = await verifyResponse(data);
+    return result;
+}
+
+export const getOrdersByUser = async(id) =>{ 
+    const response = await fetch(`${baseUrl}/order/user/${id}`);
+    const result = await verifyResponse(response);
     return result;
 }

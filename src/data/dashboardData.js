@@ -1,4 +1,5 @@
 import { verifyResponse } from "../../utils/services";
+import { buildQuery } from "./storeData";
 
 const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
@@ -144,4 +145,11 @@ export const createImage = async (id, image) => {
     }).then((data) => data.json())
     .catch((err)=>console.log('ERROR EN EL METODO:',err));
     return response;    
+}
+
+export const getAllOrders = async(params) =>{
+    const query = buildQuery(params);
+    const data = await fetch(`${baseUrl}/order${query}`);
+    const result = await verifyResponse(data);
+    return result;
 }

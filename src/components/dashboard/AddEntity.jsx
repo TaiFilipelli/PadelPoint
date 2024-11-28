@@ -1,4 +1,4 @@
-import { Input, Button, Dropdown, DropdownTrigger, DropdownItem, DropdownMenu } from "@nextui-org/react"
+import { Input, Button, Dropdown, DropdownTrigger, DropdownItem, DropdownMenu, Textarea } from "@nextui-org/react"
 import { useState, useEffect } from "react";
 import { getTypes, getBrands, getOneProductById, getProducts } from "../../data/storeData";
 import { addNewBrand, addNewProduct, addNewRole, addNewType, addNewSupplier, getSuppliers, createImage } from "../../data/dashboardData";
@@ -192,11 +192,11 @@ const AddEntity = ({ entity }) => {
         </fieldset>
         {entity === "producto" && (
                 <>
-                    <fieldset className="my-2 w-2/3 max-[450px]:w-full">
+                    <fieldset className="mb-2 w-2/3 max-[450px]:w-full">
                         <Input type="file" label='Imagen principal' labelPlacement="outside" fullWidth onChange={(e) => setImage(e.target.files[0])} accept="image/*" name="image"/>
                     </fieldset>
-                    <fieldset className="my-2 w-2/3 max-[450px]:w-full">
-                        <Input label='Descripción del producto' fullWidth value={description} onChange={(e) => setDescription(e.target.value)} isClearable/>
+                    <fieldset className="my-2 w-2/3 max-[450px]:w-full text-black">
+                        <Textarea label='Descripción de producto' value={description} onChange={(e) => setDescription(e.target.value)} fullWidth radius="sm"/> 
                     </fieldset>
                     <fieldset className="my-2 w-2/3 max-[450px]:w-full">
                         <Input label='Precio' type="number" fullWidth value={price} onChange={(e) => setPrice(e.target.value)} isClearable/>
