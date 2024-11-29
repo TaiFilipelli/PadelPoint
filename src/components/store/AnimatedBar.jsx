@@ -16,6 +16,8 @@ export default function AnimatedBar() {
         <span className='item text-sm'>3, 6 y 9 cuotas sin interés</span>
         <span className='item text-sm'>PadelPoint Store</span>
         <span className='item text-sm'>3, 6 y 9 cuotas sin interés</span>
+        <span className='item text-sm'>PadelPoint Store</span>
+        <span className='item text-sm'>3, 6 y 9 cuotas sin interés</span>
     </nav>
   )
 }
