@@ -11,6 +11,7 @@ import { PuffLoader } from "react-spinners";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
 import { trackViewContent } from "../../../../../utils/pixel";
+import { Plus } from "@phosphor-icons/react";
 
 const pop = Poppins({subsets:['latin'], weight:['600','400']})
 export default function ProductDetailPage() {
@@ -18,6 +19,7 @@ export default function ProductDetailPage() {
   const { id } = params;
   const [product, setProduct] = useState(null);
   const [recProducts, setRecProducts] = useState([]);
+  const [comboProducts, setComboProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isOnCart, setIsOnCart] = useState(false);
 
@@ -32,6 +34,16 @@ export default function ProductDetailPage() {
       setIsLoading(false);
     }catch(error){
       console.error('Error fetching main products');
+      setIsLoading(true);
+    }
+  }
+  const dataComboProducts = async(params) => {
+    try{
+      const data = await getProducts(params);
+      setComboProducts(data.recourse);
+      setIsLoading(false);
+    }catch(error){
+      console.error('Error fetching combo products');
       setIsLoading(true);
     }
   }
@@ -55,7 +67,9 @@ export default function ProductDetailPage() {
       fetchProduct();
     }
     const params = { limit: 4 };
+    const comboParams = {limit:2, type:'Bolsos'};
     dataRecProducts(params);
+    dataComboProducts(comboParams);
   }, [id]);
 
   if (!product) {
@@ -131,10 +145,22 @@ export default function ProductDetailPage() {
         <h1 className={`text-4xl mb-6 mt-2 ${pop.className} font-semibold`}>Descripción del producto</h1>
         <p className="text-lg">{product.description}</p>
       </div>
+      <Divider />
+      <section className="flex flex-col text-center p-4">
+        <h2 className="text-3xl font-bold">Armá tu combo</h2>
+        <h3 className="text-xl mb-4">Los usuarios combinan este producto con los siguiente:</h3>
+        <div className="flex flex-row max-[1000px]:flex-wrap justify-center items-center gap-4 my-6">
+          <ProductsCard name={product.name} image={product.image} brand={product.brand.name} price={product.price} idProducto={product.id} isLoading={false}/>
+          <Plus size={50}/>
+          {comboProducts.map(product=>(
+            <ProductsCard key={product.id} name={product.name} image={product.image} brand={product.brand.name} price={product.price} idProducto={product.id} isLoading={false}/>
+          ))}
+        </div>
+      </section> 
       <Divider/>
       <div className="flex flex-col items-center text-center my-6">
         <h1 className={`${pop.className} text-3xl`}>Otros usuarios también vieron esto</h1>
-        <div className=/*grid grid-cols-auto-fix-minmax*/ "flex flex-wrap gap-4 justify-center items-center my-10 font-normal">
+        <div className=/*grid grid-cols-auto-fix-minmax*/ "flex flex-wrap gap-4 justify-center items-center my-8 font-normal">
         {isLoading ? (
                         Array.from({ length: 4 }).map((_, index) => (
                             <ProductsCard key={index} isLoading={true} />
