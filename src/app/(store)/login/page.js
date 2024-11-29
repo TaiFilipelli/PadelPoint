@@ -108,10 +108,10 @@ export default function Login() {
                         {errors.password && <p className="text-red-500">{errors.password}</p>}
                     </fieldset>
                     <div className="flex flex-row max-[570px]:flex-col justify-start gap-4 items-center max-[570px]:items-start">
-                        <Button radius="medium" variant='flat' className="bg-red-500 text-white font-semibold shadow-lg" aria-label="Botón de iniciar sesión" endContent={<SignIn size={25}/>} type='submit'>
+                        <Button radius="medium" variant='flat' className="bg-blue-500 text-white font-semibold shadow-xl" aria-label="Botón de iniciar sesión" endContent={<SignIn size={25}/>} type='submit'>
                         Iniciar sesión
                         </Button>
-                        <Button radius="medium" variant='flat' className='bg-gray-50 text-black font-semibold shadow-lg' aria-label="Botón de inicio de sesión con Google" onClick={handleGoogleLogin} endContent={<GoogleLogo size={25} className="object-contain"/>}>
+                        <Button radius="medium" variant='flat' className='bg-gray-50 text-black font-semibold shadow-xl' aria-label="Botón de inicio de sesión con Google" onClick={handleGoogleLogin} endContent={<GoogleLogo size={25} className="object-contain"/>}>
                             Ingresar con Google
                         </Button>
                     </div>

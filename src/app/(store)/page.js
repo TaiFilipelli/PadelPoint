@@ -51,7 +51,7 @@ export default async function Home() {
       </section>
       <Divider/>
       <h1 className={`${pop.className} font-bold text-4xl max-[500px]:text-5xl m-6 max-[500px]:ml-2 animate-appear`}>Bienvenido a la tienda de padel más grande de San Nicolás</h1>
-      <section className="w-4/5 py-4 px-8">
+      <section className="w-4/5 py-4 px-8 max-[500px]:px-0">
       <article className="flex flex-col text-left items-start bg-white text-black rounded-xl p-4 w-[50%] max-[500px]:w-full mb-4 animate-appear">
         <h1 className={`${pop.className} font-semibold text-2xl max-[500px]:text-3xl mb-4 underline`}>Nuestro objetivo: todo el país</h1>
         <p className="font-normal text-xl mb-4">Unite a una familia en constante crecimiento, unida por una fuerte pasión por este increíble deporte.

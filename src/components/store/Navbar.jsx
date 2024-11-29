@@ -138,7 +138,7 @@ const Nav = () => {
             </NavbarItem>
           </NavbarContent>
 
-          <NavbarMenu className="mt-8">
+          <NavbarMenu className="mt-14">
             <NavbarMenuItem>
               <Button as={Link} href="/" className="bg-transparent w-full text-xl p-2 justify-start text-black dark:text-white" endContent={<ArrowRight size={30}/>}>Inicio</Button>
             </NavbarMenuItem>
