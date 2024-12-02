@@ -9,7 +9,7 @@ export default function ImageCaruoselAndFeaturedProducts({mainProducts, subMainP
   return(
     <>
        <MyCarousel />
-       <h2 className={`${pop.className} font-bold text-5xl mt-4 animate-appear`}>Productos destacados:</h2>
+       <h2 className={`${pop.className} font-bold text-5xl mt-4 ml-2 animate-appear`}>Productos destacados:</h2>
        <MainProducts products={mainProducts}/>
        <h3 className={`${pop.className} font-bold text-4xl mt-4 ml-2 animate-appear`}>Equipate con lo mejor del mercado</h3> 
        <MainProducts products={subMainProducts}/>

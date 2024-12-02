@@ -134,10 +134,10 @@ export default function ProductDetailPage() {
           <p className={`text-xl mb-4 ${product.stock<5? 'text-red-400': product.stock<10? 'text-orange-400':'text-green-600'}`}>Stock {product.stock<5? 'bajo': product.stock<10? 'medio': 'alto'}</p> 
           <p className="text-xl">Marca: {product.brand.name}</p>
           <p className="text-xl">Tipo: {product.type.name}</p>
-          {isOnCart ? <Button as={Link} href="/cart" className="rounded-lg py-6 mt-4 w-2/3 px-4 text-xl bg-blue-600 border-2 border-white text-white" variant="light">Ver carro</Button> : <Button className="rounded-lg py-6 mt-4 w-2/3 px-4 
-          text-xl bg-transparent border-2 hover:bg-gradient-to-tr from-red-300 to-red-600 ease-in-out transition-all hover:border-black text-white hover:scale-105" 
+          {isOnCart ? <Button as={Link} href="/cart" className="rounded-lg py-6 mt-4 w-2/3 px-4 text-xl bg-green-600 border-2 border-white text-white" variant="light">Ver carro</Button> : <Button className="rounded-lg py-6 mt-4 w-2/3 px-4 
+          text-xl bg-transparent border-2 hover:bg-gradient-to-tr from-blue-300 to-blue-600 ease-in-out transition-all hover:border-black text-white hover:scale-105" 
           variant="light" onClick={() => handleBuyButton(product.id)}>Comprar</Button>}
-          <Link href='/products' className={`mt-5 w-1/2 text-lg underline hover:text-red-600 transition-colors ${pop.className} font-normal`}>Volver a los productos</Link>
+          <Link href='/products' className={`mt-5 w-1/2 text-lg underline hover:text-red-600 transition-colors ${pop.className} font-normal`}>Volver a productos</Link>
         </div>
       </section>
       <Divider/>
