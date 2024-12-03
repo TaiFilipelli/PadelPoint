@@ -25,9 +25,8 @@ export default function ProfilePage() {
                 const data = await getUserById(user.payload.id);
                 setUserData(data.recourse);
                 const userOrders = await getOrdersByUser(data.recourse.id)
-                if(userOrders.length>0){
-                    setOrders(userOrders);
-                }
+                console.log('Órdenes de usuario', userOrders.recourse);
+                setOrders(userOrders.recourse);
             }
         }catch(error){
             console.log(error);
@@ -114,12 +113,12 @@ export default function ProfilePage() {
                             </section>
                             <Divider/>
                             <h3 className="text-3xl font-bold mt-6 mb-4">Historial de órdenes</h3>
-                            <section className="bg-white text-black p-4 rounded-xl w-full">
+                            <section className="bg-white text-black p-4 gap-4 rounded-xl w-full">
                                 {orders.length>0?
                                 <>
                                     {orders.map((order, index)=>(
-                                        <article className="border-1 border-black shadow-sm shadow-black" key={index}>
-                                            <h2>Orden Nro. {order.paymentId}</h2>
+                                        <article className="border-1 border-black shadow-sm shadow-black p-4 rounded-xl" key={index}>
+                                            <h2 className="text-xl font-semibold">Orden Nro. {order.paymentId}</h2>
                                             <h3>Fecha de compra: {order.dateCreated}</h3>
                                             <h3>Método de pago: {order.paymentMethod}</h3>
                                         </article>

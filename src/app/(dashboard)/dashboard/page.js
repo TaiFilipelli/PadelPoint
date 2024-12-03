@@ -29,7 +29,7 @@ export default function Dashboard(){
       const response = await getAllOrders(params);
       if(response.status){
       setOrders(response.recourse);
-      console.log(orders);
+      console.log(response.recourse);
     }else{
       setOrders([])
     }}catch(error){
@@ -53,10 +53,10 @@ export default function Dashboard(){
         </div>
         <Link href='/' className="hover:underline">Volver a la tienda</Link>
       </section>
-      <section className={`flex items-center flex-col p-10 bg-black rounded-lg w-auto ${mont.className}`}>
+      <section className={`flex items-center flex-col p-10 bg-black rounded-lg w-auto ${mont.className} overflow-x-auto`}>
         <h2 className='text-3xl mb-4 max-[410px]:my-8'>Últimas órdenes del mes</h2> 
         <div className="overflow-x-auto w-auto">
-        <table className="table-auto w-full bg-white text-black rounded-lg overflow-hidden text-left">
+        <table className="table-auto w-full bg-white text-black rounded-lg overflow-x-auto text-left">
           <thead className="bg-gray-800 text-white">
           <tr>
           <th className="px-4 py-2">ID</th>
@@ -64,17 +64,19 @@ export default function Dashboard(){
           <th className="px-4 py-2">Fecha creación</th>
           <th className="px-4 py-2">Método de pago</th>
           <th className="px-4 py-2">Cuotas</th>
+          <th className="px-4 py-2">Comprador</th>
         </tr>
       </thead>
-    <tbody>
+    <tbody className="overflow-x-auto">
       {orders.length > 0 ? (
         orders.map((order, index) => (
-          <tr key={index} className="bg-black hover:bg-gray-800">
+          <tr key={index} className="bg-white hover:bg-gray-400 transition-all duration-300 ease-in-out whitespace-nowrap">
             <td className="border px-4 py-2">{order.id}</td>
             <td className="border px-4 py-2">{order.paymentId}</td>
             <td className="border px-4 py-2">{order.dateCreated}</td>
             <td className="border px-4 py-2">{order.paymentMethod}</td>
             <td className="border px-4 py-2">{order.installments}</td>
+            <td className="border px-4 py-2">{order.user.email}</td>
           </tr>
         ))
       ) : (

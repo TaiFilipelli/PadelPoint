@@ -53,8 +53,9 @@ export default function MP_Page() {
         try{
             const items:Item[] = await Promise.all(
                 cart.map(async item => {
-                const product:Product = await getOneProductById(item.id);
-                console.log(product)
+                const response = await getOneProductById(item.id);
+                const product:Product = response.recourse;
+                console.log('Producto:',product);
                 return{
                     id: item.id.toString(),
                     title: product.name,
@@ -69,11 +70,11 @@ export default function MP_Page() {
             const userId = parseInt(localStorage.getItem('userId'));
             const body = {addressId:addressId, userId:userId, items};
             const link = await createMPPreference(body);
-            console.log(link);
+            console.log('Response del método:',link);
             if(link!=undefined){
                 const totalValue = items.reduce((acc, item) => acc + item.unit_price * item.quantity, 0);
                 trackInitiateCheckout(totalValue, 'ARS');
-                window.location.href = link.url;
+                window.location.href = link.recourse;
                 console.log(link)
             }else{
                 console.error('There is an internal issue with MP preference creation');

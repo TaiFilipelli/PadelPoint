@@ -73,6 +73,7 @@ export const createPaymentIntent = async(data) => {
 }
 
 export const createMPPreference = async(info) => {
+    console.log('ENTRA INFO AL METODO:',info);
     const data = await fetch(`${baseUrl}/payment/mp/preference`,{
         method:'POST',
         credentials:'include',
@@ -111,7 +112,7 @@ export const searchAllAddresses = async() =>{
 }
 
 export const getUserAddresses = async(id) =>{ 
-    const data = await fetch(`${baseUrl}/user/address/${id}`);
+    const data = await fetch(`${baseUrl}/user/addresses/${id}`);
     const result = await verifyResponse(data);
     return result;
 }
