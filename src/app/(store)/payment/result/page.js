@@ -104,13 +104,14 @@ export default function ResultPaymentPage() {
                 addressId:parseInt(address),
                 paymentId:parseInt(paymentId),
                 products:products,
-                installments:1,
-                paymentMethod:'MP_TRANSFER'
+                // installments:1,
+                paymentMethod:'MP_TRANSFER',
+                IVA:21
             }
 
             try{
                 const response = await createOrder(orderData);
-                if(response.statusCode===200){
+                if(response.statusCode===201){
                     console.log('Creación de orden exitosa:',response);
                     trackPurchase(100,'ARS',parseInt(paymentId))
                     localStorage.removeItem('userId');
