@@ -10,7 +10,7 @@ const ProductsCard = ({name, image, brand, price, idProducto, isLoading}) => {
   const addToCart = useCartStore((state) => state.addToCart);
   const [isInCart, setIsInCart] = useState(false);
 
-  const displayPrice = (price/3).toFixed(0);
+  const displayPrice = (price/9).toFixed(0);
 
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -73,8 +73,8 @@ const ProductsCard = ({name, image, brand, price, idProducto, isLoading}) => {
       />
       <p className='font-semibold mt-2'>Marca: {brand}</p>
       <div className='w-full flex flex-col items-center justify-center mt-2'>
-        <p className='text-xl font-bold bg-gradient-to-br from-green-950 to-green-400 bg-clip-text text-transparent'>3 cuotas de ${displayPrice}</p>
-        <p className="font-light">Transferencia: ${price}</p>
+        <p className='text-xl font-bold bg-gradient-to-br from-green-950 to-green-400 bg-clip-text text-transparent'>9 cuotas de ${displayPrice}</p>
+        <p className="font-light">Contado: ${price}</p>
       </div>
       <div className="flex justify-between items-center gap-4 my-4">
         {isInCart ? (
