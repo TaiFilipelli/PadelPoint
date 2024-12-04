@@ -35,10 +35,9 @@ En el lado del Front, decidí utilizar el framework **Next**. La elección se ba
 - [x] Cambio de contraseña para usuarios mediante el envío de un código a su dirección de correo asociado.
 - [x] Dashboard funcional con la posibilidad de crear, modificar y eliminar entidades de la base de datos a antojo.
 - [x] Blindado de rutas del dashboard mediante control de roles gracias a un middleware que funciona con el jwt.
+- [x] Formulario de pago embebido de Mercado Pago funcional, seguro y completo. Con la opción de usar cualquier tarjeta de crédito o débito y financiar productos en 3, 6 o incluso 9 cuotas simples.
+- [x] Correcto almacenamiento de órdenes de pago en base de datos en casos de pagos exitosos.
 
 ## Futuras features
 
-- [ ] Formulario de pago embebido de OpenPay o Mercado Pago funcional, seguro y completo.
-- [ ] Correcto almacenamiento de órdenes de pago en base de datos.
-- [ ] **POSIBLE** implementación de una API que notifique a nuestro cliente cuando un usuario compró algo desde la tienda.
 - [ ] Mejoras de cyberseguridad, optimización de recursos, limpieza de código, solución de errores en producción, etc.
