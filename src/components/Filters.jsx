@@ -9,7 +9,7 @@ const pop = Poppins({subsets:['latin'], weight:'500'})
 
 export const Filters = () => {
     const [searchedName, setSearchedName] = useState('');
-    const [priceRange, setPriceRange] = useState([0,200000]);
+    const [priceRange, setPriceRange] = useState([0,1000000]);
     const [types, setTypes] = useState([])
     const [brands, setBrands] = useState([])
     const [selectedType, setSelectedType] = useState('');
@@ -28,6 +28,7 @@ export const Filters = () => {
         localStorage.setItem('minPrice', priceRange[0]);
         localStorage.setItem('maxPrice', priceRange[1]);
         localStorage.setItem('type',selectedType);
+        localStorage.setItem('selectedBrand',selectedBrand);
         window.location.reload();
     }
     const fetchData = async() =>{
@@ -75,14 +76,14 @@ export const Filters = () => {
             </DropdownTrigger>
             <DropdownMenu className="p-2 rounded-lg" >
                <DropdownItem className='text-black' isReadOnly>
-                <Slider 
-                    label="ARS$"
+                <Slider
+                    label='ARS'
                     color='foreground'
                     step={25} 
                     minValue={0} 
                     maxValue={500000} 
-                    defaultValue={[0,100]} 
-                    formatOptions={{style: "currency", currency: "USD"}}
+                    defaultValue={[0,500000]} 
+                    formatOptions={{style: "currency", currency: "ARS"}}
                     className="max-w-full"
                     onChange={handleValueRangeChange}
                 />

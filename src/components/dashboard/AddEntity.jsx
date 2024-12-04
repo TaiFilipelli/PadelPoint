@@ -15,7 +15,7 @@ const AddEntity = ({ entity }) => {
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
     const [stock, setStock] = useState('');
-    const [shipping, setShipping] = useState('');
+    const [cost, setCost] = useState('');
 
     //Estados para almacenar los valores traidos desde la db
     const [brands, setBrands] = useState([]);
@@ -82,7 +82,7 @@ const AddEntity = ({ entity }) => {
         e.preventDefault();
         switch(entity){
             case 'producto':
-                addProduct(name, image, description, price, stock, shipping, selectedBrand, selectedSupplier, selectedType);
+                addProduct(name, image, description, price, stock, cost, selectedBrand, selectedSupplier, selectedType);
                 e.target.reset();
                 break;
             case 'imagen':
@@ -109,7 +109,7 @@ const AddEntity = ({ entity }) => {
                 console.error("Entidad no reconocida");
         }
     }
-    const addProduct = async(name, image, description, price, stock, shipping, brandId, supplierId, typeId) => {
+    const addProduct = async(name, image, description, price, stock, cost, brandId, supplierId, typeId) => {
 
 
         const formData = new FormData();
@@ -118,7 +118,7 @@ const AddEntity = ({ entity }) => {
         formData.append('description', description);
         formData.append('price', price);
         formData.append('stock', stock);
-        formData.append('shippingCost', shipping);
+        formData.append('cost', cost);
         formData.append('brandId', brandId.id);
         formData.append('supplierId', supplierId.id);
         formData.append('typeId', typeId.id);
@@ -199,13 +199,13 @@ const AddEntity = ({ entity }) => {
                         <Textarea label='Descripción de producto' value={description} onChange={(e) => setDescription(e.target.value)} fullWidth radius="sm"/> 
                     </fieldset>
                     <fieldset className="my-2 w-2/3 max-[450px]:w-full">
-                        <Input label='Precio' type="number" fullWidth value={price} onChange={(e) => setPrice(e.target.value)} isClearable/>
+                        <Input label='Precio de venta' type="number" fullWidth value={price} onChange={(e) => setPrice(e.target.value)} isClearable/>
                     </fieldset>
                     <fieldset className="my-2 w-2/3 max-[450px]:w-full">
                         <Input label='Stock' type="number" fullWidth value={stock} onChange={(e) => setStock(e.target.value)} isClearable/>
                     </fieldset>
                     <fieldset className="my-2 w-2/3 max-[450px]:w-full">
-                        <Input label='Coste de envío' type="number" fullWidth value={shipping} onChange={(e) => setShipping(e.target.value)} isClearable/>
+                        <Input label='Coste de producto' type="number" fullWidth value={cost} onChange={(e) => setCost(e.target.value)} isClearable/>
                     </fieldset>
                     <div className="flex flex-row max-[550px]:flex-col items-center gap-2 w-full mt-4">
                     <Dropdown>

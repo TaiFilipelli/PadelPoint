@@ -81,7 +81,7 @@ export default function Dashboard(){
         ))
       ) : (
         <tr>
-          <td colSpan="5" className="border px-4 py-2 text-center">
+          <td colSpan="6" className="border px-4 py-2 text-center">
             No hay órdenes disponibles.
           </td>
         </tr>
