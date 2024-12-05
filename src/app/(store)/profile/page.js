@@ -113,14 +113,26 @@ export default function ProfilePage() {
                             </section>
                             <Divider/>
                             <h3 className="text-3xl font-bold mt-6 mb-4">Historial de órdenes</h3>
-                            <section className="bg-white text-black p-4 gap-4 rounded-xl w-full">
+                            <section className="bg-black text-white p-4 gap-4 rounded-xl w-full text-left">
                                 {orders.length>0?
                                 <>
                                     {orders.map((order, index)=>(
-                                        <article className="border-1 border-black shadow-sm shadow-black p-4 rounded-xl" key={index}>
-                                            <h2 className="text-xl font-semibold">Orden Nro. {order.paymentId}</h2>
-                                            <h3>Fecha de compra: {order.dateCreated}</h3>
-                                            <h3>Método de pago: {order.paymentMethod}</h3>
+                                        <article className="border-1 border-black shadow-sm shadow-black p-4 rounded-xl bg-white text-black" key={index}>
+                                            <h1 className="text-2xl font-black">Orden Nro. {order.paymentId}</h1>
+                                            <h2 className="font-semibold">Precio total: ${order.total}</h2>
+                                            <Divider/>
+                                            <h3 className="my-2 text-xl font-semibold">Productos:</h3>
+                                            <ul className="gap-4">
+                                                {order.items.map((item, index)=>(
+                                                    <>
+                                                    <article className="flex flex-row items-center my-2" key={index}>
+                                                        <img src={`https://${item.product.image}`} className="w-20 h-20 rounded-xl"/>
+                                                        <li className="ml-4">{item.product.name} - x{item.quantity} </li>
+                                                    </article>
+                                                    <Divider/>
+                                                    </>
+                                                ))}
+                                            </ul>
                                         </article>
                                     ))}
                                 </>

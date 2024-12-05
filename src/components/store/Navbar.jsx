@@ -26,8 +26,11 @@ const Nav = () => {
   const [username, setUsername] = useState(''); //Estado que almacena el username para renderizar el nombre
   const router = useRouter();
 
-  const handleBrandSelect = (brand) => {
+  const handleBrandSelect = (brand, type) => {
     localStorage.setItem('selectedBrand', brand);
+    if(type!==''){
+      localStorage.setItem('type', type);
+    }
     router.push('/products');
   };
 
@@ -231,7 +234,7 @@ const Nav = () => {
               </DropdownTrigger>
               <DropdownMenu className="p-0 w-full" itemClasses={{ base: "gap-4" }}>
                 {brands.map(brand => (
-                  <DropdownItem key={brand.id} onClick={() => handleBrandSelect(brand.name)} className="text-black">{brand.name}</DropdownItem>
+                  <DropdownItem key={brand.id} onClick={() => handleBrandSelect(brand.name, 'Bolsos')} className="text-black">{brand.name}</DropdownItem>
                 ))}
               </DropdownMenu>
             </Dropdown>
@@ -241,7 +244,7 @@ const Nav = () => {
               </DropdownTrigger>
               <DropdownMenu className="p-0 w-full" itemClasses={{ base: "gap-4" }}>
                 {brands.map(brand => (
-                  <DropdownItem key={brand.id} onClick={() => handleBrandSelect(brand.name)} className="text-black">{brand.name}</DropdownItem>
+                  <DropdownItem key={brand.id} onClick={() => handleBrandSelect(brand.name, 'Zapatillas')} className="text-black">{brand.name}</DropdownItem>
                 ))}
               </DropdownMenu>
             </Dropdown>
@@ -251,7 +254,7 @@ const Nav = () => {
               </DropdownTrigger>
               <DropdownMenu className="p-0 w-full" itemClasses={{ base: "gap-4" }}>
                 {brands.map(brand => (
-                  <DropdownItem key={brand.id} onClick={() => handleBrandSelect(brand.name)} className="text-black">{brand.name}</DropdownItem>
+                  <DropdownItem key={brand.id} onClick={() => handleBrandSelect(brand.name,'Accesorios')} className="text-black">{brand.name}</DropdownItem>
                 ))}
               </DropdownMenu>
             </Dropdown> 

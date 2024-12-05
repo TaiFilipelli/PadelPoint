@@ -106,7 +106,7 @@ export default function ResultPaymentPage() {
                 products:products,
                 // installments:1,
                 paymentMethod:'MP_TRANSFER',
-                IVA:21
+                IVA:0.21
             }
 
             try{
