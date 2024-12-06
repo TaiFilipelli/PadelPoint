@@ -1,9 +1,6 @@
 import { Poppins } from "next/font/google";
 // Se importa la fuente
-// import { Divider, Button, Image } from "@nextui-org/react";
-import {Divider} from '@nextui-org/divider'
-import {Button} from '@nextui-org/button'
-import {Image} from '@nextui-org/image'
+import { Divider, Button, Image } from "@nextui-org/react";
 // Componentes de nextui
 import Link from "next/link";
 // Link para navegar entre páginas
