@@ -4,6 +4,7 @@ import ProductsCard from "../../../components/ProductsCard";
 import { useEffect, useState } from "react";
 import { getProducts} from "../../../data/storeData";
 import Filters from "../../../components/Filters";
+import { SmileySad } from "@phosphor-icons/react";
 
 const pop = Poppins({subsets:["latin"], weight:'600'})
 export default function ProductsList() {
@@ -49,7 +50,7 @@ export default function ProductsList() {
                         Array.from({ length: 8 }).map((_, index) => (
                             <ProductsCard key={index} isLoading={true} />
                         ))
-                    ) : (
+                    ) : products.length>0 ? (
                         products.map(paleta => (
                             <ProductsCard 
                                 key={paleta.id} 
@@ -61,6 +62,11 @@ export default function ProductsList() {
                                 isLoading={false}
                             />
                         ))
+                    ) : (
+                        <article className="bg-default-200 text-black rounded-3xl p-16 flex flex-col items-center justify-center">
+                            <h2 className={`${pop.className} font-semibold text-3xl m-4`}>No tenemos productos disponibles!</h2>
+                            <SmileySad size={100} />
+                        </article>
                     )}
                 </div>
             </section>
