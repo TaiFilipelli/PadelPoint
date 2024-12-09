@@ -39,7 +39,7 @@ export default function NewAddressPage() {
     }
 
     return (
-        <section className={`${pop.className} flex flex-col items-center justify-center bg-[#264492] p-16`}>
+        <section className={`${pop.className} flex flex-col items-center justify-center bg-[#264492] p-20`}>
             <h1 className="font-bold text-4xl mb-2">Añadir nueva dirección</h1>
             <h3 className="mb-4 text-xl">Ingrese la información solicitada. Podrá usar su dirección para los envíos de sus compras.</h3>
             <form onSubmit={handleAddressSubmit}>

@@ -48,7 +48,7 @@ export default function ProfilePage() {
 
     const handleDeleteAddress = async(id) =>{
         const result = await deleteAddress(id);
-        if(result.statusCode !== 404){
+        if(result.status){
             toast.success('Dirección eliminada exitosamente!')
             console.log('Dirección eliminada exitosamente!', result);
             setTimeout(() => {
@@ -87,8 +87,8 @@ export default function ProfilePage() {
                             <section className="flex flex-col mt-6">
                                 <h1 className="font-bold text-2xl mb-4">Direcciones de envío</h1>
                                 {userData.address && userData.address.length > 0 ? (
-                                    userData.address.map((address) => (
-                                        <section className="flex flex-row items-center gap-10 max-[420px]:gap-4">
+                                    userData.address.map((address, index) => (
+                                        <section className="flex flex-row items-center gap-10 max-[420px]:gap-4" key={index}>
                                             <article key={address.id} className="text-left my-4 p-4 rounded-2xl bg-[#162856]">
                                                 <h3 className="font-semibold">{address.addressStreet} {address.addressNumber}</h3>
                                                 <h5 className="mt-2">Código postal {address.postalCode}</h5>
@@ -97,7 +97,7 @@ export default function ProfilePage() {
                                                 </div>
                                             </article>
                                                 <div className="flex flex-col opacity-0 scale-0 transition-all duration-300 ease-in-out" id="alert">
-                                                    <h4 className="font-normal text-lg mt-2">Seguro?</h4>
+                                                    <h4 className="font-normal text-lg mt-2">Borrar?</h4>
                                                     <div className="flex flex-row max-[430px]:flex-col gap-2 mt-2">
                                                         <Button className="bg-red-600 text-white" onClick={()=>handleDeleteAddress(address.id)}>Si</Button>
                                                         <Button onClick={hideAlert}>No</Button>
@@ -123,9 +123,9 @@ export default function ProfilePage() {
                                             <Divider/>
                                             <h3 className="my-2 text-xl font-semibold">Productos:</h3>
                                             <ul className="gap-4">
-                                                {order.items.map((item, index)=>(
+                                                {order.items.map((item, indexItem)=>(
                                                     <>
-                                                    <article className="flex flex-row items-center my-2" key={index}>
+                                                    <article className="flex flex-row items-center my-2" key={indexItem}>
                                                         <img src={`https://${item.product.image}`} className="w-20 h-20 rounded-xl"/>
                                                         <li className="ml-4">{item.product.name} - x{item.quantity} </li>
                                                     </article>
