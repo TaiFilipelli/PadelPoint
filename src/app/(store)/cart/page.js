@@ -243,15 +243,15 @@ export default function Cart() {
                     <p className="text-xl text-center">Cargando direcciones...</p>
                   ) : (
                     address.length>0 ? (
-                    <section className="flex flex-col max-[500px]:text-center gap-4 mt-4">
+                    <section className="flex flex-col max-[500px]:text-center gap-4 my-4">
                     {address.map(address => (
                       <article key={address.id} className={`${pop.className} rounded-3xl p-5 border-1 border-white bg-default-100 text-white ${selectedAddress === address.id ? 'bg-green-500':'bg-transparent'} w-1/3 max-[750px]:w-2/3 max-[500px]:w-full transition-colors duration-700`}>	
                         <h3 className="font-semibold text-2xl">{address.addressStreet} {address.addressNumber}</h3>
                         <p className="font-normal text-lg mb-4">C.P. {address.postalCode}</p>
-                        <Button className={`bg-red-500 text-white font-light px-2 ${selectedAddress === address.id ? 'bg-green-900' : ''}`} onClick={() => setSelectedAddress(address.id)}>{selectedAddress === address.id ? 'Seleccionado' : 'Seleccionar'}</Button>
+                        <Button className={`bg-default-200 text-black font-light px-2 ${selectedAddress === address.id ? 'bg-green-900' : ''}`} onClick={() => setSelectedAddress(address.id)}>{selectedAddress === address.id ? 'Seleccionado' : 'Seleccionar'}</Button>
                       </article>
                   ))}
-                  <Button as={Link} href={"/profile/new_address"} className={`bg-blue-600 text-white p-6 w-1/3 ${pop.className} text-lg rounded-3xl`} endContent={<MapPin size={40} weight="light"/>} >Añadir dirección</Button>
+                  <Button as={Link} href={"/profile/new_address"} className={`bg-blue-600 text-white p-6 w-1/3 max-[800px]:w-1/2 max-[600px]:w-full ${pop.className} text-lg rounded-3xl`} endContent={<MapPin size={40} weight="light"/>} >Añadir dirección</Button>
                   </section>
               ) : (
               <p className="text-xl text-red-300 font-bold">No hay direcciones registradas. Añada una nueva o inicie sesión.</p>

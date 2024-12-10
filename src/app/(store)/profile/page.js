@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Avatar, Button, Divider } from "@nextui-org/react";
 import { PuffLoader } from "react-spinners";
 import Link from "next/link";
-import { ArrowLeft, Trash } from "@phosphor-icons/react";
+import { ArrowLeft } from "@phosphor-icons/react";
 import { Poppins } from "next/font/google";
 import { toast } from "react-toastify";
 import { getOrdersByUser } from "../../../data/storeData";
@@ -46,20 +46,6 @@ export default function ProfilePage() {
         alert.classList.remove('scale-100');
     }
 
-    const handleDeleteAddress = async(id) =>{
-        const result = await deleteAddress(id);
-        if(result.status){
-            toast.success('Dirección eliminada exitosamente!')
-            console.log('Dirección eliminada exitosamente!', result);
-            setTimeout(() => {
-                window.location.reload();
-            }, 2500);
-        }else{
-            toast.error('Error al eliminar la dirección. Inténtelo de nuevo.');
-            console.error(result);
-        }
-    }
-
     useEffect(() => {
         searchUserData();
     }, []);
@@ -80,36 +66,27 @@ export default function ProfilePage() {
                             <Avatar src="/LogoPadelPoint.png" className="w-40 h-40" />
                             <h1 className="font-bold text-4xl mt-4">{userData.name} {userData.surname}</h1>
                             <h2 className="font-semibold text-xl mb-4 text-default-400">@{userData.username}</h2>
-                            <div className="text-wrap text-left">
+                            <div className="text-wrap text-left mb-4">
                                 <h3 className="font-normal text-xl mt-4">Correo electrónico: {userData.email}</h3>
                                 <h4 className="font-normal text-xl">{userData.idType.name}: {userData.idNumber}</h4>
                             </div>
+                            <Divider/>
                             <section className="flex flex-col mt-6">
-                                <h1 className="font-bold text-2xl mb-4">Direcciones de envío</h1>
+                                <h1 className="font-bold text-3xl mb-4">Direcciones de envío</h1>
                                 {userData.address && userData.address.length > 0 ? (
                                     userData.address.map((address, index) => (
-                                        <section className="flex flex-row items-center gap-10 max-[420px]:gap-4" key={index}>
-                                            <article key={address.id} className="text-left my-4 p-4 rounded-2xl bg-[#162856]">
-                                                <h3 className="font-semibold">{address.addressStreet} {address.addressNumber}</h3>
-                                                <h5 className="mt-2">Código postal {address.postalCode}</h5>
-                                                <div className="flex flex-row">
-                                                    <Button className="bg-red-600 text-white mt-4" onClick={showAlert}><Trash size={50} weight="light"/></Button>
-                                                </div>
+                                        <section className="items-center gap-2 max-[420px]:gap-4" key={index}>
+                                            <article key={address.id} className="text-left my-2 p-4 rounded-2xl bg-[#162856]">
+                                                <h3 className="text-xl font-semibold">{address.addressStreet} {address.addressNumber}</h3>
+                                                <h5 className="text-medium mt-2">Código postal: {address.postalCode}</h5>
                                             </article>
-                                                <div className="flex flex-col opacity-0 scale-0 transition-all duration-300 ease-in-out" id="alert">
-                                                    <h4 className="font-normal text-lg mt-2">Borrar?</h4>
-                                                    <div className="flex flex-row max-[430px]:flex-col gap-2 mt-2">
-                                                        <Button className="bg-red-600 text-white" onClick={()=>handleDeleteAddress(address.id)}>Si</Button>
-                                                        <Button onClick={hideAlert}>No</Button>
-                                                    </div>
-                                                </div>
                                         </section>
                                     ))
                                     
                                 ) : (
                                     <p className="text-center text-lg mb-4">Usted no ha proporcionado direcciones de envío</p>
                                 )}
-                                <Link href={'/profile/new_address'} className="bg-gray-400 text-black p-4 rounded-xl font-semibold mb-6">Añadir nueva dirección</Link>
+                                <Link href={'/profile/new_address'} className="bg-gray-400 text-black p-4 rounded-xl font-semibold my-6">Añadir nueva dirección</Link>
                             </section>
                             <Divider/>
                             <h3 className="text-3xl font-bold mt-6 mb-4">Historial de órdenes</h3>
