@@ -147,9 +147,3 @@ export const createAddress = async(address) =>{
     const data = await verifyResponse(response);
     return data;
 }
-
-export const deleteAddress = async(id) =>{
-    const response = await fetch(`${baseUrl}/address/${id}`);
-    const data = await verifyResponse(response);
-    return data;
-}
