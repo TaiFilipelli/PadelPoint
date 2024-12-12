@@ -64,11 +64,7 @@ export const Filters = ({ filters, onFilterChange }) => {
                 </DropdownTrigger>
                 <DropdownMenu className="p-0 w-full">
                     {types.map((type) => (
-                        <DropdownItem
-                            key={type.id}
-                            onClick={() => handleTypeSelect(type.name)}
-                            className="text-black"
-                        >
+                        <DropdownItem key={type.id} onClick={() => handleTypeSelect(type.name)} className="text-black">
                             {type.name}
                         </DropdownItem>
                     ))}
@@ -86,16 +82,15 @@ export const Filters = ({ filters, onFilterChange }) => {
                 <DropdownMenu className="p-2 rounded-lg">
                     <DropdownItem className="text-black" isReadOnly>
                         <Slider
-                            label="ARS"
+                            label="$"
                             color="foreground"
                             step={25}
-                            minValue={0}
+                            minValue={1}
                             maxValue={1000000}
                             value={[filters.minPrice, filters.maxPrice]}
                             formatOptions={{ style: 'currency', currency: 'ARS' }}
                             className="max-w-full"
-                            onChange={handlePriceRangeChange}
-                        />
+                            onChange={handlePriceRangeChange}/>
                     </DropdownItem>
                 </DropdownMenu>
             </Dropdown>
@@ -118,8 +113,7 @@ export const Filters = ({ filters, onFilterChange }) => {
                             className="w-full mb-1"
                             isClearable
                             value={filters.name}
-                            onChange={handleNameChange}
-                        />
+                            onChange={handleNameChange}/>
                     </DropdownItem>
                 </DropdownMenu>
             </Dropdown>
@@ -134,11 +128,7 @@ export const Filters = ({ filters, onFilterChange }) => {
                 </DropdownTrigger>
                 <DropdownMenu className="p-2 rounded-lg">
                     {brands.map((brand) => (
-                        <DropdownItem
-                            key={brand.id}
-                            onClick={() => handleBrandSelect(brand.name)}
-                            className="text-black"
-                        >
+                        <DropdownItem key={brand.id} onClick={() => handleBrandSelect(brand.name)} className="text-black">
                             {brand.name}
                         </DropdownItem>
                     ))}
@@ -146,7 +136,7 @@ export const Filters = ({ filters, onFilterChange }) => {
             </Dropdown>
             <Divider orientation="vertical" />
             <div className="flex flex-row items-center justify-center w-1/4 gap-4 max-[910px]:w-1/2 max-[500px]:w-full max-[310px]:gap-1">
-                <Button onClick={clearFilters} className="bg-red-500 text-white text-medium max-[1000px]:text-sm w-full rounded-lg">
+                <Button onClick={clearFilters} className="bg-red-500 text-white text-lg max-[1000px]:text-sm w-full p-6 rounded-lg">
                     Borrar filtros
                 </Button>
             </div>
