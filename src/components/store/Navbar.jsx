@@ -27,11 +27,12 @@ const Nav = () => {
   const router = useRouter();
 
   const handleBrandSelect = (brand, type) => {
-    localStorage.setItem('selectedBrand', brand);
-    if(type!==''){
-      localStorage.setItem('type', type);
-    }
-    router.push('/products');
+    const params = new URLSearchParams(window.location.search);
+
+    if (brand) params.set('brand', brand);
+    if (type) params.set('type', type);
+
+    router.push(`/products?${params.toString()}`);
   };
 
   const handleTypeSelect = (type) => {

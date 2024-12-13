@@ -1,23 +1,40 @@
 'use client';
 import { Poppins } from "next/font/google";
 import ProductsCard from "../../../components/ProductsCard";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { getProducts} from "../../../data/storeData";
 import Filters from "../../../components/Filters";
 import { SmileySad } from "@phosphor-icons/react";
-import { type } from "os";
+import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
-const pop = Poppins({subsets:["latin"], weight:'600'})
+const pop = Poppins({subsets:["latin"], weight:'600'});
+
+
 export default function ProductsList() {
+    
+    const router = useRouter();
+    const params = useSearchParams();
+
     const [products, setProducts] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     const [filters, setFilters] = useState({
         brand: '',
         name: '',
         minPrice: 1,
         maxPrice: 1000000,
-        type: ''
+        type: '',
     });
-    const [isLoading, setIsLoading] = useState(true);
+    
+    useEffect(() => {
+
+        const updatedFilters = {
+            brand: params.get('brand') || "",
+            type: params.get('type') || "",
+        };
+
+        setFilters(updatedFilters);
+    },[]);
 
     const dataProducts = async () => {
         try {
