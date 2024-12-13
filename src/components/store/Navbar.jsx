@@ -6,7 +6,8 @@ import { Navbar,
   NavbarMenu, 
   NavbarMenuToggle, 
   NavbarMenuItem, 
-  Link, Button, Dropdown, DropdownItem, DropdownTrigger, DropdownMenu } from "@nextui-org/react";
+  Link, Button, Dropdown, DropdownItem, DropdownTrigger, DropdownMenu, 
+  select} from "@nextui-org/react";
 import { Poppins } from "next/font/google";
 import { userLogout, checkUserState, searchUserAuthenticated } from "../../data/loginData";
 import { getSomeBrands, getTypes } from "../../data/storeData";
@@ -144,15 +145,15 @@ const Nav = () => {
 
           <NavbarMenu className="mt-14">
             <NavbarMenuItem>
-              <Button as={Link} href="/" className="bg-transparent w-full text-xl p-2 justify-start text-black dark:text-white" endContent={<ArrowRight size={30}/>}>Inicio</Button>
+              <Button as={Link} href="/" className="bg-transparent w-full text-xl p-2 justify-start text-black dark:text-white" endContent={<ArrowRight size={25}/>}>Inicio</Button>
             </NavbarMenuItem>
             <NavbarMenuItem>
-              <Button as={Link} href="/products" className="bg-transparent w-full text-xl p-2 justify-start text-black dark:text-white" endContent={<ArrowRight size={30}/>}>Ver Productos</Button>
+              <Button as={Link} href="/products" className="bg-transparent w-full text-xl p-2 justify-start text-black dark:text-white" endContent={<ArrowRight size={25}/>}>Ver Productos</Button>
             </NavbarMenuItem>
             <NavbarMenuItem>
               <Dropdown>
               <DropdownTrigger>
-                <Button className="p-2 text-xl" variant="light" radius="sm" endContent={<ArrowDown size={30}/>}>Ver productos de PadelPoint</Button>
+                <Button className="p-2 text-xl" variant="light" radius="sm" endContent={<ArrowDown size={25}/>}>Ver productos de PadelPoint</Button>
               </DropdownTrigger>
               <DropdownMenu className="p-0 w-full" itemClasses={{ base: "gap-4" }}>
                 {types.map(type => (
@@ -165,7 +166,7 @@ const Nav = () => {
                   <ul className="space-y-2">
                     {brands.map((brand) => (
                     <li key={brand.id}>
-                      <a className="text-black hover:underline" onClick={() => handleBrandSelect(brand.name)}>{brand.name}</a>
+                      <a className="text-black hover:underline" onClick={() => handleBrandSelect(brand.name, selectedType)}>{brand.name}</a>
                     </li>
                 ))}
                  </ul>
