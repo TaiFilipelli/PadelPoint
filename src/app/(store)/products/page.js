@@ -1,11 +1,10 @@
 'use client';
 import { Poppins } from "next/font/google";
 import ProductsCard from "../../../components/ProductsCard";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getProducts} from "../../../data/storeData";
 import Filters from "../../../components/Filters";
 import { SmileySad } from "@phosphor-icons/react";
-import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 
 const pop = Poppins({subsets:["latin"], weight:'600'});
@@ -13,10 +12,10 @@ const pop = Poppins({subsets:["latin"], weight:'600'});
 
 export default function ProductsList() {
     
-    const router = useRouter();
     const params = useSearchParams();
 
     const [products, setProducts] = useState([]);
+    const [validatedImages, setValidatedImages] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [filters, setFilters] = useState({
         brand: '',
@@ -35,6 +34,38 @@ export default function ProductsList() {
 
         setFilters(updatedFilters);
     },[]);
+
+    useEffect(() => {
+        if (products.length > 0) {
+            const validateImages = async () => {
+                const results = {};
+
+                const checkImage = (url) => {
+                    return new Promise((resolve) => {
+                        const img = new Image();
+                        img.onload = () => resolve({ url, isValid: true });
+                        img.onerror = () => resolve({ url, isValid: false });
+                        img.src = `https://${url}`;
+                    });
+                };
+
+                await Promise.all(
+                    products.map((product) =>
+                        checkImage(product.image).then((result) => {
+                            results[product.id] = result.isValid
+                                ? `https://${product.image}`
+                                : "/LogoPadelPoint.png";
+                        })
+                    )
+                );
+
+                console.log('resultados de imagenes:',results);
+                setValidatedImages(results);
+            };
+
+            validateImages();
+        }
+    }, [products]);
 
     const dataProducts = async () => {
         try {
@@ -73,7 +104,7 @@ export default function ProductsList() {
                             <ProductsCard 
                                 key={paleta.id} 
                                 name={paleta.name} 
-                                image={paleta.image} 
+                                image={/*paleta.image*/ validatedImages[paleta.id] || "/LogoPadelPoint.png"}
                                 brand={paleta.brand.name} 
                                 price={paleta.price}
                                 idProducto={paleta.id}
