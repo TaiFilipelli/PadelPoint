@@ -60,10 +60,10 @@ export default function Dashboard(){
           <thead className="bg-gray-800 text-white">
           <tr>
           <th className="px-4 py-2">ID</th>
-          <th className="px-4 py-2">Payment ID</th>
-          <th className="px-4 py-2">Fecha creación</th>
-          <th className="px-4 py-2">Método de pago</th>
-          <th className="px-4 py-2">Cuotas</th>
+          <th className="px-4 py-2">Ganancia</th>
+          <th className="px-4 py-2">Precio Neto</th>
+          <th className="px-4 py-2">IVA</th>
+          <th className="px-4 py-2">Total</th>
           <th className="px-4 py-2">Comprador</th>
         </tr>
       </thead>
@@ -71,11 +71,11 @@ export default function Dashboard(){
       {orders.length > 0 ? (
         orders.map((order, index) => (
           <tr key={index} className="bg-white hover:bg-gray-400 transition-all duration-300 ease-in-out whitespace-nowrap">
-            <td className="border px-4 py-2">{order.id}</td>
             <td className="border px-4 py-2">{order.paymentId}</td>
-            <td className="border px-4 py-2">{order.dateCreated}</td>
-            <td className="border px-4 py-2">{order.paymentMethod}</td>
-            <td className="border px-4 py-2">{order.installments}</td>
+            <td className="border px-4 py-2">{order.profit}$</td>
+            <td className="border px-4 py-2">{order.netPrice}$</td>
+            <td className="border px-4 py-2">{order.IVA}%</td>
+            <td className="border px-4 py-2">{order.total}$</td>
             <td className="border px-4 py-2">{order.user.email}</td>
           </tr>
         ))

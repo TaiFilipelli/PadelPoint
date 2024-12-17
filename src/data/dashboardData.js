@@ -149,7 +149,9 @@ export const createImage = async (id, image) => {
 
 export const getAllOrders = async(params) =>{
     const query = buildQuery(params);
-    const data = await fetch(`${baseUrl}/order${query}`);
+    const data = await fetch(`${baseUrl}/order${query}`,{
+        credentials:'include'
+    });
     const result = await verifyResponse(data);
     return result;
 }

@@ -57,7 +57,7 @@ export const checkUserState = async() =>{
         },
         credentials: 'include', 
     });
-    const data = await verifyResponse(response);
+    const data = await response.json();
     return data;
 }
 export const userLogout = async() => {

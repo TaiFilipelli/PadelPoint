@@ -112,7 +112,9 @@ export const searchAllAddresses = async() =>{
 }
 
 export const getUserAddresses = async(id) =>{ 
-    const data = await fetch(`${baseUrl}/user/addresses/${id}`);
+    const data = await fetch(`${baseUrl}/user/addresses/${id}`,{
+        credentials:'include'
+    });
     const result = await verifyResponse(data);
     return result;
 }

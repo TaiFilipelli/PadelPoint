@@ -31,7 +31,6 @@ export default function ProductsList() {
             brand: params.get('brand') || "",
             type: params.get('type') || "",
         };
-
         setFilters(updatedFilters);
     },[]);
 

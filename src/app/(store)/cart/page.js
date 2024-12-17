@@ -4,7 +4,7 @@ import { useCartStore } from "../../../data/useCartStore";
 import { useState, useEffect, useMemo } from "react";
 import { checkUserState, refreshUserToken } from "../../../data/loginData";
 import { getOpenpayToken, createPaymentIntent, getOneProductById, getUserAddresses, getProducts } from "../../../data/storeData";
-import { SmileySad, Trash, LockKey, Plus, Minus, ClockUser, UserSwitch,MapPin } from "@phosphor-icons/react";
+import { LockKey, ClockUser, UserSwitch,MapPin } from "@phosphor-icons/react";
 import { Divider, Button, Modal, ModalBody, ModalContent, ModalFooter,ModalHeader, Link } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import { toast, ToastContainer, Slide } from "react-toastify";
@@ -12,7 +12,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { PuffLoader } from "react-spinners";
 import { Accesories } from "../../../components/cart/Accesories";
 import { Products } from "../../../components/cart/Products"
-import { set } from "react-hook-form";
 
 
 const pop = Poppins({subsets:['latin'],weight:['700','600','400']});
@@ -94,34 +93,33 @@ export default function Cart() {
 
     const checkRefreshToken = async () => {
       const status = await checkUserState();
-      console.log(status);
       if (status.isLogged === false && status.refreshTokenExists === true) {
         setNeedsRefresh(true);
       } else if (status.isLogged === false || status.refreshTokenExists === false) {
         setNeedsLogin(true);
-      } else {
+      } else if(status.statusCode===401) {
+        setNeedsLogin(true);
+      }else{
         setUser(status.payload.id);
       }
       setLoading(false)
     };
 
+    const fetchAddress = async () => {
+      if (user!==0) {
+        const address = await getUserAddresses(user);
+        console.log(address);
+        if (address.status) {
+          setAddress(address.recourse);
+        }
+      } else {
+          setAddress([]);
+      }
+      setLoading(false);
+    };
+
     useEffect(() => {
       checkRefreshToken();
-    }, []);
-    
-    useEffect(() => {
-      const fetchAddress = async () => {
-        if (user!==0) {
-          const address = await getUserAddresses(user);
-          console.log(address);
-          if (address.status) {
-            setAddress(address.recourse);
-          }
-        } else {
-            setAddress([]);
-        }
-        setLoading(false);
-      };
       fetchAddress();
     }, [user]);
     
