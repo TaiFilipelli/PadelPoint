@@ -52,7 +52,7 @@ export default function ProductsList() {
                     products.map((product) =>
                         checkImage(product.image).then((result) => {
                             results[product.id] = result.isValid
-                                ? `https://${product.image}`
+                                ? `${product.image}`
                                 : "/LogoPadelPoint.png";
                         })
                     )

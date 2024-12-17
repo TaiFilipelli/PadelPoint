@@ -9,9 +9,9 @@ const ProductsCard = ({name, image, brand, price, idProducto, isLoading}) => {
   const cart = useCartStore((state)=> state.cart);
   const addToCart = useCartStore((state) => state.addToCart);
   const [isInCart, setIsInCart] = useState(false);
+  const [validatedImages, setValidatedImages] = useState([]);
 
   const displayPrice = (price/9).toFixed(0);
-
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
     const itemInCartState = storedCart.find(item => item.id === idProducto);
@@ -19,8 +19,9 @@ const ProductsCard = ({name, image, brand, price, idProducto, isLoading}) => {
     if(itemInCartState){
       setIsInCart(true);
     }
-    
   }, [cart, idProducto]);
+
+
 
   const handleAddToCart = () => {
     if (!isInCart) {
@@ -67,8 +68,8 @@ const ProductsCard = ({name, image, brand, price, idProducto, isLoading}) => {
     <section className='bg-white text-black w-auto object-cover flex flex-col justify-center items-center rounded-lg text-center border-2 border-gray-200 shadow-xl p-4 my-4'>
       <h1 className='mt-2 text-xl font-bold'>{limitedName}</h1>
       <img 
-        src={`${image}`}
-        alt="Imagen paleta" 
+        src={`https://${image}`}
+        alt={`Imagen paleta nro. ${idProducto}`}
         className="w-64 h-64 max-h-64 object-cover rounded-md mt-2"
       />
       <p className='font-semibold mt-2'>Marca: {brand}</p>

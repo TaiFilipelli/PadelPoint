@@ -9,7 +9,6 @@ import { getProducts, getOneProductById } from "../../../../data/storeData";
 import { useCartStore } from "../../../../data/useCartStore";
 import { PuffLoader } from "react-spinners";
 import Head from "next/head";
-import { useRouter } from "next/navigation";
 import { trackViewContent } from "../../../../../utils/pixel";
 import { Plus } from "@phosphor-icons/react";
 
@@ -24,8 +23,6 @@ export default function ProductDetailPage() {
   const [isOnCart, setIsOnCart] = useState(false);
 
   const addToCart = useCartStore((s)=> s.addToCart);
-
-  const router = useRouter();
 
   const dataRecProducts = async(params) => {
     try{
@@ -67,7 +64,7 @@ export default function ProductDetailPage() {
       fetchProduct();
     }
     const params = { limit: 4 };
-    const comboParams = {limit:2, type:'Bolsos'};
+    const comboParams = {limit:2, type:'Bolsos', minStock:1};
     dataRecProducts(params);
     dataComboProducts(comboParams);
   }, [id]);
