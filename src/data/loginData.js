@@ -76,7 +76,9 @@ export const userLogout = async() => {
 }
 
 export const getUserById = async(id) =>{
-    const response = await fetch(`${baseUrl}/user/${id}`);
+    const response = await fetch(`${baseUrl}/user/${id}`,{
+        credentials: 'include'
+    });
     const data = await verifyResponse(response);
     return data;
 }

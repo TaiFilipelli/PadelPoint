@@ -20,9 +20,10 @@ export default function ProfilePage() {
     const searchUserData = async () => {
         try{
             const user = await checkUserState();
-            if (user.payload != null) {
+            if (user.isLogged) {
                 setIsLogged(true);
                 const data = await getUserById(user.payload.id);
+                console.log('data', data);
                 setUserData(data.recourse);
                 const userOrders = await getOrdersByUser(data.recourse.id)
                 console.log('Órdenes de usuario', userOrders.recourse);
@@ -34,17 +35,6 @@ export default function ProfilePage() {
             setIsLoading(false);
         }
     };
-
-    const showAlert = () =>{
-        const alert = document.getElementById('alert');
-        alert.classList.add('opacity-100');
-        alert.classList.add('scale-100');
-    }
-    const hideAlert = () =>{
-        const alert = document.getElementById('alert');
-        alert.classList.remove('opacity-100');
-        alert.classList.remove('scale-100');
-    }
 
     useEffect(() => {
         searchUserData();
@@ -90,11 +80,11 @@ export default function ProfilePage() {
                             </section>
                             <Divider/>
                             <h3 className="text-3xl font-bold mt-6 mb-4">Historial de órdenes</h3>
-                            <section className="bg-black text-white p-4 gap-4 rounded-xl w-full text-left">
+                            <section className="bg-white text-black p-4 gap-4 rounded-xl w-full text-left">
                                 {orders.length>0?
                                 <>
                                     {orders.map((order, index)=>(
-                                        <article className="border-1 border-black shadow-sm shadow-black p-4 rounded-xl bg-white text-black" key={index}>
+                                        <article className="border-1 border-white shadow-sm shadow-black p-4 rounded-xl bg-black text-white" key={index}>
                                             <h1 className="text-2xl font-black">Orden Nro. {order.paymentId}</h1>
                                             <h2 className="font-semibold">Precio total: ${order.total}</h2>
                                             <Divider/>

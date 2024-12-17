@@ -59,7 +59,6 @@ export default function ProductsList() {
                     )
                 );
 
-                console.log('resultados de imagenes:',results);
                 setValidatedImages(results);
             };
 
