@@ -3,7 +3,7 @@ import ProductsCard from './ProductsCard'
 
 export default function MainProducts({products}) {
   return (
-    <div className="flex flex-row max-[940px]:flex-wrap justify-center gap-2 w-full mt-8 max-[555px]:mt-4 mb-10 animate-appear">
+    <div className="flex flex-row max-[1200px]:flex-wrap justify-center gap-2 w-full mt-8 max-[555px]:mt-4 mb-10 animate-appear">
         {products.length === 0 ? (
           Array.from({ length: 4 }).map((_, index) => (
             <ProductsCard key={index} isLoading={true} />

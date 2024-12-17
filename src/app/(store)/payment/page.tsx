@@ -56,6 +56,7 @@ export default function MP_Page() {
                 const response = await getOneProductById(item.id);
                 const product:Product = response.recourse;
                 console.log('Producto:',product);
+                console.log('Tipo de precio de producto:',typeof(product.price))
                 return{
                     id: item.id.toString(),
                     title: product.name,
@@ -64,8 +65,9 @@ export default function MP_Page() {
                     description: product.description,
                     category_id: "art",
                     quantity: item.cantidad,
-                    unit_price: product.price
+                    unit_price: Number(product.price)
                 }
+                
             }));
             const userId = parseInt(localStorage.getItem('userId'));
             const body = {addressId:addressId, userId:userId, items};

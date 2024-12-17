@@ -6,7 +6,6 @@ import MainProducts from './MainProducts';
 const pop = Poppins({ subsets: ["latin"], weight:['700','600','400'] });
 
 export default function ImageCaruoselAndFeaturedProducts({mainProducts, subMainProducts}) {
-  console.log(mainProducts);
   return(
     <>
        <MyCarousel />
