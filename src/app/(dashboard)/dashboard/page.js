@@ -42,52 +42,58 @@ export default function Dashboard(){
   },[])
 
   return (
-    <main className="gap-10 flex flex-col w-auto"> 
-      <section className="flex items-center flex-col p-10 bg-black rounded-lg w-full">
-        <h1 className={`${mont.className} text-3xl my-2 max-[410px]:my-8`}>Menú de Administrador</h1>
-        <h2 className={`${mont.className} text-xl mb-8`}>Elija la opción que desee.</h2>
-        <div className="w-full max-[1000px]:flex-col flex justify-between items-center gap-5 mb-5">
-          <Button radius="large" as={Link} href='/dashboard/edit' variant='shadow' startContent={<Pencil size={25}/>} className='w-[12rem] h-[3rem] bg-gradient-to-br from-cyan-300 to-violet-300 text-lg'>Editar</Button> 
-          <Button radius="large" as={Link} href='/dashboard/add' variant='shadow' startContent={<Plus size={25}/>} className='w-[12rem] h-[3rem] bg-gradient-to-br from-cyan-300 to-violet-300 text-lg'>Añadir</Button>
-          <Button radius="large" as={Link} href='/dashboard/delete' variant='shadow' startContent={<Eraser size={25}/>} className='w-[12rem] h-[3rem] bg-gradient-to-br from-cyan-300 to-violet-300 text-lg'>Borrar</Button> 
-        </div>
-        <Link href='/' className="hover:underline">Volver a la tienda</Link>
-      </section>
-      <section className={`flex items-center flex-col p-10 bg-black rounded-lg w-auto ${mont.className} overflow-x-auto`}>
-        <h2 className='text-3xl mb-4 max-[410px]:my-8'>Últimas órdenes del mes</h2> 
-        <div className="overflow-x-auto w-auto">
-        <table className="table-auto w-full bg-white text-black rounded-lg overflow-x-auto text-left">
+    <main className="gap-10 flex flex-col w-full">
+    <section className="flex items-center flex-col p-10 bg-black rounded-lg w-full">
+      <h1 className={`${mont.className} text-3xl my-2 max-[410px]:my-8`}>Menú de Administrador</h1>
+      <h2 className={`${mont.className} text-xl mb-8`}>Elija la opción que desee.</h2>
+      <div className="w-full max-[1000px]:flex-col flex justify-between items-center gap-5 mb-5">
+        <Button radius="large" as={Link} href="/dashboard/edit" variant="shadow" startContent={<Pencil size={25} />} className="w-[12rem] h-[3rem] bg-gradient-to-br from-cyan-300 to-violet-300 text-lg">
+          Editar
+        </Button>
+        <Button radius="large" as={Link} href="/dashboard/add" variant="shadow" startContent={<Plus size={25} />} className="w-[12rem] h-[3rem] bg-gradient-to-br from-cyan-300 to-violet-300 text-lg">
+          Añadir
+        </Button>
+        <Button radius="large" as={Link} href="/dashboard/delete" variant="shadow" startContent={<Eraser size={25} />} className="w-[12rem] h-[3rem] bg-gradient-to-br from-cyan-300 to-violet-300 text-lg">
+          Borrar
+        </Button>
+      </div>
+      <Link href="/" className="hover:underline">Volver a la tienda</Link>
+    </section>
+  
+    <section className={`flex items-center flex-col p-4 bg-black rounded-lg w-full ${mont.className}`}>
+      <h2 className="text-3xl mb-4 max-[410px]:my-8 text-white">Últimas órdenes del mes</h2>
+      <div className="overflow-x-auto w-full">
+        <table className="table-auto w-full bg-white text-black rounded-lg text-left">
           <thead className="bg-gray-800 text-white">
-          <tr>
-          <th className="px-4 py-2">ID</th>
-          <th className="px-4 py-2">Ganancia</th>
-          <th className="px-4 py-2">Precio Neto</th>
-          <th className="px-4 py-2">IVA</th>
-          <th className="px-4 py-2">Total</th>
-          <th className="px-4 py-2">Comprador</th>
-        </tr>
-      </thead>
-    <tbody className="overflow-x-auto">
-      {orders.length > 0 ? (
-        orders.map((order, index) => (
-          <tr key={index} className="bg-white hover:bg-gray-400 transition-all duration-300 ease-in-out whitespace-nowrap">
-            <td className="border px-4 py-2">{order.paymentId}</td>
-            <td className="border px-4 py-2">{order.profit}$</td>
-            <td className="border px-4 py-2">{order.netPrice}$</td>
-            <td className="border px-4 py-2">{order.IVA}%</td>
-            <td className="border px-4 py-2">{order.total}$</td>
-            <td className="border px-4 py-2">{order.user.email}</td>
-          </tr>
-        ))
-      ) : (
-        <tr>
-          <td colSpan="6" className="border px-4 py-2 text-center">
-            No hay órdenes disponibles.
-          </td>
-        </tr>
-      )}
-    </tbody>
-  </table>
-        </div>
-</section>
-</main>);}
+            <tr>
+              <th className="px-4 py-2">ID</th>
+              <th className="px-4 py-2">Comprador</th>
+              <th className="px-4 py-2">Cód. Postal</th>
+              <th className="px-4 py-2">Precio neto</th>
+              <th className="px-4 py-2">IVA</th>
+              <th className="px-4 py-2">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {orders.length > 0 ? (
+              orders.map((order, index) => (
+                <tr key={index} className="bg-white hover:bg-gray-400 transition-all duration-300 ease-in-out whitespace-nowrap">
+                  <td className="border px-4 py-2">{order.paymentId}</td>
+                  <td className="border px-4 py-2">{order.user.email}</td>
+                  <td className="border px-4 py-2">{order.user.address[0].postalCode}</td>
+                  <td className="border px-4 py-2">{order.netPrice}$</td>
+                  <td className="border px-4 py-2">{order.IVA}%</td>
+                  <td className="border px-4 py-2">{order.total}$</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="6" className="border px-4 py-2 text-center">No hay órdenes disponibles.</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  );}
