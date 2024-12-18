@@ -70,7 +70,7 @@ export default function Dashboard(){
               <th className="px-4 py-2">Comprador</th>
               <th className="px-4 py-2">Cód. Postal</th>
               <th className="px-4 py-2">Precio neto</th>
-              <th className="px-4 py-2">IVA</th>
+              <th className="px-4 py-2">Método</th>
               <th className="px-4 py-2">Total</th>
             </tr>
           </thead>
@@ -82,7 +82,7 @@ export default function Dashboard(){
                   <td className="border px-4 py-2">{order.user.email}</td>
                   <td className="border px-4 py-2">{order.user.address[0].postalCode}</td>
                   <td className="border px-4 py-2">{order.netPrice}$</td>
-                  <td className="border px-4 py-2">{order.IVA}%</td>
+                  <td className="border px-4 py-2">MP_TRANSFER</td>
                   <td className="border px-4 py-2">{order.total}$</td>
                 </tr>
               ))
