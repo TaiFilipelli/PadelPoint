@@ -71,27 +71,37 @@ export default function Dashboard(){
               <th className="px-4 py-2">Cód. Postal</th>
               <th className="px-4 py-2">Precio neto</th>
               <th className="px-4 py-2">Método</th>
+              <th className="px-4 py-2">Productos comprados</th>
               <th className="px-4 py-2">Total</th>
             </tr>
           </thead>
           <tbody>
-            {orders.length > 0 ? (
-              orders.map((order, index) => (
-                <tr key={index} className="bg-white hover:bg-gray-400 transition-all duration-300 ease-in-out whitespace-nowrap">
-                  <td className="border px-4 py-2">{order.paymentId}</td>
-                  <td className="border px-4 py-2">{order.user.email}</td>
-                  <td className="border px-4 py-2">{order.user.address[0].postalCode}</td>
-                  <td className="border px-4 py-2">{order.netPrice}$</td>
-                  <td className="border px-4 py-2">MP_TRANSFER</td>
-                  <td className="border px-4 py-2">{order.total}$</td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="6" className="border px-4 py-2 text-center">No hay órdenes disponibles.</td>
-              </tr>
-            )}
-          </tbody>
+          {orders.length > 0 ? (
+            orders.map((order, index) => {
+
+            const productsSummary = order.items
+            .map(item => `${item.quantity}x ${item.product.name}`)
+            .join(', ');
+
+          return (
+          <tr key={index} className="bg-white hover:bg-gray-400 transition-all duration-300 ease-in-out whitespace-nowrap">
+            <td className="border px-4 py-2">{order.paymentId}</td>
+            <td className="border px-4 py-2">{order.user.email}</td>
+            <td className="border px-4 py-2">{order.user.address[0].postalCode}</td>
+            <td className="border px-4 py-2">{order.netPrice}$</td>
+            <td className="border px-4 py-2">MP_TRANSFER</td>
+            <td className="border px-4 py-2">{productsSummary}</td>
+            <td className="border px-4 py-2">{order.total}$</td>
+        </tr>
+      );
+    })
+  ) : (
+    <tr>
+      <td colSpan="7" className="border px-4 py-2 text-center">No hay órdenes disponibles.</td>
+    </tr>
+  )}
+</tbody>
+
         </table>
       </div>
     </section>

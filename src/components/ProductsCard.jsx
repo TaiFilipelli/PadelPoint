@@ -9,7 +9,7 @@ const ProductsCard = ({name, image, brand, price, idProducto, isLoading}) => {
   const cart = useCartStore((state)=> state.cart);
   const addToCart = useCartStore((state) => state.addToCart);
   const [isInCart, setIsInCart] = useState(false);
-  const [validatedImages, setValidatedImages] = useState([]);
+  const [imageUrl, setImageUrl] = useState("");
 
   const displayPrice = (price/9).toFixed(0);
   useEffect(() => {
@@ -21,6 +21,23 @@ const ProductsCard = ({name, image, brand, price, idProducto, isLoading}) => {
     }
   }, [cart, idProducto]);
 
+useEffect(() => {
+    const validateImage = async () => {
+      const checkImage = (url) => {
+        return new Promise((resolve) => {
+          const img = new Image();
+          img.onload = () => resolve(true);
+          img.onerror = () => resolve(false);
+          img.src = `https://${url}`;
+        });
+      };
+
+      const isValid = await checkImage(image);
+      setImageUrl(isValid ? `https://${image}` : "/LogoPadelPoint.png");
+    };
+
+    validateImage();
+  }, [image]);
 
 
   const handleAddToCart = () => {
@@ -68,7 +85,7 @@ const ProductsCard = ({name, image, brand, price, idProducto, isLoading}) => {
     <section className='bg-white text-black w-auto object-cover flex flex-col justify-center items-center rounded-lg text-center border-2 border-gray-200 shadow-xl p-4 my-4'>
       <h1 className='mt-2 text-xl font-bold'>{limitedName}</h1>
       <img 
-        src={`https://${image}`}
+        src={imageUrl}
         alt={`Imagen paleta nro. ${idProducto}`}
         className="w-64 h-64 max-h-64 object-cover rounded-md mt-2"
       />
