@@ -22,14 +22,23 @@ return (
     <h3 className="font-bold text-2xl my-2">Accesorios recomendados</h3>
     <p className="text-lg ">Preparamos accesorios perfectos para estos productos.</p>
     {accessories.map(accessory =>{
-          const limitedDesc = accessory.description.length > maxlength
+            const limitedDesc = accessory.description.length > maxlength
             ? accessory.description.substring(0, maxlength) + "..."
             : accessory.description;
 
+            const checkImage = new Image();
+            checkImage.src = accessory.image;
+            checkImage.onerror = () => {
+                if (accessory.image) {
+                    accessory.image = '/LogoPadelPoint.png';
+                    return;
+                }
+            }
+            
         return(
         <div key={accessory.id} className="flex flex-row justify-between items-center gap-4 w-2/5 max-[1080px]:w-[70%] max-[650px]:w-full my-4 text-black bg-default-200 p-4 rounded-2xl">
             <article className='flex flex-col'>
-                <img src={`https://${accessory.image}`} alt="Imagen de accesorio" className="w-20 h-20 object-cover rounded-lg"/>
+                <img src={accessory.image} alt="Imagen de accesorio" className="w-20 h-20 object-cover rounded-lg"/>
                 <Link href={`/products/${accessory.id}`} className="font-bold text-black hover:underline text-xl mb-2">{accessory.name}</Link>
                 <p className="text-base">{limitedDesc}</p>
             </article>

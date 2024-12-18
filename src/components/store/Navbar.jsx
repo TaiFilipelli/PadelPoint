@@ -6,11 +6,10 @@ import { Navbar,
   NavbarMenu, 
   NavbarMenuToggle, 
   NavbarMenuItem, 
-  Link, Button, Dropdown, DropdownItem, DropdownTrigger, DropdownMenu, 
-  select} from "@nextui-org/react";
+  Link, Button, Dropdown, DropdownItem, DropdownTrigger, DropdownMenu, } from "@nextui-org/react";
 import { Poppins } from "next/font/google";
 import { userLogout, checkUserState, searchUserAuthenticated } from "../../data/loginData";
-import { getSomeBrands, getTypes } from "../../data/storeData";
+import { getBrands, getSomeBrands, getTypes } from "../../data/storeData";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { ShoppingCart, SignOut, SignIn, UserCircle, TerminalWindow, ArrowRight, ArrowDown } from "@phosphor-icons/react";
@@ -19,6 +18,7 @@ const pop = Poppins({ subsets: ["latin"], weight: '500' });
 
 const Nav = () => {
   const [brands, setBrands] = useState([]);
+  const [allBrands, setAllBrands] = useState([])
   const [types, setTypes] = useState([]);
   const [selectedType, setSelectedType] = useState(''); //Tipo seleccionado para renderizar en pantallas chicas menús desplegables
   const [isMenuOpen, setIsMenuOpen] = useState(false); //Estado reservado para pantallas chicas, controla el menú desplegable.
@@ -38,15 +38,15 @@ const Nav = () => {
 
   const handleTypeSelect = (type) => {
     setSelectedType(type);
-    // localStorage.setItem('type', type);
-    // router.push('/products');
   };
 
   const fetchBrandsAndTypes = async () => {
     try {
       const data = await getSomeBrands();
+      const allData = await getBrands()
       const types = await getTypes();
       setBrands(data.recourse);
+      setAllBrands(allData.recourse);
       setTypes(types.recourse );
     } catch (error) {
       console.error('Error fetching brands:', error);
@@ -164,7 +164,7 @@ const Nav = () => {
               {selectedType && (
                 <div className={`${selectedType? '':'hidden'}  w-64 p-4`}>
                   <ul className="space-y-2">
-                    {brands.map((brand) => (
+                    {allBrands.map((brand) => (
                     <li key={brand.id}>
                       <a className="text-black hover:underline" onClick={() => handleBrandSelect(brand.name, selectedType)}>{brand.name}</a>
                     </li>
@@ -235,7 +235,7 @@ const Nav = () => {
                 <Button className="p-3 text-lg max-[700px]:text-base" variant="light" radius="sm">Bolsos</Button>
               </DropdownTrigger>
               <DropdownMenu className="p-0 w-full" itemClasses={{ base: "gap-4" }}>
-                {brands.map(brand => (
+                {allBrands.map(brand => (
                   <DropdownItem key={brand.id} onClick={() => handleBrandSelect(brand.name, 'Bolsos')} className="text-black">{brand.name}</DropdownItem>
                 ))}
               </DropdownMenu>
@@ -245,7 +245,7 @@ const Nav = () => {
                 <Button className="p-3 text-lg max-[700px]:text-base" variant="light" radius="sm">Zapatillas</Button>
               </DropdownTrigger>
               <DropdownMenu className="p-0 w-full" itemClasses={{ base: "gap-4" }}>
-                {brands.map(brand => (
+                {allBrands.map(brand => (
                   <DropdownItem key={brand.id} onClick={() => handleBrandSelect(brand.name, 'Zapatillas')} className="text-black">{brand.name}</DropdownItem>
                 ))}
               </DropdownMenu>
@@ -255,7 +255,7 @@ const Nav = () => {
                 <Button className="p-3 text-lg max-[700px]:text-base" variant="light" radius="sm">Accesorios</Button>
               </DropdownTrigger>
               <DropdownMenu className="p-0 w-full" itemClasses={{ base: "gap-4" }}>
-                {brands.map(brand => (
+                {allBrands.map(brand => (
                   <DropdownItem key={brand.id} onClick={() => handleBrandSelect(brand.name,'Accesorios')} className="text-black">{brand.name}</DropdownItem>
                 ))}
               </DropdownMenu>

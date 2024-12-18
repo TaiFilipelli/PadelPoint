@@ -22,6 +22,10 @@ const ProductsCard = ({name, image, brand, price, idProducto, isLoading}) => {
   }, [cart, idProducto]);
 
 useEffect(() => {
+  if (!image) {
+    setImageUrl("/LogoPadelPoint.png");
+    return;
+  }
     const validateImage = async () => {
       const checkImage = (url) => {
         return new Promise((resolve) => {
@@ -37,7 +41,7 @@ useEffect(() => {
     };
 
     validateImage();
-  }, [image]);
+  }, [image]);   
 
 
   const handleAddToCart = () => {
@@ -86,7 +90,7 @@ useEffect(() => {
       <h1 className='mt-2 text-xl font-bold'>{limitedName}</h1>
       <img 
         src={imageUrl}
-        alt={`Imagen paleta nro. ${idProducto}`}
+        alt={ name || "Producto"}
         className="w-64 h-64 max-h-64 object-cover rounded-md mt-2"
       />
       <p className='font-semibold mt-2'>Marca: {brand}</p>
