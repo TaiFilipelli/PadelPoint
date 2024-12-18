@@ -29,10 +29,11 @@ return (
             const checkImage = new Image();
             checkImage.src = accessory.image;
             checkImage.onerror = () => {
-                if (accessory.image) {
-                    accessory.image = '/LogoPadelPoint.png';
-                    return;
-                }
+                accessory.image = '/LogoPadelPoint.png';
+                return;
+            }
+            checkImage.onload = () => {
+                return;
             }
             
         return(
