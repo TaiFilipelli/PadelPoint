@@ -16,22 +16,22 @@ export default function About() {
       };
     return (
         <section className={`flex flex-col justify-center text-left items-center p-16 max-[650px]:px-8 ${pop.className} bg-[#264492]`}>
-            <h1 className="font-bold text-5xl">Esto es PadelPoint</h1>
-            {/* <Image src="/PadelPoint_IMGS/stock3.jpg"/> */}
+            <h1 className="font-bold text-5xl my-5">Esto es PadelPoint</h1>
             <h3 className="mt-5 text-xl mb-5 font-medium">
                 ¡Hola! Soy Ignacio Merlo, fundador de PadelPoint, y estoy encantado de darte la bienvenida a 
                 nuestra tienda. Tengo 23 años, soy jugador y profesor de pádel, y tengo una verdadera pasión por este deporte. Inicié PadelPoint hace 
                 tres meses con el objetivo de ofrecer un lugar de confianza donde los jugadores de pádel de toda Argentina puedan encontrar todo lo que necesitan
             </h3>
+            {/* <Image src="/PadelPoint_IMGS/stock3.jpg" className="w-full object-cover h-[64rem]"/> */}
             <section className="flex flex-col">
-                <h1 className="mt-8 text-4xl font-semibold">Nuestra inspiración</h1>
+                <h1 className="mt-8 text-4xl font-semibold underline mb-2">Nuestra inspiración</h1>
                 <p className="text-xl my-4">
                     La idea de crear PadelPoint nació de mi propio amor por las paletas de pádel y la necesidad que vi en nuestra comunidad de tener un proveedor confiable y especializado. 
                     Como jugador, sé lo importante que es contar con el equipo adecuado, y como profesor, entiendo las necesidades de los jugadores a diferentes niveles. 
                     Juego hace 3 años, compitiendo en la 3ra categoría, y he sido número 1 local en mi categoría en múltiples ocasiones. Además, llevo 1.5 años dando clases, 
                     ayudando a otros a mejorar su juego y disfrutar más del pádel.
                 </p>
-                <h1 className="mt-4 text-4xl font-semibold">Nuestra misión y diferencias</h1>
+                <h1 className="mt-4 text-4xl font-semibold underline my-2">Nuestra misión y diferencias</h1>
                 <p className="text-xl my-4">
                 En PadelPoint, nuestra misión es simple pero ambiciosa: queremos llegar a todos los jugadores de 
                 pádel del país y equiparlos con productos de la mejor calidad al mejor precio posible. Ofrecemos una amplia gama de paletas, bolsos y zapatillas, 
@@ -40,7 +40,7 @@ export default function About() {
                 compras en Instagram para ayudarnos a crecer. Nos esforzamos por crear una comunidad de jugadores apasionados que confíen en nosotros para
                 sus necesidades de equipo.
                 </p>
-                <h1 className="mt-4 text-4xl font-semibold">Nuestro futuro</h1>
+                <h1 className="mt-4 text-4xl font-semibold underline my-2">Nuestro futuro</h1>
                 <p className="text-xl my-4">
                 En PadelPoint, siempre estamos pensando en el futuro. Uno de nuestros grandes proyectos 
                 es sponsorear a jugadores profesionales para ayudar a crecer la marca y apoyar el talento emergente en el pádel. Creemos que respaldar a los 

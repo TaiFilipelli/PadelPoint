@@ -61,7 +61,7 @@ export default function ProductsList() {
             <h1 className={`${pop.className} text-6xl mb-10 max-[390px]:text-4xl`}>Productos</h1>
             <Filters filters={filters} onFilterChange={handleFilterChange}/>
             <section className="w-4/5 max-w-[4/5] max-[1260px]:w-full">
-                <div className="flex flex-wrap justify-center max-[600px]:pt-0 gap-3">
+                <div className="flex flex-wrap justify-center max-[600px]:pt-0 gap-3 my-10">
                     {isLoading ? (
                         Array.from({ length: 8 }).map((_, index) => (
                             <ProductsCard key={index} isLoading={true} />
