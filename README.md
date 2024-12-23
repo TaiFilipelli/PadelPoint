@@ -1,12 +1,14 @@
-# PadelPoint E-commerce
+# PadelPoint E-commerce 👟
 
-Proyecto Fullstack realizado en Next.js para el cliente y Nest + MySQL para el lado servidor. Este repositorio contiene documentación y detalles respecto al desarrollo del Front-end. El repositorio del stack del Backend, al igual que su documentación respectiva, se puede encontrar [aquí](https://github.com/Lautaro24Fer/PadelPointBackend?tab=readme-ov-file).
+Proyecto Fullstack realizado en Next.js para el cliente y Nest + MySQL para el lado servidor. Este repositorio contiene documentación y detalles respecto al desarrollo del Front-end únicamente. El repositorio del lado servidor (Backend), al igual que su documentación respectiva, se puede encontrar [aquí](https://github.com/Lautaro24Fer/PadelPointBackend?tab=readme-ov-file).
 
-## Objetivos y pedidos
-Los objetivos principales de este proyecto son claros: una tienda virtual que se sienta más como una experiencia funcional, práctica, cómoda y fluida. Se priorizará el rendimiento y correcto funcionamiento y manejo de la página. Se nos pidió explicitamente que la página no abarque más de lo necesario. El display es el estándar que muchos e-commerce respetan "por protocolo" en línea. Se nos pidió también que la aplicación consista en una parte "Tienda" (despliegue de productos, carrito funcional, método completo de pago y manejo de usuarios) y una parte "Dashboard Administrador" (la posibilidad de editar paletas desde el cliente siendo un usuario con permisos de administrador).
+## Objetivos y pedidos 🎯
+Los objetivos principales de este proyecto fueron claros: una tienda virtual que se sienta como una experiencia funcional, práctica, cómoda y fluida para los usuarios. Durante el desarrollo de este proyecto, se priorizó el rendimiento y correcto funcionamiento y manejo de la página. Se nos pidió explicitamente que la página no abarque más de lo necesario. El display es el estándar que muchos e-commerce respetan "por protocolo" en línea. Otra solicitud en la que el cliente hizo especial énfasis es que la aplicación conste de dos partes: una "Tienda" (despliegue de productos, carrito funcional, método completo de pago y manejo de usuarios (registro, inicio de sesión, compras, etc.)) y otra parte "Dashboard Administrador" (control de inventarios, stock, creación, actualización y eliminación de entidades directamente a la base de datos, asi como un seguimiento de órdenes del último mes).
 
-## Tecnologias utilizadas
-En el lado del Front, decidí utilizar el framework **Next**. La elección se basó en que Next es un entorno de trabajo intuitivo que posee un buen manejo de SSR (Server Side Rendering) y CSR (Client Side Rendering), a la vez que contiene varias funciones y módulos predeterminados que resultan muy útiles a la vez que facilitan mucho más el trabajo en este tipo de proyectos. Como es mi primera vez lidiando con este framework, sólo me he documentado con lo básico de los conceptos que Next introduce, al igual que con su biblioteca de componentes NextUI, la cual uso con frecuencia en este proyecto. Todo el estilado está realizado con Tailwind CSS, principalmente por elección personal. Algunas librerias adicionales en uso en este proyecto (se pueden ver todas libremente en el package.json) son:
+## Tecnologias utilizadas 🛠️
+En el lado del Front, decidí utilizar el framework **Next**. La elección se basó en que Next es un entorno de trabajo intuitivo que posee un buen manejo de SSR (Server Side Rendering) y CSR (Client Side Rendering), a la vez que contiene varias funciones y módulos predeterminados que resultan muy útiles a la vez que facilitan mucho más el trabajo en este tipo de proyectos. Este es mi primer contacto con Next, por lo que aprenderlo para este proyecto fue toda una aventura, al igual que su biblioteca de componentes NextUI (la cual uso con frecuencia en este proyecto). Todo el estilado está realizado con Tailwind CSS, principalmente por elección personal. Sólo se usó CSS puro para algunas animaciones, pues trabajar con Tailwind tiene sus desventajas en este aspecto (las animaciones son limitadas y estrictas, y separando en un css la comprensión es mayor que si simplemente configuro todo desde el tailwind.config.js).
+
+Algunas librerias adicionales en uso en este proyecto (se pueden ver todas libremente en el package.json) son:
 
 * Phospor-Icons para algunos íconos.
 * zod para la creación de unos schemas, cuyo uso sirve para verificar que los ingresos del usuario tanto en un inicio de sesión como en un registro sean los correctos (aunque se realice una verificación en la API, también nos pareció necesaria una primera desde el cliente).
@@ -17,7 +19,7 @@ En el lado del Front, decidí utilizar el framework **Next**. La elección se ba
 * Zustand para el manejo de estados globales y manejo del carrito en local storage.
 * jwt-decode para desglosar el contenido del token desde el servidor y blindar el dashboard mediante control de roles
 
-## Features aplicadas hasta el momento:
+## Features aplicadas hasta el momento ⭐
 
 - [x] Diseño base, funcional y simple.
 - [x] Manejo exitoso de endpoints de la API y buena verificación y comunicación con el cliente respecto a los procesos.
@@ -38,6 +40,6 @@ En el lado del Front, decidí utilizar el framework **Next**. La elección se ba
 - [x] Formulario de pago embebido de Mercado Pago funcional, seguro y completo. Con la opción de usar cualquier tarjeta de crédito o débito y financiar productos en 3, 6 o incluso 9 cuotas simples.
 - [x] Correcto almacenamiento de órdenes de pago en base de datos en casos de pagos exitosos.
 
-## Futuras features
+## Futuras features 🔜
 
 - [ ] Mejoras de cyberseguridad, optimización de recursos, limpieza de código, solución de errores en producción, etc.
