@@ -9,7 +9,7 @@ const ProductsCard = ({name, image, brand, price, idProducto, isLoading}) => {
   const cart = useCartStore((state)=> state.cart);
   const addToCart = useCartStore((state) => state.addToCart);
   const [isInCart, setIsInCart] = useState(false);
-  const [imageUrl, setImageUrl] = useState("");
+  const [imageUrl, setImageUrl] = useState("/LogoPadelPoint.png");
 
   const displayPrice = (price/9).toFixed(0);
   useEffect(() => {
@@ -22,22 +22,14 @@ const ProductsCard = ({name, image, brand, price, idProducto, isLoading}) => {
   }, [cart, idProducto]);
 
 useEffect(() => {
-  if (!image) {
-    setImageUrl("/LogoPadelPoint.png");
-    return;
-  }
-    const validateImage = async () => {
+    const validateImage = () => {
       const checkImage = (url) => {
-        return new Promise((resolve) => {
-          const img = new Image();
-          img.onload = () => resolve(true);
-          img.onerror = () => resolve(false);
-          img.src = `https://${url}`;
-        });
+        const img = new Image();
+        img.src = `https://${url}`;
+        img.onload = setImageUrl(`https://${url}`);
       };
-
-      const isValid = await checkImage(image);
-      setImageUrl(isValid ? `https://${image}` : "/LogoPadelPoint.png");
+      
+      checkImage(image);
     };
 
     validateImage();
