@@ -82,15 +82,19 @@ export const Filters = ({ filters, onFilterChange }) => {
                 <DropdownMenu className="p-2 rounded-lg">
                     <DropdownItem className="text-black" isReadOnly>
                         <Slider
-                            label="$"
-                            color="foreground"
-                            step={25}
-                            minValue={1}
-                            maxValue={1000000}
-                            value={[filters.minPrice, filters.maxPrice]}
-                            formatOptions={{ style: 'currency', currency: 'ARS' }}
-                            className="max-w-full"
-                            onChange={handlePriceRangeChange}/>
+                        label="$"
+                        color="foreground"
+                        step={25}
+                        minValue={1}
+                        maxValue={1000000}
+                        value={[
+                            filters.minPrice ?? 1,
+                            filters.maxPrice ?? 1000000,
+                        ]}
+                        formatOptions={{ style: 'currency', currency: 'ARS' }}
+                        className="max-w-full"
+                        onChange={handlePriceRangeChange}
+                        />
                     </DropdownItem>
                 </DropdownMenu>
             </Dropdown>
