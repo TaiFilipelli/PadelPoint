@@ -68,7 +68,7 @@ export default function Dashboard(){
             <tr>
               <th className="px-4 py-2">ID</th>
               <th className="px-4 py-2">Comprador</th>
-              <th className="px-4 py-2">Cód. Postal</th>
+              <th className="px-4 py-2">C.P. Destino</th>
               <th className="px-4 py-2">Precio neto</th>
               <th className="px-4 py-2">Método</th>
               <th className="px-4 py-2">Productos comprados</th>
@@ -87,7 +87,7 @@ export default function Dashboard(){
           <tr key={index} className="bg-white hover:bg-gray-400 transition-all duration-300 ease-in-out whitespace-nowrap">
             <td className="border px-4 py-2">{order.paymentId}</td>
             <td className="border px-4 py-2">{order.user.email}</td>
-            <td className="border px-4 py-2">{order.user.address[0].postalCode}</td>
+            <td className="border px-4 py-2">{order.destination.postalCode}</td>
             <td className="border px-4 py-2">{order.netPrice}$</td>
             <td className="border px-4 py-2">MP_TRANSFER</td>
             <td className="border px-4 py-2">{productsSummary}</td>

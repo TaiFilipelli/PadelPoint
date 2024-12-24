@@ -20,7 +20,8 @@ const maxlength = 70;
 return (
     <section className="my-6">
     <h3 className="font-bold text-2xl my-2">Accesorios recomendados</h3>
-    <p className="text-lg ">Preparamos accesorios perfectos para estos productos.</p>
+    <p className="text-lg mb-4">Preparamos accesorios perfectos para estos productos.</p>
+    {accessories.length<=0 && <p className="text-lg text-red-500">No hay accesorios disponibles.</p>}
     {accessories.map(accessory =>{
             const limitedDesc = accessory.description.length > maxlength
             ? accessory.description.substring(0, maxlength) + "..."

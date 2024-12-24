@@ -86,9 +86,7 @@ export default function ResultPaymentPage() {
             setIsLoading(false);
             setStatus(paymentStatus);
         }else{
-            setTimeout(() => {
-                setStatus('failure');
-            }, 1000);
+            setStatus('failure');
         }
     }, [status]);
 
