@@ -151,7 +151,7 @@ const AddEntity = ({ entity }) => {
         console.log(formData)
         if(id!==0){
             const result = await createImage(id, formData);
-            if(result.status===201){
+            if(result.status){
                 console.log(result);
                 toast.success('Imagen añadida con éxito!')
             }else{
