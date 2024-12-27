@@ -89,7 +89,7 @@ export default function Dashboard(){
             <td className="border px-4 py-2">{order.user.email}</td>
             <td className="border px-4 py-2">{order.destination.postalCode}</td>
             <td className="border px-4 py-2">{order.netPrice}$</td>
-            <td className="border px-4 py-2">MP_TRANSFER</td>
+             <td className="border px-4 py-2">MP_TRANSFER</td>  {/* En un futuro, cambiar esto a order.method */}
             <td className="border px-4 py-2">{productsSummary}</td>
             <td className="border px-4 py-2">{order.total}$</td>
         </tr>

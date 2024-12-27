@@ -60,7 +60,7 @@ export default function ForgotPasswordPage() {
                 className="w-1/3 max-[620px]:w-full mb-10 text-black"
             />
             <Button onClick={handleEmail} className="mb-10 bg-blue-600 text-white text-lg p-6 max-[620px]:w-full" >Enviar código</Button>
-            <div className={`flex flex-row gap-2 my-4 ${isVisible ? 'opacity-100' : 'opacity-20'} w-full justify-center`}>
+            <div className={`flex flex-row gap-2 my-4 ${isVisible ? 'opacity-100' : 'opacity-20'} w-full justify-center text-black`}>
                 {code.map((digit, index) => (
                 <input 
                     key={index} 

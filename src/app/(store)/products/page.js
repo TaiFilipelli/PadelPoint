@@ -22,6 +22,7 @@ export default function ProductsList() {
         minPrice: 1,
         maxPrice: 1000000,
         type: '',
+        // isActive:true,
     });
     
     useEffect(() => {

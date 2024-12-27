@@ -82,7 +82,7 @@ export default function ResultPaymentPage() {
     }
 
     useEffect(() => {
-        if(paymentId!==null){
+        if(paymentId!==null && paymentStatus!==null){
             setIsLoading(false);
             setStatus(paymentStatus);
         }else{
