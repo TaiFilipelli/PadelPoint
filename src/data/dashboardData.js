@@ -7,7 +7,7 @@ const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
 //MÉTODOS USADOS EN EL DASHBOARD PARA AÑADIR ENTIDADES
 export const addNewProduct = async(data) => {
-    const response = await fetch(`${baseUrl}/product`,{
+    const response = await fetch(`${baseUrl}product`,{
         method:'POST',
         credentials:'include',
         body:data, 
@@ -19,7 +19,7 @@ export const addNewProduct = async(data) => {
     return response;
 }
 export const addNewType = async(name) => {
-    const response = await fetch(`${baseUrl}/type`,{
+    const response = await fetch(`${baseUrl}type`,{
         method:'POST',
         headers:{
             'Content-Type': 'application/json'
@@ -31,7 +31,7 @@ export const addNewType = async(name) => {
     return result;
 }
 export const addNewBrand = async(name) => {
-    const response = await fetch(`${baseUrl}/brand`,{
+    const response = await fetch(`${baseUrl}brand`,{
         method:'POST',
         headers:{
             'Content-Type': 'application/json'
@@ -43,7 +43,7 @@ export const addNewBrand = async(name) => {
     return result;
 }
 export const addNewSupplier = async(name) => {
-    const response = await fetch(`${baseUrl}/supplier`,{
+    const response = await fetch(`${baseUrl}supplier`,{
         method:'POST',
         headers:{
             'Content-Type': 'application/json'
@@ -55,14 +55,14 @@ export const addNewSupplier = async(name) => {
     return result;
 }
 export const getSuppliers = async()=>{
-    const response = await fetch(`${baseUrl}/supplier`,{
+    const response = await fetch(`${baseUrl}supplier`,{
         credentials:'include',
     });
     const data = await verifyResponse(response);
     return data;
 }
 export const addNewRole = async(name) => {
-    const response = await fetch(`${baseUrl}/roles`,{
+    const response = await fetch(`${baseUrl}roles`,{
         method:'POST',
         headers:{
             'Content-Type': 'application/json'
@@ -77,7 +77,7 @@ export const addNewRole = async(name) => {
 //MÉTODOS USADOS EN EL DASHBOARD PARA ELIMINAR REGISTROS DE ENTIDADES
 
 export const deleteBrand = async(id) => {
-    const response = await fetch(`${baseUrl}/brand/${id}`,{
+    const response = await fetch(`${baseUrl}brand/${id}`,{
         method:'DELETE',
         credentials:'include',
     });
@@ -85,7 +85,7 @@ export const deleteBrand = async(id) => {
 }
 
 export const deleteSupplier = async(id) => {
-    const response = await fetch(`${baseUrl}/supplier/${id}`,{
+    const response = await fetch(`${baseUrl}supplier/${id}`,{
         method:'DELETE',
         credentials:'include',
     });
@@ -93,28 +93,28 @@ export const deleteSupplier = async(id) => {
 }
 
 export const deleteTypeOfProduct = async(id) => {
-    const response = await fetch(`${baseUrl}/type/${id}`,{
+    const response = await fetch(`${baseUrl}type/${id}`,{
         method:'DELETE',
         credentials:'include',
     });
     return response;
 }
 export const getRoles = async()=>{
-    const response = await fetch(`${baseUrl}/roles`,{
+    const response = await fetch(`${baseUrl}roles`,{
         credentials:'include',
     });
     const data = await verifyResponse(response);
     return data;
 }
 export const deleteRoles = async(id) => {
-    const response = await fetch(`${baseUrl}/roles/${id}`,{
+    const response = await fetch(`${baseUrl}roles/${id}`,{
         method:'DELETE',
         credentials:'include',
     });
     return response;
 }
 export const deleteProduct = async(id) => {
-    const response = await fetch(`${baseUrl}/product/${id}`,{
+    const response = await fetch(`${baseUrl}product/${id}`,{
         method:'DELETE',
         credentials:'include',
     });
@@ -124,7 +124,7 @@ export const deleteProduct = async(id) => {
 //MÉTODOS USADOS EN EL DASHBOARD PARA ACTUALIZAR ENTIDADES
 
 export const updateNAMEONLYEntities = async(id, name, entity) => {
-    const response = await fetch(`${baseUrl}/${entity}/${id}`,{
+    const response = await fetch(`${baseUrl}${entity}/${id}`,{
         method:'PUT',
         headers:{
             'Content-Type':'application/json'
@@ -137,7 +137,7 @@ export const updateNAMEONLYEntities = async(id, name, entity) => {
 }
 export const updateProductPriceSupplierOrStock = async (id, price, supplierId, stock) => {
     const numericPrice = parseFloat(price);
-    const response = await fetch(`${baseUrl}/product/${id}`, {
+    const response = await fetch(`${baseUrl}product/${id}`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
@@ -155,7 +155,7 @@ export const updateProductPriceSupplierOrStock = async (id, price, supplierId, s
 
 export const createImage = async (id, image) => {
     console.log('Llegaron los params:', id, image)
-    const response = await fetch(`${baseUrl}/images/${id}`, {
+    const response = await fetch(`${baseUrl}images/${id}`, {
         method: 'POST',
         body:image,
         credentials:'include'
@@ -166,7 +166,7 @@ export const createImage = async (id, image) => {
 
 export const getAllOrders = async(params) =>{
     const query = buildQuery(params);
-    const data = await fetch(`${baseUrl}/order${query}`,{
+    const data = await fetch(`${baseUrl}order${query}`,{
         credentials:'include'
     });
     const result = await verifyResponse(data);

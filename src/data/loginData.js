@@ -5,7 +5,7 @@ const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 // MÉTODOS PARA EL LOGIN: Registro, actualización de usuario para el username en caso el usuario loggea con Google por primera vez, 
 // inicio de sesión, desloggeo y búsqueda de token en local para verificar estado del usuario y confirmar su autenticación y, futuramente, su autorización.
 export const createOneUser = async(credenciales)=>{
-    const response = await fetch(`${baseUrl}/user`,{
+    const response = await fetch(`${baseUrl}user`,{
         method:'POST',
         headers:{
             'Content-Type':'application/json'
@@ -17,7 +17,7 @@ export const createOneUser = async(credenciales)=>{
 }
 
 export const updateOneUser = async(id, username)=>{
-    const response = await fetch(`${baseUrl}/user/${id}`,{
+    const response = await fetch(`${baseUrl}user/${id}`,{
         method:'PATCH',
         headers:{
             'Content-Type': 'application/json'
@@ -33,7 +33,7 @@ export const updateOneUser = async(id, username)=>{
 
 export const userLogin = async(credenciales)=>{
     console.log('entraron las creds:',JSON.stringify(credenciales))
-    const response = await fetch(`${baseUrl}/auth/login/local`,{
+    const response = await fetch(`${baseUrl}auth/login/local`,{
         method:'POST',
         headers:{
             'Content-Type':'application/json'
@@ -50,7 +50,7 @@ export const userLogin = async(credenciales)=>{
 }
 
 export const checkUserState = async() =>{
-    const response = await fetch(`${baseUrl}/auth/status`, {
+    const response = await fetch(`${baseUrl}auth/status`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -61,7 +61,7 @@ export const checkUserState = async() =>{
     return data;
 }
 export const userLogout = async() => {
-    const response = await fetch(`${baseUrl}/auth/logout`,{
+    const response = await fetch(`${baseUrl}auth/logout`,{
         method:'POST',
         headers:{
             'Content-Type':'application/json'
@@ -76,7 +76,7 @@ export const userLogout = async() => {
 }
 
 export const getUserById = async(id) =>{
-    const response = await fetch(`${baseUrl}/user/${id}`,{
+    const response = await fetch(`${baseUrl}user/${id}`,{
         credentials: 'include'
     });
     const data = await verifyResponse(response);
@@ -84,7 +84,7 @@ export const getUserById = async(id) =>{
 }
 
 export const searchUserAuthenticated = async() =>{
-    const response = await fetch(`${baseUrl}/user/cookie`,{
+    const response = await fetch(`${baseUrl}user/cookie`,{
         credentials: 'include'
     });
     const data = await response.json();
@@ -92,7 +92,7 @@ export const searchUserAuthenticated = async() =>{
 }
 
 export const refreshUserToken = async() => {
-    const response = await fetch(`${baseUrl}/auth/refresh`,{
+    const response = await fetch(`${baseUrl}auth/refresh`,{
         method:'POST',
         headers:{'Content-Type': 'application/json'},
         credentials:'include'
@@ -102,7 +102,7 @@ export const refreshUserToken = async() => {
 }
 
 export const sendEmailToResetPass = async(user) =>{
-    const response = await fetch(`${baseUrl}/user/reset-pass-code`,{
+    const response = await fetch(`${baseUrl}user/reset-pass-code`,{
         method:'POST',
         headers:{'Content-Type':'application/json'},
         body:JSON.stringify({ usernameOrEmail:user }),
@@ -113,7 +113,7 @@ export const sendEmailToResetPass = async(user) =>{
 }
 export const verifyCode = async(email, code) => {
     const numericCode = parseFloat(code)
-    const response = await fetch(`${baseUrl}/user/reset-pass-validate-code`,{
+    const response = await fetch(`${baseUrl}user/reset-pass-validate-code`,{
         method:'POST',
         headers:{'Content-Type':'application/json'},
         body:JSON.stringify({email, code:numericCode}),
@@ -123,7 +123,7 @@ export const verifyCode = async(email, code) => {
     return response;
 }
 export const changePassword = async(newPassword) => {
-    const response = await fetch(`${baseUrl}/user/reset-pass`,{
+    const response = await fetch(`${baseUrl}user/reset-pass`,{
         method:'PUT',
         headers:{'Content-Type':'application/json'},
         body:JSON.stringify({ newPassword }),
@@ -134,13 +134,13 @@ export const changePassword = async(newPassword) => {
 }
 
 export const getAllIdTypes = async()=>{
-    const response = await fetch(`${baseUrl}/id-type`);
+    const response = await fetch(`${baseUrl}id-type`);
     const data = await verifyResponse(response);
     return data;
 }
 
 export const createAddress = async(address) =>{
-    const response = await fetch(`${baseUrl}/address`,{
+    const response = await fetch(`${baseUrl}address`,{
         method:'POST',
         headers:{'Content-Type':'application/json'},
         body:JSON.stringify(address),
