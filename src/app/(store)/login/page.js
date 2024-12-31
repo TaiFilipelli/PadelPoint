@@ -41,12 +41,12 @@ export default function Login() {
                 localStorage.setItem('username', validatedData.usernameOrEmail);
                 toast.success('Inicio de sesión correcto. Bienvenido!');
     
-                setTimeout(() => {
-                    router.push('/');
-                    setTimeout(() => {
-                        window.location.reload();
-                    }, 1600);
-                }, 1500);
+                // setTimeout(() => {
+                //     router.push('/');
+                //     setTimeout(() => {
+                //         window.location.reload();
+                //     }, 1600);
+                // }, 1500);
             }
         } catch (error) {
             if (error instanceof z.ZodError) {
