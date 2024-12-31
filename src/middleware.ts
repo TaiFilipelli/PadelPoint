@@ -33,7 +33,8 @@ export async function middleware(req: NextRequest) {
         // return NextResponse.redirect(new URL('/404', req.url));
       }
 
-      return NextResponse.next();
+      // return NextResponse.next();
+      return console.log("Se hubiese redirigido a la dashboard");
     } catch (error) {
       console.error("Error cacheado:", error);
       // return NextResponse.redirect(new URL('/404', req.url));
