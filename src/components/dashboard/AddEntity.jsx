@@ -122,14 +122,12 @@ const AddEntity = ({ entity }) => {
         formData.append('brandId', brandId.id);
         formData.append('supplierId', supplierId.id);
         formData.append('typeId', typeId.id);
-        console.log('FormData:', formData)
-        console.log('Imagen:', image)
         if (image.size > 10 * 1024 * 1024) { 
             toast.error("El archivo es demasiado grande (máximo 10MB).");
             return;
         }
         const result = await addNewProduct(formData);
-        console.log('Response from API deaum:',result)
+        console.log('Response from API:',result)
         if(result.status){
             toast.success('Producto añadido con éxito!', result.message);
         }else{
@@ -152,7 +150,6 @@ const AddEntity = ({ entity }) => {
         if(id!==0){
             const result = await createImage(id, formData);
             if(result.status){
-                console.log(result);
                 toast.success('Imagen añadida con éxito!')
             }else{
                 toast.error('Error al añadir la imagen')

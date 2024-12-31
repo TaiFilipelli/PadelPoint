@@ -19,7 +19,6 @@ export default function Dashboard(){
 
       const toDateString = toDate.toISOString();
       const fromDateString = fromDate.toISOString();
-      console.log('Fechas con formateo ISOString',toDateString,fromDateString)
 
       const params = {
         minDate:fromDateString.trim(),
@@ -29,7 +28,6 @@ export default function Dashboard(){
       const response = await getAllOrders(params);
       if(response.status){
       setOrders(response.recourse);
-      console.log(response.recourse);
     }else{
       setOrders([])
     }}catch(error){

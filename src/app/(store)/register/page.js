@@ -61,7 +61,6 @@ export default function RegisterPage() {
             const result = await createOneUser(credentials);
             if(result.statusCode !== 400){
                 toast.success("Usuario creado exitosamente!")
-                console.log('Usuario creado! Revisar DB', result);
                 setTimeout(() => {
                     router.push('/');
                 }, 2500);

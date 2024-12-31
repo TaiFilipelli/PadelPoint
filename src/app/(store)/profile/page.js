@@ -23,7 +23,6 @@ export default function ProfilePage() {
             if (user.isLogged) {
                 setIsLogged(true);
                 const data = await getUserById(user.payload.id);
-                console.log('data', data);
                 setUserData(data.recourse);
                 const userOrders = await getOrdersByUser(data.recourse.id)
                 console.log('Órdenes de usuario', userOrders.recourse);

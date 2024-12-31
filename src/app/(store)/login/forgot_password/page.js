@@ -36,7 +36,6 @@ export default function ForgotPasswordPage() {
 
     const handleVerifyCode = async () => {
         const fullCode = code.join('');
-        console.log('CREDENCIALES:', fullCode)
         const verificationResult = await verifyCode(email, fullCode);
         if (verificationResult.status === 201) {
             toast.success('Código verificado exitosamente.');

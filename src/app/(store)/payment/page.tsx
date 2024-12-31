@@ -17,11 +17,9 @@ export default function MP_Page() {
     useEffect(() => {
         const fetchUser = async () => {
             const userState = await checkUserState();
-            console.log(userState);
             if (userState.isLogged) {
                 const userId = userState.payload.id;
                 localStorage.setItem('userId', userId);
-                console.log(userId);
             }
         };
         
@@ -56,7 +54,6 @@ export default function MP_Page() {
                 const response = await getOneProductById(item.id);
                 const product:Product = response.recourse;
                 console.log('Producto:',product);
-                console.log('Tipo de precio de producto:',typeof(product.price))
                 return{
                     id: item.id.toString(),
                     title: product.name,
@@ -72,12 +69,10 @@ export default function MP_Page() {
             const userId = parseInt(localStorage.getItem('userId'));
             const body = {addressId:addressId, userId:userId, items};
             const link = await createMPPreference(body);
-            console.log('Response del método:',link);
             if(link!=undefined){
                 const totalValue = items.reduce((acc, item) => acc + item.unit_price * item.quantity, 0);
                 trackInitiateCheckout(totalValue, 'ARS');
                 window.location.href = link.recourse;
-                console.log(link)
             }else{
                 console.error('There is an internal issue with MP preference creation');
             }
