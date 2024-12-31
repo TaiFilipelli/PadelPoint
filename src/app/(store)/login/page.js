@@ -38,7 +38,14 @@ export default function Login() {
             console.log(result);
             if(result.status){
 
-                localStorage.setItem('username', validatedData.usernameOrEmail);
+                const userStatus = {
+                    isLogged: true,
+                    refreshTokenExists: true,
+                    username: validatedData.usernameOrEmail,
+                };
+
+                localStorage.setItem('userStatus', JSON.stringify(userStatus));
+
                 toast.success('Inicio de sesión correcto. Bienvenido!');
     
                 // setTimeout(() => {

@@ -8,7 +8,7 @@ import { Navbar,
   NavbarMenuItem, 
   Link, Button, Dropdown, DropdownItem, DropdownTrigger, DropdownMenu, } from "@nextui-org/react";
 import { Poppins } from "next/font/google";
-import { userLogout, checkUserState, searchUserAuthenticated } from "../../data/loginData";
+import { userLogout, checkUserState, searchUserAuthenticated, refreshUserToken } from "../../data/loginData";
 import { getBrands, getSomeBrands, getTypes } from "../../data/storeData";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -55,17 +55,48 @@ const Nav = () => {
 
   const handleLogout = async() =>{
     await userLogout();
+    localStorage.removeItem('userStatus');
     window.location.reload();
 } 
-  const getStatus = async() =>{
-    try{
-      const status = await checkUserState();
-      setIsLogged(status.isLogged || (status.isLogged === false && status.refreshTokenExists === true));
-      
-    }catch(err){
-      console.error('Error checking user status:',err)
+
+ const getStatus = async () => {
+  const savedStatus = localStorage.getItem('userStatus');
+  
+  if (savedStatus) {
+    const status = JSON.parse(savedStatus);
+    if (status.isLogged && status.refreshTokenExists) {
+      setIsLogged(status.isLogged);
+    } else if (status.isLogged === false && status.refreshTokenExists === true) {
+      setIsLogged(true);
+    }else{
+      await verifyStatusWithAPI();
     }
-}
+  } else {
+    console.error('The user is not logged in');
+  }
+};
+
+ const verifyStatusWithAPI = async () => {
+  try {
+    const statusFlag = await checkUserState();
+
+    if(statusFlag.status){
+
+      const status = {
+        isLogged: statusFlag.isLogged || (statusFlag.isLogged === false && statusFlag.refreshTokenExists === true),
+        refreshTokenExists: statusFlag.refreshTokenExists,
+        username: statusFlag.username,
+        tokenExpiration: statusFlag.exp,
+        refreshTokenExpiration: Date.now() + (statusFlag.exp - Date.now()) * 1000,
+      };
+      localStorage.setItem('userStatus', JSON.stringify(status));
+      setIsLogged(status.isLogged);
+    }
+  } catch (err) {
+    console.error('Error checking user status:', err);
+  }
+};
+
 
   const checkIfAdmin = async () => {
     try {
@@ -78,10 +109,47 @@ const Nav = () => {
       console.error(err);
     }
 };
+const checkTokenValidity = async () => {
+  const savedStatus = localStorage.getItem('userStatus');
+  
+  if (savedStatus) {
+    const status = JSON.parse(savedStatus);
+    const currentTime = Date.now();
+    
+    if (currentTime > status.tokenExpiration) {
+      console.log('userToken ha expirado. Intentando renovar con refreshToken...');
+      
+      if (currentTime < status.refreshTokenExpiration) {
+        const result = await refreshUserToken();
+        
+        if (result.status) {
+          const newUserStatus = {
+            ...status,
+            tokenExpiration: Date.now() + status.exp * 1000, 
+          };
+          localStorage.setItem('userStatus', JSON.stringify(newUserStatus));
+          console.log('Token renovado con éxito');
+        } else {
+          await userLogout();
+          localStorage.removeItem('userStatus');
+        }
+      } else {
+        await userLogout();
+        localStorage.removeItem('userStatus');
+      }
+    }
+  }
+};
+
+  useEffect(() => {
+    const interval = setInterval(checkTokenValidity, 30 * 60 * 1000); // 30 minutos
+  
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     const initializeComponent = async () => {
-    setUsername(localStorage.getItem('username'));
+    setUsername(localStorage.getItem('userStatus').username);
     await getStatus();
     await checkIfAdmin();
     await fetchBrandsAndTypes();
