@@ -8,7 +8,7 @@ import { Navbar,
   NavbarMenuItem, 
   Link, Button, Dropdown, DropdownItem, DropdownTrigger, DropdownMenu, } from "@nextui-org/react";
 import { Poppins } from "next/font/google";
-import { userLogout, checkUserState, searchUserAuthenticated, refreshUserToken } from "../../data/loginData";
+import { userLogout, checkUserState, refreshUserToken } from "../../data/loginData";
 import { getBrands, getSomeBrands, getTypes } from "../../data/storeData";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -91,23 +91,14 @@ const Nav = () => {
       };
       localStorage.setItem('userStatus', JSON.stringify(status));
       setIsLogged(status.isLogged);
-    }
+
+      if(statusFlag.payload && statusFlag.payload.roles && statusFlag.payload.roles.some(role => role.name === 'admin')){
+        setIsAdmin(true);
+      }
+  };
   } catch (err) {
     console.error('Error checking user status:', err);
   }
-};
-
-
-  const checkIfAdmin = async () => {
-    try {
-      const data = await searchUserAuthenticated();
-      console.log(data);
-      if (data.user && data.user.roles && data.user.roles.some(role => role.name === 'admin')) {
-        setIsAdmin(true);
-      }
-    } catch (err) {
-      console.error(err);
-    }
 };
 const checkTokenValidity = async () => {
   const savedStatus = localStorage.getItem('userStatus');
