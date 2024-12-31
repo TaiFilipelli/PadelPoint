@@ -43,7 +43,6 @@ export const userLogin = async(credenciales)=>{
             "password":credenciales.password
         }),
     });
-    console.log("Respuesta del método:",response.json());
     return response.json();
 }
 
