@@ -61,6 +61,8 @@ const Nav = () => {
 
  const getStatus = async () => {
   const savedStatus = localStorage.getItem('userStatus');
+
+  console.log('Estado del usuario',JSON.parse(savedStatus));
   
   if (savedStatus) {
     const status = JSON.parse(savedStatus);
