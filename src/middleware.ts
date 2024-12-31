@@ -13,28 +13,30 @@ export async function middleware(req: NextRequest) {
   if (pathname.startsWith('/dashboard')) {
     const token = req.cookies.get('user')?.value;
 
-    console.log(token)
+    console.log("Token que devuelve el middleware", token);
 
     if (!token) {
-      return NextResponse.redirect(new URL('/404', req.url));
+      console.log("No encuentra el token");
+      // return NextResponse.redirect(new URL('/404', req.url));
     }
 
     try {
       const decodedToken = jwtDecode<CustomJwtPayload>(token);
 
-      console.log(decodedToken);
+      console.log("Token decodeado, a ver:",decodedToken);
 
       const roles = decodedToken.roles || [];
       const isAdmin = roles.some((role) => role.name === 'admin');
 
       if (!isAdmin) {
-        return NextResponse.redirect(new URL('/404', req.url));
+        console.log("No es admin");
+        // return NextResponse.redirect(new URL('/404', req.url));
       }
 
       return NextResponse.next();
     } catch (error) {
-      console.error(error)
-      return NextResponse.redirect(new URL('/404', req.url));
+      console.error("Error cacheado:", error);
+      // return NextResponse.redirect(new URL('/404', req.url));
     }
   }
 
