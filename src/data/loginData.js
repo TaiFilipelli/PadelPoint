@@ -45,7 +45,7 @@ export const userLogin = async(credenciales)=>{
         credentials:'include'
     });
     console.log("Respuesta del método:",response);
-    return response;
+    return response.json();
 }
 
 export const checkUserState = async() =>{
