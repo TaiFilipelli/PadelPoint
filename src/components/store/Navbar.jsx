@@ -70,6 +70,7 @@ const Nav = () => {
   const checkIfAdmin = async () => {
     try {
       const data = await searchUserAuthenticated();
+      console.log(data);
       if (data.user && data.user.roles && data.user.roles.some(role => role.name === 'admin')) {
         setIsAdmin(true);
       }
