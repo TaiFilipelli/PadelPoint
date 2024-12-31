@@ -17,7 +17,7 @@ export async function middleware(req: NextRequest) {
 
     if (!token) {
       console.log("No encuentra el token");
-      // return NextResponse.redirect(new URL('/404', req.url));
+      return NextResponse.redirect(new URL('/404', req.url));
     }
 
     try {
@@ -30,14 +30,13 @@ export async function middleware(req: NextRequest) {
 
       if (!isAdmin) {
         console.log("No es admin");
-        // return NextResponse.redirect(new URL('/404', req.url));
+        return NextResponse.redirect(new URL('/404', req.url));
       }
 
-      // return NextResponse.next();
-      return console.log("Se hubiese redirigido a la dashboard");
+      return NextResponse.next();
     } catch (error) {
       console.error("Error cacheado:", error);
-      // return NextResponse.redirect(new URL('/404', req.url));
+      return NextResponse.redirect(new URL('/404', req.url));
     }
   }
 
