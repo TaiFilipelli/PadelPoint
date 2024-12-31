@@ -42,6 +42,8 @@ export default function Login() {
                     isLogged: true,
                     refreshTokenExists: true,
                     username: validatedData.usernameOrEmail,
+                    tokenExpiration: Date.now() + 60 * 60 * 1000,
+                    refreshTokenExpiration: Date.now() + (tokenExpiration - Date.now()) * 1000,
                 };
 
                 localStorage.setItem('userStatus', JSON.stringify(userStatus));

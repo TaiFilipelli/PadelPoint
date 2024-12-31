@@ -8,7 +8,7 @@ import { Navbar,
   NavbarMenuItem, 
   Link, Button, Dropdown, DropdownItem, DropdownTrigger, DropdownMenu, } from "@nextui-org/react";
 import { Poppins } from "next/font/google";
-import { userLogout, checkUserState, refreshUserToken } from "../../data/loginData";
+import { userLogout, checkUserState, refreshUserToken, searchUserAuthenticated } from "../../data/loginData";
 import { getBrands, getSomeBrands, getTypes } from "../../data/storeData";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -132,8 +132,26 @@ const checkTokenValidity = async () => {
   }
 };
 
+  const checkIfAdmin = async () => {
+    try {
+      const data = await searchUserAuthenticated();
+      console.log(data);
+      if (data.user && data.user.roles && data.user.roles.some(role => role.name === 'admin')) {
+        setIsAdmin(true);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+};
+
   useEffect(() => {
     const interval = setInterval(checkTokenValidity, 30 * 60 * 1000); // 30 minutos
+  
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(checkIfAdmin, 30 * 60 * 1000); // 30 minutos
   
     return () => clearInterval(interval);
   }, []);
@@ -142,7 +160,6 @@ const checkTokenValidity = async () => {
     const initializeComponent = async () => {
     setUsername(localStorage.getItem('userStatus').username);
     await getStatus();
-    await checkIfAdmin();
     await fetchBrandsAndTypes();
   };
     initializeComponent();
