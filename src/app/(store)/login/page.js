@@ -36,16 +36,18 @@ export default function Login() {
             const result = await userLogin(validatedData);
             console.log("Mensaje de la respuesta",result.message);
             console.log(result);
-            localStorage.setItem('username', validatedData.usernameOrEmail);
-            toast.success('Inicio de sesión correcto. Bienvenido!');
+            if(result.status){
 
-            setTimeout(() => {
-                router.push('/');
+                localStorage.setItem('username', validatedData.usernameOrEmail);
+                toast.success('Inicio de sesión correcto. Bienvenido!');
+    
                 setTimeout(() => {
-                    window.location.reload();
-                }, 1600);
-            }, 1500);
-
+                    router.push('/');
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1600);
+                }, 1500);
+            }
         } catch (error) {
             if (error instanceof z.ZodError) {
                 const fieldErrors = {};
