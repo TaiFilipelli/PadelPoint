@@ -13,12 +13,16 @@ export async function middleware(req: NextRequest) {
   if (pathname.startsWith('/dashboard')) {
     const token = req.cookies.get('user')?.value;
 
+    console.log(token)
+
     if (!token) {
       return NextResponse.redirect(new URL('/404', req.url));
     }
 
     try {
       const decodedToken = jwtDecode<CustomJwtPayload>(token);
+
+      console.log(decodedToken);
 
       const roles = decodedToken.roles || [];
       const isAdmin = roles.some((role) => role.name === 'admin');
@@ -29,6 +33,7 @@ export async function middleware(req: NextRequest) {
 
       return NextResponse.next();
     } catch (error) {
+      console.error(error)
       return NextResponse.redirect(new URL('/404', req.url));
     }
   }
