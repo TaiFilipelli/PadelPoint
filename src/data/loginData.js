@@ -44,9 +44,8 @@ export const userLogin = async(credenciales)=>{
         }),
         credentials:'include'
     });
-    console.log(response)
-    const result = await verifyResponse(response);
-    return result;
+    console.log("Respuesta del método:",response);
+    return response;
 }
 
 export const checkUserState = async() =>{

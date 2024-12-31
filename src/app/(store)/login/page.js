@@ -34,7 +34,8 @@ export default function Login() {
         try {
             const validatedData = loginSchema.parse(formData);
             const result = await userLogin(validatedData);
-            console.log(result.message);
+            console.log("Mensaje de la respuesta",result.message);
+            console.log(result);
             localStorage.setItem('username', validatedData.usernameOrEmail);
             toast.success('Inicio de sesión correcto. Bienvenido!');
 
