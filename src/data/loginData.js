@@ -37,6 +37,7 @@ export const userLogin = async(credenciales)=>{
         headers:{
             'Content-Type':'application/json'
         },
+        credentials: 'include',
         body: JSON.stringify({
             "usernameOrEmail":credenciales.usernameOrEmail,
             "password":credenciales.password
@@ -48,10 +49,6 @@ export const userLogin = async(credenciales)=>{
 
 export const checkUserState = async() =>{
     const response = await fetch(`${baseUrl}auth/status`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        },
         credentials: 'include', 
     });
     const data = await response.json();
