@@ -32,7 +32,6 @@ export const updateOneUser = async(id, username)=>{
 }
 
 export const userLogin = async(credenciales)=>{
-    console.log('entraron las creds:',JSON.stringify(credenciales))
     const response = await fetch(`${baseUrl}auth/login/local`,{
         method:'POST',
         headers:{
@@ -42,9 +41,8 @@ export const userLogin = async(credenciales)=>{
             "usernameOrEmail":credenciales.usernameOrEmail,
             "password":credenciales.password
         }),
-        credentials:'include'
     });
-    console.log("Respuesta del método:",response);
+    console.log("Respuesta del método:",response.json());
     return response.json();
 }
 
