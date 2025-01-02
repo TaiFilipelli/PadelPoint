@@ -13,6 +13,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const pop = Poppins({ subsets: ['latin'], weight: '500' });
 
+const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+
 export default function Login() {
     const [isVisible, setIsVisible] = useState(false);
     const [formData, setFormData] = useState({
@@ -70,7 +72,7 @@ export default function Login() {
     };
 
     const handleGoogleLogin = () => {
-        window.location.href = 'http://localhost:3000/auth/login/google/redirect';
+        window.location.href = `${baseUrl}auth/login/google/redirect`; 
       };
       
 
