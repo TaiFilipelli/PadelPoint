@@ -57,6 +57,7 @@ export default function Login() {
                 }, 1600);
             }, 1500);
         } catch (error) {
+            console.error('ERROR AL LOGGEARSE:', error);
             if (error instanceof z.ZodError) {
                 const fieldErrors = {};
                 error.errors.forEach((err) => {
