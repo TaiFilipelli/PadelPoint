@@ -8,7 +8,7 @@ import { Navbar,
   NavbarMenuItem, 
   Link, Button, Dropdown, DropdownItem, DropdownTrigger, DropdownMenu, } from "@nextui-org/react";
 import { Poppins } from "next/font/google";
-import { userLogout, checkUserState, refreshUserToken, searchUserAuthenticated } from "../../data/loginData";
+import { userLogout } from "../../data/loginData";
 import { getBrands, getSomeBrands, getTypes } from "../../data/storeData";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -54,7 +54,6 @@ const Nav = () => {
 
   const handleLogout = async() =>{
     await userLogout();
-    localStorage.removeItem('userStatus');
     setUser({isLogged:false, isAdmin:false, username:''});
     window.location.reload();
 } 
@@ -62,6 +61,7 @@ const Nav = () => {
   useEffect(() => {
     const initializeComponent = async () => {
       await fetchBrandsAndTypes();
+      console.log('SE MONTO EL COMPONENTE, EL USER ES:',user);
   };
     initializeComponent();
   }, []);

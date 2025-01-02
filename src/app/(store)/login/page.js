@@ -45,6 +45,8 @@ export default function Login() {
 
                 const state = await checkUserState();
 
+                console.log('State:',state);
+
                 const user = {
                     isLogged: state.isLogged,
                     username: validatedData.usernameOrEmail,
