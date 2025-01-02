@@ -7,7 +7,7 @@ import { useState, useContext } from "react";
 import { useRouter } from "next/navigation";
 import { z } from "zod"; 
 import { loginSchema } from "../../../../schemas/Login";
-import { userLogin } from "../../../data/loginData";
+import { userLogin, checkUserState } from "../../../data/loginData";
 import {UserContext} from '../../UserContext';
 import { toast, ToastContainer, Slide } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
@@ -42,10 +42,13 @@ export default function Login() {
             console.log("Mensaje de la respuesta:", result.message);
 
             if (result.status) {
+
+                const state = await checkUserState();
+
                 const user = {
-                    isLogged: true,
+                    isLogged: state.isLogged,
                     username: validatedData.usernameOrEmail,
-                    isAdmin: result.roles.some(role => role.name === 'admin'),
+                    isAdmin: state.payload.roles.some(role => role.name === 'admin'),
                 };
 
                 console.log('User that enters the context:',user);
