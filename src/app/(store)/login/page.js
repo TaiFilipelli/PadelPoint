@@ -36,9 +36,9 @@ export default function Login() {
         try {
             const validatedData = loginSchema.parse(formData);
             const result = await userLogin(validatedData);
-            console.log("Mensaje de la respuesta",result.message);
+            console.log("Mensaje de la respuesta:",result.message);
             console.log(result);
-            if(result.status){
+            if(result.status===true){
 
                 const userStatus = {
                     isLogged: true,
@@ -52,12 +52,12 @@ export default function Login() {
 
                 toast.success('Inicio de sesión correcto. Bienvenido!');
     
-                // setTimeout(() => {
-                //     router.push('/');
-                //     setTimeout(() => {
-                //         window.location.reload();
-                //     }, 1600);
-                // }, 1500);
+                setTimeout(() => {
+                    router.push('/');
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1600);
+                }, 1500);
             }
         } catch (error) {
             if (error instanceof z.ZodError) {
