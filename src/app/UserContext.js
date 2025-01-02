@@ -1,8 +1,8 @@
 'use client';
 import React, { createContext, useState, useEffect, useContext } from 'react';
-import { checkUserState } from 'src/data/loginData';
+import { checkUserState } from '../data/loginData';
 
-const UserContext = createContext();
+export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState({
