@@ -36,26 +36,33 @@ export default function Login() {
         try {
             const validatedData = loginSchema.parse(formData);
             const result = await userLogin(validatedData);
-            console.log("Mensaje de la respuesta:",result.message);
+            console.log("Mensaje de la respuesta:", result.message);
             console.log(result);
-            const userStatus = {
+    
+            const tokenExpiration = Date.now() + 60 * 60 * 1000;
+            const refreshTokenExpiration = Date.now() + (tokenExpiration - Date.now()) * 1000;
+
+            if(result.status){
+
+                const userStatus = {
                     isLogged: true,
                     refreshTokenExists: true,
                     username: validatedData.usernameOrEmail,
-                    tokenExpiration: Date.now() + 60 * 60 * 1000,
-                    refreshTokenExpiration: Date.now() + (tokenExpiration - Date.now()) * 1000,
+                    tokenExpiration,
+                    refreshTokenExpiration,
                 };
-
-            localStorage.setItem('userStatus', JSON.stringify(userStatus));
-
-            toast.success('Inicio de sesión correcto. Bienvenido!');
-    
-            setTimeout(() => {
-                router.push('/');
+        
+                localStorage.setItem('userStatus', JSON.stringify(userStatus));
+        
+                toast.success('Inicio de sesión correcto. Bienvenido!');
+            
                 setTimeout(() => {
-                    window.location.reload();
-                }, 1600);
-            }, 1500);
+                    router.push('/');
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1600);
+                }, 1500);
+            }
         } catch (error) {
             console.error('ERROR AL LOGGEARSE:', error);
             if (error instanceof z.ZodError) {
@@ -64,10 +71,12 @@ export default function Login() {
                     fieldErrors[err.path[0]] = err.message;
                 });
                 setErrors(fieldErrors);
+                toast.error('Las crendenciales no coinciden. Inténtelo de nuevo.');
             }
-            toast.error('Las crendenciales no coinciden. Inténtelo de nuevo.');
+            toast.error('Error al iniciar sesión. Inténtelo de nuevo.');
         }
     };
+    
 
     const handleGoogleLogin = () => {
         window.location.href = `${baseUrl}auth/login/google/redirect`; 
