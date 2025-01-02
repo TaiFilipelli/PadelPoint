@@ -2,7 +2,7 @@
 const nextConfig = {
 
     // compiler: {
-    //         removeConsole: process.env.NODE_ENV === "PROD",
+    //         removeConsole: process.env.NODE_ENV === "PROD" ? { exclude: ["error"] } : false
     // },
 
     images:{
