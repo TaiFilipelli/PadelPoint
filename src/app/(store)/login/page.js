@@ -72,8 +72,10 @@ export default function Login() {
                 });
                 setErrors(fieldErrors);
                 toast.error('Las crendenciales no coinciden. Inténtelo de nuevo.');
+            } else{
+
+                toast.error('Error al iniciar sesión. Inténtelo de nuevo.');
             }
-            toast.error('Error al iniciar sesión. Inténtelo de nuevo.');
         }
     };
     
