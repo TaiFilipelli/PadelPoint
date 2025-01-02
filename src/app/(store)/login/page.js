@@ -38,9 +38,7 @@ export default function Login() {
             const result = await userLogin(validatedData);
             console.log("Mensaje de la respuesta:",result.message);
             console.log(result);
-            if(result.status===true){
-
-                const userStatus = {
+            const userStatus = {
                     isLogged: true,
                     refreshTokenExists: true,
                     username: validatedData.usernameOrEmail,
@@ -48,17 +46,16 @@ export default function Login() {
                     refreshTokenExpiration: Date.now() + (tokenExpiration - Date.now()) * 1000,
                 };
 
-                localStorage.setItem('userStatus', JSON.stringify(userStatus));
+            localStorage.setItem('userStatus', JSON.stringify(userStatus));
 
-                toast.success('Inicio de sesión correcto. Bienvenido!');
+            toast.success('Inicio de sesión correcto. Bienvenido!');
     
+            setTimeout(() => {
+                router.push('/');
                 setTimeout(() => {
-                    router.push('/');
-                    setTimeout(() => {
-                        window.location.reload();
-                    }, 1600);
-                }, 1500);
-            }
+                    window.location.reload();
+                }, 1600);
+            }, 1500);
         } catch (error) {
             if (error instanceof z.ZodError) {
                 const fieldErrors = {};
