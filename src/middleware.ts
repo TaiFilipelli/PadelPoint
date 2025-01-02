@@ -10,39 +10,42 @@ interface CustomJwtPayload extends JwtPayload {
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
-  if (pathname.startsWith('/dashboard')) {
-    const token = req.cookies.get('user')?.value;
+  const userToken = req.cookies.get('user')?.value;
+  const refreshToken = req.cookies.get('refresh')?.value;
 
-    console.log("Token que devuelve el middleware", token);
+  if(!userToken && refreshToken){
 
-    if (!token) {
-      console.log("No encuentra el token");
-      return NextResponse.redirect(new URL('/404', req.url));
-    }
-
-    try {
-      const decodedToken = jwtDecode<CustomJwtPayload>(token);
-
-      console.log("Token decodeado, a ver:",decodedToken);
-
-      const roles = decodedToken.roles || [];
-      const isAdmin = roles.some((role) => role.name === 'admin');
-
-      if (!isAdmin) {
-        console.log("No es admin");
-        return NextResponse.redirect(new URL('/404', req.url));
+      try{
+        await fetch(`${process.env.NEXT_PUBLIC_API_URL}auth/refresh`,{
+          method:'POST',
+          headers:{'Content-Type': 'application/json'},
+          credentials:'include'
+        });
+      } catch(error){
+        console.error('Error trying to update session:',error);
       }
-
-      return NextResponse.next();
-    } catch (error) {
-      console.error("Error cacheado:", error);
-      return NextResponse.redirect(new URL('/404', req.url));
-    }
+      
+  }else{
+    console.error('No session found');
   }
 
-  return NextResponse.next();
+  try {
+    const decodedToken = jwtDecode<CustomJwtPayload>(userToken);
+    const roles = decodedToken.roles || [];
+    const isAdmin = roles.some((role) => role.name === 'admin');
+
+    if (pathname.startsWith('/dashboard') && !isAdmin) {
+      return NextResponse.redirect(new URL('/404', req.url));
+    }
+
+    return NextResponse.next();
+
+  } catch (error) {
+    console.error('Error decoding token:', error);
+    return NextResponse.redirect(new URL('/404', req.url));
+  }
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*'],
+  matcher: ['/','/dashboard/:path*'],
 };

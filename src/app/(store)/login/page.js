@@ -3,11 +3,12 @@ import { Poppins } from "next/font/google";
 import Link from "next/link";
 import { Input, Button } from "@nextui-org/react";
 import { Eye, EyeClosed, SignIn, GoogleLogo } from "@phosphor-icons/react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useRouter } from "next/navigation";
 import { z } from "zod"; 
 import { loginSchema } from "../../../../schemas/Login";
-import { userLogin} from "../../../data/loginData";
+import { userLogin } from "../../../data/loginData";
+import { UserContext } from "../UserContext";
 import { toast, ToastContainer, Slide } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -24,6 +25,8 @@ export default function Login() {
     const [errors, setErrors] = useState({});
     const router = useRouter();
 
+    const { setUser } = useContext(UserContext); // Usa el contexto
+
     const toggleVisibility = () => setIsVisible(!isVisible);
 
     const handleChange = (e) => {
@@ -37,30 +40,22 @@ export default function Login() {
             const validatedData = loginSchema.parse(formData);
             const result = await userLogin(validatedData);
             console.log("Mensaje de la respuesta:", result.message);
-            console.log(result);
-    
-            const tokenExpiration = Date.now() + 60 * 60 * 1000;
-            const refreshTokenExpiration = Date.now() + (tokenExpiration - Date.now()) * 1000;
 
-            if(result.status){
-
-                const userStatus = {
+            if (result.status) {
+                const user = {
                     isLogged: true,
-                    refreshTokenExists: true,
                     username: validatedData.usernameOrEmail,
-                    tokenExpiration,
-                    refreshTokenExpiration,
+                    isAdmin: result.roles.some(role => role.name === 'admin'),
                 };
-        
-                localStorage.setItem('userStatus', JSON.stringify(userStatus));
-        
+
+                console.log('User that enters the context:',user);
+
+                setUser(user);
+                
                 toast.success('Inicio de sesión correcto. Bienvenido!');
             
                 setTimeout(() => {
                     router.push('/');
-                    setTimeout(() => {
-                        window.location.reload();
-                    }, 1600);
                 }, 1500);
             }
         } catch (error) {
@@ -71,19 +66,16 @@ export default function Login() {
                     fieldErrors[err.path[0]] = err.message;
                 });
                 setErrors(fieldErrors);
-                toast.error('Las crendenciales no coinciden. Inténtelo de nuevo.');
-            } else{
-
+                toast.error('Las credenciales no coinciden. Inténtelo de nuevo.');
+            } else {
                 toast.error('Error al iniciar sesión. Inténtelo de nuevo.');
             }
         }
     };
-    
 
     const handleGoogleLogin = () => {
         window.location.href = `${baseUrl}auth/login/google/redirect`; 
-      };
-      
+    };
 
     return (
         <main className="flex justify-center items-center p-20 max-[700px]:px-10 bg-[#264492] h-[70dvh]">

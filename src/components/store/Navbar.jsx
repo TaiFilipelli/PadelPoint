@@ -13,18 +13,19 @@ import { getBrands, getSomeBrands, getTypes } from "../../data/storeData";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { ShoppingCart, SignOut, SignIn, UserCircle, TerminalWindow, ArrowRight, ArrowDown } from "@phosphor-icons/react";
+import { useUser } from "../../app/UserContext";
 
 const pop = Poppins({ subsets: ["latin"], weight: '500' });
 
 const Nav = () => {
+
+  const {user, setUser} = useUser();
+
   const [brands, setBrands] = useState([]);
   const [allBrands, setAllBrands] = useState([])
   const [types, setTypes] = useState([]);
   const [selectedType, setSelectedType] = useState(''); //Tipo seleccionado para renderizar en pantallas chicas menús desplegables
   const [isMenuOpen, setIsMenuOpen] = useState(false); //Estado reservado para pantallas chicas, controla el menú desplegable.
-  const [isLogged, setIsLogged] = useState(false); //Estado que nos permitirá conocer si hay un usuario loggeado o no.
-  const [isAdmin, setIsAdmin] = useState(false); //Bandera para chequear si un usuario tiene beneficios de administrador
-  const [username, setUsername] = useState(''); //Estado que almacena el username para renderizar el nombre
   const router = useRouter();
 
   const handleBrandSelect = (brand, type) => {
@@ -36,9 +37,7 @@ const Nav = () => {
     router.push(`/products?${params.toString()}`);
   };
 
-  const handleTypeSelect = (type) => {
-    setSelectedType(type);
-  };
+  const handleTypeSelect = (type) => setSelectedType(type);
 
   const fetchBrandsAndTypes = async () => {
     try {
@@ -56,113 +55,13 @@ const Nav = () => {
   const handleLogout = async() =>{
     await userLogout();
     localStorage.removeItem('userStatus');
+    setUser({isLogged:false, isAdmin:false, username:''});
     window.location.reload();
 } 
 
- const getStatus = async () => {
-  const savedStatus = localStorage.getItem('userStatus');
-
-  console.log('Estado del usuario',JSON.parse(savedStatus));
-  
-  if (savedStatus) {
-    const status = JSON.parse(savedStatus);
-    if (status.isLogged && status.refreshTokenExists) {
-      setIsLogged(status.isLogged);
-    } else if (status.isLogged === false && status.refreshTokenExists === true) {
-      setIsLogged(true);
-    }else{
-      await verifyStatusWithAPI();
-    }
-  } else {
-    console.error('The user is not logged in');
-  }
-};
-
- const verifyStatusWithAPI = async () => {
-  try {
-    const statusFlag = await checkUserState();
-
-    if(statusFlag.status){
-
-      const status = {
-        isLogged: statusFlag.isLogged || (statusFlag.isLogged === false && statusFlag.refreshTokenExists === true),
-        refreshTokenExists: statusFlag.refreshTokenExists,
-        username: statusFlag.username,
-        tokenExpiration: statusFlag.exp,
-        refreshTokenExpiration: Date.now() + (statusFlag.exp - Date.now()) * 1000,
-      };
-      localStorage.setItem('userStatus', JSON.stringify(status));
-      setIsLogged(status.isLogged);
-
-      if(statusFlag.payload && statusFlag.payload.roles && statusFlag.payload.roles.some(role => role.name === 'admin')){
-        setIsAdmin(true);
-      }
-  };
-  } catch (err) {
-    console.error('Error checking user status:', err);
-  }
-};
-const checkTokenValidity = async () => {
-  const savedStatus = localStorage.getItem('userStatus');
-  
-  if (savedStatus) {
-    const status = JSON.parse(savedStatus);
-    const currentTime = Date.now();
-    
-    if (currentTime > status.tokenExpiration) {
-      console.log('userToken ha expirado. Intentando renovar con refreshToken...');
-      
-      if (currentTime < status.refreshTokenExpiration) {
-        const result = await refreshUserToken();
-        
-        if (result.status) {
-          const newUserStatus = {
-            ...status,
-            tokenExpiration: Date.now() + status.exp * 1000, 
-          };
-          localStorage.setItem('userStatus', JSON.stringify(newUserStatus));
-          console.log('Token renovado con éxito');
-        } else {
-          await userLogout();
-          localStorage.removeItem('userStatus');
-        }
-      } else {
-        await userLogout();
-        localStorage.removeItem('userStatus');
-      }
-    }
-  }
-};
-
-  const checkIfAdmin = async () => {
-    try {
-      const data = await searchUserAuthenticated();
-      console.log(data);
-      if (data.user && data.user.roles && data.user.roles.some(role => role.name === 'admin')) {
-        setIsAdmin(true);
-      }
-    } catch (err) {
-      console.error(err);
-    }
-};
-
-  useEffect(() => {
-    const interval = setInterval(checkTokenValidity, 30 * 60 * 1000); // 30 minutos
-  
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    const interval = setInterval(checkIfAdmin, 30 * 60 * 1000); // 30 minutos
-  
-    return () => clearInterval(interval);
-  }, []);
-
   useEffect(() => {
     const initializeComponent = async () => {
-    setUsername(localStorage.getItem('userStatus').username);
-    await getStatus();
-    await fetchBrandsAndTypes();
+      await fetchBrandsAndTypes();
   };
     initializeComponent();
   }, []);
@@ -186,10 +85,10 @@ const checkTokenValidity = async () => {
               <Link href="/products" className="text-xl p-2 text-black dark:text-white">Productos</Link>
             </NavbarItem>
             <NavbarItem>
-                  {isLogged ? 
+                  {user.isLogged ? 
                    <Dropdown>
                    <DropdownTrigger className="bg-blue-600 hover:bg-blue-400 shadow-md shadow-black p-4 w-full text-white">
-                      <Button className="ml-4 p-2 text-lg" variant="flat" radius="lg">{username}</Button>
+                      <Button className="ml-4 p-2 text-lg" variant="flat" radius="lg">{user.username}</Button>
                    </DropdownTrigger>
                    <DropdownMenu className="p-0 w-full gap-4">
                    <DropdownItem startContent={<UserCircle size={30}/>} href="/profile" className="w-full text-black">
@@ -198,7 +97,7 @@ const checkTokenValidity = async () => {
                     <DropdownItem startContent={<ShoppingCart size={30}/>} href="/cart" className="w-full text-black">
                       <h1 className="text-lg font-bold">Carrito</h1>
                     </DropdownItem>
-                    {isAdmin && (<DropdownItem startContent={<TerminalWindow size={30}/>} href="/dashboard" className="w-full text-black">
+                    {user.isAdmin && (<DropdownItem startContent={<TerminalWindow size={30}/>} href="/dashboard" className="w-full text-black">
                         <h1 className="text-lg font-bold">Dashboard</h1>
                      </DropdownItem>)
                      
@@ -259,10 +158,10 @@ const checkTokenValidity = async () => {
               <Button as={Link} href="/about" className={`p-3 text-xl bg-transparent hover:bg-[#B3B7BF]`}>Sobre Nosotros</Button>
             </NavbarMenuItem>
             <NavbarMenuItem>
-            {isLogged ? 
+            {user.isLogged ? 
                    <Dropdown>
                    <DropdownTrigger className="bg-blue-600 hover:bg-blue-400 p-4 w-full text-white">
-                      <Button className="ml-4 p-2 text-lg" variant="flat" radius="lg">{username}</Button>
+                      <Button className="ml-4 p-2 text-lg" variant="flat" radius="lg">{user.username}</Button>
                    </DropdownTrigger>
                    <DropdownMenu className="p-0 w-full gap-4">
                    <DropdownItem startContent={<UserCircle size={30}/>} href="/profile" className="w-full text-black">
@@ -271,7 +170,7 @@ const checkTokenValidity = async () => {
                     <DropdownItem startContent={<ShoppingCart size={30}/>} href="/cart" className="w-full text-black">
                       <h1 className="text-lg font-bold">Carrito</h1>
                     </DropdownItem>
-                    {isAdmin && (<DropdownItem startContent={<TerminalWindow size={30}/>} href="/dashboard" className="w-full text-black">
+                    {user.isAdmin && (<DropdownItem startContent={<TerminalWindow size={30}/>} href="/dashboard" className="w-full text-black">
                         <h1 className="text-lg font-bold">Dashboard</h1>
                      </DropdownItem>)
                      
