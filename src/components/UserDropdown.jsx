@@ -5,7 +5,7 @@ import { useUser } from '../app/UserContext';
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button } from '@nextui-org/react';
 import Link from 'next/link';
 import { UserCircle, ShoppingCart, TerminalWindow, SignOut, SignIn } from '@phosphor-icons/react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 const UserDropdown = ({ onLogout }) => {
   const { user } = useUser();
