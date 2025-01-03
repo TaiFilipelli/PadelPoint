@@ -4,13 +4,12 @@ import { checkUserState } from '../data/loginData';
 
 export const UserContext = createContext();
 
-export default function UserProvider({ children }) {
+export const UserProvider = ({ children }) => {
   const [user, setUser] = useState({
     isLogged: false,
     isAdmin: false,
     username: '',
   });
-  const [initialized, setInitialized] = useState(false);
 
   const initializeUser = async () => {
     try {
@@ -27,16 +26,14 @@ export default function UserProvider({ children }) {
     } catch (err) {
       console.error('Error initializing user:', err);
       setUser({ isLogged: false, isAdmin: false, username: '' });
-    } finally {
-      setInitialized(true);
     }
   };
 
   useEffect(() => {
-    if (!initialized) {
+    if (user.isLogged) return;
       initializeUser();
-    }
-  }, [initialized]);
+
+  }, []);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
