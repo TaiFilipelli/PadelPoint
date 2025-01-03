@@ -11,6 +11,7 @@ import { PuffLoader } from "react-spinners";
 import Head from "next/head";
 import { trackViewContent } from "../../../../../utils/pixel";
 import { Plus } from "@phosphor-icons/react";
+import Image from "next/image";
 
 const pop = Poppins({subsets:['latin'], weight:['600','400']})
 export default function ProductDetailPage() {
@@ -120,7 +121,7 @@ export default function ProductDetailPage() {
           : null
         }
           <article className="h-[35rem] min-w-96">
-            <img src={`https://${product.image}`}  alt={product.name} className="h-full border-1 rounded-xl object-cover" />
+            <Image src={`https://${product.image}`} alt={product.name} className="h-full border-1 rounded-xl object-cover" />
           </article>
         </article>
         <div className="text-left flex flex-col p-2">
