@@ -37,9 +37,9 @@ export const UserProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    if (user.isLogged) return;
+    if (!user.isLogged) return;
       initializeUser();
-  }, []);
+  }, [user.isLogged]);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
