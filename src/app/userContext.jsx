@@ -4,7 +4,7 @@ import { checkUserState } from '../data/loginData';
 
 export const UserContext = createContext();
 
-export const UserProvider = ({ children }) => {
+export default function UserProvider({ children }) {
   const [user, setUser] = useState({
     isLogged: false,
     isAdmin: false,
@@ -12,6 +12,9 @@ export const UserProvider = ({ children }) => {
   });
 
   const initializeUser = async () => {
+
+    if(user.isLogged) return;
+
     try {
       const userData = await checkUserState();
       if (userData.status) {
@@ -30,7 +33,6 @@ export const UserProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    if (user.isLogged) return;
     initializeUser();
   }, [user.isLogged]);
 

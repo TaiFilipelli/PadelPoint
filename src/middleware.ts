@@ -11,23 +11,7 @@ export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   const userToken = req.cookies.get('user')?.value;
-  const refreshToken = req.cookies.get('refresh')?.value;
-
-  if(!userToken && refreshToken){
-
-      try{
-        await fetch(`${process.env.NEXT_PUBLIC_API_URL}auth/refresh`,{
-          method:'POST',
-          headers:{'Content-Type': 'application/json'},
-          credentials:'include'
-        });
-      } catch(error){
-        console.error('Error trying to update session:',error);
-      }
-      
-  }else{
-    console.error('No session found');
-  }
+  // const refreshToken = req.cookies.get('refresh')?.value;
 
   try {
     const decodedToken = jwtDecode<CustomJwtPayload>(userToken);
