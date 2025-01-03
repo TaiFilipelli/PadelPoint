@@ -11,43 +11,41 @@ export const UserProvider = ({ children }) => {
     username: '',
   });
 
-  const initializeUser = async () => {
-    try {
-      const userData = await checkUserState();
-      console.log('Chequeate la data de user que viene desde acá:', userData);
-      if (userData.isLogged===true || userData.refreshTokenExists===true) {
-        console.log('Está bien, el usuario está logeado o tiene un token de refresco');
-        setUser({
-          isLogged: true,
-          isAdmin: userData.payload.roles.some(role => role.name === 'admin'),
-          username: localStorage.getItem('username'),
-        });
-        console.log('El usuario está bien, se ha inicializado correctamente: Está loggeado?', user.isLogged,'; es admin? ', user.isAdmin,'; su nombre es ',user.username);
-      } else {
-        console.log('El usuario no está loggeado: eso o no se toma el token');
+  useEffect(() => {
+    const initializeUser = async () => {
+      try {
+        const userData = await checkUserState();
+        console.log('Chequeate la data de user que viene desde acá:', userData);
+        if (userData.isLogged === true || userData.refreshTokenExists === true) {
+          console.log('Está bien, el usuario está logeado o tiene un token de refresco');
+          setUser({
+            isLogged: true,
+            isAdmin: userData.payload.roles.some(role => role.name === 'admin'),
+            username: localStorage.getItem('username'),
+          });
+        } else {
+          console.log('El usuario no está loggeado: eso o no se toma el token');
+          setUser({ isLogged: false, isAdmin: false, username: '' });
+          localStorage.removeItem('username');
+        }
+      } catch (err) {
+        console.error('Error initializing user:', err);
         setUser({ isLogged: false, isAdmin: false, username: '' });
-        console.log('Se borró el usuario y ahora se borra de localStorage el nombre de usuario');
         localStorage.removeItem('username');
       }
-    } catch (err) {
-      console.error('Error initializing user:', err);
-      setUser({ isLogged: false, isAdmin: false, username: '' });
-      localStorage.removeItem('username');
-    }
-  };
+    };
+
+    initializeUser();
+  }, []); // Asegúrate de que las dependencias sean correctas
 
   useEffect(() => {
     console.log('ESTE ES EL USUARIO EN EL PRIME USE EFFECT, PREVIO A LA VERIFICACIÓN', user);
-    if (user.isLogged===false){
+    if (user.isLogged === false) {
       console.log('El usuario no está logeado, se borra el usuario y se borra de localStorage el nombre de usuario');
-      setUser({username:''});
+      setUser({ username: '' });
       localStorage.removeItem('username');
-      console.log('Se inicializa el usuario acá ');
-      initializeUser();
-    }else{
-      return user;
     }
-  }, []);
+  }, [user]); // Dependencia en el estado del usuario
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
