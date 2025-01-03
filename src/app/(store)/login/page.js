@@ -54,6 +54,8 @@ export default function Login() {
                 };
 
                 localStorage.setItem('username', validatedData.usernameOrEmail);
+                localStorage.setItem('isLogged', true);
+                localStorage.setItem('iA', state.payload.roles.some(role => role.name === 'admin'));
 
                 console.log('User that enters the context:',user);
 

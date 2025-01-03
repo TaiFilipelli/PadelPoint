@@ -17,8 +17,16 @@ export async function middleware(req: NextRequest) {
     const userToken = req.cookies.get('user')?.value;
 
     if(!userToken){
-      console.log('No se encontró token de usuario');
-      return NextResponse.redirect(new URL('/404', req.url));
+      console.log('No se encontró token de usuario. Buscando bandera en LS...');
+      const logFlag = localStorage.getItem('isLogged');
+      const admFlag = localStorage.getItem('iA');
+
+      if(logFlag && admFlag){
+        console.log('Bandera encontrada en LS. Redireccionando...');
+        return NextResponse.next();
+      }else{
+        return NextResponse.redirect(new URL('/404', req.url));
+      }
     }
 
     try {

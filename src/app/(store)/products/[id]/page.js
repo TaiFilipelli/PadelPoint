@@ -121,7 +121,7 @@ export default function ProductDetailPage() {
           : null
         }
           <article className="h-[35rem] min-w-96">
-            <Image src={`https://${product.image}`} alt={product.name} className="h-full border-1 rounded-xl object-cover" />
+            <Image src={`https://${product.image}`} alt={product.name} className="h-full max-[430px]:h-[75%] border-1 rounded-xl object-cover" />
           </article>
         </article>
         <div className="text-left flex flex-col p-2">
