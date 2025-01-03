@@ -34,6 +34,7 @@ return (
                 return;
             }
             checkImage.onload = () => {
+                accessory.image = `https://${accessory.image}`;
                 return;
             }
             
