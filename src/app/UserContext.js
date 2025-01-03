@@ -37,6 +37,7 @@ export const UserProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    console.log('ESTE ES EL USUARIO EN EL PRIME USE EFFECT, PREVIO A LA VERIFICACIÓN', user);
     if (user.isLogged===false){
       console.log('El usuario no está logeado, se borra el usuario y se borra de localStorage el nombre de usuario');
       setUser({username:''});
