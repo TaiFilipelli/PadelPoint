@@ -23,6 +23,7 @@ export const UserProvider = ({ children }) => {
             isAdmin: userData.payload.roles.some(role => role.name === 'admin'),
             username: localStorage.getItem('username'),
           });
+          return user;
         } else {
           console.log('El usuario no está loggeado: eso o no se toma el token');
           setUser({ isLogged: false, isAdmin: false, username: '' });
@@ -36,16 +37,16 @@ export const UserProvider = ({ children }) => {
     };
 
     initializeUser();
-  }, []); // Asegúrate de que las dependencias sean correctas
+  }, []);
 
   useEffect(() => {
-    console.log('ESTE ES EL USUARIO EN EL PRIME USE EFFECT, PREVIO A LA VERIFICACIÓN', user);
+    console.log('ESTE ES EL USUARIO EN EL PRIMER USE EFFECT, PREVIO A LA VERIFICACIÓN', user);
     if (user.isLogged === false) {
-      console.log('El usuario no está logeado, se borra el usuario y se borra de localStorage el nombre de usuario');
-      setUser({ username: '' });
-      localStorage.removeItem('username');
+      console.log('El usuario no está logeado, acá no hay lógica a manejar.');
+    }else{
+      return user;
     }
-  }, [user]); // Dependencia en el estado del usuario
+  }, [user]);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
