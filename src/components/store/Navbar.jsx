@@ -12,14 +12,15 @@ import { userLogout } from "../../data/loginData";
 import { getBrands, getSomeBrands, getTypes } from "../../data/storeData";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { ShoppingCart, SignOut, SignIn, UserCircle, TerminalWindow, ArrowRight, ArrowDown } from "@phosphor-icons/react";
+import { ArrowRight, ArrowDown } from "@phosphor-icons/react";
 import { useUser } from "../../app/UserContext";
+import UserDropdown from "../UserDropdown";
 
 const pop = Poppins({ subsets: ["latin"], weight: '500' });
 
 const Nav = () => {
 
-  const {user, setUser} = useUser();
+  const {setUser} = useUser();
 
   const [brands, setBrands] = useState([]);
   const [allBrands, setAllBrands] = useState([])
@@ -85,39 +86,7 @@ const Nav = () => {
               <Link href="/products" className="text-xl p-2 text-black dark:text-white">Productos</Link>
             </NavbarItem>
             <NavbarItem>
-                  {user.isLogged ? 
-                   <Dropdown>
-                   <DropdownTrigger className="bg-blue-600 hover:bg-blue-400 shadow-md shadow-black p-4 w-full text-white">
-                      <Button className="ml-4 p-2 text-lg" variant="flat" radius="lg">{user.username}</Button>
-                   </DropdownTrigger>
-                   <DropdownMenu className="p-0 w-full gap-4">
-                   <DropdownItem startContent={<UserCircle size={30}/>} href="/profile" className="w-full text-black">
-                      <h1 className="text-lg font-bold">Mi perfil</h1>
-                    </DropdownItem>
-                    <DropdownItem startContent={<ShoppingCart size={30}/>} href="/cart" className="w-full text-black">
-                      <h1 className="text-lg font-bold">Carrito</h1>
-                    </DropdownItem>
-                    {user.isAdmin && (<DropdownItem startContent={<TerminalWindow size={30}/>} href="/dashboard" className="w-full text-black">
-                        <h1 className="text-lg font-bold">Dashboard</h1>
-                     </DropdownItem>)
-                     
-                   }
-                    <DropdownItem className="w-full text-black" onClick={handleLogout} startContent={<SignOut size={30}/>}>
-                      <h1 className="font-bold text-lg">Logout</h1>
-                    </DropdownItem>
-                   </DropdownMenu>
-                 </Dropdown>
-                  :
-                    <Button
-                      as={Link}
-                      href='/login'
-                      color="default"
-                      variant="flat"
-                      endContent={<SignIn size={25}/>}
-                      className='m-4 text-lg w-full bg-blue-600 text-white shadow shadow-gray-500 hover:bg-blue-400 transition-colors p-4 rounded-lg'>
-                      Iniciar sesión
-                    </Button>
-                }
+              <UserDropdown onLogout={handleLogout}/>
             </NavbarItem>
           </NavbarContent>
 
@@ -158,39 +127,7 @@ const Nav = () => {
               <Button as={Link} href="/about" className={`p-3 text-xl bg-transparent hover:bg-[#B3B7BF]`}>Sobre Nosotros</Button>
             </NavbarMenuItem>
             <NavbarMenuItem>
-            {user.isLogged ? 
-                   <Dropdown>
-                   <DropdownTrigger className="bg-blue-600 hover:bg-blue-400 p-4 w-full text-white">
-                      <Button className="ml-4 p-2 text-lg" variant="flat" radius="lg">{user.username}</Button>
-                   </DropdownTrigger>
-                   <DropdownMenu className="p-0 w-full gap-4">
-                   <DropdownItem startContent={<UserCircle size={30}/>} href="/profile" className="w-full text-black">
-                      <h1 className="text-lg font-bold">Mi perfil</h1>
-                    </DropdownItem>
-                    <DropdownItem startContent={<ShoppingCart size={30}/>} href="/cart" className="w-full text-black">
-                      <h1 className="text-lg font-bold">Carrito</h1>
-                    </DropdownItem>
-                    {user.isAdmin && (<DropdownItem startContent={<TerminalWindow size={30}/>} href="/dashboard" className="w-full text-black">
-                        <h1 className="text-lg font-bold">Dashboard</h1>
-                     </DropdownItem>)
-                     
-                   }
-                    <DropdownItem className="w-full text-black" onClick={handleLogout} startContent={<SignOut size={30}/>}>
-                      <h1 className="font-bold text-lg">Logout</h1>
-                    </DropdownItem>
-                   </DropdownMenu>
-                 </Dropdown>
-                  :
-                    <Button
-                      as={Link}
-                      href='/login'
-                      color="default"
-                      variant="flat"
-                      endContent={<SignIn size={25}/>}
-                      className='m-4 text-lg w-full bg-blue-600 text-white hover:bg-blue-400 transition-colors p-4 rounded-lg'>
-                      Iniciar sesión
-                    </Button>
-                }
+              <UserDropdown onLogout={handleLogout}/>
             </NavbarMenuItem>
           </NavbarMenu>
         </Navbar>

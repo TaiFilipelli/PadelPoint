@@ -2,7 +2,14 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { checkUserState } from '../data/loginData';
 
-export const UserContext = createContext();
+export const UserContext = createContext({
+  user: {
+    isLogged: false,
+    isAdmin: false,
+    username: '',
+  },
+  setUser: () => {},
+});
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState({

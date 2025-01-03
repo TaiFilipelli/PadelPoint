@@ -25,8 +25,8 @@ export default function Login() {
     const [errors, setErrors] = useState({});
     const router = useRouter();
 
-    const { setUser } = useContext(UserContext); // Usa el contexto
-
+    const { setUser } = useContext(UserContext);
+    
     const toggleVisibility = () => setIsVisible(!isVisible);
 
     const handleChange = (e) => {
