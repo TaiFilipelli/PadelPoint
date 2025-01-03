@@ -13,6 +13,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
 
   return (
+    <html lang="es">
       <main className='h-screen bg-transparent text-white dark:bg-black dark:text-white pt-36 max-[700px]:pt-28'>
           <Providers>
             <AnimatedBar/>
@@ -21,5 +22,6 @@ export default function RootLayout({ children }) {
             <Footer />
           </Providers>
       </main>
+    </html>
   );
 }
