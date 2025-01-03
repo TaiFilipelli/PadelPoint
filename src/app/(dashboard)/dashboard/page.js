@@ -40,7 +40,7 @@ export default function Dashboard(){
   },[])
 
   return (
-    <main className="gap-10 flex flex-col w-full">
+    <main className="gap-10 flex flex-col w-full ">
     <section className="flex items-center flex-col p-10 bg-black rounded-lg w-full">
       <h1 className={`${mont.className} text-3xl my-2 max-[410px]:my-8`}>Menú de Administrador</h1>
       <h2 className={`${mont.className} text-xl mb-8`}>Elija la opción que desee.</h2>
