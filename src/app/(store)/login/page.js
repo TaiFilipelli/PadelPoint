@@ -11,6 +11,8 @@ import { userLogin, checkUserState } from "../../../data/loginData";
 import { UserContext } from "../../UserContext";
 import { toast, ToastContainer, Slide } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import Cookies from 'js-cookie';
+import { strict } from "assert";
 
 const pop = Poppins({ subsets: ['latin'], weight: '500' });
 
@@ -54,8 +56,8 @@ export default function Login() {
                 };
 
                 localStorage.setItem('username', validatedData.usernameOrEmail);
-                localStorage.setItem('isLogged', true);
-                localStorage.setItem('iA', state.payload.roles.some(role => role.name === 'admin'));
+                Cookies.set('isLogged', 'true', { path: '/' }, {sameSite: strict});
+                Cookies.set('isAdmin', state.payload.roles.some(role => role.name === 'admin') ? 'true' : 'false', { path: '/' },{sameSite: strict});
 
                 console.log('User that enters the context:',user);
 

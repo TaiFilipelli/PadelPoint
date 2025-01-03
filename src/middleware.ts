@@ -9,40 +9,42 @@ interface CustomJwtPayload extends JwtPayload {
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
-
-  // const refreshToken = req.cookies.get('refresh')?.value;
   
   if(pathname.startsWith('/dashboard')){
 
     const userToken = req.cookies.get('user')?.value;
 
     if(!userToken){
-      console.log('No se encontró token de usuario. Buscando bandera en LS...');
-      const logFlag = localStorage.getItem('isLogged');
-      const admFlag = localStorage.getItem('iA');
+      console.log('No se encontró token de usuario. Buscando banderas de sesión...');
+      const isLogged = req.cookies.get('isLogged')?.value;
+      const isAdmin = req.cookies.get('isAdmin')?.value;
 
-      if(logFlag && admFlag){
-        console.log('Bandera encontrada en LS. Redireccionando...');
-        return NextResponse.next();
-      }else{
+      if(!isLogged && isLogged !== 'true'){
+        console.log('No está logeado. Redireccionando...');
         return NextResponse.redirect(new URL('/404', req.url));
       }
-    }
+      if(!isAdmin && isAdmin !== 'true'){
+        console.log('No es admin. Redireccionando...');
+        return NextResponse.redirect(new URL('/404', req.url));
+      }
+      return NextResponse.next();
+    }else{
 
-    try {
-        const decodedToken = jwtDecode<CustomJwtPayload>(userToken);
-        const roles = decodedToken.roles || [];
-        const isAdmin = roles.some((role) => role.name === 'admin');
-    
-        if (!isAdmin) {
-          return NextResponse.redirect(new URL('/404', req.url));
-        }
-    
-        return NextResponse.next();
-    
-    } catch (error) {
+      try {
+          const decodedToken = jwtDecode<CustomJwtPayload>(userToken);
+          const roles = decodedToken.roles || [];
+          const isAdmin = roles.some((role) => role.name === 'admin');
       
-      return NextResponse.redirect(new URL('/404', req.url));
+          if (!isAdmin) {
+            return NextResponse.redirect(new URL('/404', req.url));
+          }
+      
+          return NextResponse.next();
+      
+      } catch (error) {
+        
+        return NextResponse.redirect(new URL('/404', req.url));
+      }
     }
   }
 }
