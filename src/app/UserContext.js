@@ -22,7 +22,7 @@ export const UserProvider = ({ children }) => {
     try {
       const userData = await checkUserState();
       console.log('Chequeate la data de user que viene desde acá:', userData);
-      if (userData.status) {
+      if (userData.isLogged || userData.refreshTokenExists) {
         setUser({
           isLogged: true,
           isAdmin: userData.payload.roles.some(role => role.name === 'admin'),
