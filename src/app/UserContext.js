@@ -28,6 +28,7 @@ export const UserProvider = ({ children }) => {
           isAdmin: userData.payload.roles.some(role => role.name === 'admin'),
           username: userData.username,
         });
+        localStorage.setItem('username', userData.username);
       } else {
         setUser({ isLogged: false, isAdmin: false, username: '' });
       }
@@ -38,8 +39,12 @@ export const UserProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    if (user.isLogged) return;
+    if (user.isLogged){
+      setUser({username:localStorage.getItem('username')});
+    }else{
+
       initializeUser();
+    }
   }, []);
 
   return (
