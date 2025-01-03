@@ -32,10 +32,10 @@ export function Products({ products }) {
                 
                 const checkImage = new Image();
                 checkImage.src = product.image;
-                checkImage.onerror = () => {
-                    product.image = '/LogoPadelPoint.png';
-                    return;
-                }
+                // checkImage.onerror = () => {
+                //     product.image = '/LogoPadelPoint.png';
+                //     return;
+                // }
                 checkImage.onload = () => {
                     product.image = `https://${product.image}`;
                     return;
