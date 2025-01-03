@@ -8,7 +8,6 @@ import { Navbar,
   NavbarMenuItem, 
   Link, Button, Dropdown, DropdownItem, DropdownTrigger, DropdownMenu, } from "@nextui-org/react";
 import { Poppins } from "next/font/google";
-import { userLogout } from "../../data/loginData";
 import { getBrands, getSomeBrands, getTypes } from "../../data/storeData";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -51,12 +50,7 @@ const Nav = () => {
     }
   };
 
-  const handleLogout = async() =>{
-    await userLogout();
-    Cookies.remove('isLogged');
-    Cookies.remove('isAdmin');
-    window.location.reload(); 
-  }
+
 
   useEffect(() => {
     const initializeComponent = async () => {
@@ -84,7 +78,7 @@ const Nav = () => {
               <Link href="/products" className="text-xl p-2 text-black dark:text-white">Productos</Link>
             </NavbarItem>
             <NavbarItem>
-              <UserDropdown onLogout={handleLogout}/>
+              <UserDropdown/>
             </NavbarItem>
           </NavbarContent>
 
@@ -125,7 +119,7 @@ const Nav = () => {
               <Button as={Link} href="/about" className={`p-3 text-xl bg-transparent hover:bg-[#B3B7BF]`}>Sobre Nosotros</Button>
             </NavbarMenuItem>
             <NavbarMenuItem>
-              <UserDropdown onLogout={handleLogout}/>
+              <UserDropdown/>
             </NavbarMenuItem>
           </NavbarMenu>
         </Navbar>

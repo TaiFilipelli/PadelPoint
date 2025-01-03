@@ -1,25 +1,42 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button } from '@nextui-org/react';
 import Link from 'next/link';
 import { UserCircle, ShoppingCart, TerminalWindow, SignOut, SignIn } from '@phosphor-icons/react';
 import Cookies from 'js-cookie';
+import { userLogout } from '../data/loginData';
 
-const UserDropdown = ({ onLogout }) => {
+const UserDropdown = () => {
   const [isLogged, setIsLogged] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [username, setUsername] = useState('');
 
-  const username = localStorage.getItem('username');
-  const tokenLog = Cookies.get('isLogged');
-  const tokenAd = Cookies.get('isAdmin');
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const user = localStorage.getItem('username');
+      const tokenLog = Cookies.get('isLogged');
+      const tokenAd = Cookies.get('isAdmin');
 
-  if(tokenLog && tokenLog === 'true'){
-    setIsLogged(true);
-  }
+      if (user) {
+        setUsername(user);
+      }
 
-  if(tokenAd && tokenAd === 'true'){
-    setIsAdmin(true);
+      if (tokenLog && tokenLog === 'true') {
+        setIsLogged(true);
+      }
+
+      if (tokenAd && tokenAd === 'true') {
+        setIsAdmin(true);
+      }
+    }
+  }, []);
+
+  const handleLogout = async() =>{
+    await userLogout();
+    Cookies.remove('isLogged');
+    Cookies.remove('isAdmin');
+    window.location.reload(); 
   }
 
   return (
@@ -43,7 +60,7 @@ const UserDropdown = ({ onLogout }) => {
                 <h1 className="text-lg font-bold">Dashboard</h1>
               </DropdownItem>
             )}
-            <DropdownItem className="w-full text-black" onClick={onLogout} startContent={<SignOut size={30} />}>
+            <DropdownItem className="w-full text-black" onClick={handleLogout} startContent={<SignOut size={30} />}>
               <h1 className="font-bold text-lg">Logout</h1>
             </DropdownItem>
           </DropdownMenu>

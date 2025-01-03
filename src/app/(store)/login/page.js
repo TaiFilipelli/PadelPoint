@@ -3,7 +3,7 @@ import { Poppins } from "next/font/google";
 import Link from "next/link";
 import { Input, Button } from "@nextui-org/react";
 import { Eye, EyeClosed, SignIn, GoogleLogo } from "@phosphor-icons/react";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { z } from "zod"; 
 import { loginSchema } from "../../../../schemas/Login";
@@ -42,14 +42,13 @@ export default function Login() {
             if (result.status) {
 
                 const state = await checkUserState();
-
-                localStorage.setItem('username', validatedData.usernameOrEmail);
-                Cookies.set('isLogged', 'true', { path: '/', sameSite:strict, expires: 1/24 });
-                if(state.payload.roles.some(role => role.name === 'admin')){
-
-                    Cookies.set('isAdmin', 'true', { path: '/', sameSite: strict, expires: 1/24 });
+                if (typeof window !== 'undefined') {
+                    localStorage.setItem('username', validatedData.usernameOrEmail);
+                    Cookies.set('isLogged', 'true', { path: '/', sameSite: 'strict', expires: 1/24 });
+                    if(state.payload.roles.some(role => role.name === 'admin')){
+                        Cookies.set('isAdmin', 'true', { path: '/', sameSite: 'strict', expires: 1/24 });
+                    }
                 }
-                
                 toast.success('Inicio de sesión correcto. Bienvenido!');
             
                 setTimeout(() => {
