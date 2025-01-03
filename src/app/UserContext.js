@@ -21,6 +21,7 @@ export const UserProvider = ({ children }) => {
   const initializeUser = async () => {
     try {
       const userData = await checkUserState();
+      console.log('Chequeate la data de user que viene desde acá:', userData);
       if (userData.status) {
         setUser({
           isLogged: true,
