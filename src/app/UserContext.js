@@ -31,10 +31,12 @@ export const UserProvider = ({ children }) => {
         localStorage.setItem('username', userData.username);
       } else {
         setUser({ isLogged: false, isAdmin: false, username: '' });
+        localStorage.removeItem('username');
       }
     } catch (err) {
       console.error('Error initializing user:', err);
       setUser({ isLogged: false, isAdmin: false, username: '' });
+      localStorage.removeItem('username');
     }
   };
 
@@ -42,7 +44,8 @@ export const UserProvider = ({ children }) => {
     if (user.isLogged){
       setUser({username:localStorage.getItem('username')});
     }else{
-
+      setUser({username:''});
+      localStorage.removeItem('username');
       initializeUser();
     }
   }, []);
