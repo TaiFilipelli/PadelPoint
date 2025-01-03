@@ -16,6 +16,7 @@ export async function middleware(req: NextRequest) {
 
     const userToken = req.cookies.get('user')?.value;
     if(!userToken){
+      console.log()
       return NextResponse.redirect(new URL('/404', req.url));
     }
 
