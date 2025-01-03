@@ -8,11 +8,9 @@ import { useRouter } from "next/navigation";
 import { z } from "zod"; 
 import { loginSchema } from "../../../../schemas/Login";
 import { userLogin, checkUserState } from "../../../data/loginData";
-import { UserContext } from "../../UserContext";
 import { toast, ToastContainer, Slide } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Cookies from 'js-cookie';
-import { strict } from "assert";
 
 const pop = Poppins({ subsets: ['latin'], weight: '500' });
 
@@ -26,8 +24,6 @@ export default function Login() {
     });
     const [errors, setErrors] = useState({});
     const router = useRouter();
-
-    const { setUser } = useContext(UserContext);
     
     const toggleVisibility = () => setIsVisible(!isVisible);
 
@@ -47,21 +43,12 @@ export default function Login() {
 
                 const state = await checkUserState();
 
-                console.log('State:',state);
-
-                const user = {
-                    isLogged: state.isLogged,
-                    username: validatedData.usernameOrEmail,
-                    isAdmin: state.payload.roles.some(role => role.name === 'admin'),
-                };
-
                 localStorage.setItem('username', validatedData.usernameOrEmail);
-                Cookies.set('isLogged', 'true', { path: '/' }, {sameSite: strict});
-                Cookies.set('isAdmin', state.payload.roles.some(role => role.name === 'admin') ? 'true' : 'false', { path: '/' },{sameSite: strict});
+                Cookies.set('isLogged', 'true', { path: '/', sameSite:strict, expires: 1/24 });
+                if(state.payload.roles.some(role => role.name === 'admin')){
 
-                console.log('User that enters the context:',user);
-
-                setUser(user);
+                    Cookies.set('isAdmin', 'true', { path: '/', sameSite: strict, expires: 1/24 });
+                }
                 
                 toast.success('Inicio de sesión correcto. Bienvenido!');
             

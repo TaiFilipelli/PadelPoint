@@ -1,21 +1,34 @@
 'use client';
 
-import React from 'react';
-import { useUser } from '../app/UserContext';
+import { useState } from 'react';
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button } from '@nextui-org/react';
 import Link from 'next/link';
 import { UserCircle, ShoppingCart, TerminalWindow, SignOut, SignIn } from '@phosphor-icons/react';
+import Cookies from 'js-cookie';
 
 const UserDropdown = ({ onLogout }) => {
-  const { user } = useUser();
+  const [isLogged, setIsLogged] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  const username = localStorage.getItem('username');
+  const tokenLog = Cookies.get('isLogged');
+  const tokenAd = Cookies.get('isAdmin');
+
+  if(tokenLog && tokenLog === 'true'){
+    setIsLogged(true);
+  }
+
+  if(tokenAd && tokenAd === 'true'){
+    setIsAdmin(true);
+  }
 
   return (
     <div>
-      {user.isLogged ? (
+      {isLogged ? (
         <Dropdown>
           <DropdownTrigger className="bg-blue-600 hover:bg-blue-400 shadow-md shadow-black p-4 w-full text-white">
             <Button className="ml-4 p-2 text-lg" variant="flat" radius="lg">
-              {user.username}
+              {username}
             </Button>
           </DropdownTrigger>
           <DropdownMenu className="p-0 w-full gap-4">
@@ -25,7 +38,7 @@ const UserDropdown = ({ onLogout }) => {
             <DropdownItem startContent={<ShoppingCart size={30} />} href="/cart" className="w-full text-black">
               <h1 className="text-lg font-bold">Carrito</h1>
             </DropdownItem>
-            {user.isAdmin && (
+            {isAdmin && (
               <DropdownItem startContent={<TerminalWindow size={30} />} href='/dashboard' className="w-full text-black">
                 <h1 className="text-lg font-bold">Dashboard</h1>
               </DropdownItem>

@@ -13,14 +13,12 @@ import { getBrands, getSomeBrands, getTypes } from "../../data/storeData";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowRight, ArrowDown } from "@phosphor-icons/react";
-import { useUser } from "../../app/UserContext";
 import UserDropdown from "../UserDropdown";
+import Cookies from "js-cookie";
 
 const pop = Poppins({ subsets: ["latin"], weight: '500' });
 
 const Nav = () => {
-
-  const {setUser} = useUser();
 
   const [brands, setBrands] = useState([]);
   const [allBrands, setAllBrands] = useState([])
@@ -55,9 +53,10 @@ const Nav = () => {
 
   const handleLogout = async() =>{
     await userLogout();
-    setUser({isLogged:false, isAdmin:false, username:''});
-    window.location.reload();
-} 
+    Cookies.remove('isLogged');
+    Cookies.remove('isAdmin');
+    window.location.reload(); 
+  }
 
   useEffect(() => {
     const initializeComponent = async () => {
