@@ -26,7 +26,7 @@ export const UserProvider = ({ children }) => {
         setUser({
           isLogged: true,
           isAdmin: userData.payload.roles.some(role => role.name === 'admin'),
-          username: userData.username,
+          username: localStorage.getItem('username'),
         });
       } else {
         setUser({ isLogged: false, isAdmin: false, username: '' });
