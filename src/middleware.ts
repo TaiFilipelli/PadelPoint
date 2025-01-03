@@ -12,26 +12,31 @@ export async function middleware(req: NextRequest) {
 
   // const refreshToken = req.cookies.get('refresh')?.value;
   
-  const userToken = req.cookies.get('user')?.value;
+  if(pathname.startsWith('/dashboard')){
 
-  if(userToken){
+    const userToken = req.cookies.get('user')?.value;
+    if(!userToken){
+      return NextResponse.redirect(new URL('/', req.url));
+    }
+
     try {
-      const decodedToken = jwtDecode<CustomJwtPayload>(userToken);
-      const roles = decodedToken.roles || [];
-      const isAdmin = roles.some((role) => role.name === 'admin');
-  
-      if (pathname.startsWith('/dashboard') && !isAdmin) {
-        return NextResponse.redirect(new URL('/404', req.url));
-      }
-  
-      return NextResponse.next();
-  
+        const decodedToken = jwtDecode<CustomJwtPayload>(userToken);
+        const roles = decodedToken.roles || [];
+        const isAdmin = roles.some((role) => role.name === 'admin');
+    
+        if (!isAdmin) {
+          return NextResponse.redirect(new URL('/404', req.url));
+        }
+    
+        return NextResponse.next();
+    
     } catch (error) {
-      console.error('Error decoding token:', error);
+      
+      return NextResponse.redirect(new URL('/404', req.url));
     }
   }
 }
 
 export const config = {
-  matcher: ['/','/dashboard/:path*'],
+  matcher: ['/dashboard/:path*'],
 };
