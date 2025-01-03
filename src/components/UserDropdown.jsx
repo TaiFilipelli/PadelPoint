@@ -5,18 +5,9 @@ import { useUser } from '../app/UserContext';
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button } from '@nextui-org/react';
 import Link from 'next/link';
 import { UserCircle, ShoppingCart, TerminalWindow, SignOut, SignIn } from '@phosphor-icons/react';
-import { useRouter } from 'next/navigation';
 
 const UserDropdown = ({ onLogout }) => {
   const { user } = useUser();
-
-  const router = useRouter();
-
-  const handleAdminClick = () => {
-    setTimeout(() => {
-      router.push('/dashboard');
-    }, 2000);
-  };
 
   return (
     <div>
@@ -35,7 +26,7 @@ const UserDropdown = ({ onLogout }) => {
               <h1 className="text-lg font-bold">Carrito</h1>
             </DropdownItem>
             {user.isAdmin && (
-              <DropdownItem startContent={<TerminalWindow size={30} />} onClick={handleAdminClick} className="w-full text-black">
+              <DropdownItem startContent={<TerminalWindow size={30} />} href='/dashboard' className="w-full text-black">
                 <h1 className="text-lg font-bold">Dashboard</h1>
               </DropdownItem>
             )}

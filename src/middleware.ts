@@ -10,14 +10,26 @@ interface CustomJwtPayload extends JwtPayload {
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
+  function delay(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
   // const refreshToken = req.cookies.get('refresh')?.value;
   
   if(pathname.startsWith('/dashboard')){
 
     const userToken = req.cookies.get('user')?.value;
+
     if(!userToken){
-      console.log()
-      return NextResponse.redirect(new URL('/404', req.url));
+      // -----------ESTO ES EXTREMADAMENTE INSEGURO PARA PRODUCCIÓN. RALENTIZA TODO Y ES MOLESTO. ------------
+        await delay(2000);
+        const refreshedUserToken = req.cookies.get('user')?.value;
+        if (!refreshedUserToken) {
+          return NextResponse.redirect(new URL('/404', req.url));
+        }
+      // -----------------------------------------------------------------------------------------------------
+      // console.log('No se encontró token de usuario');
+      // return NextResponse.redirect(new URL('/404', req.url));
     }
 
     try {

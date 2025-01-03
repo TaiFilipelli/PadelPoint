@@ -53,6 +53,8 @@ export default function Login() {
                     isAdmin: state.payload.roles.some(role => role.name === 'admin'),
                 };
 
+                localStorage.setItem('username', validatedData.usernameOrEmail);
+
                 console.log('User that enters the context:',user);
 
                 setUser(user);
