@@ -10,11 +10,9 @@ export default function UserProvider({ children }) {
     isAdmin: false,
     username: '',
   });
+  const [initialized, setInitialized] = useState(false);
 
   const initializeUser = async () => {
-
-    if(user.isLogged) return;
-
     try {
       const userData = await checkUserState();
       if (userData.status) {
@@ -29,12 +27,16 @@ export default function UserProvider({ children }) {
     } catch (err) {
       console.error('Error initializing user:', err);
       setUser({ isLogged: false, isAdmin: false, username: '' });
+    } finally {
+      setInitialized(true);
     }
   };
 
   useEffect(() => {
-    initializeUser();
-  }, [user.isLogged]);
+    if (!initialized) {
+      initializeUser();
+    }
+  }, [initialized]);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
