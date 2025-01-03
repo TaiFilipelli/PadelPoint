@@ -20,7 +20,7 @@ const pop = Poppins({ subsets: ["latin"], weight: '500' });
 
 const Nav = () => {
 
-  const {setUser} = useUser();
+  const {user, setUser} = useUser();
 
   const [brands, setBrands] = useState([]);
   const [allBrands, setAllBrands] = useState([])

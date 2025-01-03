@@ -39,7 +39,6 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     if (user.isLogged) return;
       initializeUser();
-
   }, []);
 
   return (
