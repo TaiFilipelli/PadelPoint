@@ -2,14 +2,7 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { checkUserState } from '../data/loginData';
 
-export const UserContext = createContext({
-  user: {
-    isLogged: false,
-    isAdmin: false,
-    username: '',
-  },
-  setUser: () => {},
-});
+export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState({
@@ -22,7 +15,7 @@ export const UserProvider = ({ children }) => {
     try {
       const userData = await checkUserState();
       console.log('Chequeate la data de user que viene desde acá:', userData);
-      if (userData.isLogged || userData.refreshTokenExists) {
+      if (userData.isLogged===true || userData.refreshTokenExists===true) {
         setUser({
           isLogged: true,
           isAdmin: userData.payload.roles.some(role => role.name === 'admin'),
