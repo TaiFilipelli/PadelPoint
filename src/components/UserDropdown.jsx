@@ -15,7 +15,7 @@ const UserDropdown = ({ onLogout }) => {
         <Dropdown>
           <DropdownTrigger className="bg-blue-600 hover:bg-blue-400 shadow-md shadow-black p-4 w-full text-white">
             <Button className="ml-4 p-2 text-lg" variant="flat" radius="lg">
-              {user.username!=undefined ? user.username : localStorage.getItem('username')}
+              {user.username}
             </Button>
           </DropdownTrigger>
           <DropdownMenu className="p-0 w-full gap-4">

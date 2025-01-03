@@ -40,9 +40,7 @@ export const UserProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    if (user.isLogged){
-      setUser({username:localStorage.getItem('username')});
-    }else{
+    if (user.isLogged===false){
       setUser({username:''});
       localStorage.removeItem('username');
       initializeUser();
