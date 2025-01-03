@@ -20,7 +20,7 @@ const pop = Poppins({ subsets: ["latin"], weight: '500' });
 
 const Nav = () => {
 
-  const {user, setUser} = useUser();
+  const {setUser} = useUser();
 
   const [brands, setBrands] = useState([]);
   const [allBrands, setAllBrands] = useState([])
@@ -62,7 +62,6 @@ const Nav = () => {
   useEffect(() => {
     const initializeComponent = async () => {
       await fetchBrandsAndTypes();
-      console.log('SE MONTO EL COMPONENTE, EL USER ES:',user);
   };
     initializeComponent();
   }, []);
