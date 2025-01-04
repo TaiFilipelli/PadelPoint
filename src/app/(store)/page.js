@@ -60,7 +60,7 @@ export default async function Home() {
         </p>
         <Image src="/STOCKMAIN1.jpg" width={900} isBlurred alt="Jugador de padel en cancha de ladrillo azul"/>
       </article>
-      <article className="flex flex-col text-right max-[800px]:text-left justify-end max-[800px]:justify-start items-end max-[800px]:items-start bg-white text-black p-4 rounded-xl ml-96 max-[800px]:ml-60 max-[650px]:ml-0 mb-4 animate-appear">
+      <article className="flex flex-col text-center max-[800px]:text-left justify-end max-[800px]:justify-start items-end max-[800px]:items-start bg-white text-black p-4 rounded-xl ml-96 max-[800px]:ml-60 max-[650px]:ml-0 mb-4 animate-appear">
         <h1 className={`${pop.className} font-bold text-2xl max-[500px]:text-3xl my-4 underline`}>Tu paleta de ensueño, a dos clicks de distancia</h1>
         <p className="font-normal text-xl mb-4">Encontrar tu compañera ideal nunca fue tan fácil! Ingresá con tu cuenta (o unite a la familia PadelPoint si
           es tu primera vez por acá) y descubrí nuestra amplia gama de productos para acompañarte tanto dentro de la cancha como fuera de ella. Además,

@@ -7,6 +7,7 @@ import { searchUserAuthenticated, updateOneUser} from "../../../../data/loginDat
 import { toast, ToastContainer, Slide } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from "next/navigation";
+import Cookies from 'js-cookie';
 
 export default function ResultLogin() {
 
@@ -24,6 +25,8 @@ export default function ResultLogin() {
             setIsNewUser(data.isNewUser);
             if(isNewUser === false){
                 setUsername(data.user.username);
+                Cookies.set('isLogged', 'true', { path: '/', sameSite: 'strict', expires: 1/24 });
+                // Cookies.set('isAdmin', 'false', { path: '/', sameSite: 'strict', expires: 1/24 });
             }
             localStorage.setItem('username', data.user.username);
         }catch(error){
@@ -41,6 +44,8 @@ export default function ResultLogin() {
             const data = await searchUserAuthenticated();
             await updateOneUser(data.user.id, newUsername);
             toast.success('Usuario creado correctamente! Bienvenido!');
+            Cookies.set('isLogged', 'true', { path: '/', sameSite: 'strict', expires: 1/24 });
+            // Cookies.set('isAdmin', 'false', { path: '/', sameSite: 'strict', expires: 1/24 });
             setIsNewUser(false);
             setTimeout(()=>{
                 router.push('/');
