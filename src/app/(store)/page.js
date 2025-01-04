@@ -18,8 +18,8 @@ export default async function Home() {
   let subProducts = [];
 
   try {
-    const params = { limit: 4 };
-    const subParams = {limit: 4, type:'Bolsos' };
+    const params = { limit: 4, isActive:true };
+    const subParams = {limit: 4, type:'Bolsos', isActive:true };
     const response = await getProducts(params);
     const subResponse = await getProducts(subParams);
     mainProducts = response.recourse;
