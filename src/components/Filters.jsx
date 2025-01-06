@@ -31,7 +31,7 @@ export const Filters = ({ filters, onFilterChange }) => {
     const handlePriceRangeChange = useCallback(
         debounce((value) => {
             onFilterChange({ minPrice: value[0], maxPrice: value[1] });
-        }, 250),
+        }, 100),
         []
     );
 
